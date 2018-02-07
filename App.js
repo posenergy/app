@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * positive-energy App
+ * https://github.com/hsadev/positive-energy
  * @flow
  */
 
@@ -11,28 +11,31 @@ import {
   Text,
   View
 } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import AppNavigator from './navigations/AppNavigator';
 
 export default class App extends Component<{}> {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       data: null,
+//       isFetching: false
+//     }
+//   }
+
+//   componentDidMount() {
+//     this.fetchData()
+//   }
+
+//   fetchData = async() => {
+//     this.setState({isFetching: true})
+//     const data = await fetch('https://mytutor-api.herokuapp.com/users/59d407cea61a040004c337e2')
+//     const json = await data.json()
+//     this.setState({ data: json, isFetching: false})
+//   }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Positive Energy
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+        <AppNavigator />
     );
   }
 }
