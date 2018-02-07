@@ -7,7 +7,6 @@ import config from '../../config/config';
 import styles from './styles';
 
 import AppNavigator from '../../navigations/AppNavigator';
-import Logo from '../../components/Logo';
 import LoginFields from '../../components/LoginFields';
 import Button from '../../components/Button';
 
