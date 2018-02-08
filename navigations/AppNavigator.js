@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'; // 4.4.2
 import { NavigationActions } from 'react-navigation';
 
 import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 import MainDrawerNavigator from './MainDrawer';
 
 import Button from '../components/Button';
@@ -12,6 +13,9 @@ import Button from '../components/Button';
 const AppNavigator = StackNavigator({
   Login: {
     screen: LoginScreen,
+  },
+  Register: {
+    screen: RegisterScreen,
   },
   MainDrawer: {
     screen: MainDrawerNavigator,
