@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    usernameInput: {
-        backgroundColor: '#FFFFFF',        
+    UsernameInput: {
+        backgroundColor: '#FFFFFF',
         height: 50,
         width: 300,
         borderRadius: 10,

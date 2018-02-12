@@ -30,15 +30,13 @@ export default class LoginScreen extends React.Component {
     this.props.navigation.dispatch(navigateAction);
   };
 
-
   render() {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
         <RegisterFields/>
 		    <Button type="login" onClick={() => this.resetNavigation('MainDrawer')}
-          text="Register" textColor="white"
-        />
+          text="Sign Up" textColor="white"/>
       </ScrollView>
     )
   };

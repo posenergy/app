@@ -5,11 +5,23 @@ export default StyleSheet.create({
         alignSelf: 'center',
         marginTop: 61,
     },
-    link: {
-        color: '#4F4F4F',
+    text: {
+        color: '#000000',
         alignSelf: 'center',
         marginTop: 7,
-        fontSize: 11,
+        fontSize: 12,
 
+    },
+    header: {
+        color: '#000000',
+        alignSelf: 'center',
+        marginTop: 0,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    boxes: {
+        marginTop: 10,
+        alignSelf: 'center',
+        flexDirection: 'row',
     },
 });
