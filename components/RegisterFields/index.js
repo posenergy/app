@@ -18,6 +18,5 @@ export default RegisterFields = props => (
   <PasswordInput />
   <ConfirmPasswordInput />
   <GenderInput/>
-  <RestTimeInput />
   </View>
 )

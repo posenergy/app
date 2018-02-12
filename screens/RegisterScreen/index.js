@@ -10,7 +10,7 @@ import AppNavigator from '../../navigations/AppNavigator';
 import RegisterFields from '../../components/RegisterFields';
 import Button from '../../components/Button';
 
-export default class LoginScreen extends React.Component {
+export default class RegisterScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +18,8 @@ export default class LoginScreen extends React.Component {
       name: '',
       email: '',
       password: '',
-      readytime: '',
+      confirmpassword: '',
+      gender: '',
     };
   }
 

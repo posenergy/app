@@ -11,7 +11,7 @@ export default class GenderInput extends Component {
   }
   render () {
     return (
-      <TextInput style={styles.emailInput}
+      <TextInput style={styles.genderInput}
         placeholder="Gender"
         onChangeText ={gender => this.setState({gender})}
       />

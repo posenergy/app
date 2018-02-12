@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'; // 4.4.2
 import { NavigationActions } from 'react-navigation';
 
 import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
+import RegisterScreen2 from '../screens/RegisterScreen2';
 import PackagesScreen from '../screens/PackagesScreen';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import CheckinScreen from '../screens/CheckinScreen';
@@ -32,7 +32,7 @@ const MainDrawerNavigator = DrawerNavigator({
     })
   },
   Register: {
-    screen: RegisterScreen,
+    screen: RegisterScreen2,
     navigationOptions: ({ navigation }) => ({
       title: 'Register',
       headerLeft: <Button onClick={() => navigation.navigate('DrawerOpen')} text="&#9776;" type="menu" textColor="black" />,

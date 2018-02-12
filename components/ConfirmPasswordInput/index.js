@@ -12,8 +12,9 @@ export default class ConfirmPasswordInput extends Component {
   render () {
     return (
       <TextInput style={styles.confirmpasswordInput}
-        placeholder="Confirm Password"/>
+        placeholder="Confirm Password"
         onChangeText ={confirmpassword => this.setState({confirmpassword})}
+      />
     );
   }
 };
