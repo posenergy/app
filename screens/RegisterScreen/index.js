@@ -5,7 +5,6 @@ import { NavigationActions } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ValidationComponent from 'react-native-form-validator';
 
-
 import config from '../../config/config';
 import styles from './styles';
 
@@ -24,16 +23,20 @@ export default class RegisterScreen2 extends ValidationComponent {
       password: '',
       confirmpassword: '',
       gender: '',
-    }
+    };
+
   }
 
-  _onSubmit() {
-  this.validate({
-    name: {required: true},
-    email: {required: true},
-    gender: {required: true}
-  });
+  // ensures that all fields are filled before submission
+  onSubmit() {
+    this.validate({
+      name: {required: true},
+      email: {required: true},
+      gender: {required: true},
+      password: {required: true, minlength:7},
+      confirmpassword: {required: true, minlength:7}
 
+    });
   }
 
 resetNavigation(targetRoute) {
@@ -45,7 +48,7 @@ resetNavigation(targetRoute) {
  };
 
 async writeUser(name, email, password, confirmpassword, gender){
-  if (this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+  if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
     try {
       let responseJSON;
       let apiUrl = `${config.apiUrl}/users`;
@@ -77,6 +80,53 @@ async writeUser(name, email, password, confirmpassword, gender){
   }
 }
 
+
+  validEmail(email){
+    if (email !== '') {
+      console.log(email);
+      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+      if(reg.test(email) === false){
+        console.log("Email is Not Correct");
+        Alert.alert(
+        'Cannot Register User',
+        'Email is invalid.',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false })
+        return false;
+      }
+      else {
+        return true
+      }
+    }
+    // do not want error to display if field is not filled in
+    else{
+      return true
+    }
+  }
+
+  checkPwd(password) {
+    if (password !== '') {
+      if ((password.length < 6) || (password.length > 50) || (password.search(/\d/) == -1)) {
+        Alert.alert(
+        'Password is invalid.',
+        'Must be at least 7 characters long and contain at least one number.',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false })
+        return false;
+      }
+      else{
+        return true
+      };
+    }
+    else{
+      return true
+    }
+  }
+
   validPassword(password, confirmpassword){
     if(password == confirmpassword){
       console.log("Passwords Match");
@@ -93,26 +143,6 @@ async writeUser(name, email, password, confirmpassword, gender){
       { cancelable: false })
       return false;
     }
-  }
-
-  validEmail(email){
-    if (email !== '') {
-      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-      if(reg.test(email) === false){
-        console.log("Email is Not Correct");
-        Alert.alert(
-        'Cannot Register User',
-        'Email is invalid.',
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        { cancelable: false })
-        return false;
-      }
-      else {
-        return true
-      }
-   }
   }
 
   render() {
