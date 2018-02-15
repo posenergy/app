@@ -23,7 +23,7 @@ export default class LoginScreen extends React.Component {
   resetNavigation(targetRoute) {
     const navigateAction = NavigationActions.reset({
       index: 0,
-      actions: [ NavigationActions.navigate({ routeName: 'MainDrawer'}) ],
+      actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
     })
     this.props.navigation.dispatch(navigateAction);
   };
@@ -77,7 +77,7 @@ export default class LoginScreen extends React.Component {
     return (
       <View>
         <LoginFields />
-		    <Button type="login" onClick={() => this.resetNavigation('MainDrawer')}
+		    <Button type="login" onClick={() => this.resetNavigation('MainTab')}
           text="Login" textColor="white"
         />
       </View>

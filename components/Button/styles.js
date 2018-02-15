@@ -33,14 +33,15 @@ export default StyleSheet.create({
   },
   login: {
     marginTop: 25,
-    backgroundColor: "#AC1A2F",
+    backgroundColor: "#203359",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: 'center',
     height: 50,
     width: 160,
-    borderRadius: 12, 
-    margin: 8
+    borderRadius: 12,
+    margin: 8,
+    borderRadius: 5,
   },
   menu: {
     height: 40,

@@ -12,6 +12,7 @@ export default class Button extends Component {
     type: PropTypes.oneOf([
       "login",
       "menu",
+      "register",
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element
@@ -21,10 +22,10 @@ export default class Button extends Component {
     text: ""
   }
 
-  _renderText = () => 
+  _renderText = () =>
     (this.props.text !== "" ) &&
     <Text style={[styles[this.props.textColor]]}>{this.props.text}</Text>
-  _renderIcon = () => 
+  _renderIcon = () =>
     (this.props.icon !== "") &&
     this.props.icon
 
@@ -33,7 +34,7 @@ export default class Button extends Component {
       <TouchableOpacity
         onPress={this.props.onClick}
         style={[styles.button, styles[this.props.type]]}
-      > 
+      >
         {this.props.img}
         {this._renderIcon()}
         {this._renderText()}
