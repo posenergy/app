@@ -33,7 +33,7 @@ resetNavigation(targetRoute) {
  };
 
 async writeUser(name, email, password, confirmpassword, gender){
-  if (password = confirmpassword){
+  //if (password == confirmpassword){
     try {
       let responseJSON;
       let apiUrl = `${config.apiUrl}/users`;
@@ -46,43 +46,25 @@ async writeUser(name, email, password, confirmpassword, gender){
         body: JSON.stringify({
           name: name,
           email: email,
-          password: password,
-          confirmpassword: confirmpassword,
+          hash: password,
           gender: gender,
         }),
       });
       if (!response.ok) {
         return false;
-        Alert.alert(
-          'Cannot proceed at this time.',
-          'Hmm... There seems to have been an error on our end! Please try again.',
-          [
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
-          { cancelable: false }
-       )
       }
       // should not return the error message if correctly writes into the database
-      else {
-        responseJSON = await response.json();
+     // else {
+       // responseJSON = await response.json();
         this.resetNavigation('MainTab');
-      }
+     // }
       return responseJSON;
     } catch(error) {
       console.error(error);
     }
-  }
-  else{
-    Alert.alert(
-      'Cannot Register User',
-      'Passwords do not match. Please try again.',
-      [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-    )
-  }
+ // }
+  // else{
+  // }
 
 }
 
