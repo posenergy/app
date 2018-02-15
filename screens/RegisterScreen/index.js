@@ -9,6 +9,7 @@ import styles from './styles';
 
 import AppNavigator from '../../navigations/AppNavigator';
 import RegisterFields from '../../components/RegisterFields';
+import StyleTextInput from '../../components/StyleTextInput';
 import Button from '../../components/Button';
 
 export default class RegisterScreen2 extends React.Component {
@@ -33,7 +34,17 @@ resetNavigation(targetRoute) {
  };
 
 async writeUser(name, email, password, confirmpassword, gender){
-  //if (password == confirmpassword){
+  if (password == confirmpassword){
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [
+        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    )
     try {
       let responseJSON;
       let apiUrl = `${config.apiUrl}/users`;
@@ -62,10 +73,7 @@ async writeUser(name, email, password, confirmpassword, gender){
     } catch(error) {
       console.error(error);
     }
- // }
-  // else{
-  // }
-
+  }
 }
 
 
@@ -73,33 +81,32 @@ async writeUser(name, email, password, confirmpassword, gender){
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={styles.viewcontainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Name"
-        onChangeText ={name => this.setState({name})}
+      <StyleTextInput
+        pholder="Name"
+        passwordSecure = {false}
+        changeFunction ={name => this.setState({name})}
       />
-      <TextInput style={styles.textInput}
-        placeholder="Email"
-        autoCapitalize = "none"
-        onChangeText ={email => this.setState({email})}
+      <StyleTextInput
+        pholder="Email"
+        passwordSecure = {false}
+        changeFunction ={email => this.setState({email})}
       />
-      <TextInput style={styles.textInput}
-        secureTextEntry = {true}
-        placeholder="Password"
-        autoCapitalize = "none"
-        onChangeText = {password => this.setState({password})}
+      <StyleTextInput
+        pholder="Password"
+        passwordSecure = {true}
+        changeFunction = {password => this.setState({password})}
       />
-      <TextInput style={styles.textInput}
-        secureTextEntry = {true}
-        placeholder="Confirm Password"
-        autoCapitalize = "none"
-        onChangeText ={confirmpassword => this.setState({confirmpassword})}
+      <StyleTextInput
+        pholder="Confirm Password"
+        passwordSecure = {true}
+        changeFunction ={confirmpassword => this.setState({confirmpassword})}
       />
-      <TextInput style={styles.textInput}
-        placeholder="Gender"
-        onChangeText ={gender => this.setState({gender})}
+      <StyleTextInput
+        pholder="Gender"
+        passwordSecure= {false}
+        changeFunction ={gender => this.setState({gender})}
       />
-		  <Button type="login" color = "#203359" style ={styles.button} onClick={() => this.writeUser(this.name, this.email, this.password, this.confirmpassword, this.gender)}
+		  <Button type="login" color = "#203359" style ={styles.button} onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
           text="Sign Up" textColor="white"/>
       </ScrollView>
     )
