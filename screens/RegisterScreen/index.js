@@ -3,6 +3,8 @@ import { AppRegistry, StyleSheet, Text, TextInput, View, ScrollView, Alert } fro
 import { StackNavigator } from 'react-navigation';
 import { NavigationActions } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
+import ValidationComponent from 'react-native-form-validator';
+
 
 import config from '../../config/config';
 import styles from './styles';
@@ -12,7 +14,7 @@ import RegisterFields from '../../components/RegisterFields';
 import StyleTextInput from '../../components/StyleTextInput';
 import Button from '../../components/Button';
 
-export default class RegisterScreen2 extends React.Component {
+export default class RegisterScreen2 extends ValidationComponent {
   constructor(props) {
     super(props);
 
@@ -22,7 +24,16 @@ export default class RegisterScreen2 extends React.Component {
       password: '',
       confirmpassword: '',
       gender: '',
-    };
+    }
+  }
+
+  _onSubmit() {
+  this.validate({
+    name: {required: true},
+    email: {required: true},
+    gender: {required: true}
+  });
+
   }
 
 resetNavigation(targetRoute) {
@@ -84,23 +95,24 @@ async writeUser(name, email, password, confirmpassword, gender){
     }
   }
 
-  validEmail(text){
-    console.log(text);
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-    if(reg.test(text) === false){
-      console.log("Email is Not Correct");
-      Alert.alert(
-      'Cannot Register User',
-      'Email is invalid.',
-      [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false })
-      return false;
-    }
-    else {
-      return true
-    }
+  validEmail(email){
+    if (email !== '') {
+      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+      if(reg.test(email) === false){
+        console.log("Email is Not Correct");
+        Alert.alert(
+        'Cannot Register User',
+        'Email is invalid.',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false })
+        return false;
+      }
+      else {
+        return true
+      }
+   }
   }
 
   render() {
