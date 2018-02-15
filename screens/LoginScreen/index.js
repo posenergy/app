@@ -7,7 +7,7 @@ import config from '../../config/config';
 import styles from './styles';
 
 import AppNavigator from '../../navigations/AppNavigator';
-import LoginFields from '../../components/LoginFields';
+import StyleTextInput from '../../components/StyleTextInput';
 import Button from '../../components/Button';
 
 export default class LoginScreen extends React.Component { 
@@ -76,13 +76,14 @@ export default class LoginScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <LoginFields />
-		    <Button type="login" onClick={() => this.resetNavigation('MainDrawer')}
+        <StyleTextInput pholder="Email" changeFunction={email => this.setState({email})}/>
+        <StyleTextInput pholder="Password" changeFunction={password => this.setState({password})}/>
+  	    <Button 
+          type="login" onClick={() => this.resetNavigation('MainDrawer')}
           text="Login" textColor="white"
         />
       </View>
     )
   };
-
 }
 
