@@ -34,17 +34,7 @@ resetNavigation(targetRoute) {
  };
 
 async writeUser(name, email, password, confirmpassword, gender){
-  if (password == confirmpassword){
-    Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
+  if (this.validPassword(password, confirmpassword) && this.validEmail(email)) {
     try {
       let responseJSON;
       let apiUrl = `${config.apiUrl}/users`;
@@ -61,14 +51,14 @@ async writeUser(name, email, password, confirmpassword, gender){
           gender: gender,
         }),
       });
+      console.log(response)
       if (!response.ok) {
         return false;
       }
-      // should not return the error message if correctly writes into the database
-     // else {
-       // responseJSON = await response.json();
+     else {
+        responseJSON = await response.json();
         this.resetNavigation('MainTab');
-     // }
+      }
       return responseJSON;
     } catch(error) {
       console.error(error);
@@ -76,6 +66,42 @@ async writeUser(name, email, password, confirmpassword, gender){
   }
 }
 
+  validPassword(password, confirmpassword){
+    if(password == confirmpassword){
+      console.log("Passwords Match");
+      return true;
+    }
+    else {
+      console.log("Passwords do not Match");
+      Alert.alert(
+      'Cannot Register User',
+      'Passwords do not match',
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false })
+      return false;
+    }
+  }
+
+  validEmail(text){
+    console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    if(reg.test(text) === false){
+      console.log("Email is Not Correct");
+      Alert.alert(
+      'Cannot Register User',
+      'Email is invalid.',
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false })
+      return false;
+    }
+    else {
+      return true
+    }
+  }
 
   render() {
     const { navigate } = this.props.navigation;
