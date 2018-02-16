@@ -141,7 +141,7 @@ async writeUser(name, email, password, confirmpassword, gender){
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ],
       { cancelable: false })
-      return false;
+      return false;gi
     }
   }
 
