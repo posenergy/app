@@ -2,7 +2,6 @@ import React from 'react';
 import { AppRegistry, StyleSheet, Text, TextInput, View, ScrollView, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { NavigationActions } from 'react-navigation';
-import Spinner from 'react-native-loading-spinner-overlay';
 import ValidationComponent from 'react-native-form-validator';
 
 import config from '../../config/config';
@@ -141,7 +140,7 @@ async writeUser(name, email, password, confirmpassword, gender){
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ],
       { cancelable: false })
-      return false;gi
+      return false;
     }
   }
 
