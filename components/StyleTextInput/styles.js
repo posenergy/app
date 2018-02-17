@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   styleTextInput: {
@@ -8,6 +8,6 @@ export default StyleSheet.create({
     borderRadius: 10,
     marginTop: 15,
     alignSelf: 'center',
-    textAlign: 'center'
-  }
-});
+    textAlign: 'center',
+  },
+})

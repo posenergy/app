@@ -1,16 +1,14 @@
-import React from 'react';
-import { AppRegistry, StyleSheet, Text, TextInput, View } from 'react-native';
-import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation'; // 1.0.0-beta.14
-import Ionicons from 'react-native-vector-icons/Ionicons'; // 4.4.2
-import { NavigationActions } from 'react-navigation';
+import { StackNavigator} from 'react-navigation' // 1.0.0-beta.14
 
-import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
-import MainTabNavigator from './MainTab';
-
-import Button from '../components/Button';
+import LandingScreen from '../screens/LandingScreen'
+import LoginScreen from '../screens/LoginScreen'
+import RegisterScreen from '../screens/RegisterScreen'
+import MainTabNavigator from './MainTab'
 
 const AppNavigator = StackNavigator({
+  Landing: {
+    screen: LandingScreen,
+  },
   Login: {
     screen: LoginScreen,
   },
@@ -20,6 +18,6 @@ const AppNavigator = StackNavigator({
   MainTab: {
     screen: MainTabNavigator,
   },
-});
+})
 
-export default AppNavigator;
+export default AppNavigator

@@ -1,5 +1,5 @@
 const config = {
-    apiUrl: 'https://positive-energy-api.herokuapp.com'
-};
+    apiUrl: 'https://positive-energy-api.herokuapp.com',
+}
 
-export default config;
+export default config

@@ -1,20 +1,17 @@
-import React from 'react';
-import { AppRegistry, StyleSheet, Text, TextInput, View, ScrollView, Alert } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import { NavigationActions } from 'react-navigation';
-import ValidationComponent from 'react-native-form-validator';
+import React from 'react'
+import { View, Alert } from 'react-native'
+import { NavigationActions } from 'react-navigation'
+import ValidationComponent from 'react-native-form-validator'
 
-import config from '../../config/config';
-import styles from './styles';
+import config from '../../config/config'
+import styles from './styles'
 
-import AppNavigator from '../../navigations/AppNavigator';
-import RegisterFields from '../../components/RegisterFields';
-import StyleTextInput from '../../components/StyleTextInput';
-import Button from '../../components/Button';
+import StyleTextInput from '../../components/StyleTextInput'
+import Button from '../../components/Button'
 
 export default class RegisterScreen2 extends ValidationComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       name: '',
@@ -22,7 +19,7 @@ export default class RegisterScreen2 extends ValidationComponent {
       password: '',
       confirmpassword: '',
       gender: '',
-    };
+    }
 
   }
 
@@ -32,10 +29,9 @@ export default class RegisterScreen2 extends ValidationComponent {
       name: {required: true},
       email: {required: true},
       gender: {required: true},
-      password: {required: true, minlength:7},
-      confirmpassword: {required: true, minlength:7}
-
-    });
+      password: {required: true, minlength: 7},
+      confirmpassword: {required: true, minlength: 7},
+    })
   }
 
 resetNavigation(targetRoute) {
@@ -43,14 +39,14 @@ resetNavigation(targetRoute) {
     index: 0,
     actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
   })
-  this.props.navigation.dispatch(navigateAction);
- };
+  this.props.navigation.dispatch(navigateAction)
+ }
 
-async writeUser(name, email, password, confirmpassword, gender){
+async writeUser(name, email, password, confirmpassword, gender) {
   if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
     try {
-      let responseJSON;
-      let apiUrl = `${config.apiUrl}/users`;
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users`
       let response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -63,121 +59,111 @@ async writeUser(name, email, password, confirmpassword, gender){
           hash: password,
           gender: gender,
         }),
-      });
-      console.log(response)
+      })
       if (!response.ok) {
-        return false;
+        return false
+      } else {
+        responseJSON = await response.json()
+        this.resetNavigation('MainTab')
       }
-     else {
-        responseJSON = await response.json();
-        this.resetNavigation('MainTab');
-      }
-      return responseJSON;
+      return responseJSON
     } catch(error) {
-      console.error(error);
+      console.error(error)
     }
   }
 }
 
 
-  validEmail(email){
+  validEmail(email) {
     if (email !== '') {
-      console.log(email);
-      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-      if(reg.test(email) === false){
-        console.log("Email is Not Correct");
+      const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      if(reg.test(email) === false) {
         Alert.alert(
         'Cannot Register User',
         'Email is invalid.',
         [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {text: 'OK'},
         ],
         { cancelable: false })
-        return false;
-      }
-      else {
+        return false
+      } else {
         return true
       }
-    }
-    // do not want error to display if field is not filled in
-    else{
+      // no error displayed if field is not filled in
+    } else {
       return true
     }
   }
 
   checkPwd(password) {
     if (password !== '') {
-      if ((password.length < 6) || (password.length > 50) || (password.search(/\d/) == -1)) {
+      if ((password.length < 6) || (password.length > 50) || (password.search(/\d/) === -1)) {
         Alert.alert(
         'Password is invalid.',
         'Must be at least 7 characters long and contain at least one number.',
         [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {text: 'OK'},
         ],
         { cancelable: false })
-        return false;
-      }
-      else{
+        return false
+      } else {
         return true
-      };
-    }
-    else{
+      }
+    } else {
       return true
     }
   }
 
-  validPassword(password, confirmpassword){
-    if(password == confirmpassword){
-      console.log("Passwords Match");
-      return true;
-    }
-    else {
-      console.log("Passwords do not Match");
+  validPassword(password, confirmpassword) {
+    if(password === confirmpassword) {
+      return true
+    } else {
       Alert.alert(
       'Cannot Register User',
       'Passwords do not match',
       [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+        {text: 'OK'},
       ],
       { cancelable: false })
-      return false;
+      return false
     }
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={styles.viewcontainer}>
+      <View style={styles.container}>
+      <View style={styles.viewcontainer}>
       <StyleTextInput
-        pholder="Name"
+        pholder='Name'
         passwordSecure = {false}
         changeFunction ={name => this.setState({name})}
       />
       <StyleTextInput
-        pholder="Email"
+        pholder='Email'
         passwordSecure = {false}
         changeFunction ={email => this.setState({email})}
       />
       <StyleTextInput
-        pholder="Password"
+        pholder='Password'
         passwordSecure = {true}
         changeFunction = {password => this.setState({password})}
       />
       <StyleTextInput
-        pholder="Confirm Password"
+        pholder='Confirm Password'
         passwordSecure = {true}
         changeFunction ={confirmpassword => this.setState({confirmpassword})}
       />
       <StyleTextInput
-        pholder="Gender"
+        pholder='Gender'
         passwordSecure= {false}
         changeFunction ={gender => this.setState({gender})}
       />
-		  <Button type="login" color = "#203359" style ={styles.button} onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
-          text="Sign Up" textColor="white"/>
-      </ScrollView>
+      <Button type='login' color = '#203359' style ={styles.button}
+        onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+        text='Sign Up' textColor='black'/>
+      </View>
+      </View>
     )
-  };
+  }
 
 }
-

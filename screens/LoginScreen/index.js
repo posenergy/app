@@ -1,23 +1,30 @@
-import React from 'react';
-import { AppRegistry, StyleSheet, Text, TextInput, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import { NavigationActions } from 'react-navigation';
+import React from 'react'
+import { Alert, View } from 'react-native'
+import { NavigationActions } from 'react-navigation'
+import ValidationComponent from 'react-native-form-validator'
 
-import config from '../../config/config';
-import styles from './styles';
+import config from '../../config/config'
+import styles from './styles'
 
-import AppNavigator from '../../navigations/AppNavigator';
-import LoginFields from '../../components/LoginFields';
-import Button from '../../components/Button';
+import Logo from '../../components/Logo'
+import StyleTextInput from '../../components/StyleTextInput'
+import Button from '../../components/Button'
 
-export default class LoginScreen extends React.Component {
+export default class LoginScreen extends ValidationComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       email: '',
       password: '',
-    };
+    }
+  }
+
+  onSubmit() {
+    this.validate({
+      email: {required: true},
+      password: {required: true},
+    })
   }
 
   resetNavigation(targetRoute) {
@@ -25,64 +32,79 @@ export default class LoginScreen extends React.Component {
       index: 0,
       actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
     })
-    this.props.navigation.dispatch(navigateAction);
-  };
+    this.props.navigation.dispatch(navigateAction)
+  }
 
-  async getUser(email, password) {
-    this.props.loading();
+  async loginUser(email, password) {
+  if ((email !== '') && (password !== '')) {
     try {
-      let responseJSON;
-      let apiUrl = `${config.apiUrl}/users?email=${email}&password=${password}`;
-      let response = await fetch(apiUrl, {
-        method: 'GET',
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/auth/login`
+      const response = await fetch(apiUrl, {
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-      });
-      // if the user is already in the database, we just get the user and put it in the store
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
       if (!response.ok) {
-        this.onFail();
-        return false;
+        Alert.alert(
+          'Login Incorrect',
+          'Please check your email and password.',
+          [
+            {text: 'Try Again'},
+          ],
+          { cancelable: true }
+        )
+        return false
+      } else {
+        this.resetNavigation('MainTab')
+        responseJSON = await response.json()
       }
-      else {
-        responseJSON = await response.json();
-      }
-      return responseJSON;
+
+      return responseJSON
     } catch(error) {
-      console.error(error);
+      console.error(error)
     }
   }
-
-  async getActiveRecent(){
-    try {
-      let response = await fetch(config.apiUrl + '/users', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        let responseJSON = await response.json()
-        console.log(response);
-      }
-    } catch(error) {
-      console.error(error);
-    }
-  }
-
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View>
-        <LoginFields />
-		    <Button type="login" onClick={() => this.resetNavigation('MainTab')}
-          text="Login" textColor="white"
-        />
-      </View>
-    )
-  };
-
 }
 
+  // async getActiveRecent() {
+  //   try {
+  //     const response = await fetch(config.apiUrl + '/users', {
+  //       method: 'GET',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     })
+  //     if (response.ok) {
+  //       const responseJSON = await response.json()
+  //     }
+  //   } catch(error) {
+  //     console.error(error)
+  //   }
+  // }
+
+  render() {
+    return (
+      <View style = {styles.viewStyle}>
+        <Logo/>
+        <StyleTextInput
+          pholder='Email'
+          changeFunction={email => this.setState({email})}/>
+        <StyleTextInput
+          pholder='Password'
+          changeFunction={password => this.setState({password})}
+          passwordSecure={true}/>
+        <Button
+          type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
+          text='Login' textColor='black'/>
+      </View>
+    )
+  }
+}

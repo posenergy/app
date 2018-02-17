@@ -1,15 +1,17 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      backgroundColor: '#203359',
     },
     viewcontainer: {
         alignSelf: 'center',
         marginTop: 61,
+        backgroundColor: '#203359',
+        flex: 1,
     },
     text: {
         color: '#000000',
@@ -39,6 +41,6 @@ export default StyleSheet.create({
         alignSelf: 'center',
         textAlign: 'center',
     },
-});
+})
 
 

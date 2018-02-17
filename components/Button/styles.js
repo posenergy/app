@@ -1,51 +1,50 @@
-import { Dimensions, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 
-
-const {height, width} = Dimensions.get('window')
+// const {height, width} = Dimensions.get('window')
 
 export default StyleSheet.create({
   button: {
     padding: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: 'rgba(52, 52, 52, 0)'
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(52, 52, 52, 0)',
   },
   red: {
     fontSize: 20,
-    color: "#D50000",
+    color: '#D50000',
   },
   white: {
     fontSize: 20,
-    color: "#fff",
+    color: '#fff',
   },
   black: {
     fontSize: 20,
-    color: "black",
+    color: 'black',
+    fontWeight: 'bold',
   },
   blue: {
     fontSize: 20,
-    color: "#1565C0",
+    color: '#1565C0',
   },
   boldBlack: {
     fontSize: 15,
-    color: "black",
-    fontWeight: "bold"
+    color: 'black',
+    fontWeight: 'bold',
   },
   login: {
     marginTop: 25,
-    backgroundColor: "#203359",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#F2F2F2',
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'center',
     height: 50,
     width: 160,
-    borderRadius: 12,
     margin: 8,
     borderRadius: 5,
   },
   menu: {
     height: 40,
     width: 40,
-    backgroundColor: 'rgba(52, 52, 52, 0)'
+    backgroundColor: 'rgba(52, 52, 52, 0)',
   },
 })

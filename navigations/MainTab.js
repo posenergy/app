@@ -1,21 +1,16 @@
-import React from 'react';
-import { AppRegistry, StyleSheet, Image, Text, TextInput, View } from 'react-native';
-import {TabNavigator, StackNavigator } from 'react-navigation'; // 1.0.0-beta.14
-import Ionicons from 'react-native-vector-icons/Ionicons'; // 4.4.2
-import { NavigationActions } from 'react-navigation';
+import React from 'react'
+import { Image } from 'react-native'
+import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
-import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
-import PackagesScreen from '../screens/PackagesScreen';
-import FeedbackScreen from '../screens/FeedbackScreen';
-import CheckinScreen from '../screens/CheckinScreen';
-import MessagesScreen from '../screens/MessagesScreen';
+import PackagesScreen from '../screens/PackagesScreen'
+import FeedbackScreen from '../screens/FeedbackScreen'
+import CheckinScreen from '../screens/CheckinScreen'
+import MessagesScreen from '../screens/MessagesScreen'
 
-import Button from '../components/Button';
-import '../components/DrawerIcons/packages.png';
-import '../components/DrawerIcons/feedback.png';
-import '../components/DrawerIcons/checkin.png';
-import '../components/DrawerIcons/messages.png';
+import '../components/TabIcons/packages.png'
+import '../components/TabIcons/feedback.png'
+import '../components/TabIcons/checkin.png'
+import '../components/TabIcons/messages.png'
 
 
 const MainTabNavigator = TabNavigator({
@@ -25,21 +20,10 @@ const MainTabNavigator = TabNavigator({
       title: 'Packages',
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../components/DrawerIcons/packages.png')}
+        source={require('../components/TabIcons/packages.png')}
       />
     ),
-  })
-},
-  Register: {
-    screen: RegisterScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Register',
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={require('../components/DrawerIcons/checkin.png')}
-      />
-    ),
-  })
+  }),
 },
   Feedback: {
     screen: FeedbackScreen,
@@ -47,37 +31,37 @@ const MainTabNavigator = TabNavigator({
       title: 'Feedback',
     tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('../components/DrawerIcons/feedback.png')}
+          source={require('../components/TabIcons/feedback.png')}
         />
       ),
-    })
+    }),
   },
   Checkin: {
     screen: CheckinScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Check In',
+      title: 'Calendar View',
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../components/DrawerIcons/checkin.png')}
+        source={require('../components/TabIcons/checkin.png')}
         />
       ),
-    })
+    }),
   },
   Messages: {
     screen: MessagesScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Messages',
+      title: 'Activities View',
     tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('../components/DrawerIcons/messages.png')}
+          source={require('../components/TabIcons/messages.png')}
         />
       ),
-    })
+    }),
   },
 },
 
 {
-  headerMode: 'screen'
-});
+  headerMode: 'screen',
+})
 
-export default MainTabNavigator;
+export default MainTabNavigator

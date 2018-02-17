@@ -1,18 +1,17 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from 'react'
+import { View, Text } from 'react-native'
 
-class FeedbackScreen extends React.Component{
+class FeedbackScreen extends React.Component {
   static navigationOptions = {
-    title: 'Welcome'
-  };
-  render(){
-  	const { navigate } = this.props.navigation;
-  	return(
-	  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-	    <Text>Feedback Screen</Text>
-	  </View>
-	);
+		title: 'Welcome',
+ }
+  render() {
+    return(
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Feedback Screen</Text>
+    </View>
+	)
   }
 }
 
-export default FeedbackScreen;
+export default FeedbackScreen

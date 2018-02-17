@@ -7,7 +7,7 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-   viewStyle: {
+    viewStyle: {
       backgroundColor: '#203359',
       flex: 1,
     },

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { TextInput } from 'react-native';
-import styles from './styles';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { TextInput } from 'react-native'
+import styles from './styles'
+import PropTypes from 'prop-types'
 
 const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp, sizeProp, colorProp}) => (
   <TextInput
