@@ -1,8 +1,0 @@
-node_modules/
-.expo/*
-npm-debug.*
-.idea/
-.DS_Store
-ios/positiveenergy.xcodeproj/
-ios/Pods/
-ios/build/
