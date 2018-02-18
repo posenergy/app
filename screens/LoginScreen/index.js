@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, View } from 'react-native'
+import { Alert, View, Text, TouchableOpacity } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import ValidationComponent from 'react-native-form-validator'
 
@@ -104,6 +104,11 @@ export default class LoginScreen extends ValidationComponent {
         <Button
           type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
           text='Login' textColor='black'/>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('ForgotPassword')}>
+        <View>
+          <Text style={styles.link}>Forgot Password?</Text>
+        </View>
+        </TouchableOpacity>
       </View>
     )
   }
