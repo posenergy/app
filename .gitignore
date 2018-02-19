@@ -3,5 +3,3 @@ node_modules/
 npm-debug.*
 .idea/
 .DS_Store
-ios/Pods/
-ios/build/
