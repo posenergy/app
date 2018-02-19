@@ -3,6 +3,5 @@ node_modules/
 npm-debug.*
 .idea/
 .DS_Store
-ios/positiveenergy.xcodeproj/
 ios/Pods/
 ios/build/
