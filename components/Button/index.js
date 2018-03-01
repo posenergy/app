@@ -13,6 +13,7 @@ export default class Button extends Component {
       'login',
       'menu',
       'register',
+      'modal',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,

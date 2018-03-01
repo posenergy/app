@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Alert } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { View, Alert, ScrollView, Text, ImageBackground } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 
 import config from '../../config/config'
@@ -28,19 +27,11 @@ export default class RegisterScreen2 extends ValidationComponent {
     this.validate({
       name: {required: true},
       email: {required: true},
-      gender: {required: true},
       password: {required: true, minlength: 7},
       confirmpassword: {required: true, minlength: 7},
     })
   }
 
-resetNavigation(targetRoute) {
-  const navigateAction = NavigationActions.reset({
-    index: 0,
-    actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
-  })
-  this.props.navigation.dispatch(navigateAction)
- }
 
 async writeUser(name, email, password, confirmpassword, gender) {
   if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
@@ -61,10 +52,17 @@ async writeUser(name, email, password, confirmpassword, gender) {
         }),
       })
       if (!response.ok) {
-        return false
+        Alert.alert(
+          'Unable to create user',
+          'Please try again! Is it possible that your email is already in use?',
+          [
+            {text: 'Try Again'},
+          ],
+          { cancelable: true }
+        )
       } else {
         responseJSON = await response.json()
-        this.resetNavigation('MainTab')
+        this.props.navigation.navigate('MainTab')
       }
       return responseJSON
     } catch(error) {
@@ -131,39 +129,50 @@ async writeUser(name, email, password, confirmpassword, gender) {
 
   render() {
     return (
-      <View style={styles.container}>
-      <View style={styles.viewcontainer}>
-      <StyleTextInput
-        pholder='Name'
-        passwordSecure = {false}
-        changeFunction ={name => this.setState({name})}
-      />
-      <StyleTextInput
-        pholder='Email'
-        passwordSecure = {false}
-        changeFunction ={email => this.setState({email})}
-      />
-      <StyleTextInput
-        pholder='Password'
-        passwordSecure = {true}
-        changeFunction = {password => this.setState({password})}
-      />
-      <StyleTextInput
-        pholder='Confirm Password'
-        passwordSecure = {true}
-        changeFunction ={confirmpassword => this.setState({confirmpassword})}
-      />
-      <StyleTextInput
-        pholder='Gender'
-        passwordSecure= {false}
-        changeFunction ={gender => this.setState({gender})}
-      />
-      <Button type='login' color = '#203359' style ={styles.button}
-        onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
-        text='Sign Up' textColor='black'/>
-      </View>
-      </View>
+      <ImageBackground
+      source={require('../../images/gradient.png')}
+      style={styles.container}>
+      <ScrollView
+        style={styles.view}
+        showsVerticalScrollIndicator = {false}
+        contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
+        <View>
+          <StyleTextInput
+            pholder='Name'
+            imagelink = {require('../../images/profile.png')}
+            passwordSecure = {false}
+            changeFunction ={name => this.setState({name})}
+          />
+          <StyleTextInput
+            pholder='Email'
+            imagelink = {require('../../images/mail.png')}
+            passwordSecure = {false}
+            changeFunction ={email => this.setState({email})}
+          />
+          <StyleTextInput
+            pholder='Password'
+            imagelink = {require('../../images/lock.png')}
+            passwordSecure = {true}
+            changeFunction = {password => this.setState({password})}
+          />
+          <StyleTextInput
+            pholder='Confirm Password'
+            imagelink = {require('../../images/lock.png')}
+            passwordSecure = {true}
+            changeFunction ={confirmpassword => this.setState({confirmpassword})}
+          />
+          <Text style={styles.link}>
+            Passwords must be at least 7 characters long and contain at least one number.
+          </Text>
+          <Button type='register'
+            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+            text='Sign Up' textColor='black'/>
+        </View>
+      </ScrollView>
+      </ImageBackground>
     )
   }
 
 }
+
+

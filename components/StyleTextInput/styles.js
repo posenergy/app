@@ -1,13 +1,28 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  styleTextInput: {
-    backgroundColor: '#FFFFFF',
-    height: 50,
+  viewStyle: {
+    flexDirection: 'row',
+    borderBottomWidth: 2,
+    borderBottomColor: '#F2F2F2',
     width: 300,
-    borderRadius: 10,
-    marginTop: 15,
-    alignSelf: 'center',
-    textAlign: 'center',
+    height: 50,
+    justifyContent: 'center',
+    marginTop: 18,
+    marginBottom: 21,
   },
+  styleTextInput: {
+    borderRadius: 10,
+    textAlign: 'left',
+    backgroundColor: 'rgba(0,0,0,0.00001)', // 40% opaque
+    fontSize: 22,
+    flex: 3,
+    color: '#F2F2F2',
+    marginBottom: 11,
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'contain',
+  },
+
 })

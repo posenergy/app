@@ -1,6 +1,5 @@
 import React from 'react'
-import { Alert, View } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { ImageBackground, ScrollView, Alert} from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 
 import config from '../../config/config'
@@ -26,15 +25,7 @@ export default class LoginScreen extends ValidationComponent {
       password: {required: true},
     })
   }
-
-  resetNavigation(targetRoute) {
-    const navigateAction = NavigationActions.reset({
-      index: 0,
-      actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
-    })
-    this.props.navigation.dispatch(navigateAction)
-  }
-
+  
   async loginUser(email, password) {
   if ((email !== '') && (password !== '')) {
     try {
@@ -62,7 +53,7 @@ export default class LoginScreen extends ValidationComponent {
         )
         return false
       } else {
-        this.resetNavigation('MainTab')
+        this.props.navigation.navigate('MainTab')
         responseJSON = await response.json()
       }
 
@@ -92,19 +83,27 @@ export default class LoginScreen extends ValidationComponent {
 
   render() {
     return (
-      <View style = {styles.viewStyle}>
-        <Logo/>
-        <StyleTextInput
-          pholder='Email'
-          changeFunction={email => this.setState({email})}/>
-        <StyleTextInput
-          pholder='Password'
-          changeFunction={password => this.setState({password})}
-          passwordSecure={true}/>
-        <Button
-          type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
-          text='Login' textColor='black'/>
-      </View>
+      <ImageBackground
+      source={require('../../images/gradient.png')}
+      style={styles.container}>
+      <ScrollView
+        style={styles.view}
+        showsVerticalScrollIndicator = {false} >
+      <Logo/>
+      <StyleTextInput
+        pholder='Email'
+        imagelink = {require('../../images/mail.png')}
+        changeFunction={email => this.setState({email})}/>
+      <StyleTextInput
+        pholder='Password'
+        imagelink = {require('../../images/lock.png')}
+        changeFunction={password => this.setState({password})}
+        passwordSecure={true}/>
+      <Button
+        type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
+        text='Login' textColor='black'/>
+      </ScrollView>
+      </ImageBackground>
     )
   }
 }

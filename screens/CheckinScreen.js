@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import GenModal from '../components/GenModal'
 
 class CheckinScreen extends React.Component {
   static navigationOptions = {
@@ -8,7 +9,12 @@ class CheckinScreen extends React.Component {
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Checkin Screen</Text>
+      <GenModal
+        title = "Welcome!"
+        text = "[+energy] helps you discover wellness content and integrate it into your busy life by instantly adding chosen events to your calendar, and continually syncing with it."
+        bname = "Let's go!"
+        bold = "Ready to get planning?"
+      />
     </View>
 	)
   }

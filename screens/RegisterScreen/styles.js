@@ -5,13 +5,11 @@ export default StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#203359',
     },
-    viewcontainer: {
-        alignSelf: 'center',
-        marginTop: 61,
-        backgroundColor: '#203359',
-        flex: 1,
+    box: {
+      width: 300,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     text: {
         color: '#000000',
@@ -40,6 +38,21 @@ export default StyleSheet.create({
         marginTop: 15,
         alignSelf: 'center',
         textAlign: 'center',
+    },
+    link: {
+        color: '#FFFFFF',
+        alignSelf: 'center',
+        marginTop: 7,
+        textAlign: 'center',
+        fontSize: 11,
+        backgroundColor: 'transparent',
+        width: 300,
+        marginBottom: 15,
+    },
+    view: {
+        flex: 1,
+        alignSelf: 'center',
+
     },
 })
 
