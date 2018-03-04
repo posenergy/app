@@ -3,6 +3,8 @@ package com.positiveenergy;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.beefe.picker.PickerViewPackage;
+import com.reactlibrary.RNReactNativeInputPickerPackage;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -33,6 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PickerViewPackage(),
+            new RNReactNativeInputPickerPackage(),
             new BlurViewPackage(),
             new VectorIconsPackage(),
             new LinearGradientPackage(),

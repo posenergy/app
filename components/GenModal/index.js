@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
-import { Text, View, Modal, Image } from 'react-native'
+import React, { Component, PropTypes } from "react";
+import {
+  Modal,
+  View,
+  Text,
+  Image,
+} from "react-native";
 import styles from './styles'
 import Button from '../Button'
 
 export default class GenModal extends Component {
   state = {
-    modalVisible: true,
+    modalVisible: false,
   };
 
   openModal() {
@@ -15,6 +20,7 @@ export default class GenModal extends Component {
   closeModal() {
     this.setState({modalVisible: false})
   }
+
 
   render() {
     return (

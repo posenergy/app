@@ -25,7 +25,7 @@ export default class LoginScreen extends ValidationComponent {
       password: {required: true},
     })
   }
-  
+
   async loginUser(email, password) {
   if ((email !== '') && (password !== '')) {
     try {

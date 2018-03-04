@@ -14,7 +14,7 @@ import '../components/TabIcons/messages.png'
 
 
 const MainTabNavigator = TabNavigator({
-  Packages: {
+  Activities: {
     screen: PackagesScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Packages',
@@ -25,7 +25,7 @@ const MainTabNavigator = TabNavigator({
     ),
   }),
 },
-  Feedback: {
+  Calendar: {
     screen: FeedbackScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Feedback',
@@ -36,24 +36,13 @@ const MainTabNavigator = TabNavigator({
       ),
     }),
   },
-  Checkin: {
+  Profile: {
     screen: CheckinScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar View',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../components/TabIcons/checkin.png')}
-        />
-      ),
-    }),
-  },
-  Messages: {
-    screen: MessagesScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Activities View',
-    tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('../components/TabIcons/messages.png')}
         />
       ),
     }),
