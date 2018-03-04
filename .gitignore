@@ -2,4 +2,8 @@ node_modules/
 npm-debug.*
 .idea/
 .DS_Store
-ios/
+ios/Pods/
+ios/positiveenergy.xcodeproj/xcuserdata/
+ios/positiveenergy.xcodeproj/project.pbxproj
+ios/positiveenergy/Supporting/EXShell.plist
+ios/positiveenergy/Supporting/EXShell.plist.bak
