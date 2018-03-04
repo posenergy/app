@@ -1,5 +1,10 @@
 node_modules/
-.expo/*
 npm-debug.*
 .idea/
 .DS_Store
+android/
+ios/Pods/
+ios/positiveenergy.xcodeproj/xcuserdata/
+ios/positiveenergy.xcodeproj/project.pbxproj
+ios/positiveenergy/Supporting/EXShell.plist
+ios/positiveenergy/Supporting/EXShell.plist.bak
