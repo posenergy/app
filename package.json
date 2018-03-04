@@ -20,7 +20,9 @@
 		"react-native-loading-spinner-overlay": "^0.5.2",
 		"react-native-navbar": "^2.1.0",
 		"react-native-vector-icons": "^4.4.2",
-		"react-navigation": "^1.0.0-beta.15"
+		"react-navigation": "^1.0.0-beta.15",
+		"react-redux": "^5.0.7",
+		"redux": "^3.7.2"
 	},
 	"devDependencies": {
 		"babel-eslint": "^8.2.1",

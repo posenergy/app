@@ -2,15 +2,22 @@ import React from 'react'
 import { Alert, View } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import ValidationComponent from 'react-native-form-validator'
+import {connect} from 'react-redux'
 
 import config from '../../config/config'
 import styles from './styles'
 
+import {login} from '../../redux/actions/userActions'
 import Logo from '../../components/Logo'
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
 
-export default class LoginScreen extends ValidationComponent {
+
+const mapDispatchToProps = {
+  login,
+}
+
+class LoginScreen extends ValidationComponent {
   constructor(props) {
     super(props)
 
@@ -62,6 +69,7 @@ export default class LoginScreen extends ValidationComponent {
         )
         return false
       } else {
+        this.props.login('hi', email, password)
         this.resetNavigation('MainTab')
         responseJSON = await response.json()
       }
@@ -108,3 +116,5 @@ export default class LoginScreen extends ValidationComponent {
     )
   }
 }
+
+export default connect(null, mapDispatchToProps)(LoginScreen)
