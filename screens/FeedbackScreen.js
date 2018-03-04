@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import RNCalendarEvents from 'react-native-calendar-events'
 
 class FeedbackScreen extends React.Component {
   static navigationOptions = {
