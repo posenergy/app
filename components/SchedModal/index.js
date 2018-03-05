@@ -37,7 +37,7 @@ export default class SchedModal extends Component {
                   style={styles.image}/>
                 <Text style={styles.bold}>{this.props.title}</Text>
                 <Text style={styles.text}>{this.props.text}</Text>
-                <View>{this.props.varelement}</View>
+                <View style={styles.var}>{this.props.varelement}</View>
               </View>
             </View>
           </Modal>
