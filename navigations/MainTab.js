@@ -3,8 +3,6 @@ import { Image } from 'react-native'
 import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
 import ActivitiesStack from './ActivitiesStack'
-import ChooseScreen from '../screens/ChooseScreen'
-import SearchScreen from '../screens/SearchScreen'
 import CheckinScreen from '../screens/CheckinScreen'
 import MessagesScreen from '../screens/MessagesScreen'
 
