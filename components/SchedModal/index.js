@@ -10,18 +10,14 @@ export default class SchedModal extends Component {
 
   render() {
     return (
-        // <View style={styles.Container}>
-        //     <View style={styles.modalContainer}>
-              <View style={styles.innerContainer}>
-                <Image
-                  source={this.props.image}
-                  style={styles.image}/>
-                <Text style={styles.bold}>{this.props.title}</Text>
-                <Text style={styles.text}>{this.props.text}</Text>
-                <View style={styles.var}>{this.props.varelement}</View>
-              </View>
-        ///     </View>
-        //// </View>
+      <View style={styles.innerContainer}>
+        <Image
+          source={this.props.image}
+          style={styles.image}/>
+        <Text style={styles.bold}>{this.props.title}</Text>
+        <Text style={styles.text}>{this.props.text}</Text>
+        <View style={styles.var}>{this.props.varelement}</View>
+      </View>
     )
   }
 }
