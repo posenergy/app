@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Text, TouchableHighlight } from 'react-native'
-import PropTypes from 'prop-types'
+import { Button } from 'react-native'
 import styles from './styles'
 
 export default class FilterButton extends React.Component {
@@ -9,32 +8,12 @@ export default class FilterButton extends React.Component {
     super(props)
 
     this.state = {
-      buttonColor: "#F2F2F2"
+      buttonColor: '#F2F2F2',
+      tags: [],
     }
   }
 
-  onButtonPress = () => {
-    if (this.buttonColor == "#F2F2F2") {
-      this.setState({ buttonColor: "545680" })
-    }
-    else { this.setState({ buttonColor: "#F2F2F2" })}; 
-  }
-
-  changeTag (tag) {
-    this.setState((state) => {
-      tags: [state.tags, tag]
-    });
-  }
-
-  changeSweat (sweat) {
-    this.setState({ sweat: sweat });
-  } 
-
-  changeDuration (duration) {
-    this.setState({ duration: duration})
-  } 
-
-  render(){
+  render() {
     return(
       <Button
         style={styles.FilterButton}

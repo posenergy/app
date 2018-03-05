@@ -6,23 +6,23 @@ export default StyleSheet.create({
     width: 333,
     height: 15,
     alignSelf: 'center',
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
   },
-	viewStyle: {
-		flex: 1,
-		backgroundColor: '#F2F2F2',
-	},
+  viewStyle: {
+    flex: 1,
+    backgroundColor: '#F2F2F2',
+  },
 
-	pict: {
-  	height: 45,
-  	width: 45,
+  pict: {
+    height: 45,
+    width: 45,
   },
 
   flatListStyle: {
-  	flex: 1
+    flex: 1,
   },
 
-  buttonStyle:{
-  	justifyContent: 'flex-end',
-  }
+  buttonStyle: {
+    justifyContent: 'flex-end',
+  },
 })

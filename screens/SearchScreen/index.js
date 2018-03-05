@@ -1,7 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, AppRegistry, Button, Modal, FlatList, Text, View } from 'react-native'
-import { NavigationActions } from 'react-navigation'
-import { List, ListItem } from 'react-native-elements'
+import { Button, Modal, FlatList, View } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -21,59 +19,48 @@ export default class SearchScreen extends React.Component {
     super(props)
 
     this.state = {
-      category: this.props.navigation.state.params.category
+      category: this.props.navigation.state.params.category,
     }
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   componentDidMount() {
-    console.log("*******************", this.props.navigation.state.params.category)
-    return fetch(config.apiUrl + '/moments/search/cat/?cat='+ this.state.category)
+    return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category)
       .then((res) => res.json())
       .then(res => {
         this.setState({
           moments: res,
           modalVisible: false,
         }, function() {
-        });
+        })
       })
       .catch((error) => {
-        console.error(error);
-      });
+        console.error(error)
+      })
   }
 
-  // several if statements that create different modals based on
-  // if mvmt or if mindfulness. 
-
-  //how to control state using buttons inside of modal?
-  // -> FilterModal file?
-  // but then how to not hard code the mvmt and mindfulness modals?
-
-  // if (this.state.category == ) -> copy and paste returned code
-  // FIRST = MOVEMENT, SECOND = MINDFULNESS
-
   render() {
-    if (this.state.category == "mvmt") {
+    if (this.state.category === 'mvmt') {
       return (
         <View style={styles.viewStyle}>
-          <FlatList 
+          <FlatList
             style={styles.flatListStyle}
             data={ this.state.moments }
-            renderItem={({item}) => 
+            renderItem={({item}) =>
               <Moment
                 title={item.name}
                 time={item.duration}
               />}
-          />   
+          />
           <Button
             style={styles.buttonStyle}
             onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-            title="Filter Activities"
-          /> 
-          { 
+            title='Filter Activities'
+          />
+          {
             this.state.modalVisible &&
             <View style={styles.Container}>
               <Modal
@@ -84,31 +71,31 @@ export default class SearchScreen extends React.Component {
                   <Button
                     style={styles.button}
                     onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-                    title= "Apply"
+                    title= 'Apply'
                   />
                 </View>
               </Modal>
           </View>}
         </View>
-      );
+      )
     }
       return (
         <View style={styles.viewStyle}>
-          <FlatList 
+          <FlatList
             style={styles.flatListStyle}
             data={ this.state.moments }
-            renderItem={({item}) => 
+            renderItem={({item}) =>
               <Moment
                 title={item.name}
                 time={item.duration}
               />}
-          />   
+          />
           <Button
             style={styles.buttonStyle}
             onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-            title="Filter Activities"
-          /> 
-          { 
+            title='Filter Activities'
+          />
+          {
             this.state.modalVisible &&
             <View style={styles.Container}>
               <Modal
@@ -119,12 +106,12 @@ export default class SearchScreen extends React.Component {
                   <Button
                     style={styles.button}
                     onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-                    title= "Apply"
+                    title= 'Apply'
                   />
                 </View>
               </Modal>
           </View>}
         </View>
-      );
+      )
     }
 }

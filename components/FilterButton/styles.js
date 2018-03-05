@@ -8,6 +8,6 @@ export default StyleSheet.create({
 		flex: 1,
 	},
 	highlight: {
-		color: '#545680'
-	}
+		color: '#545680',
+	},
 })

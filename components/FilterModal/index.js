@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button, Modal, Image, StyleSheet } from 'react-native'
+import { View, Button, Modal } from 'react-native'
 import styles from './styles'
 
 import MvmtModal from '../../components/MvmtModal'
@@ -7,55 +7,55 @@ import MindModal from '../../components/MindModal'
 
 export default class FilterModal extends Component {
 
-	constructor(props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       category: false,
-      visible: false
+      visible: false,
     }
   }
 
-	setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible})
   }
 
-	render() {
-		if (this.state.category) { 
-			return (
-		    <View style={styles.Container}>
-		      <Modal
-		          visible={this.state.visible}
-		          animationType={'slide'}>
+  render() {
+    if (this.state.category) {
+      return (
+        <View style={styles.Container}>
+          <Modal
+              visible={this.state.visible}
+              animationType={'slide'}>
 
-		        <View style={styles.modalContainer}>
+            <View style={styles.modalContainer}>
 
-		          <MindModal/>
+              <MindModal/>
 
-		        </View>
-		      </Modal>
-		    </View>
-		  );
-		}
-		return (
-		  <View style={styles.Container}>
-		    <Modal
-		        visible={this.state.visible}
-		        animationType={'slide'}>
+            </View>
+          </Modal>
+        </View>
+      )
+    }
+    return (
+      <View style={styles.Container}>
+        <Modal
+            visible={this.state.visible}
+            animationType={'slide'}>
 
-		      <View style={styles.modalContainer}>
-	            <Button
-	              style={styles.button}
-	              onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-	              title= "Apply"
-	            />
-		        <MvmtModal/>
-	          <View>
+          <View style={styles.modalContainer}>
+              <Button
+                style={styles.button}
+                onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
+                title= "Apply"
+              />
+            <MvmtModal/>
+            <View>
 
-          	</View> 
-		      </View>
-		    </Modal>
-		  </View>
-	  );
-	}
+            </View>
+          </View>
+        </Modal>
+      </View>
+    )
+  }
 }

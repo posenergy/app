@@ -3,7 +3,7 @@ import { TextInput } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
-const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp, sizeProp, colorProp}) => (
+const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp, sizeProp, colorProp}) =>
   <TextInput
     style={styles.styleTextInput}
     placeholder={pholder}
@@ -11,7 +11,6 @@ const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp,
     autoCapitalize="none"
     secureTextEntry={passwordSecure}
   />
-)
 
 StyleTextInput.propTypes = {
   pholder: PropTypes.string,
