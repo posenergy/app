@@ -2,6 +2,7 @@ import React from 'react'
 import { Image } from 'react-native'
 import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
+import SearchScreen from '../screens/SearchScreen'
 import PackagesScreen from '../screens/PackagesScreen'
 import FeedbackScreen from '../screens/FeedbackScreen'
 import CheckinScreen from '../screens/CheckinScreen'
@@ -14,21 +15,10 @@ import '../components/TabIcons/messages.png'
 
 
 const MainTabNavigator = TabNavigator({
-  Packages: {
-    screen: PackagesScreen,
+  Search: {
+    screen: SearchScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Packages',
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={require('../components/TabIcons/packages.png')}
-      />
-    ),
-  }),
-},
-  Feedback: {
-    screen: FeedbackScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Feedback',
+      title: 'Browse Activities',
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../components/TabIcons/feedback.png')}
@@ -39,7 +29,7 @@ const MainTabNavigator = TabNavigator({
   Checkin: {
     screen: CheckinScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Calendar View',
+      title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../components/TabIcons/checkin.png')}

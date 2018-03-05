@@ -1,4 +1,4 @@
-import { StackNavigator} from 'react-navigation' // 1.0.0-beta.14
+import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
