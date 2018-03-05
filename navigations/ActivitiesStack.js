@@ -10,6 +10,8 @@ const ActivitiesStack = StackNavigator({
   Search: {
     screen: SearchScreen,
   },
-})
+},
+{ headerMode: 'none' }
+)
 
 export default ActivitiesStack

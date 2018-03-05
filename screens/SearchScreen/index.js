@@ -35,6 +35,7 @@ export default class SearchScreen extends React.Component {
           moments: res,
           modalVisible: false,
         }, function() {
+          console.disableYellowBox = true
         })
       })
       .catch((error) => {
@@ -43,7 +44,7 @@ export default class SearchScreen extends React.Component {
   }
 
   render() {
-    if (this.state.category === 'mvmt') {
+    if (this.state.category === 'Movement') {
       return (
         <View style={styles.viewStyle}>
           <FlatList
