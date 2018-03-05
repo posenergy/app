@@ -1,5 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import SchedModal from '../components/SchedModal'
+import RadioButtonList from './../components/RadioButtonList'
+
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {

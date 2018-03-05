@@ -3,15 +3,17 @@ import React from 'react'
 import { ScrollView, ImageBackground } from 'react-native'
 =======
 import { View } from 'react-native'
+<<<<<<< HEAD
 import Thumbnail from 'react-native-thumbnail-video';
 >>>>>>> Added thumbnail functionality.
+=======
+>>>>>>> Added modal
 
 import styles from './styles'
 
 import Logo from '../../components/Logo'
 import Button from '../../components/Button'
-import SchedModal from '../../components/SchedModal'
-import RadioButtonList from '../../components/RadioButtonList'
+
 
 export default class LandingScreen extends React.Component {
   constructor(props) {
@@ -37,12 +39,3 @@ export default class LandingScreen extends React.Component {
   }
 
 }
-
-/*<RadioButtonList
-  radioprops = {[{label: 'Wed, Feb 3, 5:30 - 6:00 pm', value: 0 },
-                 {label: 'Wed, Feb 3, 6:00 - 6:30 pm', value: 1 },
-                 {label: 'Thurs, Feb 4, 9:00 - 9:30 am', value: 2 },
-                 {label: 'Thurs, Feb 4, 3:30 - 4:00 pm', value: 3 },
-                 {label: 'Fri, Feb 5, 12:30 - 1:00 pm', value: 4 },]}
-                      />
-*/

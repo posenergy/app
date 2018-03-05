@@ -16,7 +16,18 @@ const MainTabNavigator = TabNavigator({
   Activities: {
     screen: ActivitiesStack,
     navigationOptions: ({ navigation }) => ({
-      title: 'Browse Activities',
+    title: 'Browse Activities',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../components/TabIcons/packages.png')}
+      />
+    ),
+  }),
+},
+  Activity: {
+    screen: FeedbackScreen,
+    navigationOptions: ({ navigation }) => ({
+    title: 'Feedback',
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../components/TabIcons/activitiesMan.png')}
