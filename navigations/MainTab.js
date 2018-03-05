@@ -2,6 +2,7 @@ import React from 'react'
 import { Image } from 'react-native'
 import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
+import ActivitiesStack from './ActivitiesStack'
 import ChooseScreen from '../screens/ChooseScreen'
 import SearchScreen from '../screens/SearchScreen'
 import CheckinScreen from '../screens/CheckinScreen'
@@ -14,13 +15,13 @@ import '../components/TabIcons/messages.png'
 
 
 const MainTabNavigator = TabNavigator({
-  Choose: {
+  Activities: {
     screen: ActivitiesStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Browse Activities',
     tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('../components/TabIcons/feedback.png')}
+          source={require('../components/TabIcons/checkin.png')}
         />
       ),
     }),
