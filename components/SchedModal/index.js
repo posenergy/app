@@ -29,22 +29,15 @@ export default class SchedModal extends Component {
               visible={this.state.modalVisible}
               transparent={true}
               blurRadius={1}
-              animationType={'slide'}
               onRequestClose={() => this.closeModal()}>
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <Image
-                  source={require('../../images/logo_image.png')}
-                  style={styles.image} />
-                <Text style={styles.title}>{this.props.title}</Text>
+                  source={this.props.image}
+                  style={styles.image}/>
+                <Text style={styles.bold}>{this.props.title}</Text>
                 <Text style={styles.text}>{this.props.text}</Text>
-                <Text style={styles.bold}>{this.props.bold}</Text>
-                  <Button
-                      onClick={() => this.closeModal()}
-                      type='modal'
-                      textColor='white'
-                      text= {this.props.bname}>
-                  </Button>
+                <View>{this.props.varelement}</View>
               </View>
             </View>
           </Modal>
