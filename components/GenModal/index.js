@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from 'react'
 import {
   Modal,
   View,
   Text,
   Image,
-} from "react-native";
+} from 'react-native'
 import styles from './styles'
 import Button from '../Button'
 

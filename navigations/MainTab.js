@@ -5,12 +5,10 @@ import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 import PackagesScreen from '../screens/PackagesScreen'
 import FeedbackScreen from '../screens/FeedbackScreen'
 import CheckinScreen from '../screens/CheckinScreen'
-import MessagesScreen from '../screens/MessagesScreen'
 
 import '../components/TabIcons/packages.png'
 import '../components/TabIcons/feedback.png'
 import '../components/TabIcons/checkin.png'
-import '../components/TabIcons/messages.png'
 
 
 const MainTabNavigator = TabNavigator({
