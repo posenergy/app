@@ -19,6 +19,7 @@
 		"react-native-loading-spinner-overlay": "^0.5.2",
 		"react-native-navbar": "^2.1.0",
 		"react-native-simple-radio-button": "^2.7.1",
+		"react-native-thumbnail-video": "0.0.8",
 		"react-native-vector-icons": "^4.4.2",
 		"react-navigation": "^1.0.0-beta.15"
 	},

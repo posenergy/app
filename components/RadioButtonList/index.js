@@ -8,10 +8,6 @@ import {
 } from "react-native"
 import styles from './styles'
 
-var radio_props = [
-  {label: 'param1', value: 0 },
-  {label: 'param2', value: 1 }
-];
 
 export default class RadioButtonProject extends Component {
   state = {
@@ -22,8 +18,11 @@ render() {
     return (
       <View>
         <RadioForm
-          radio_props={radio_props}
+          radio_props={this.props.radioprops}
           initial={0}
+          style={styles.form}
+          buttonColor={'black'}
+          buttonInnerColor = {'black'}
           onPress={(value) => {this.setState({value:value})}}
         />
       </View>

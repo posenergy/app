@@ -20,7 +20,7 @@ export default StyleSheet.create({
     width: 292,
     height: 377,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 11,
     flexDirection: 'column',
   },
   image: {
@@ -42,13 +42,19 @@ export default StyleSheet.create({
     height: 76,
     width: 282,
     marginTop: 15,
-    marginBottom: 35,
+    marginBottom: 0,
   },
   bold: {
     fontSize: 21,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 25,
+  },
+  var: {
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginBottom: 25,
   },
   contentWrap: {
     flex: 1,
