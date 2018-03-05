@@ -1,20 +1,20 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  Container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'transparent',
-  },
-  modalContainer: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'transparent',
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'column',
-  },
+  // Container: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignSelf: 'center',
+  //   backgroundColor: 'transparent',
+  // },
+  // modalContainer: {
+  //   justifyContent: 'center',
+  //   alignSelf: 'center',
+  //   backgroundColor: 'transparent',
+  //   alignItems: 'center',
+  //   flex: 1,
+  //   flexDirection: 'column',
+  // },
   innerContainer: {
     alignItems: 'center',
     width: 292,

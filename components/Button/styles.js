@@ -47,4 +47,13 @@ export default StyleSheet.create({
     width: 40,
     backgroundColor: 'rgba(52, 52, 52, 0)',
   },
+ schedule: {
+    height: 52,
+    width: 286,
+    backgroundColor: '#545680',
+    borderRadius: 11,
+    marginTop: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })

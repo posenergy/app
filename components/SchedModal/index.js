@@ -1,6 +1,5 @@
 import React, { Component} from 'react'
 import {
-  Modal,
   View,
   Text,
   Image,
@@ -8,28 +7,11 @@ import {
 import styles from './styles'
 
 export default class SchedModal extends Component {
-  state = {
-    modalVisible: false,
-  };
-
-  openModal() {
-    this.setState({modalVisible: true})
-  }
-
-  closeModal() {
-    this.setState({modalVisible: false})
-  }
-
 
   render() {
     return (
-        <View style={styles.Container}>
-          <Modal
-              visible={this.state.modalVisible}
-              transparent={true}
-              blurRadius={1}
-              onRequestClose={() => this.closeModal()}>
-            <View style={styles.modalContainer}>
+        // <View style={styles.Container}>
+        //     <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <Image
                   source={this.props.image}
@@ -38,9 +20,8 @@ export default class SchedModal extends Component {
                 <Text style={styles.text}>{this.props.text}</Text>
                 <View style={styles.var}>{this.props.varelement}</View>
               </View>
-            </View>
-          </Modal>
-        </View>
+        ///     </View>
+        //// </View>
     )
   }
 }
