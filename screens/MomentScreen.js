@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
@@ -21,7 +21,7 @@ class MomentScreen extends React.Component {
                           imageHeight={142} />}
         />
         <Button type='schedule'
-        onClick={() =>  this.props.navigation.navigate('Packages')}
+        onClick={() => this.props.navigation.navigate('Packages')}
         text='Add to Calendar' textColor='white'/>
     </View>
 	)
@@ -29,4 +29,3 @@ class MomentScreen extends React.Component {
 }
 
 export default MomentScreen
-
