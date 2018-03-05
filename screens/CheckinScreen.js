@@ -1,5 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import SchedModal from '../components/SchedModal'
+import RadioButtonList from './../components/RadioButtonList'
+
 
 class CheckinScreen extends React.Component {
   static navigationOptions = {
@@ -8,7 +11,7 @@ class CheckinScreen extends React.Component {
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Checkin Screen</Text>
+
     </View>
 	)
   }

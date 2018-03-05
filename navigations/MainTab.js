@@ -25,7 +25,7 @@ const MainTabNavigator = TabNavigator({
     ),
   }),
 },
-  Feedback: {
+  Activity: {
     screen: FeedbackScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Feedback',
@@ -36,7 +36,7 @@ const MainTabNavigator = TabNavigator({
       ),
     }),
   },
-  Checkin: {
+  Schedule: {
     screen: CheckinScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar View',
