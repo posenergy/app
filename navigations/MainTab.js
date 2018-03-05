@@ -19,7 +19,7 @@ const MainTabNavigator = TabNavigator({
       title: 'Browse Activities',
     tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('../components/TabIcons/checkin.png')}
+          source={require('../components/TabIcons/activitiesMan.png')}
         />
       ),
     }),
@@ -30,7 +30,7 @@ const MainTabNavigator = TabNavigator({
       title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../components/TabIcons/checkin.png')}
+        source={require('../components/TabIcons/calendar.png')}
         />
       ),
     }),
@@ -41,7 +41,7 @@ const MainTabNavigator = TabNavigator({
       title: 'Activities View',
     tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('../components/TabIcons/messages.png')}
+          source={require('../components/TabIcons/profile.png')}
         />
       ),
     }),

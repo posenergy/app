@@ -4,7 +4,7 @@ import ChooseScreen from '../screens/ChooseScreen'
 import SearchScreen from '../screens/SearchScreen'
 
 const ActivitiesStack = StackNavigator({
-  ChooseScreen: {
+  Choose: {
     screen: ChooseScreen,
   },
   Search: {
