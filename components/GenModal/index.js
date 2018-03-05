@@ -10,17 +10,16 @@ import Button from '../Button'
 
 export default class GenModal extends Component {
   state = {
-    modalVisible: false,
+    modalVisible: true,
   };
 
-  openModal() {
+  openModal = () => {
     this.setState({modalVisible: true})
   }
 
-  closeModal() {
+  closeModal = () => {
     this.setState({modalVisible: false})
   }
-
 
   render() {
     return (
@@ -30,7 +29,7 @@ export default class GenModal extends Component {
               transparent={true}
               blurRadius={1}
               animationType={'slide'}
-              onRequestClose={() => this.closeModal()}>
+              onRequestClose={this.closeModal}>
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <Image

@@ -8,6 +8,8 @@ import styles from './styles'
 import Logo from '../../components/Logo'
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
+import { NavigationActions } from 'react-navigation'
+
 
 export default class LoginScreen extends ValidationComponent {
   constructor(props) {
@@ -25,6 +27,14 @@ export default class LoginScreen extends ValidationComponent {
       password: {required: true},
     })
   }
+
+resetNavigation(targetRoute) {
+   const navigateAction = NavigationActions.reset({
+     index: 0,
+     actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
+   })
+   this.props.navigation.dispatch(navigateAction)
+ }
 
   async loginUser(email, password) {
   if ((email !== '') && (password !== '')) {
@@ -53,7 +63,7 @@ export default class LoginScreen extends ValidationComponent {
         )
         return false
       } else {
-        this.props.navigation.navigate('MainTab')
+        this.resetNavigation('MainTab')
         responseJSON = await response.json()
       }
 

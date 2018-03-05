@@ -66,8 +66,8 @@ export default StyleSheet.create({
     backgroundColor: '#545680',
     flex: 1,
     height: 50,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 11,
+    borderBottomRightRadius: 11,
     width: 300,
   },
 })

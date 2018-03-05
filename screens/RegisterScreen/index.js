@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Alert, ScrollView, Text, ImageBackground } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
+import { NavigationActions } from 'react-navigation'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -19,7 +20,6 @@ export default class RegisterScreen2 extends ValidationComponent {
       confirmpassword: '',
       gender: '',
     }
-
   }
 
   // ensures that all fields are filled before submission
@@ -32,6 +32,13 @@ export default class RegisterScreen2 extends ValidationComponent {
     })
   }
 
+resetNavigation(targetRoute) {
+   const navigateAction = NavigationActions.reset({
+     index: 0,
+     actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
+   })
+   this.props.navigation.dispatch(navigateAction)
+ }
 
 async writeUser(name, email, password, confirmpassword, gender) {
   if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
@@ -62,7 +69,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
         )
       } else {
         responseJSON = await response.json()
-        this.props.navigation.navigate('MainTab')
+        this.resetNavigation('MainTab')
       }
       return responseJSON
     } catch(error) {

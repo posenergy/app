@@ -20,7 +20,7 @@ export default StyleSheet.create({
     width: 300,
     height: 454,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 11,
     flexDirection: 'column',
 	},
 	image: {
