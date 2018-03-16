@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View } from 'react-native'
 import styles from './styles'
 
+import FilterButton from '../../components/FilterButton'
 import FilterHeader from '../../components/FilterHeader'
 
 export default class MindModal extends Component {
@@ -34,26 +35,30 @@ export default class MindModal extends Component {
         <Text style={styles.title}>Filter Activities</Text>
 
         <FilterHeader headerProp='ACTIVITIES'/>
-        <Button
-          title='Run'
-          onPress={() => this.changeTag('Craft')} />
-        <Button
-          title='Row'
-          onPress={() => this.changeTag('Journal')} />
-        <Button
-          title='Bar'
-          onPress={() => this.changeTag('Meditate')} />
+        <View style={styles.buttons}>
+          <FilterButton
+            titleProp='Craft'
+            onPressProp={() => this.changeTag('Craft')} />
+          <FilterButton
+            titleProp='Journal'
+            onPressProp={() => this.changeTag('Journal')} />
+          <FilterButton
+            titleProp='Meditate'
+            onPressProp={() => this.changeTag('Meditate')} />
+        </View>
 
         <FilterHeader headerProp='DURATION'/>
-          <Button
-            title='< 15 min'
-            onPress={() => this.changeDuration(15)} />
-          <Button
-            title='< 30 min'
-            onPress={() => this.changeDuration(30)} />
-          <Button
-            title='< 60 min'
-            onPress={() => this.changeDuration(60)} />
+        <View style={styles.buttons}>
+          <FilterButton
+            titleProp='< 15 min'
+            onPressProp={() => this.changeDuration(15)} />
+          <FilterButton
+            titleProp='< 30 min'
+            onPressProp={() => this.changeDuration(30)} />
+          <FilterButton
+            titleProp='< 60 min'
+            onPressProp={() => this.changeDuration(60)} />
+        </View>
 
       </View>
     )
