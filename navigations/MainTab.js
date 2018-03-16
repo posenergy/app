@@ -3,8 +3,8 @@ import { Image } from 'react-native'
 import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
 import ActivitiesStack from './ActivitiesStack'
-import CheckinScreen from '../screens/CheckinScreen'
-import MessagesScreen from '../screens/MessagesScreen'
+import CalendarScreen from '../screens/CalendarScreen'
+import ProfileScreen from '../screens/ProfileScreen'
 
 import '../components/TabIcons/packages.png'
 import '../components/TabIcons/feedback.png'
@@ -24,8 +24,8 @@ const MainTabNavigator = TabNavigator({
       ),
     }),
   },
-  Checkin: {
-    screen: CheckinScreen,
+  Calendar: {
+    screen: CalendarScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
@@ -35,10 +35,10 @@ const MainTabNavigator = TabNavigator({
       ),
     }),
   },
-  Messages: {
-    screen: MessagesScreen,
+  Profile: {
+    screen: ProfileScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Activities View',
+      title: 'Profile',
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../components/TabIcons/profile.png')}

@@ -34,8 +34,6 @@ export default class SearchScreen extends React.Component {
         this.setState({
           moments: res,
           modalVisible: false,
-        }, function() {
-          console.disableYellowBox = true
         })
       })
       .catch((error) => {

@@ -1,17 +1,17 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-class FeedbackScreen extends React.Component {
+class ProfileScreen extends React.Component {
   static navigationOptions = {
-		title: 'Welcome',
- }
+    title: 'Welcome',
+  }
   render() {
-    return(
+		return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Feedback Screen</Text>
+      <Text>Profile Screen</Text>
     </View>
 	)
   }
 }
 
-export default FeedbackScreen
+export default ProfileScreen
