@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { FILTER, TAG, SWEAT, DURATION } from '../actions/momentActions'
+import { FILTER, ADD_TAG, DEL_TAG, SWEAT, DURATION } from '../actions/momentActions'
 
 const initialState = {
 	tags: [],
@@ -8,10 +8,24 @@ const initialState = {
   duration: 30,
 }
 
-function tagReducer(state = initialState.tags, action) {
+function delTagReducer(state = initialState.tags, action) {
 	switch (action.type) {
-		case TAG:
-		  return { tags: [...state.tags, action.tag] }
+		case DEL_TAG:
+		  return Object.assign({}, state, 
+		  	{ tags: state.filter(t => t !== action.tag) 
+		  })
+		default:
+		  return state
+	}
+}
+
+
+function addTagReducer(state = initialState, action) {
+	switch (action.type) {
+		case ADD_TAG:
+		  return Object.assign({}, state,
+		  	{ tags: [...state.tags, action.tag] 
+		  })
 		default:
 		  return state
 	}
@@ -38,7 +52,8 @@ function durationReducer(state = initialState.duration, action)
 }
 
 const filterState = combineReducers({
-	tagReducer,
+	addTagReducer,
+	delTagReducer,
 	sweatReducer,
 	durationReducer,
 })

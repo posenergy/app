@@ -5,6 +5,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 5,
+    width: 333,
+    height: 492,
   },
   title: {
     marginTop: 20,

@@ -9,6 +9,8 @@ import MvmtModal from '../../components/MvmtModal'
 import MindModal from '../../components/MindModal'
 
 
+// REDUX: TWO VISIBILITY FUNCTIONS -> one for mindmodal, one for mvmtmodal
+
 export default class SearchScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
@@ -94,22 +96,7 @@ export default class SearchScreen extends React.Component {
             onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
             title='Filter Activities'
           />
-          {
-            this.state.modalVisible &&
-            <View style={styles.Container}>
-              <Modal
-                visible={this.state.modalVisible}
-                animationType={'slide'}>
-                <View style={styles.modalContainer}>
-                  <MindModal/>
-                  <Button
-                    style={styles.button}
-                    onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-                    title= 'Apply'
-                  />
-                </View>
-              </Modal>
-          </View>}
+          <MindModal/>
         </View>
       )
     }

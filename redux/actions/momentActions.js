@@ -1,5 +1,6 @@
 export const FILTER = 'FILTER'
-export const TAG = 'TAG'
+export const ADD_TAG = 'ADD_TAG'
+export const DEL_TAG = 'DEL_TAG'
 export const SWEAT = 'SWEAT'
 export const DURATION = 'DURATION'
 
@@ -14,8 +15,12 @@ export function filter(tags, sweat, duration) {
 	}
 }
 
-export function tag(tag) {
-	return { type: TAG, tag }
+export function del_tag(tag) {
+	return { type: DEL_TAG, tag }
+}
+
+export function add_tag(tag) {
+	return { type: ADD_TAG, tag }
 }
 
 export function sweat(sweat) {
