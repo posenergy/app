@@ -5,6 +5,7 @@ import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 import ActivitiesStack from './ActivitiesStack'
 import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+import AboutScreen from '../screens/AboutScreen'
 
 import '../components/TabIcons/packages.png'
 import '../components/TabIcons/feedback.png'
@@ -28,6 +29,17 @@ const MainTabNavigator = TabNavigator({
     screen: CalendarScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../components/TabIcons/calendar.png')}
+        />
+      ),
+    }),
+  },
+  About: {
+    screen: AboutScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'About',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../components/TabIcons/calendar.png')}
