@@ -17,17 +17,17 @@ export default StyleSheet.create({
   },
   innerContainer: {
     alignItems: 'center',
-    width: 300,
-    height: 454,
+    width: 292,
+    height: 377,
     backgroundColor: 'white',
     borderRadius: 5,
     flexDirection: 'column',
   },
   image: {
-    height: 74,
-    width: 74,
-    marginTop: 19,
-    marginBottom: 7,
+    height: 48,
+    width: 48,
+    marginTop: 28,
+    marginBottom: 8,
   },
   title: {
     fontStyle: 'italic',
@@ -36,11 +36,12 @@ export default StyleSheet.create({
     lineHeight: 31,
   },
   text: {
-    fontSize: 21,
+    fontSize: 20,
     textAlign: 'center',
-    lineHeight: 25,
-    width: 276,
-    marginTop: 25,
+    lineHeight: 23,
+    height: 76,
+    width: 282,
+    marginTop: 15,
     marginBottom: 35,
   },
   bold: {
@@ -48,7 +49,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 25,
-    marginBottom: 40,
   },
   contentWrap: {
     flex: 1,
