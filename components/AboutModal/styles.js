@@ -9,6 +9,14 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
   },
+  modalContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'column',
+  },
   innerContainer: {
     justifyContent: 'center',
     alignSelf: 'center',
@@ -39,11 +47,17 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 19,
     width: 276,
     marginTop: 14,
     marginBottom: 14,
+  },
+  image: {
+    width: 12,
+    height: 12,
+    alignSelf: 'flex-end',
+    marginTop: 15  ,
   },
   bold: {
     fontSize: 21,
@@ -52,5 +66,11 @@ export default StyleSheet.create({
     lineHeight: 25,
     marginBottom: 40,
   },
+  opacity: {
+    alignSelf: 'flex-end',
+    justifyContent: 'flex-end',
+  },
 
 })
+
+
