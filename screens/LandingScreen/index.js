@@ -1,13 +1,5 @@
 import React from 'react'
-<<<<<<< HEAD
 import { ScrollView, ImageBackground } from 'react-native'
-=======
-import { View } from 'react-native'
-<<<<<<< HEAD
-import Thumbnail from 'react-native-thumbnail-video';
->>>>>>> Added thumbnail functionality.
-=======
->>>>>>> Added modal
 
 import styles from './styles'
 
