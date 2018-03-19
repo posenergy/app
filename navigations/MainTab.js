@@ -4,8 +4,6 @@ import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
 import PackagesScreen from '../screens/PackagesScreen'
 import FeedbackScreen from '../screens/FeedbackScreen'
-import CheckinScreen from '../screens/CheckinScreen'
-import MessagesScreen from '../screens/MessagesScreen'
 import MomentScreen from '../screens/MomentScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
 
