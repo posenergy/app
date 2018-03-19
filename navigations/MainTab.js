@@ -6,6 +6,8 @@ import PackagesScreen from '../screens/PackagesScreen'
 import FeedbackScreen from '../screens/FeedbackScreen'
 import CheckinScreen from '../screens/CheckinScreen'
 import MessagesScreen from '../screens/MessagesScreen'
+import MomentScreen from '../screens/MomentScreen'
+import ScheduleScreen from '../screens/ScheduleScreen'
 
 import '../components/TabIcons/packages.png'
 import '../components/TabIcons/feedback.png'
@@ -37,7 +39,7 @@ const MainTabNavigator = TabNavigator({
     }),
   },
   Schedule: {
-    screen: CheckinScreen,
+    screen: ScheduleScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar View',
     tabBarIcon: ({ tintColor }) => (
@@ -48,7 +50,7 @@ const MainTabNavigator = TabNavigator({
     }),
   },
   Messages: {
-    screen: MessagesScreen,
+    screen: MomentScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Activities View',
     tabBarIcon: ({ tintColor }) => (
