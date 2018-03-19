@@ -9,8 +9,6 @@ import ProfileScreen from '../screens/ProfileScreen'
 =======
 import PackagesScreen from '../screens/PackagesScreen'
 import FeedbackScreen from '../screens/FeedbackScreen'
-import CheckinScreen from '../screens/CheckinScreen'
-import MessagesScreen from '../screens/MessagesScreen'
 import MomentScreen from '../screens/MomentScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
 >>>>>>> Some minor changes
