@@ -52,7 +52,8 @@
 		</dict>
 	</dict>
   <key>NSCalendarsUsageDescription</key>
-  <string>This app requires access to the calendar</string>
+  <string>[+energy] uses your calendar to schedule wellness activities.
+          Your information will not be shared.</string>
 	<key>CodePushDeploymentKey</key>
 	<string>deployment-key-here</string>
 	<key>UIAppFonts</key>
