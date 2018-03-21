@@ -27,7 +27,6 @@ export default StyleSheet.create({
     flexDirection: 'column',
   },
   scroll: {
-    flex: 1,
     alignSelf: 'center',
     alignItems: 'center',
     flexDirection: 'column',
@@ -45,7 +44,8 @@ export default StyleSheet.create({
     width: 12,
     height: 12,
     alignSelf: 'flex-end',
-    marginTop: 15  ,
+    marginTop: 15,
+    marginRight: 6,
   },
   bold: {
     fontSize: 21,
