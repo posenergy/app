@@ -5,6 +5,7 @@ import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 import ActivitiesStack from './ActivitiesStack'
 import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+import AboutScreen from '../screens/AboutScreen'
 
 import '../components/TabIcons/packages.png'
 import Button from '../components/Button'
@@ -44,6 +45,17 @@ const MainTabNavigator = TabNavigator({
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
     headerTintColor: 'white',
+    }),
+  },
+  About: {
+    screen: AboutScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'About',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../components/TabIcons/calendar.png')}
+        />
+      ),
     }),
   },
   Profile: {
