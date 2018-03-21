@@ -15,10 +15,10 @@ export default class CalendarScreen extends Component {
   componentDidMount() {
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
-        console.log('@@@@@@@@@@', status)
+        // console.log('@@@@@@@@@@', status)
       })
       .catch(error => {
-        console.log('denied')
+        // console.log('denied')
       })
   }
 
@@ -95,7 +95,7 @@ export default class CalendarScreen extends Component {
     var eventsList = []
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
-        console.log(allEvents)
+        // console.log(allEvents)
         allEvents.forEach(event => {
           // if (!event.allDay) {
             eventsList.push({title: event.title,
@@ -106,7 +106,7 @@ export default class CalendarScreen extends Component {
         return eventsList
       })
       .catch (error => {
-        console.log(error)
+        // console.log(error)
       })
   }
   loadItems(day) {
