@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   View,
   StyleSheet
-} from 'react-native';
-import {Agenda} from 'react-native-calendars';
-import RNCalendarEvents from 'react-native-calendar-events';
+} from 'react-native'
+import {Agenda} from 'react-native-calendars'
+import RNCalendarEvents from 'react-native-calendar-events'
 
 export default class AgendaScreen extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class AgendaScreen extends Component {
 
   render() {
     return (
-    //   <Agenda
+          //   <Agenda
     //   // the list of items that have to be displayed in agenda. If you want to render item as empty date
     //   // the value of date key kas to be an empty array []. If there exists no value for date key it is
     //   // considered that the date in question is not yet loaded
@@ -72,27 +72,41 @@ export default class AgendaScreen extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected={'2018-03-19'}
-        pastScrollRange={50}
-        futureScrollRange={50}
+        selected={'2018-03-23'}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
-        renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+        //markingType={'interactive'}
+        //markedDates={{
+        //  '2017-05-08': [{textColor: '#666'}],
+        //  '2017-05-09': [{textColor: '#666'}],
+        //  '2017-05-14': [{startingDay: true, color: 'blue'}, {endingDay: true, color: 'blue'}],
+        //  '2017-05-21': [{startingDay: true, color: 'blue'}],
+        //  '2017-05-22': [{endingDay: true, color: 'gray'}],
+        //  '2017-05-24': [{startingDay: true, color: 'gray'}],
+        //  '2017-05-25': [{color: 'gray'}],
+        //  '2017-05-26': [{endingDay: true, color: 'gray'}]}}
+        // monthFormat={'yyyy'}
+        // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
       />
     );
   }
-
   getEvents = () => {
     const startDate = new Date('2018-03-10')
     const endDate = new Date('2018-03-25')
-    eventTitles = []
+    eventsList = []
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
+        console.log(allEvents)
         allEvents.forEach(event => {
-          eventTitles.push(event.title)
+          // if (!event.allDay) {
+            eventsList.push({title: event.title,
+                              date: event.occurrenceDate,
+                            })
+          // }
         })
-        console.log(eventTitles)
+        return eventsList
       })
       .catch (error => {
         console.log(error)
@@ -116,7 +130,7 @@ export default class AgendaScreen extends Component {
       }
       //console.log(this.state.items);
       this.getEvents()
-      const newItems = {}
+      const newItems = {};
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       this.setState({
         items: newItems
