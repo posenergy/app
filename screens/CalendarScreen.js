@@ -84,8 +84,16 @@ export default class AgendaScreen extends Component {
   }
 
   getEvents = () => {
-    const allcalendars = RNCalendarEvents.findCalendars();
-    console.log ("&&&&&&&&&&&&", allcalendars);
+    RNCalendarEvents.findCalendars()
+      .then (resp => {
+        resp.forEach(
+          RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars)
+        )
+      })
+      .catch (error => {
+        // console.log(error)
+      })
+    // console.log ("&&&&&&&&&&&&", allcalendars);
     // console.log ("############", RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars));
     // RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars)
     //   .then (resp => {
@@ -112,8 +120,8 @@ export default class AgendaScreen extends Component {
         }
       }
       //console.log(this.state.items);
-      this.getEvents();
-      const newItems = {};
+      this.getEvents()
+      const newItems = {}
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       this.setState({
         items: newItems
