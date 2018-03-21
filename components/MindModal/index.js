@@ -1,32 +1,50 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Modal, Text, View } from 'react-native'
+import { connect } from 'react-redux'
 import styles from './styles'
+
+import { del_tag, add_tag, duration } from '../../redux/actions/momentActions'
+import { mindVisibility } from '../../redux/actions/mindModalActions'
 
 import FilterButton from '../../components/FilterButton'
 import FilterHeader from '../../components/FilterHeader'
 
-export default class MindModal extends Component {
+const mapStateToProps = state => ({
+  tags: state.tags,
+  duration: state.duration,
+  visible: state.visible,
+})
 
-  constructor(props) {
-    super(props)
+const mapDispatchToProps = {
+  del_tag,
+  add_tag,
+  duration,
+  mindVisibility,
+}
 
-    this.state = {
-      tags: [],
-      duration: 30,
-      buttonColor: '#F2F2F2',
-    }
-  }
 
-  changeTag(tag) {
-    this.setState({tags: [...this.state.tags, tag]})
-  }
+class MindModal extends Component {
 
-  changeDuration(duration) {
-    this.setState({ duration: duration})
-  }
+  // constructor(props) {
+  //   super(props)
 
-  componentDidUpdate(prevProps, prevState) {
-  }
+  //   this.state = {
+  //     tags: [],
+  //     duration: 30,
+  //     buttonColor: '#F2F2F2',
+  //   }
+  // }
+
+  // changeTag(tag) {
+  //   this.setState({tags: [...this.state.tags, tag]})
+  // }
+
+  // changeDuration(duration) {
+  //   this.setState({ duration: duration})
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  // }
 
   render() {
     return(
@@ -76,3 +94,5 @@ export default class MindModal extends Component {
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MindModal)
