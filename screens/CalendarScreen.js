@@ -84,24 +84,19 @@ export default class AgendaScreen extends Component {
   }
 
   getEvents = () => {
-    RNCalendarEvents.findCalendars()
-      .then (resp => {
-        resp.forEach(
-          RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars)
-        )
+    const startDate = new Date('2018-03-10')
+    const endDate = new Date('2018-03-25')
+    eventTitles = []
+    RNCalendarEvents.fetchAllEvents(startDate, endDate)
+      .then(allEvents => {
+        allEvents.forEach(event => {
+          eventTitles.push(event.title)
+        })
+        console.log(eventTitles)
       })
       .catch (error => {
-        // console.log(error)
+        console.log(error)
       })
-    // console.log ("&&&&&&&&&&&&", allcalendars);
-    // console.log ("############", RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars));
-    // RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars)
-    //   .then (resp => {
-    //     console.log(error)
-    //   })
-    //   .catch (error => {
-    //     console.log(error)
-    //   })
   }
   loadItems(day) {
     setTimeout(() => {
