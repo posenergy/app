@@ -89,21 +89,21 @@ export default class CalendarScreen extends Component {
       />
     )
   }
-  getEvents = () => {
+  getEvents() {
     const startDate = new Date('2018-03-10')
     const endDate = new Date('2018-03-25')
-    var eventsList = []
+    let eventsList = []
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         // console.log(allEvents)
         allEvents.forEach(event => {
           // if (!event.allDay) {
-            eventsList.push({title: event.title,
+            eventsList.push({ title: event.title,
                               date: event.occurrenceDate,
                             })
           // }
         })
-        return eventsList
+        // console.log(eventsList)
       })
       .catch (error => {
         // console.log(error)
@@ -126,7 +126,7 @@ export default class CalendarScreen extends Component {
         }
       }
       // console.log(this.state.items)
-      this.getEvents()
+      // console.log('$$$$$$$$$$$$', this.getEvents())
       const newItems = {}
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
       this.setState({
