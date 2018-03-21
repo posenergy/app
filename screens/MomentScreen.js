@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
+import CheckBox from 'react-native-checkbox'
 
 class MomentScreen extends React.Component {
   static navigationOptions = {
@@ -19,6 +20,11 @@ class MomentScreen extends React.Component {
                           url="https://www.youtube.com/watch?v=cBPP_izKKSs"
                           imageWidth={244}
                           imageHeight={142} />}
+        />
+        <CheckBox
+          label='Label'
+          checked={true}
+           onChange={(checked) => console.log('I am checked', checked)}
         />
         <Button type='schedule'
         onClick={() => this.props.navigation.navigate('Packages')}

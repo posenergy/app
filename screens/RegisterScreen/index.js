@@ -172,8 +172,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
             Passwords must be at least 7 characters long and contain at least one number.
           </Text>
           <Button type='register'
-            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
-            text='Sign Up' textColor='black'/>
+            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}            text='Sign Up' textColor='black'/>
         </View>
       </ScrollView>
       </ImageBackground>
