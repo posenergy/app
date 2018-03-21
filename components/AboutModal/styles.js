@@ -20,10 +20,10 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'center',
     alignSelf: 'center',
-    width: 300,
-    height: 492,
+    width: '85%',
+    height: '75%',
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 12,
     flexDirection: 'column',
   },
   scroll: {

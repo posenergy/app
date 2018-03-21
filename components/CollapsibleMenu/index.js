@@ -40,9 +40,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#F5FCFF',
+    marginBottom: 20,
   },
   title: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 22,
     fontWeight: '300',
     marginBottom: 20,

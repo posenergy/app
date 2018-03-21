@@ -54,9 +54,7 @@ export default class AboutModal extends Component {
                     <StyleText text = "HOW TO REACH US" />
                     <Text style={styles.text}>You can find us at positiveenergyapp.com, email us at positiveenergyapp@gmail.com, or follow us on Instagram @positive.energy.app </Text>
                     <StyleText text = "FAQ" />
-                    <ScrollView>
                     <CollapsibleMenu/>
-                    </ScrollView>
                 </ScrollView>
               </View>
             </View>
