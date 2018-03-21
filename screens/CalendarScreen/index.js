@@ -1,27 +1,24 @@
 import React, { Component } from 'react'
-import {
-  Text,
-  View,
-  StyleSheet
-} from 'react-native'
-import {Agenda} from 'react-native-calendars'
+import { Text, View } from 'react-native'
+import { Agenda } from 'react-native-calendars'
 import RNCalendarEvents from 'react-native-calendar-events'
+import styles from './styles'
 
-export default class AgendaScreen extends Component {
+export default class CalendarScreen extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      items: {}
-    };
+      items: {},
+    }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
-        console.log("@@@@@@@@@@", status)
+        console.log('@@@@@@@@@@', status)
       })
       .catch(error => {
-        console.log("denied")
+        console.log('denied')
       })
   }
 
@@ -47,15 +44,15 @@ export default class AgendaScreen extends Component {
     //   // Max amount of months allowed to scroll to the future. Default = 50
     //   futureScrollRange={50}
     //   // specify how each item should be rendered in agenda
-    //   renderItem={(item, firstItemInDay) => {return (<View />);}}
+    //   renderItem={(item, firstItemInDay) => {return (<View />)}}
     //   // specify how each date should be rendered. day can be undefined if the item is not first in that day.
-    //   renderDay={(day, item) => {return (<View />);}}
+    //   renderDay={(day, item) => {return (<View />)}}
     //   // specify how empty date content with no items should be rendered
-    //   renderEmptyDate={() => {return (<View />);}}
+    //   renderEmptyDate={() => {return (<View />)}}
     //   // specify how agenda knob should look like
-    //   renderKnob={() => {return (<View />);}}
+    //   renderKnob={() => {return (<View />)}}
     //   // specify what should be rendered instead of ActivityIndicator
-    //   renderEmptyData = {() => {return (<View />);}}
+    //   renderEmptyData = {() => {return (<View />)}}
     //   // specify your item comparison function for increased performance
     //   rowHasChanged={(r1, r2) => {return r1.text !== r2.text}}
     //   // Hide knob button. Default = false
@@ -76,8 +73,8 @@ export default class AgendaScreen extends Component {
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
-        //markingType={'interactive'}
-        //markedDates={{
+        // markingType={'interactive'}
+        // markedDates={{
         //  '2017-05-08': [{textColor: '#666'}],
         //  '2017-05-09': [{textColor: '#666'}],
         //  '2017-05-14': [{startingDay: true, color: 'blue'}, {endingDay: true, color: 'blue'}],
@@ -88,14 +85,14 @@ export default class AgendaScreen extends Component {
         //  '2017-05-26': [{endingDay: true, color: 'gray'}]}}
         // monthFormat={'yyyy'}
         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+        // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
       />
-    );
+    )
   }
   getEvents = () => {
     const startDate = new Date('2018-03-10')
     const endDate = new Date('2018-03-25')
-    eventsList = []
+    var eventsList = []
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         console.log(allEvents)
@@ -115,64 +112,48 @@ export default class AgendaScreen extends Component {
   loadItems(day) {
     setTimeout(() => {
       for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = this.timeToString(time);
+        const time = day.timestamp + i * 24 * 60 * 60 * 1000
+        const strTime = this.timeToString(time)
         if (!this.state.items[strTime]) {
-          this.state.items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 5);
+          this.state.items[strTime] = []
+          const numItems = Math.floor(Math.random() * 5)
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
               name: 'Item for ' + strTime,
-              height: Math.max(50, Math.floor(Math.random() * 150))
-            });
+              height: Math.max(50, Math.floor(Math.random() * 150)),
+            })
           }
         }
       }
-      //console.log(this.state.items);
+      // console.log(this.state.items)
       this.getEvents()
-      const newItems = {};
-      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+      const newItems = {}
+      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
       this.setState({
-        items: newItems
-      });
-    }, 1000);
-    // console.log(`Load Items for ${day.year}-${day.month}`);
+        items: newItems,
+      })
+    }, 1000)
+    // console.log(`Load Items for ${day.year}-${day.month}`)
   }
 
   renderItem(item) {
     return (
       <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
-    );
+    )
   }
 
   renderEmptyDate() {
     return (
       <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
-    );
+    )
   }
 
   rowHasChanged(r1, r2) {
-    return r1.name !== r2.name;
+    return r1.name !== r2.name
   }
 
   timeToString(time) {
-    const date = new Date(time);
-    return date.toISOString().split('T')[0];
+    const date = new Date(time)
+    return date.toISOString().split('T')[0]
   }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: 'white',
-    flex: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-    marginTop: 17
-  },
-  emptyDate: {
-    height: 15,
-    flex:1,
-    paddingTop: 30
-  }
-});
