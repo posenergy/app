@@ -29,6 +29,13 @@ export default StyleSheet.create({
     marginTop: 19,
 		marginBottom: 7,
   },
+  place: {
+    height: 8,
+    width: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
   title: {
     fontStyle: 'italic',
     fontSize: 26,
@@ -41,14 +48,14 @@ export default StyleSheet.create({
     lineHeight: 25,
     width: 276,
     marginTop: 25,
-    marginBottom: 35,
+    marginBottom: 15,
   },
   bold: {
     fontSize: 21,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 25,
-    marginBottom: 40,
+    marginBottom: 20,
   },
   contentWrap: {
     flex: 1,
