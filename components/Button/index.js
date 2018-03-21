@@ -14,6 +14,7 @@ export default class Button extends Component {
       'menu',
       'register',
       'modal',
+      'schedule',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,

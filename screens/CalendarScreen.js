@@ -83,6 +83,18 @@ export default class AgendaScreen extends Component {
     );
   }
 
+  getEvents = () => {
+    const allcalendars = RNCalendarEvents.findCalendars();
+    console.log ("&&&&&&&&&&&&", allcalendars);
+    // console.log ("############", RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars));
+    // RNCalendarEvents.fetchAllEvents('2018-03-10', '2018-03-25', allcalendars)
+    //   .then (resp => {
+    //     console.log(error)
+    //   })
+    //   .catch (error => {
+    //     console.log(error)
+    //   })
+  }
   loadItems(day) {
     setTimeout(() => {
       for (let i = -15; i < 85; i++) {
@@ -100,6 +112,7 @@ export default class AgendaScreen extends Component {
         }
       }
       //console.log(this.state.items);
+      this.getEvents();
       const newItems = {};
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       this.setState({
