@@ -14,10 +14,10 @@ export default StyleSheet.create({
   styleTextInput: {
     borderRadius: 10,
     textAlign: 'left',
+    backgroundColor: 'rgba(0,0,0,0.00001)', // 40% opaque
     fontSize: 22,
-    lineHeight: 26,
     flex: 3,
-    color: 'rgba(255, 255, 255, 0.6)',
+    color: '#F2F2F2',
     marginBottom: 11,
   },
   image: {

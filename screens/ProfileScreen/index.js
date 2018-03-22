@@ -5,7 +5,7 @@ import config from '../../config/config'
 import styles from './styles'
 
 import Logo from '../../components/Logo'
-import StyleTextInput from '../../components/StyleTextInput'
+import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import Button from '../../components/Button'
 import { NavigationActions } from 'react-navigation'
 

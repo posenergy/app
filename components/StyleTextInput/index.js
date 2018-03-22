@@ -18,6 +18,7 @@ const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp,
     onChangeText={changeFunction}
     autoCapitalize="none"
     secureTextEntry={passwordSecure}
+    placeholderTextColor = {color}
   />
   </View>
 )
@@ -31,4 +32,3 @@ StyleTextInput.propTypes = {
 }
 
 export default StyleTextInput
-

@@ -4,7 +4,6 @@ export default StyleSheet.create({
   styleTextInput: {
     borderRadius: 10,
     textAlign: 'left',
-    backgroundColor: 'rgba(0,0,0,0.00001)', // 40% opaque
     fontSize: 22,
     flex: 3,
     color: 'black',
