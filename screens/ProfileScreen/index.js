@@ -1,14 +1,9 @@
 import React from 'react'
-import { ImageBackground, ScrollView, Alert} from 'react-native'
+import {ScrollView} from 'react-native'
 
-import config from '../../config/config'
 import styles from './styles'
 
-import Logo from '../../components/Logo'
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
-import Button from '../../components/Button'
-import { NavigationActions } from 'react-navigation'
-
 
 export default class ProfileScreen extends React.Component {
   constructor(props) {
