@@ -1,9 +1,7 @@
 import React from 'react'
-import { View, Image, Text} from 'react-native'
+import { View, Text} from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
-
-const color = '#F2F2F2'
 
 const StyleText = ({text}) => (
   <View

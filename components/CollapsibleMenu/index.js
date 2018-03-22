@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
-} from 'react-native';
+} from 'react-native'
 
-import * as Animatable from 'react-native-animatable';
-import Collapsible from 'react-native-collapsible';
-import Accordion from 'react-native-collapsible/Accordion';
+import * as Animatable from 'react-native-animatable'
+import Accordion from 'react-native-collapsible/Accordion'
 
-const BACON_IPSUM = 'Filler content. Filler content. Filler content. Filler content.';
+const BACON_IPSUM = 'Filler content. Filler content. Filler content. Filler content.'
 
 const CONTENT = [
   {
@@ -33,7 +31,7 @@ const CONTENT = [
     title: 'Can I make a custom activity?',
     content: BACON_IPSUM,
   },
-];
+]
 
 const styles = StyleSheet.create({
   container: {
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
   inactive: {
     backgroundColor: 'white',
   },
-});
+})
 
 export default class ExampleView extends Component {
   state = {
@@ -76,11 +74,11 @@ export default class ExampleView extends Component {
   };
 
   _toggleExpanded = () => {
-    this.setState({ collapsed: !this.state.collapsed });
+    this.setState({ collapsed: !this.state.collapsed })
   }
 
   _setSection(section) {
-    this.setState({ activeSection: section });
+    this.setState({ activeSection: section })
   }
 
   _renderHeader(section, i, isActive) {
@@ -88,15 +86,15 @@ export default class ExampleView extends Component {
       <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
         <Text style={styles.headerText}>{section.title}</Text>
       </Animatable.View>
-    );
+    )
   }
 
   _renderContent(section, i, isActive) {
     return (
-      <Animatable.View duration={400}  style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
+      <Animatable.View duration={400} style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
         <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
       </Animatable.View>
-    );
+    )
   }
 
   render() {
@@ -112,6 +110,6 @@ export default class ExampleView extends Component {
         />
 
       </View>
-    );
+    )
   }
 }

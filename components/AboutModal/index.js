@@ -6,11 +6,8 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  TouchableHighlight,
 } from 'react-native'
 import styles from './styles'
-import Button from '../Button'
 import CollapsibleMenu from '../CollapsibleMenu'
 import StyleText from '../StyleText'
 
@@ -41,7 +38,7 @@ export default class AboutModal extends Component {
               <View style={styles.innerContainer}>
                 <ScrollView contentContainerStyle={styles.scroll}>
                     <TouchableOpacity
-                    activeOpacity = { .5 }
+                    activeOpacity = { 0.5 }
                     style={styles.opacity}
                     onPress={this.closeModal}>
                     <Image
