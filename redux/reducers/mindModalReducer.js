@@ -1,16 +1,18 @@
 import { MINDVISIBILITY } from '../actions/mindModalActions'
 
 const initialState = {
-  visible: false
+  visible: false,
 }
 
-export default toggleMindVisibility = (state = initialState) => {
+export default toggleMindVisibility = (state = initialState, action) => {
+  console.log(state, action);
   switch (action.type) {
-    case MINDVISIBILITY:
+    case MINDVISIBILITY: {
       return Object.assign({}, state, {
         visible: !state.visible
       })
-    default: initialState
+    }
+    default: return state
   }
 
 }

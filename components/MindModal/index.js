@@ -6,6 +6,7 @@ import styles from './styles'
 import { del_tag, add_tag, duration } from '../../redux/actions/momentActions'
 import { mindVisibility } from '../../redux/actions/mindModalActions'
 
+import Button from '../../components/Button'
 import FilterButton from '../../components/FilterButton'
 import FilterHeader from '../../components/FilterHeader'
 
@@ -22,8 +23,11 @@ const mapDispatchToProps = {
   mindVisibility,
 }
 
-
 class MindModal extends Component {
+
+  buttonClicked = () => {
+    this.props.mindVisibility(false)
+  }
 
   // constructor(props) {
   //   super(props)
@@ -50,7 +54,7 @@ class MindModal extends Component {
     return(
       <View style={styles.Container}>
         <Modal
-          visible={this.state.modalVisible}
+          visible={this.props.visible}
           animationType={'slide'}>
           <View style={styles.modalContainer}>
             <View style={styles.innerContainer}>
@@ -84,9 +88,10 @@ class MindModal extends Component {
               </View>
             </View>
             <Button
+              type='login'
               style={styles.button}
-              onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-              title= 'Apply'
+              onClick={() => {this.buttonClicked()}}
+              text= 'Apply'
             />
           </View>
         </Modal>

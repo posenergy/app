@@ -5,11 +5,14 @@ import filterState from './reducers/momentReducer'
 import toggleMindVisibility from './reducers/mindModalReducer'
 import toggleMvmtVisibility from './reducers/mvmtModalReducer'
 
-const rootReducer = combineReducers(Object.assign(
+const rootReducer = combineReducers({
 	user,
 	filterState,
 	toggleMvmtVisibility,
 	toggleMindVisibility,
-))
+})
 
-export default rootReducer
+export default (state, action) => {
+	console.log('Test if rootReducer is ever called')
+  return rootReducer(state, action)
+}
