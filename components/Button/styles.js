@@ -85,5 +85,14 @@ export default StyleSheet.create({
     borderBottomRightRadius: 11,
     width: 300,
   },
+ schedule: {
+    height: 52,
+    width: 286,
+    backgroundColor: '#545680',
+    borderRadius: 11,
+    marginTop: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
 

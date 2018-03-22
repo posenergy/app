@@ -32,3 +32,4 @@ StyleTextInput.propTypes = {
 }
 
 export default StyleTextInput
+
