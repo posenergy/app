@@ -14,7 +14,6 @@ export default class AboutScreen extends React.Component {
   render() {
     return (
       <View style = {styles.container}>
-      <AboutModal/>
       </View>
     )
   }

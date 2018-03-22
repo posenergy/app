@@ -4,12 +4,10 @@ import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainTabNavigator from './MainTab'
-import AboutScreen from '../screens/AboutScreen'
-
 
 const AppNavigator = StackNavigator({
-  About: {
-    screen: AboutScreen,
+  Landing: {
+    screen: LandingScreen,
   },
   Login: {
     screen: LoginScreen,
