@@ -6,11 +6,11 @@ class ProfileScreen extends React.Component {
     title: 'Welcome',
   }
   render() {
-		return(
+    return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Profile Screen</Text>
     </View>
-	)
+  )
   }
 }
 
