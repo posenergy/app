@@ -7,6 +7,7 @@ export default StyleSheet.create({
     fontSize: 22,
     flex: 3,
     color: 'black',
+    fontWeight: 'bold',
     marginBottom: 11,
   },
   viewStyle: {
