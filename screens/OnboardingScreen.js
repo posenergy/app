@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import GenModal from '../components/GenModal'
 
-class CalendarScreen extends React.Component {
+class OnboardingScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome',
   }
@@ -20,4 +20,4 @@ class CalendarScreen extends React.Component {
   }
 }
 
-export default CalendarScreen
+export default OnboardingScreen
