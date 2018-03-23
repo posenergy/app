@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, View } from 'react-native'
 
 import styles from './styles'
 
-export default class SearchScreen extends React.Component {
+export default class ChooseScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Choose',
