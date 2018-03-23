@@ -103,10 +103,12 @@ resetNavigation(targetRoute) {
       <StyleTextInput
         pholder='Email'
         imagelink = {require('../../images/mail.png')}
+        type='white'
         changeFunction={email => this.setState({email})}/>
       <StyleTextInput
         pholder='Password'
         imagelink = {require('../../images/lock.png')}
+        type='white'
         changeFunction={password => this.setState({password})}
         passwordSecure={true}/>
       <Button

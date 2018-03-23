@@ -13,20 +13,21 @@ class OnboardingScreen extends React.Component {
     modal3Visible: false,
   };
 
+
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <GenModal
       title = "Welcome!"
       text = "[+energy] helps you discover wellness content and integrate it into your busy life by instantly adding chosen events to your calendar, and continually syncing with it."
-      bname = "Let's go!"
+      bname = "Next"
       isVisible={this.state.modal1Visible}
       image = {require('../images/slide1.png')}
       />
       <GenModal
       title = "Welcome!"
       text = "Click 'Activities' to browse on demand content and then add it to your calendar. Start by choosing 'Mindfulness' or 'Movement.'"
-      bname = "Let's go!"
+      bname = "Next"
       bold = "Ready to get planning?"
       isVisible={this.state.modal2Visible}
       image = {require('../images/slide2.png')}
@@ -45,4 +46,5 @@ class OnboardingScreen extends React.Component {
 
 
 export default OnboardingScreen
+
 
