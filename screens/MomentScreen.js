@@ -1,17 +1,33 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
-import CheckBox from 'react-native-checkbox'
+import { CheckBox } from 'react-native-elements'
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+  },
+})
 
 class MomentScreen extends React.Component {
   static navigationOptions = {
-		title: 'Welcome',
- }
+    title: 'Welcome',
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      check: true,
+    }
+  }
+
   render() {
     return(
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <SchedModal
           title = "Detox Yoga"
           image = {require('./../images/yoga.png')}
@@ -20,17 +36,20 @@ class MomentScreen extends React.Component {
                           url="https://www.youtube.com/watch?v=cBPP_izKKSs"
                           imageWidth={244}
                           imageHeight={142} />}
+          varelement2 = {<CheckBox
+            title='Include my buffer time in results.'
+            checked ={this.state.check}
+            checkedColor= 'black'
+            containerStyle= {styles.container}
+            onPress={() => this.setState({check: !this.state.check})}
+          />}
+ button = {<Button type='schedule'
+          onClick={() => this.props.navigation.navigate('Packages')}
+          text= 'Schedule' textColor='white'/>}
         />
-        <CheckBox
-          label='Label'
-          checked={true}
-           onChange={(checked) => console.log('I am checked', checked)}
-        />
-        <Button type='schedule'
-        onClick={() => this.props.navigation.navigate('Packages')}
-        text='Add to Calendar' textColor='white'/>
+
     </View>
-	)
+  )
   }
 }
 

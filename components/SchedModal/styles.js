@@ -40,7 +40,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignSelf: 'center',
     alignItems: 'center',
-    marginBottom: 25,
+    marginBottom: 20,
   },
   contentWrap: {
     flex: 1,
