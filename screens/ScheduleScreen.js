@@ -5,16 +5,24 @@ import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
 class ScheduleScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
+  
+  constructor(props) {
+  super(props)
+
+    this.state = {
+      title: this.props.navigation.state.params.title,
+      pict: this.props.navigation.state.params.pict,
+      text: this.props.navigation.state.params.desc,
+    }
   }
+
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <SchedModal
-          title = "Detox Yoga"
+          title = {this.state.title}
           image = {require('./../images/yoga.png')}
-          text = "30 minute yoga filled with detoxifying twists"
+          text = {this.state.text}
           varelement = {<RadioButtonList
                         radioprops = {[{label: 'Wed, Feb 3, 5:30 - 6:00 pm', value: 0 },
                                      {label: 'Wed, Feb 3, 6:00 - 6:30 pm', value: 1 },
@@ -24,8 +32,8 @@ class ScheduleScreen extends React.Component {
                       />}
         />
         <Button type='schedule'
-        onClick={() => this.props.navigation.navigate('Packages')}
-        text='Schedule' textColor='white'/>
+        onClick={() => this.props.navigation.navigate('Calendar')}
+        text='Add to Calendar' textColor='white'/>
     </View>
 	)
   }

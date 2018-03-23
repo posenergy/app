@@ -5,10 +5,6 @@ import styles from './styles'
 
 export default class ChooseScreen extends React.Component {
 
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Choose',
-  })
-
   render() {
     return(
       <View style={styles.viewStyle}>
