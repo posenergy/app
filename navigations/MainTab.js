@@ -1,15 +1,26 @@
 import React from 'react'
 import { Image, TouchableOpacity } from 'react-native'
-import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
+import { TabNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
 
 import ActivitiesStack from './ActivitiesStack'
 import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 
+import { infoVisibility } from '../redux/actions/infoAction'
+
 import '../components/TabIcons/packages.png'
 import '../components/TabIcons/feedback.png'
 import '../components/TabIcons/checkin.png'
 import '../components/TabIcons/messages.png'
+
+const mapStateToProps = state => ({
+  visible: state.toggleInfoVisibility.visible,
+})
+
+const mapDispatchToProps = {
+  infoVisibility,
+}
 
 const MainTabNavigator = TabNavigator({
   Activities: {
@@ -23,6 +34,7 @@ const MainTabNavigator = TabNavigator({
       ),
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
+      onPress={() => this.props.infoVisibility()}
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1 },
     headerTintColor: 'white',
@@ -39,6 +51,7 @@ const MainTabNavigator = TabNavigator({
     ),
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
+      onPress={() => this.props.infoVisibility()}
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
     headerTintColor: 'white',
@@ -55,6 +68,7 @@ const MainTabNavigator = TabNavigator({
       ),
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
+      onPress={() => this.props.infoVisibility()}
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
     headerTintColor: 'white',
@@ -66,4 +80,4 @@ const MainTabNavigator = TabNavigator({
   headerMode: 'screen',
 })
 
-export default MainTabNavigator
+export default connect(mapStateToProps, mapDispatchToProps)(MainTabNavigator)
