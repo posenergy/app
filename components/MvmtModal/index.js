@@ -14,9 +14,6 @@ import Button from '../../components/Button'
 import StyleText from '../../components/StyleText'
 import FilterButton from '../../components/FilterButton'
 
-
-// I don't think I actually need tags and duration here nor in MINDMODAL
-
 const mapStateToProps = state => ({
   tags: state.tags,
   duration: state.duration,
