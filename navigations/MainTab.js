@@ -21,7 +21,7 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/activitiesMan.png')}
         />
       ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } onPress={() => this.renderModal()} padding={200}>
+    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1 },
@@ -37,7 +37,7 @@ const MainTabNavigator = TabNavigator({
         source={require('../components/TabIcons/calendar.png')}
       />
     ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } onPress={() => this.renderModal()} padding={200}>
+    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
@@ -53,7 +53,7 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/profile.png')}
         />
       ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } onPress={() => this.renderModal()} padding={200}>
+    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
