@@ -86,7 +86,7 @@ export default StyleSheet.create({
     width: 300,
   },
  schedule: {
-    height: '37%',
+    height: 49,
     width: 286,
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,

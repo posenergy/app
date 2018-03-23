@@ -4,7 +4,7 @@ export default StyleSheet.create({
   innerContainer: {
     alignItems: 'center',
     width: 286,
-    height: '87%',
+    height: 440,
     backgroundColor: 'white',
     borderRadius: 11,
     flexDirection: 'column',
@@ -40,7 +40,6 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignSelf: 'center',
     alignItems: 'center',
-    marginBottom: 20,
   },
   contentWrap: {
     flex: 1,
