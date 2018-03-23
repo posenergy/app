@@ -100,7 +100,7 @@ export default class CalendarScreen extends Component {
           setTimeout(() => {
           // if (!event.allDay) {
           for (i = -15; i <85; i++){
-            const time = day.timestamp + i*24 * 60 * 60 * 1000
+            const time = day.timestamp + i * 24 * 60 * 60 * 1000
             const strTime = this.timeToString(time)
             // const strTime = event.occurrenceDate.split('T')[0]
             console.log("this is strTime", strTime)
