@@ -3,9 +3,7 @@ import { View, Image, TextInput } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
-const color = '#F2F2F2'
-
-const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp, sizeProp, colorProp, imagelink }) => (
+const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp, sizeProp, imagelink }) => (
   <View
   style = {styles.viewStyle}>
   <Image
@@ -18,7 +16,6 @@ const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp,
     onChangeText={changeFunction}
     autoCapitalize="none"
     secureTextEntry={passwordSecure}
-    placeholderTextColor = {color}
   />
   </View>
 )
@@ -32,3 +29,4 @@ StyleTextInput.propTypes = {
 }
 
 export default StyleTextInput
+
