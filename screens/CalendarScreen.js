@@ -5,6 +5,8 @@ class CalendarScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome',
   }
+
+
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -13,4 +15,6 @@ class CalendarScreen extends React.Component {
   }
 }
 
+
 export default CalendarScreen
+

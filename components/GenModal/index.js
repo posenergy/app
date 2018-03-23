@@ -38,8 +38,11 @@ export default class GenModal extends Component {
                 <Text style={styles.title}>{this.props.title}</Text>
                 <Text style={styles.text}>{this.props.text}</Text>
                 <Text style={styles.bold}>{this.props.bold}</Text>
+              <Image
+                  source={this.props.image}
+                  style={styles.place} />
                   <Button
-                      onClick={() => this.closeModal()}
+                      onClick= {() => this.closeModal()}
                       type='modal'
                       textColor='white'
                       text= {this.props.bname}>
