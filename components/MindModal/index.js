@@ -11,7 +11,7 @@ import { craftAction, journalAction, meditateAction, gratitudeAction,
 
 import Button from '../../components/Button'
 import FilterButton from '../../components/FilterButton'
-import FilterHeader from '../../components/FilterHeader'
+import StyleText from '../../components/StyleText'
 
 const mapStateToProps = state => ({
   craft: state.toggleMindButtons.craft,
@@ -124,7 +124,7 @@ class MindModal extends Component {
 
               <Text style={styles.title}>Filter Activities</Text>
 
-              <FilterHeader headerProp='ACTIVITIES'/>
+              <StyleText text='ACTIVITIES'/>
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='Craft'
@@ -137,7 +137,7 @@ class MindModal extends Component {
                   onPressProp={() => {this.buttonMeditate('Meditate')}} />
               </View>
 
-              <FilterHeader headerProp='DURATION'/>
+              <StyleText text='DURATION'/>
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='< 15 min'

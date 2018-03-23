@@ -11,7 +11,7 @@ import { barAction, cycleAction, danceAction, hiitAction,
         fifteenAction, thirtyAction, sixtyAction } from '../../redux/actions/mvmtButtonsActions'
 
 import Button from '../../components/Button'
-import FilterHeader from '../../components/FilterHeader'
+import StyleText from '../../components/StyleText'
 import FilterButton from '../../components/FilterButton'
 
 
@@ -175,7 +175,7 @@ class MvmtModal extends Component {
 
               <Text style={styles.title}>Filter Activities</Text>
 
-              <FilterHeader headerProp='ACTIVITIES'/>
+              <StyleText text='ACTIVITIES'/>
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='Run'
@@ -191,7 +191,7 @@ class MvmtModal extends Component {
                   onPressProp={() => this.buttonYoga('Yoga')} />
               </View>
 
-              <FilterHeader headerProp='SWEAT'/>
+              <StyleText text='SWEAT'/>
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='Low'
@@ -204,7 +204,7 @@ class MvmtModal extends Component {
                   onPressProp={() => this.buttonHigh(2)} />
               </View>
 
-              <FilterHeader headerProp='DURATION'/>
+              <StyleText text='DURATION'/>
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='< 15 min'
