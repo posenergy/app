@@ -12,7 +12,6 @@ class CalendarScreen extends React.Component {
       </View>
     )
   }
-
 }
 
 export default CalendarScreen
