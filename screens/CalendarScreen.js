@@ -1,5 +1,6 @@
 import React from 'react'
-import { View } from 'react-native'
+import {View } from 'react-native'
+
 
 class CalendarScreen extends React.Component {
   static navigationOptions = {
@@ -9,7 +10,7 @@ class CalendarScreen extends React.Component {
 
   render() {
     return(
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     </View>
 	)
   }
