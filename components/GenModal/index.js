@@ -10,7 +10,7 @@ import Button from '../Button'
 
 export default class GenModal extends Component {
   state = {
-    modalVisible: true,
+    modalVisible: {this.props.isVisible},
   };
 
   openModal = () => {
@@ -43,7 +43,6 @@ export default class GenModal extends Component {
                   style={styles.place} />
                   <Button
                       onClick= {() => this.closeModal()}
-                      onClick{this.state.clickfunction}
                       type='modal'
                       textColor='white'
                       text= {this.props.bname}>
