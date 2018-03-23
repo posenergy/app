@@ -89,27 +89,73 @@ export default class CalendarScreen extends Component {
       />
     )
   }
-  getEvents() {
+  loadItems(day) {
     const startDate = new Date('2018-03-10')
     const endDate = new Date('2018-03-25')
     let eventsList = []
+    let counter = 0
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         // console.log(allEvents)
         allEvents.forEach(event => {
           // if (!event.allDay) {
-            eventsList.push({ title: event.title,
-                              date: event.occurrenceDate,
-                            })
+          const eventTime = event.occurrenceDate.split('T')[0]
+          console.log("this is strTime", strTime)
+            // eventsList.push({ [date]: event.title,
+            //                 })
           // }
-        })
+          // console.log(eventsList)
+          const numItems = Math.floor(Math.random() * 5)
+          for (let j = 0; j < numItems; j++) {
+            this.state.items[strTime].push({
+              name: event.title,
+              height: Math.max(50, Math.floor(Math.random() * 150)),
+            })
+          }
+        console.log(this.state.items)
+          const newItems = {}
+          Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
+          this.setState({
+            items: newItems,
+          })
+      })
+      setTimeout(() => {
+        // if (!event.allDay) {
+        for (i = -15; i <85; i++){
+          const time = day.timestamp + i*24 * 60 * 60 * 1000
+          const strTime = this.timeToString(time)
+          const eventTime = event.occurrenceDate.split('T')[0]
+          console.log("this is strTime", strTime)
+          // eventsList.push({ [date]: event.title,
+          //                 })
+        // }
         // console.log(eventsList)
+        if (!this.state.items[strTime]) {
+          this.state.items[strTime] = []
+          
+          const numItems = Math.floor(Math.random() * 5)
+          for (let j = 0; j < numItems; j++) {
+            this.state.items[strTime].push({
+              name: event.title,
+              height: Math.max(50, Math.floor(Math.random() * 150)),
+            })
+          }
+        }
+      }
+        const newItems = {}
+        Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
+        this.setState({
+          items: newItems,
+        })
+      }, 1000)
       })
       .catch (error => {
         // console.log(error)
       })
+
   }
-  loadItems(day) {
+  
+  oldLoadItems(day) {
     setTimeout(() => {
       for (let i = -15; i < 85; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000
@@ -126,7 +172,7 @@ export default class CalendarScreen extends Component {
         }
       }
       // console.log(this.state.items)
-      // console.log('$$$$$$$$$$$$', this.getEvents())
+      console.log(this.getEvents())
       const newItems = {}
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
       this.setState({
