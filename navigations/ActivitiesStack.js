@@ -6,7 +6,7 @@ import SearchScreen from '../screens/SearchScreen'
 import MomentScreen from '../screens/MomentScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
 
-import { HeaderBackButton } from 'react-navigation';
+import { HeaderBackButton } from 'react-navigation'
 
 const ActivitiesStack = StackNavigator({
   Choose: {
@@ -19,21 +19,21 @@ const ActivitiesStack = StackNavigator({
     screen: SearchScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Search',
-      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />
+      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
     }),
   },
   Moment: {
-  	screen: MomentScreen,
+    screen: MomentScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Moment',
-      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />
+      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
     }),
   },
   Schedule: {
-  	screen: ScheduleScreen,
+    screen: ScheduleScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Schedule',
-      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />
+      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
     }),
   },
 },

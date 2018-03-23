@@ -108,17 +108,17 @@ class MvmtModal extends Component {
   }
 
   buttonLow = (drip) => {
-    this.props.lowAction
+    this.props.lowAction()
     this.props.sweat(drip)
   }
 
   buttonMed = (drip) => {
-    this.props.mediumAction
+    this.props.mediumAction()
     this.props.sweat(drip)
   }
 
   buttonHigh = (drip) => {
-    this.props.highAction
+    this.props.highAction()
     this.props.sweat(drip)
   }
 
