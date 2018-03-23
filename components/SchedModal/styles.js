@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   innerContainer: {
     alignItems: 'center',
-    width: 292,
-    height: 377,
+    width: 286,
+    height: '87%',
     backgroundColor: 'white',
     borderRadius: 11,
     flexDirection: 'column',
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignSelf: 'center',
     alignItems: 'center',
-    marginBottom: 25,
+    marginBottom: 20,
   },
   contentWrap: {
     flex: 1,
