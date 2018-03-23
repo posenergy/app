@@ -17,6 +17,8 @@ export default class SchedModal extends Component {
         <Text style={styles.bold}>{this.props.title}</Text>
         <Text style={styles.text}>{this.props.text}</Text>
         <View style={styles.var}>{this.props.varelement}</View>
+        <View>{this.props.varelement2}</View>
+        <View>{this.props.button}</View>
       </View>
     )
   }
