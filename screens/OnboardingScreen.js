@@ -39,7 +39,7 @@ class OnboardingScreen extends React.Component {
       image = {require('../images/slide3.png')}
       />
     </View>
-  )
+	)
   }
 }
 

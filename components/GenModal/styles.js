@@ -34,7 +34,7 @@ export default StyleSheet.create({
     width: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 40,
   },
   title: {
     fontStyle: 'italic',

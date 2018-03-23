@@ -10,7 +10,7 @@ import Button from '../Button'
 
 export default class GenModal extends Component {
   state = {
-    modalVisible: {this.props.isVisible},
+    modalVisible: true,
   };
 
   openModal = () => {
