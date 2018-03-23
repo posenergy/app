@@ -8,12 +8,12 @@ import toggleMindButtons from './reducers/mindButtonsReducer'
 import toggleMvmtButtons from './reducers/mvmtButtonsReducer'
 
 const rootReducer = combineReducers({
-	user,
-	filterState,
-	toggleMvmtVisibility,
-	toggleMindVisibility,
-	toggleMindButtons,
-	toggleMvmtButtons,
+  user,
+  filterState,
+  toggleMvmtVisibility,
+  toggleMindVisibility,
+  toggleMindButtons,
+  toggleMvmtButtons,
 })
 
 export default (state, action) => {

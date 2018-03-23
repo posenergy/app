@@ -43,10 +43,6 @@ const mapDispatchToProps = {
 
 class MindModal extends Component {
 
-  buttonClicked = () => {
-    this.props.mindVisibility()
-  }
-
   buttonCraft = (tag) => {
     this.props.craftAction()
 
@@ -91,28 +87,6 @@ class MindModal extends Component {
     this.props.sixtyAction()
     this.props.duration(time)
   }
-  
-
-  // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //     tags: [],
-  //     duration: 30,
-  //     buttonColor: '#F2F2F2',
-  //   }
-  // }
-
-  // changeTag(tag) {
-  //   this.setState({tags: [...this.state.tags, tag]})
-  // }
-
-  // changeDuration(duration) {
-  //   this.setState({ duration: duration})
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  // }
 
   render() {
     return(
@@ -153,7 +127,7 @@ class MindModal extends Component {
             <Button
               type='login'
               style={styles.button}
-              onClick={() => {this.buttonClicked()}}
+              onClick={() => this.props.mindVisibility()}
               text= 'Apply'
             />
           </View>
