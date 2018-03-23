@@ -93,58 +93,39 @@ export default class CalendarScreen extends Component {
     const startDate = new Date('2018-03-10')
     const endDate = new Date('2018-03-25')
     let eventsList = []
-    let counter = 0
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         // console.log(allEvents)
         allEvents.forEach(event => {
+          setTimeout(() => {
           // if (!event.allDay) {
-          const eventTime = event.occurrenceDate.split('T')[0]
+          for (i = -15; i <85; i++){
+            const time = day.timestamp + i*24 * 60 * 60 * 1000
+            const strTime = this.timeToString(time)
+            // const strTime = event.occurrenceDate.split('T')[0]
+            console.log("this is strTime", strTime)
             // eventsList.push({ [date]: event.title,
             //                 })
           // }
           // console.log(eventsList)
-          const numItems = Math.floor(Math.random() * 5)
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[eventTime].push({
-              name: event.title,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
-            })
+          if (!this.state.items[strTime]) {
+            this.state.items[strTime] = []
+            const numItems = Math.floor(Math.random() * 5)
+            for (let j = 0; j < numItems; j++) {
+              this.state.items[strTime].push({
+                name: event.title,
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              })
+            }
           }
+        }
           const newItems = {}
           Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
           this.setState({
             items: newItems,
           })
-          console.log(this.state.items)
+        }, 1000)
       })
-      setTimeout(() => {
-        // if (!event.allDay) {
-        for (i = -15; i <85; i++){
-          const time = day.timestamp + i*24 * 60 * 60 * 1000
-          const strTime = this.timeToString(time)
-          // eventsList.push({ [date]: event.title,
-          //                 })
-        // }
-        // console.log(eventsList)
-      //   if (!this.state.items[strTime]) {
-      //     this.state.items[strTime] = []
-          
-      //     const numItems = Math.floor(Math.random() * 5)
-      //     for (let j = 0; j < numItems; j++) {
-      //       this.state.items[strTime].push({
-      //         name: event.title,
-      //         height: Math.max(50, Math.floor(Math.random() * 150)),
-      //       })
-      //     }
-      //   }
-      }
-      //   const newItems = {}
-      //   Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
-      //   this.setState({
-      //     items: newItems,
-      //   })
-      }, 1000)
       })
       .catch (error => {
         // console.log(error)
