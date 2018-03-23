@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from '../Button'
-import styles from './styles'
 
 export default class FilterButton extends React.Component {
 

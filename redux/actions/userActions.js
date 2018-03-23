@@ -5,6 +5,6 @@ export const login = (name, username, pass) => ({
     payload: {
         name,
         username,
-        pass
-    }
+        pass,
+    },
 })

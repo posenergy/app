@@ -4,15 +4,17 @@ const initialState = {
   visible: false,
 }
 
-export default toggleMindVisibility = (state = initialState, action) => {
-  console.log(state, action);
+const toggleMindVisibility = (state = initialState, action) => {
+  console.log(state, action)
   switch (action.type) {
     case MINDVISIBILITY: {
       return Object.assign({}, state, {
-        visible: !state.visible
+        visible: !state.visible,
       })
     }
     default: return state
   }
 
 }
+
+export default toggleMindVisibility

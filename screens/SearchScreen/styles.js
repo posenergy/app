@@ -15,7 +15,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'transparent',
     alignItems: 'center',
-    flex: 1,
     flexDirection: 'column',
   },
   pict: {

@@ -5,13 +5,13 @@ export const SWEAT = 'SWEAT'
 export const DURATION = 'DURATION'
 
 export function filter(tags, sweat, duration) {
-	return { 
+	return {
 		type: FILTER,
 		payload: {
 			tags,
 			sweat,
-			duration
-		}
+			duration,
+		},
 	}
 }
 

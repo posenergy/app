@@ -5,15 +5,24 @@ import styles from './styles'
 
 import { del_tag, add_tag, duration } from '../../redux/actions/momentActions'
 import { mindVisibility } from '../../redux/actions/mindModalActions'
+import { craftAction, journalAction, meditateAction, gratitudeAction,
+        skinAction, inspiredAction, fifteenAction, thirtyAction,
+        sixtyAction } from '../../redux/actions/mindButtonsActions'
 
 import Button from '../../components/Button'
 import FilterButton from '../../components/FilterButton'
 import FilterHeader from '../../components/FilterHeader'
 
 const mapStateToProps = state => ({
-  tags: state.tags,
-  duration: state.duration,
-  visible: state.visible,
+  craft: state.toggleMindButtons.craft,
+  journal: state.toggleMindButtons.journal,
+  meditate: state.toggleMindButtons.meditate,
+  gratitude: state.toggleMindButtons.gratitude,
+  skin: state.toggleMindButtons.skin,
+  inspired: state.toggleMindButtons.inspired,
+  fifteen: state.toggleMindButtons.fifteen,
+  thirty: state.toggleMindButtons.thirty,
+  sixty: state.toggleMindButtons.sixty,
 })
 
 const mapDispatchToProps = {
@@ -21,13 +30,68 @@ const mapDispatchToProps = {
   add_tag,
   duration,
   mindVisibility,
+  craftAction,
+  journalAction,
+  meditateAction,
+  gratitudeAction,
+  skinAction,
+  inspiredAction,
+  fifteenAction,
+  thirtyAction,
+  sixtyAction,
 }
 
 class MindModal extends Component {
 
   buttonClicked = () => {
-    this.props.mindVisibility(false)
+    this.props.mindVisibility()
   }
+
+  buttonCraft = (tag) => {
+    this.props.craftAction()
+
+    if (this.props.craft) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonJournal = (tag) => {
+    this.props.journalAction()
+
+    if (this.props.journal) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonMeditate = (tag) => {
+    this.props.meditateAction()
+
+    if (this.props.meditate) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonFifteen = (time) => {
+    this.props.fifteenAction()
+    this.props.duration(time)
+  }
+
+  buttonThirty = (time) => {
+    this.props.thirtyAction()
+    this.props.duration(time)
+  }
+
+  buttonSixty = (time) => {
+    this.props.sixtyAction()
+    this.props.duration(time)
+  }
+  
 
   // constructor(props) {
   //   super(props)
@@ -54,7 +118,6 @@ class MindModal extends Component {
     return(
       <View style={styles.Container}>
         <Modal
-          visible={this.props.visible}
           animationType={'slide'}>
           <View style={styles.modalContainer}>
             <View style={styles.innerContainer}>
@@ -65,26 +128,26 @@ class MindModal extends Component {
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='Craft'
-                  onPressProp={() => this.changeTag('Craft')} />
+                  onPressProp={() => {this.buttonCraft('Craft')}} />
                 <FilterButton
                   titleProp='Journal'
-                  onPressProp={() => this.changeTag('Journal')} />
+                  onPressProp={() => {this.buttonJournal('Journal')}} />
                 <FilterButton
                   titleProp='Meditate'
-                  onPressProp={() => this.changeTag('Meditate')} />
+                  onPressProp={() => {this.buttonMeditate('Meditate')}} />
               </View>
 
               <FilterHeader headerProp='DURATION'/>
               <View style={styles.buttons}>
                 <FilterButton
                   titleProp='< 15 min'
-                  onPressProp={() => this.changeDuration(15)} />
+                  onPressProp={() => {this.buttonFifteen(16)}} />
                 <FilterButton
                   titleProp='< 30 min'
-                  onPressProp={() => this.changeDuration(30)} />
+                  onPressProp={() => {this.buttonThirty(30)}} />
                 <FilterButton
                   titleProp='< 60 min'
-                  onPressProp={() => this.changeDuration(60)} />
+                  onPressProp={() => {this.buttonSixty(61)}} />
               </View>
             </View>
             <Button

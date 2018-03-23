@@ -4,7 +4,7 @@ const initialState = {
   visible: false,
 }
 
-export default toggleMvmtVisibility = (state = initialState, action) => {
+const toggleMvmtVisibility = (state = initialState, action) => {
   switch (action.type) {
     case MVMTVISIBILITY: {
       return Object.assign({}, state, {
@@ -14,3 +14,5 @@ export default toggleMvmtVisibility = (state = initialState, action) => {
     default: return state
   }
 }
+
+export default toggleMvmtVisibility

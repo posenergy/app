@@ -1,11 +1,15 @@
-import {createStore} from 'redux'
-import user from './reducers/userReducer'
+import { applyMiddleware, createStore } from 'redux'
+import { createLogger } from 'redux-logger'
+
 import rootReducer from './index'
 
-export const store = createStore(rootReducer,{})
+const log = createLogger({
+	collapsed: true,
+})
+
+export const store = createStore(rootReducer, {}, applyMiddleware(log))
 
 store.subscribe(() => {
-    console.log('storeitherepls',store.getState)
 })
 
 export default store
