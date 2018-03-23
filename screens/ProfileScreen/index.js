@@ -34,22 +34,17 @@ export default class ProfileScreen extends React.Component {
         imagelink = {require('../../images/mailblack.png')}
         changeFunction={email => this.setState({email})}/>
       <BlackStyleTextInput
-        pholder='Password'
-        imagelink = {require('../../images/lockblack.png')}
-        changeFunction={password => this.setState({password})}
-        passwordSecure={true}/>
-      <BlackStyleTextInput
         pholder='Buffer Time'
         imagelink = {require('../../images/buffertime.png')}
         changeFunction={buffertime => this.setState({buffertime})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder='Wakeup'
+        pholder='Start Time'
         imagelink = {require('../../images/sun.png')}
         changeFunction={wakeup => this.setState({wakeup})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder='Bedtime'
+        pholder='End Time'
         imagelink = {require('../../images/night.png')}
         changeFunction={bedtime => this.setState({bedtime})}
         passwordSecure={true}/>
