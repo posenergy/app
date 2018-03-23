@@ -27,30 +27,29 @@ class MomentScreen extends React.Component {
 
   render() {
     return(
-   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <SchedModal
-          title = "Detox Yoga"
-          image = {require('./../images/yoga.png')}
-          text = "30 minute yoga filled with detoxifying twists"
-          varelement = {<Thumbnail
-                          url="https://www.youtube.com/watch?v=cBPP_izKKSs"
-                          imageWidth={244}
-                          imageHeight={142} />}
-          varelement2 = {<CheckBox
-            title='Include my buffer time in results.'
-            checked ={this.state.check}
-            checkedColor= 'black'
-            containerStyle= {styles.container}
-            onPress={() => this.setState({check: !this.state.check})}
-          />}
- button = {<Button type='schedule'
-          onClick={() => this.props.navigation.navigate('Packages')}
-          text= 'Schedule' textColor='white'/>}
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <SchedModal
+            title = "Detox Yoga"
+            image = {require('./../images/yoga.png')}
+            text = "30 minute yoga filled with detoxifying twists"
+            varelement = {<Thumbnail
+              url="https://www.youtube.com/watch?v=cBPP_izKKSs"
+              imageWidth={244}
+              imageHeight={142} />}
+            varelement2 = {<CheckBox
+              title='Include my buffer time in results.'
+              checked ={this.state.check}
+              checkedColor= 'black'
+              containerStyle= {styles.container}
+              onPress={() => this.setState({check: !this.state.check})}/>}
+            button = {<Button type='schedule'
+              onClick={() => this.props.navigation.navigate('Packages')}
+              text= 'Schedule' textColor='white'/>}
         />
-
-    </View>
-  )
+      </View>
+    )
   }
+
 }
 
 export default MomentScreen
