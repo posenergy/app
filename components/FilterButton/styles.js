@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-	FilterButton: {
-		padding: 5,
-		justifyContent: 'center',
-		backgroundColor: '#F2F2F2',
-		flex: 1,
-	},
-	highlight: {
-		color: '#545680',
-	},
+  FilterButton: {
+    padding: 5,
+    justifyContent: 'flex-start',
+    backgroundColor: 'red',
+    flex: 1,
+    fontSize: 16,
+  },
+  highlight: {
+    color: '#545680',
+  },
 })

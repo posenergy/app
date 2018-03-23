@@ -31,6 +31,21 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
+  filterButton: {
+    display: 'flex',
+    lineHeight: 19,
+    fontSize: 16,
+    height: 'auto',
+    width: 'auto',
+    padding: 2,
+  },
+  filter: {
+    backgroundColor: '#F2F2F2',
+    display: 'flex',
+    flex: 1,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
   login: {
     marginTop: 13,
     backgroundColor: '#F2F2F2',
@@ -71,7 +86,7 @@ export default StyleSheet.create({
     width: 300,
   },
  schedule: {
-    height: '37%',
+    height: 49,
     width: 286,
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,

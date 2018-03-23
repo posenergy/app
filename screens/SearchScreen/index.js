@@ -1,19 +1,40 @@
 import React from 'react'
-import { Button, Modal, FlatList, View } from 'react-native'
+import { FlatList, View, TouchableOpacity } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
 
+import { mindVisibility } from '../../redux/actions/mindModalActions'
+import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
+import { connect } from 'react-redux'
+
+import Button from '../../components/Button'
 import Moment from '../../components/Moment'
 import MvmtModal from '../../components/MvmtModal'
 import MindModal from '../../components/MindModal'
 
+const mapStateToProps = state => ({
+  visibleMind: state.toggleMindVisibility.visible,
+  visibleMvmt: state.toggleMvmtVisibility.visible,
+  tags: state.filterState.tags,
+  sweat: state.filterState.sweat,
+  duration: state.filterState.duration,
+})
 
-export default class SearchScreen extends React.Component {
+const mapDispatchToProps = {
+  mindVisibility,
+  mvmtVisibility,
+}
 
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Search',
-  })
+class SearchScreen extends React.Component {
+
+  buttonClickedMind = () => {
+    this.props.mindVisibility()
+  }
+
+  buttonClickedMvmt = () => {
+    this.props.mvmtVisibility()
+  }
 
   constructor(props) {
     super(props)
@@ -23,8 +44,36 @@ export default class SearchScreen extends React.Component {
     }
   }
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+  componentDidUpdate(prevProps, prevState) {
+    let tagUrl = ''
+    if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
+      this.props.tags.forEach(function(i) {
+      tagUrl += '&tag[]=' + i
+      })
+      return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
+      '&duration=' + this.props.duration + tagUrl)
+      .then((res) => res.json())
+      .then(res => {
+        this.setState({ moments: res })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    } else if (this.props.visibleMvmt !== true && prevProps.visibleMvmt === true) {
+      this.props.tags.forEach(function(i) {
+      tagUrl += '&tag[]=' + i
+      })
+      return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
+      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + tagUrl)
+      .then((res) => res.json())
+      .then(res => {
+        this.setState({ moments: res })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
+      
   }
 
   componentDidMount() {
@@ -33,7 +82,6 @@ export default class SearchScreen extends React.Component {
       .then(res => {
         this.setState({
           moments: res,
-          modalVisible: false,
         })
       })
       .catch((error) => {
@@ -49,32 +97,33 @@ export default class SearchScreen extends React.Component {
             style={styles.flatListStyle}
             data={ this.state.moments }
             renderItem={({item}) =>
-              <Moment
-                title={item.name}
-                time={item.duration}
-              />}
+              <TouchableOpacity style={styles.button}
+                onPress={(event) => {
+                const { navigate } = this.props.navigation
+                navigate('Moment', {
+                  title: item.name,
+                  pict: item.img,
+                  desc: item.description,
+                })
+                }}>
+                <Moment
+                  id={item.id}
+                  title={item.name}
+                  time={item.duration}
+                />
+              </TouchableOpacity>
+            }
           />
           <Button
+            type='login'
             style={styles.buttonStyle}
-            onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-            title='Filter Activities'
+            onClick={() => this.props.mvmtVisibility()}
+            text='Filter Activities'
           />
           {
-            this.state.modalVisible &&
-            <View style={styles.Container}>
-              <Modal
-                visible={this.state.modalVisible}
-                animationType={'slide'}>
-                <View style={styles.modalContainer}>
-                  <MvmtModal/>
-                  <Button
-                    style={styles.button}
-                    onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-                    title= 'Apply'
-                  />
-                </View>
-              </Modal>
-          </View>}
+            this.props.visibleMvmt &&
+              <MvmtModal/>
+          }
         </View>
       )
     }
@@ -84,33 +133,36 @@ export default class SearchScreen extends React.Component {
             style={styles.flatListStyle}
             data={ this.state.moments }
             renderItem={({item}) =>
-              <Moment
-                title={item.name}
-                time={item.duration}
-              />}
+              <TouchableOpacity style={styles.button}
+                onPress={(event) => {
+                const { navigate } = this.props.navigation
+                navigate('Moment', {
+                  title: item.name,
+                  pict: item.img,
+                  desc: item.description,
+                })
+                }}>
+                <Moment
+                  id={item.id}
+                  title={item.name}
+                  time={item.duration}
+                />
+              </TouchableOpacity>
+            }
           />
           <Button
+            type='login'
             style={styles.buttonStyle}
-            onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-            title='Filter Activities'
+            onClick={() => this.props.mindVisibility()}
+            text='Filter Activities'
           />
           {
-            this.state.modalVisible &&
-            <View style={styles.Container}>
-              <Modal
-                visible={this.state.modalVisible}
-                animationType={'slide'}>
-                <View style={styles.modalContainer}>
-                  <MindModal/>
-                  <Button
-                    style={styles.button}
-                    onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
-                    title= 'Apply'
-                  />
-                </View>
-              </Modal>
-          </View>}
+            this.props.visibleMind &&
+              <MindModal/>
+          }
         </View>
       )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)
