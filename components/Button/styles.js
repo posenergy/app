@@ -80,19 +80,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#545680',
     flex: 1,
-    height: 50,
+    height: '5%',
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     width: 300,
   },
  schedule: {
-    height: 52,
+    height: '37%',
     width: 286,
     backgroundColor: '#545680',
-    borderRadius: 11,
-    marginTop: 30,
+    borderBottomLeftRadius: 11,
+    borderBottomRightRadius: 11,
     alignItems: 'center',
     justifyContent: 'center',
   },
 })
-
