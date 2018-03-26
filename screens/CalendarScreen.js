@@ -11,7 +11,6 @@ export default class CalendarScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { chosenDate: new Date() };
-
     this.setDate = this.setDate.bind(this);
   }
 
@@ -19,20 +18,21 @@ export default class CalendarScreen extends Component {
     this.setState({chosenDate: newDate})
   }
 
-  objectstring = () =>  {
-    let objectboi = this.state.chosenDate
-    let stringboi = objectboi.toString()
-  }
+  onClick() {
+      console.log("HEY LOOK BISH");
+      console.log(this.state.chosenDate);
+   }
 
-
+// The state will initially be passed in as a prop. Currently just generates today's date.
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={styles.textField}> Confirm Time </Text>
-          <Text> {this.objectstring()} </Text>
-        </View>
+        <Text style={styles.textField}> Confirm Time </Text>
+        <Text style={styles.textField}
+              textColor = '#545680'>
+          {this.state.chosenDate.toString()}
+        </Text>
       <View style={styles.datePicker}>
         <DatePickerIOS
           date={this.state.chosenDate}
@@ -40,7 +40,7 @@ export default class CalendarScreen extends Component {
         />
       </View>
        <Button type='picker'
-          onClick={() => this.props.navigation.navigate('Packages')}
+          onClick={() => this.onClick()}
           text='Next' textColor='white'/>
       </View>
     )
@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 24,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    width: '100%',
+    height: '7%',
   },
   textContainer: {
     justifyContent: 'center',
@@ -68,6 +72,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   datePicker: {
+    marginTop: '5%',
     backgroundColor: 'white',
     marginBottom: 50,
   },
