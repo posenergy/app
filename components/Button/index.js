@@ -14,6 +14,7 @@ export default class Button extends Component {
       'menu',
       'register',
       'modal',
+      'filter',
       'schedule',
       'picker',
     ]).isRequired,
@@ -33,6 +34,18 @@ export default class Button extends Component {
     this.props.icon
 
   render() {
+    if (this.props.type === 'filter') {
+      return (
+      <TouchableOpacity
+        onPress={this.props.onClick}
+        style={[styles.filterButton, styles[this.props.type]]}
+      >
+        {this.props.img}
+        {this._renderIcon()}
+        {this._renderText()}
+      </TouchableOpacity>
+    )
+    }
     return (
       <TouchableOpacity
         onPress={this.props.onClick}

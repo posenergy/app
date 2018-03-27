@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button } from 'react-native'
-import styles from './styles'
+import Button from '../Button'
 
 export default class FilterButton extends React.Component {
 
@@ -9,17 +8,17 @@ export default class FilterButton extends React.Component {
 
     this.state = {
       buttonColor: '#F2F2F2',
-      tags: [],
     }
   }
 
   render() {
     return(
       <Button
-        style={styles.FilterButton}
-        title={this.props.titleProp}
-        onPress={this.props.onPressProp}
+        text={this.props.titleProp}
+        onClick={this.props.onPressProp}
         color={this.state.buttonColor}
+        type='filter'
+        textColor='black'
       />
     )
   }

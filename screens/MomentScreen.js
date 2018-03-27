@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
 })
 
 class MomentScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  }
-
+  
   constructor(props) {
-    super(props)
+  super(props)
 
     this.state = {
+      title: this.props.navigation.state.params.title,
+      pict: this.props.navigation.state.params.pict,
+      text: this.props.navigation.state.params.desc,
       check: true,
     }
   }
@@ -29,9 +29,9 @@ class MomentScreen extends React.Component {
     return(
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <SchedModal
-            title = "Detox Yoga"
+            title = {this.state.title}
             image = {require('./../images/yoga.png')}
-            text = "30 minute yoga filled with detoxifying twists"
+            text = {this.state.text}
             varelement = {<Thumbnail
               url="https://www.youtube.com/watch?v=cBPP_izKKSs"
               imageWidth={244}
@@ -43,9 +43,16 @@ class MomentScreen extends React.Component {
               containerStyle= {styles.container}
               onPress={() => this.setState({check: !this.state.check})}/>}
             button = {<Button type='schedule'
-              onClick={() => this.props.navigation.navigate('Packages')}
-              text= 'Schedule' textColor='white'/>}
-        />
+              onClick={() => {
+                const { navigate } = this.props.navigation
+                navigate('Schedule', {
+                  title: this.state.title,
+                  pict: this.state.pict,
+                  desc: this.state.text,
+                })
+              }}
+              text='Schedule' textColor='white'/>}
+          />
       </View>
     )
   }

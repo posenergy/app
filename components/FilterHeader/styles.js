@@ -5,8 +5,8 @@ export default StyleSheet.create({
     height: 25,
     width: 350,
     alignSelf: 'center',
-    borderBottomWidth: 1,
     borderBottomColor: 'rgba(51, 51, 51, 0.4)',
+    borderBottomWidth: 1,
     margin: 10,
   },
   FilterHeader: {
