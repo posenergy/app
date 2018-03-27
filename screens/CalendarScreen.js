@@ -23,6 +23,17 @@ export default class CalendarScreen extends Component {
       console.log(this.state.chosenDate);
    }
 
+  getDateString(date) {
+    let hours = date.getHours()
+    let suffix = 'AM'
+    if (hours > 12) {
+      hours -= 12
+      suffix = 'PM'
+    } else if (hours == 12) {
+      suffix = 'PM'
+    }
+    return date.toLocaleDateString() + ' ' + hours + ':' + date.getMinutes() + ' ' + suffix
+   }
 // The state will initially be passed in as a prop. Currently just generates today's date.
 
   render() {
@@ -31,7 +42,7 @@ export default class CalendarScreen extends Component {
         <Text style={styles.textField}> Confirm Time </Text>
         <Text style={styles.textField}
               textColor = '#545680'>
-          {this.state.chosenDate.toString()}
+          {this.getDateString(this.state.chosenDate)}
         </Text>
       <View style={styles.datePicker}>
         <DatePickerIOS
