@@ -97,34 +97,42 @@ export default class CalendarScreen extends Component {
       .then(allEvents => {
         // console.log(allEvents)
         allEvents.forEach(event => {
-          setTimeout(() => {
+          // setTimeout(() => {
           // if (!event.allDay) {
-          for (i = -15; i <85; i++){
-            const time = day.timestamp + i * 24 * 60 * 60 * 1000
-            const strTime = this.timeToString(time)
-            // const strTime = event.occurrenceDate.split('T')[0]
-            console.log("this is strTime", strTime)
-            // eventsList.push({ [date]: event.title,
-            //                 })
-          // }
-          // console.log(eventsList)
-          if (!this.state.items[strTime]) {
-            this.state.items[strTime] = []
-            const numItems = Math.floor(Math.random() * 5)
-            for (let j = 0; j < numItems; j++) {
+          // for (i = -15; i <85; i++){
+          //   const time = day.timestamp + i * 24 * 60 * 60 * 1000
+            // const strTime = this.timeToString(time)
+            const strTime = event.occurrenceDate.split('T')[0]
+            const evName = event.title 
+            if (!this.state.items[strTime]) {
+              this.state.items[strTime] = []
               this.state.items[strTime].push({
                 name: event.title,
                 height: Math.max(50, Math.floor(Math.random() * 150)),
               })
             }
-          }
-        }
-          const newItems = {}
-          Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
-          this.setState({
-            items: newItems,
-          })
-        }, 1000)
+            console.log("this is strTime", strTime)
+            // eventsList.push({ [date]: event.title,
+            //                 })
+          // }
+          // console.log(eventsList)
+          // if (!this.state.items[strTime]) {
+          //   this.state.items[strTime] = []
+          //   const numItems = Math.floor(Math.random() * 5)
+          //   for (let j = 0; j < numItems; j++) {
+          //     this.state.items[strTime].push({
+          //       name: event.title,
+          //       height: Math.max(50, Math.floor(Math.random() * 150)),
+          //     })
+          //   }
+          // }
+        // }
+        // }, 1000)
+      })
+      const newItems = {}
+      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
+      this.setState({
+        items: newItems,
       })
       })
       .catch (error => {
