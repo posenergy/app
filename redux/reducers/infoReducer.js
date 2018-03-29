@@ -1,4 +1,4 @@
-import { INFOVISIBILITY } from '../actions/infoActions'
+import { INFOVISIBILITY } from '../actions/infoAction'
 
 const initialState = {
   visible: false,

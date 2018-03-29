@@ -27,17 +27,6 @@ const MainTabNavigator = TabNavigator({
     screen: ActivitiesStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Browse Activities',
-    tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('../components/TabIcons/activitiesMan.png')}
-        />
-      ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
-      <Image source={require('../images/info.png')}/>
-      onPress={() => this.props.infoVisibility()}
-    </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1 },
-    headerTintColor: 'white',
     }),
   },
   Calendar: {
@@ -49,9 +38,13 @@ const MainTabNavigator = TabNavigator({
         source={require('../components/TabIcons/calendar.png')}
       />
     ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
+    headerRight: <TouchableOpacity 
+      activeOpacity = { 0.5 } 
+      padding={200}
+      onPress={() => {navigation.setParams({info: true})}}
+      >
       <Image source={require('../images/info.png')}/>
-      onPress={() => this.props.infoVisibility()}
+      
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
     headerTintColor: 'white',
@@ -66,9 +59,9 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/profile.png')}
         />
       ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
+    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}
+      onPress={() => navigation.setParams({info: true})}>
       <Image source={require('../images/info.png')}/>
-      onPress={() => this.props.infoVisibility()}
     </TouchableOpacity>,
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
     headerTintColor: 'white',
@@ -80,4 +73,5 @@ const MainTabNavigator = TabNavigator({
   headerMode: 'screen',
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainTabNavigator)
+// export default connect(mapStateToProps, mapDispatchToProps)(MainTabNavigator)
+export default MainTabNavigator
