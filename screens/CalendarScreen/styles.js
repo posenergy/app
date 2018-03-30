@@ -10,8 +10,12 @@ export default StyleSheet.create({
       marginTop: 17,
     },
     emptyDate: {
-      height: 15,
+      backgroundColor: '#545680',
       flex: 1,
-      paddingTop: 30,
+      borderRadius: 5,
+      padding: 10,
+      marginRight: 10,
+      marginTop: 17,
+      height: 60,
     },
   })
