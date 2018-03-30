@@ -94,4 +94,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  picker: {
+    height: 51,
+    width: 376,
+    backgroundColor: '#545680',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
