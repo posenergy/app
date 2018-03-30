@@ -20,6 +20,7 @@ render() {
           style={styles.form}
           buttonColor={'black'}
           buttonInnerColor = {'black'}
+          selectedButtonColor = {'black'}
           onPress={(value) => {this.setState({value: value})}}
         />
       </View>
