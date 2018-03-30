@@ -66,12 +66,14 @@ export default class CalendarScreen extends Component {
     //   // agenda container style
     //   style={{}}
     // />
+    
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
+        selected={this.timeToString(new Date())}
         // markingType={'interactive'}
         // monthFormat={'yyyy'}
         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
@@ -89,28 +91,38 @@ export default class CalendarScreen extends Component {
       .then(allEvents => {
         // console.log(allEvents)
         allEvents.forEach(event => {
+          // Date of event
           const strTime = event.occurrenceDate.split('T')[0]
+          // if date not yet in items, create key with empty list value
           if (!this.state.items[strTime]) {
             this.state.items[strTime] = []
-            // if there are no more events that have this date
-            // if this event is already in date
           }
-            // if this.state.items[strTime] does not include this event (event.eventid not there), then add this event to it.          
-          const startTime = event.startDate.split('T')[1].split('Z')[0]
-          const endTime = event.endDate.split('T')[1].split('Z')[0]
-          const eventLength = ((new Date(event.endDate).getTime()) - (new Date(event.startDate).getTime())) / (1000 * 60 * 60)
-          const eventHeight = (event.allDay) ? 60 : 100
-          const timeRange = (event.allDay) ? 'All Day' : startTime.split(':')[0] + ':' + startTime.split(':')[1] + ' - ' + endTime.split(':')[0] + ':' + endTime.split(':')[1]
-          const eventCal = event.calendar.title
-          this.state.items[strTime].push({
-            name: event.title,
-            start: startTime,
-            end: endTime,
-            length: eventLength,
-            timeRange: timeRange,
-            calendar: eventCal,
-            height: eventHeight,
-          })
+          // if this.state.items[strTime] does not include this event (event.eventid not there), then add this event to it.          
+          let skip = false
+          let eventID = event.id
+          for (let i = 0; i < this.state.items[strTime].length; i++){
+            if (eventID == this.state.items[strTime][i].id){
+              skip = true
+            }
+          }
+          if (!skip){
+            const startTime = event.startDate.split('T')[1].split('Z')[0]
+            const endTime = event.endDate.split('T')[1].split('Z')[0]
+            const eventLength = ((new Date(event.endDate).getTime()) - (new Date(event.startDate).getTime())) / (1000 * 60 * 60)
+            const eventHeight1 = (event.allDay) ? 60 : eventLength * 60
+            const eventHeight = (event.allDay) ? 60 : 100          
+            const timeRange = (event.allDay) ? 'All Day' : startTime.split(':')[0] + ':' + startTime.split(':')[1] + ' - ' + endTime.split(':')[0] + ':' + endTime.split(':')[1]
+            this.state.items[strTime].push({
+              id: eventID,              
+              name: event.title,
+              start: startTime,
+              end: endTime,
+              length: eventLength,
+              timeRange: timeRange,
+              calendar: event.calendar.title,
+              height: eventHeight1,
+            })
+          }
         })
         
           for (let i = -15; i < 85; i++) {
@@ -125,12 +137,12 @@ export default class CalendarScreen extends Component {
           this.setState({
             items: newItems,
           })
-        console.log(allEvents)
+      console.log(this.state.items)
+      // console.log(allEvents)
       })
       .catch (error => {
         // console.log(error)
       })
-      console.log(this.state.items)
     }, 1000)    
   }
   
@@ -151,7 +163,6 @@ export default class CalendarScreen extends Component {
         }
       }
       // console.log(this.state.items)
-      // console.log(this.getEvents())
       const newItems = {}
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
       this.setState({
@@ -170,9 +181,9 @@ export default class CalendarScreen extends Component {
       return (
         <TouchableOpacity onPress={this.editEvent()}>
         <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
-        <Text style={{color: 'white'}}>{item.name}</Text>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
-        <Text style={{color: 'white'}}>[+energy]</Text>
+        <Text style={{color: 'white'}}>{item.name}</Text>
+        {/* <Text style={{color: 'white'}}>[+energy]</Text> */}
         </View>
         </TouchableOpacity>
       )
