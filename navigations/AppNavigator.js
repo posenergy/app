@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
-import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
@@ -19,7 +19,7 @@ const AppNavigator = StackNavigator({
   MainTab: {
     screen: MainTabNavigator,
   },
-},{
+}, {
   transitionConfig: () => ({
     screenInterpolator: (sceneProps) => {
       // Disable the transition animation when resetting to the home screen.

@@ -83,7 +83,7 @@ export default class CalendarScreen extends Component {
   }
 
   loadItems(day) {
-    setTimeout(() => {      
+    setTimeout(() => {
     const startDate = new Date('2018-03-10')
     const endDate = new Date('2018-04-25')
     
@@ -97,23 +97,23 @@ export default class CalendarScreen extends Component {
           if (!this.state.items[strTime]) {
             this.state.items[strTime] = []
           }
-          // if this.state.items[strTime] does not include this event (event.eventid not there), then add this event to it.          
+          // if this.state.items[strTime] does not include this event (event.eventid not there), then add this event to it.
           let skip = false
           let eventID = event.id
-          for (let i = 0; i < this.state.items[strTime].length; i++){
-            if (eventID == this.state.items[strTime][i].id){
+          for (let i = 0; i < this.state.items[strTime].length; i++) {
+            if (eventID === this.state.items[strTime][i].id) {
               skip = true
             }
           }
-          if (!skip){
+          if (!skip) {
             const startTime = event.startDate.split('T')[1].split('Z')[0]
             const endTime = event.endDate.split('T')[1].split('Z')[0]
             const eventLength = ((new Date(event.endDate).getTime()) - (new Date(event.startDate).getTime())) / (1000 * 60 * 60)
             const eventHeight1 = (event.allDay) ? 60 : eventLength * 60
-            const eventHeight = (event.allDay) ? 60 : 100          
+            // const eventHeight = (event.allDay) ? 60 : 100
             const timeRange = (event.allDay) ? 'All Day' : startTime.split(':')[0] + ':' + startTime.split(':')[1] + ' - ' + endTime.split(':')[0] + ':' + endTime.split(':')[1]
             this.state.items[strTime].push({
-              id: eventID,              
+              id: eventID,
               name: event.title,
               start: startTime,
               end: endTime,
@@ -137,13 +137,13 @@ export default class CalendarScreen extends Component {
           this.setState({
             items: newItems,
           })
-      console.log(this.state.items)
+      // console.log(this.state.items)
       // console.log(allEvents)
       })
       .catch (error => {
         // console.log(error)
       })
-    }, 1000)    
+    }, 1000)
   }
   
   oldLoadItems(day) {
@@ -172,12 +172,12 @@ export default class CalendarScreen extends Component {
     // console.log(`Load Items for ${day.year}-${day.month}`)
   }
   
-  editEvent(){
+  editEvent() {
     // Open editing picker modal
   }
 
   renderItem(item) {
-    if (item.calendar == '+Energy'){
+    if (item.calendar === '+Energy') {
       return (
         <TouchableOpacity onPress={this.editEvent()}>
         <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
@@ -200,7 +200,7 @@ export default class CalendarScreen extends Component {
     return (
       <TouchableOpacity>
       <View style={styles.emptyDate}><Text style={{color: 'white'}}>Add +energy event!</Text></View>
-      </TouchableOpacity>   
+      </TouchableOpacity>
     )
   }
 
