@@ -13,7 +13,7 @@ export default class PickerScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {chosenDate: new Date(),
-                  modalVisible: true,}
+                  modalVisible: true}
     this.setDate = this.setDate.bind(this)
   }
 
