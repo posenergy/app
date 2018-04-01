@@ -86,21 +86,6 @@ export default class CalendarScreen extends Component {
     //   style={{}}
     // />
 
-/*for find blanks
-- pass in list of all events in the day
-- compare stored previous end time to start time for event
-- if there is time in between, create
-    {name: "Positive energy event!",
-      start: startTime,
-      end: endTime,
-      length: to be calculated,
-      timeRange: timeRange,
-      height: 60,}
-    { your other event}
-- store the end time for the new event in the state
-- keep iterating through until there is only one element left
-- special cases to add the first and last empty block (midnight to first event and last event end to midnight)
-*/
 
   loadItems(day) {
     setTimeout(() => {
@@ -109,7 +94,6 @@ export default class CalendarScreen extends Component {
     
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
-        // console.log(allEvents)
         allEvents.forEach(event => {
           // Date of event
           const strTime = event.occurrenceDate.split('T')[0]
@@ -119,24 +103,22 @@ export default class CalendarScreen extends Component {
           }
           let alreadyExists = false
           let eventID = event.id
-
+          // if event already exists, dont add it to new items when day reloads
           for (let i = 0; i < this.state.items[strTime].length; i++) {
-            // when day reloads don't add new items
             if (eventID === this.state.items[strTime][i].id) {
               alreadyExists = true
             }
-            // console.log((new Date(event.startDate).getTime()), (this.state.items[strTime][i].start.getTime()))
-            // if ((new Date(event.startDate).getTime()) < (this.state.items[strTime][i].start.getTime())){
-            //   console.log((new Date(event.startDate).getTime()) - (this.state.items[strTime][i].start.getTime()))
-            //   eventIndex = i - 1//(event.allDay) ? 0 : i
-            //   console.log(eventIndex, event.title)
-            // }
           }
+          // if event doesn't already exist, push it to the list with key of date. this works bc the 
+          // fetch all events already has them in order, 
+          // so don't need to .splice() to insert into current location, can just push
+          // @noah, you're gonna have to insert into the right index, after this.state.items[strTime] is 
+          // populated with all events in day bc it renders in order of what's in the list
           if (!alreadyExists) {
             const startTime = event.startDate.split('T')[1].split('Z')[0]
             const endTime = event.endDate.split('T')[1].split('Z')[0]
             const eventLength = ((new Date(event.endDate).getTime()) - (new Date(event.startDate).getTime())) / (1000 * 60 * 60)
-            const eventHeight1 = (event.allDay) ? 60 : eventLength * 60
+            const eventHeight = (event.allDay) ? 60 : eventLength * 60
             const timeRange = (event.allDay) ? 'All Day' : startTime.split(':')[0] + ':' + startTime.split(':')[1] + ' - ' + endTime.split(':')[0] + ':' + endTime.split(':')[1]
             this.state.items[strTime].push({
               id: eventID,
@@ -146,7 +128,7 @@ export default class CalendarScreen extends Component {
               length: eventLength,
               timeRange: timeRange,
               calendar: event.calendar.title,
-              height: eventHeight1,
+              height: eventHeight,
             })
           }
         })
@@ -157,6 +139,26 @@ export default class CalendarScreen extends Component {
             if (!this.state.items[strTime]) {
               this.state.items[strTime] = []
             }
+
+            /*some possible pseudocode for find blanks
+            - pass in list of all events in the day
+            - compare stored previous end time to start time for event
+            - if there is time in between, create
+                {name: "Positive energy event!",
+                  start: startTime,
+                  end: endTime,
+                  length: endTime.getTime() - startTime.getTime(), //as done above
+                  timeRange: timeRange, //string to display as Time range as done above
+                  height: eventHeight, //60 * length as above
+                } 
+            - store the end time for the new event in the state
+            - keep iterating through until there is only one element left
+            - special cases to add the first and last empty block (midnight to first event and last event end to midnight)
+            */
+            // Insert blank slots here
+            // use .splice to insert into an index
+            // to get star
+
             // console.log(new Date(day.dateString))
             // if (this.state.items[strTime][0].start > (new Date(day.timeStamp * 24 * 60 * 60 * 1000))){
             //   this.state.items[strTime].splice(0,0,{
