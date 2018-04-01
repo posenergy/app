@@ -26,6 +26,7 @@
 		"react-native-linear-gradient": "^2.4.0",
 		"react-native-loading-spinner-overlay": "^0.5.2",
 		"react-native-material-dropdown": "^0.9.0",
+		"react-native-modal-overlay": "^1.2.3",
 		"react-native-navbar": "^2.1.0",
 		"react-native-picker": "^4.3.5",
 		"react-native-simple-radio-button": "^2.7.1",

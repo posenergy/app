@@ -95,6 +95,10 @@ export default StyleSheet.create({
     borderBottomRightRadius: 11,
   },
   picker: {
+    height: '12%',
+    width: '100%',
+    margin: 0,
+    backgroundColor: '#545680',
     alignItems: 'center',
     justifyContent: 'center',
     height: 51,
