@@ -10,6 +10,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
     fontWeight: 'bold',
+    fontFamily: 'CircularStd-Book',  
     fontSize: 24,
     backgroundColor: 'white',
     alignItems: 'center',

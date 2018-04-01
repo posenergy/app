@@ -84,8 +84,11 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>CIRCULARSTD-BLACK_0.ttf</string>
+		<string>CIRCULARSTD-BOLD.ttf</string>
+		<string>CIRCULARSTD-BOOK_0.ttf</string>
 	</array>
-  <key>NSCalendarsUsageDescription</key>
-  <string>This app requires access to the calendar</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app requires access to the calendar</string>
 </dict>
 </plist>

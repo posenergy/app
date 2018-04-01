@@ -46,7 +46,7 @@ export default class PickerScreen extends Component {
         />
       </View>
        <Button type='picker'
-          onClick={() => this.resetNavigation('MainTab')}
+          onClick={() => this.props.navigation.navigate('Choose')}
           text='Next' textColor='white'/>
       </View>
     )

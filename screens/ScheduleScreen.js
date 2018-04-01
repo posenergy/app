@@ -1,6 +1,8 @@
 import React from 'react'
 import { View } from 'react-native'
 import SchedModal from '../components/SchedModal'
+import RNCalendarEvents from 'react-native-calendar-events'
+
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
@@ -16,6 +18,13 @@ class ScheduleScreen extends React.Component {
     }
   }
 
+  // saveEvent(){
+  //   RNCalendarEvents.saveEvent(this.state.title, {
+  //     startDate: '2016-08-19T19:26:00.000Z', //selected button
+  //     endDate: '2017-08-19T19:26:00.000Z', //selected button
+  //     calendarID: '141', //+energy cal id
+  //   });
+  // }
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
