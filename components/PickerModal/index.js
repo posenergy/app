@@ -13,7 +13,7 @@ export default class PickerScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {chosenDate: new Date(),
-                  modalVisible: false}
+                  modalVisible: true}
     this.setDate = this.setDate.bind(this)
   }
 
@@ -44,7 +44,8 @@ export default class PickerScreen extends Component {
 
   render() {
     return (
-      <View style={styles.view}>
+      <View style={styles.view}
+       backgroundColor = >
         <Modal
           visible={this.state.modalVisible}
           justifyContent = "flex-end"
