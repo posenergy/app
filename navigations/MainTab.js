@@ -1,5 +1,5 @@
-import React from 'react'
-import { Image, TouchableOpacity } from 'react-native'
+import React, { Component }from 'react'
+import { Image, TouchableOpacity, Text } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -14,19 +14,34 @@ import '../components/TabIcons/feedback.png'
 import '../components/TabIcons/checkin.png'
 import '../components/TabIcons/messages.png'
 
-const mapStateToProps = state => ({
-  visible: state.toggleInfoVisibility.visible,
-})
+// const mapStateToProps = state => ({
+//   visible: state.toggleInfoVisibility.visible,
+// })
 
-const mapDispatchToProps = {
-  infoVisibility,
-}
+// const mapDispatchToProps = {
+//   infoVisibility,
+// }
 
-const MainTabNavigator = TabNavigator({
+export default MainTabNavigator = TabNavigator({ 
   Activities: {
     screen: ActivitiesStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Browse Activities',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../components/TabIcons/activitiesMan.png')}
+      />
+    ),
+    headerRight: <TouchableOpacity 
+      activeOpacity = { 0.5 } 
+      padding={200}
+      onPress={() => {navigation.navigate('Modal')}}
+      >
+      <Image source={require('../images/info.png')}/>
+      
+    </TouchableOpacity>,
+    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
+    headerTintColor: 'white',
     }),
   },
   Calendar: {
@@ -68,10 +83,12 @@ const MainTabNavigator = TabNavigator({
     }),
   },
 },
+  {
+    mode: 'modal',
+    headerMode: 'screen',
+  }
+)
 
-{
-  headerMode: 'screen',
-})
 
 // export default connect(mapStateToProps, mapDispatchToProps)(MainTabNavigator)
-export default MainTabNavigator
+

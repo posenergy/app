@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, TouchableOpacity } from 'react-native'
+import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'

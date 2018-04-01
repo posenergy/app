@@ -1,5 +1,6 @@
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 
+import AboutModal from '../components/AboutModal/index'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
@@ -19,5 +20,15 @@ const AppNavigator = StackNavigator({
     screen: MainTabNavigator,
   },
 })
+export default Root = StackNavigator({
+    App: { screen: AppNavigator },
+    Modal: { screen: AboutModal },
+  },
 
-export default AppNavigator
+{
+  mode: 'modal',
+  headerMode: 'none',
+}
+)
+
+// export default AppNavigator

@@ -8,10 +8,14 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   button: {
-    margin: 30,
     shadowColor: '#303838',
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     shadowOpacity: 0.35,
   },
+  image: {
+    width: 376,
+    height: 260,
+    alignSelf: 'center',
+  }
 })

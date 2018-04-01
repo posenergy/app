@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import user from './reducers/userReducer'
 import filterState from './reducers/momentReducer'
+import toggleInfoVisibility from './reducers/infoReducer'
 import toggleMindVisibility from './reducers/mindModalReducer'
 import toggleMvmtVisibility from './reducers/mvmtModalReducer'
 import toggleMindButtons from './reducers/mindButtonsReducer'
@@ -10,6 +11,7 @@ import toggleMvmtButtons from './reducers/mvmtButtonsReducer'
 const rootReducer = combineReducers({
   user,
   filterState,
+  toggleInfoVisibility,
   toggleMvmtVisibility,
   toggleMindVisibility,
   toggleMindButtons,

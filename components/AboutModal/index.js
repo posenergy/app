@@ -13,23 +13,37 @@ import StyleText from '../StyleText'
 
 
 export default class AboutModal extends Component {
-  state = {
-    modalVisible: false,
+  
+  static navigationOptions = {
+    title: 'Modal',
   };
 
+  constructor(props) {
+  super(props)
+
+    this.state = {
+      // infoModal: this.props.navigation.state.params.infoModal,
+    }
+  }
+
   openModal = () => {
-    this.setState({modalVisible: true})
+    this.setState({infoModal: true})
   }
 
   closeModal = () => {
-    this.setState({modalVisible: false})
+    this.setState({infoModal: false})
+  }
+
+  modalScreenButtonPressed() {
+      this.props.navigation.goBack()
   }
 
   render() {
+    // console.log(this.state.infoModal, this.props.navigation.state.params.infoModal)
     return (
         <View style={styles.Container}>
           <Modal
-              visible={this.state.modalVisible}
+              visible={this.state.infoModal}
               transparent={true}
               blurRadius={1}
               animationType={'slide'}
