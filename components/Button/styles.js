@@ -95,8 +95,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   picker: {
-    height: 51,
-    width: 376,
+    height: '12%',
+    width: '100%',
+    margin: 0,
     backgroundColor: '#545680',
     alignItems: 'center',
     justifyContent: 'center',
