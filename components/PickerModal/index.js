@@ -4,6 +4,7 @@ import {
   View,
   Text,
   Modal,
+  TouchableOpacity,
 } from 'react-native'
 
 import Button from '../../components/Button'
@@ -42,42 +43,47 @@ export default class PickerScreen extends Component {
     let stripzeroes = parseInt(month, 10)
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December']
-    return monthNames[stripzeroes] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + date.getMinutes() + ' ' + suffix
+    return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + date.getMinutes() + ' ' + suffix
    }
 // The state will initially be passed in as a prop. Currently just generates today's date.
 
   render() {
     return (
       <View style={styles.view}>
-        <Modal
-          visible={this.state.modalVisible}
-          justifyContent = "flex-end"
-          transparent={true}
-          closeOnTouchOutside = {true}>
-          <View style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          alignItems: 'center'}}>
-            <View style={styles.innerContainer}>
-              <Text style={styles.transtextField}> Confirm Time </Text>
-              <Text style={styles.textField}
-                    textColor = '#545680'>
-                {this.getDateString(this.state.chosenDate)}
-              </Text>
-            <View style={styles.datePicker}>
-              <DatePickerIOS
-                date={this.state.chosenDate}
-                onDateChange={this.setDate}
-              />
+        <TouchableOpacity
+          activeOpacity= {1}
+          onPress={() => this.closeModal()}>
+          <Modal
+            visible={this.state.modalVisible}
+            justifyContent = "flex-end"
+            transparent={true}
+            closeOnTouchOutside = {true}>
+            <View style={{
+            flex: 0.9999,
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            marginBottom: 50,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            alignItems: 'center'}}>
+              <View style={styles.innerContainer}>
+                <Text style={styles.transtextField}> Confirm Time </Text>
+                <Text style={styles.textField}
+                      textColor = '#545680'>
+                  {this.getDateString(this.state.chosenDate)}
+                </Text>
+              <View style={styles.datePicker}>
+                <DatePickerIOS
+                  date={this.state.chosenDate}
+                  onDateChange={this.setDate}
+                />
+              </View>
+               <Button type='picker'
+                  onClick={() => this.closeModal()}
+                  text='Next' textColor='white'/>
+              </View>
             </View>
-             <Button type='picker'
-                onClick={() => this.resetNavigation('MainTab')}
-                text='Next' textColor='white'/>
-            </View>
-          </View>
-        </Modal>
+          </Modal>
+        </TouchableOpacity>
       </View>
     )
   }
