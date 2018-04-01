@@ -6,6 +6,9 @@ import toggleMindVisibility from './reducers/mindModalReducer'
 import toggleMvmtVisibility from './reducers/mvmtModalReducer'
 import toggleMindButtons from './reducers/mindButtonsReducer'
 import toggleMvmtButtons from './reducers/mvmtButtonsReducer'
+import tokenReducer from './reducers/tokenReducer'
+// import nav from './reducers/navReducer'
+
 
 const rootReducer = combineReducers({
   user,
@@ -14,6 +17,8 @@ const rootReducer = combineReducers({
   toggleMindVisibility,
   toggleMindButtons,
   toggleMvmtButtons,
+  tokenReducer,
+  
 })
 
 export default (state, action) => {

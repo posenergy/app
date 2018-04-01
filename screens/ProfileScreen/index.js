@@ -1,11 +1,23 @@
 import React from 'react'
 import {ScrollView} from 'react-native'
+import { connect } from 'react-redux'
 
+import config from '../../config/config'
 import styles from './styles'
+import Button from '../../components/Button'
 
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
+import { token } from '../../redux/actions/tokenActions'
 
-export default class ProfileScreen extends React.Component {
+const mapStateToProps = state => ({
+  token: state.tokenReducer.token,
+})
+
+const mapDispatchToProps = {
+  token,
+}
+
+class ProfileScreen extends React.Component {
   constructor(props) {
     super(props)
 
@@ -16,8 +28,38 @@ export default class ProfileScreen extends React.Component {
       buffertime: '',
       wakeup: '',
       bedtime: '',
+      token: this.props.token,
     }
   }
+
+  async getprofile(tokened) {
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': tokened,
+        },
+      })
+      if (!response.ok) {
+    console.log(this.props.token)
+
+                return false
+      } 
+      else {
+        responseJSON = await response.json()
+        console.log(responseJSON)
+      }
+
+      return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
 
   render() {
     return (
@@ -53,7 +95,13 @@ export default class ProfileScreen extends React.Component {
         imagelink = {require('../../images/night.png')}
         changeFunction={bedtime => this.setState({bedtime})}
         passwordSecure={true}/>
+      <Button 
+      type = 'login'
+      onClick = {() => this.getprofile(this.state.token)}>
+      </Button>
       </ScrollView>
     )
   }
 }
+
+export default connect ( mapStateToProps, mapDispatchToProps)(ProfileScreen)
