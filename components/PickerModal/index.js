@@ -52,7 +52,8 @@ export default class PickerScreen extends Component {
         <Modal
           visible={this.state.modalVisible}
           justifyContent = "flex-end"
-          transparent={true}>
+          transparent={true}
+          closeOnTouchOutside = {true}>
           <View style={{
           flex: 1,
           flexDirection: 'column',
