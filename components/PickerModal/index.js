@@ -38,14 +38,17 @@ export default class PickerScreen extends Component {
     } else if (hours === 12) {
       suffix = 'PM'
     }
-    return date.toLocaleDateString() + ' ' + hours + ':' + date.getMinutes() + ' ' + suffix
+    let month = date.toLocaleDateString()
+    let stripzeroes = parseInt(month, 10)
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+    return monthNames[stripzeroes] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + date.getMinutes() + ' ' + suffix
    }
 // The state will initially be passed in as a prop. Currently just generates today's date.
 
   render() {
     return (
-      <View style={styles.view}
-       backgroundColor = >
+      <View style={styles.view}>
         <Modal
           visible={this.state.modalVisible}
           justifyContent = "flex-end"
@@ -54,6 +57,7 @@ export default class PickerScreen extends Component {
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'flex-end',
+          backgroundColor: 'rgba(0,0,0,0.5)',
           alignItems: 'center'}}>
             <View style={styles.innerContainer}>
               <Text style={styles.transtextField}> Confirm Time </Text>
