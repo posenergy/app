@@ -31,12 +31,12 @@ export default class CalendarScreen extends Component {
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={this.renderEmptyDate.bind(this)}
           rowHasChanged={this.rowHasChanged.bind(this)}
-          selected={this.timeToString(new Date())}  
+          selected={this.timeToString(new Date())}
        // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
           
         />
         <TouchableOpacity
-          style={{flex : 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}>
+          style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}>
           <Image source={require('../../images/plus.png')}
             alignSelf = 'flex-end'
             marginTop = '40%'/>
@@ -102,17 +102,17 @@ export default class CalendarScreen extends Component {
             this.state.items[strTime] = []
           }
           let alreadyExists = false
-          let eventID = event.id
+          const eventID = event.id
           // if event already exists, dont add it to new items when day reloads
           for (let i = 0; i < this.state.items[strTime].length; i++) {
             if (eventID === this.state.items[strTime][i].id) {
               alreadyExists = true
             }
           }
-          // if event doesn't already exist, push it to the list with key of date. this works bc the 
-          // fetch all events already has them in order, 
+          // if event doesn't already exist, push it to the list with key of date. this works bc the
+          // fetch all events already has them in order,
           // so don't need to .splice() to insert into current location, can just push
-          // @noah, you're gonna have to insert into the right index, after this.state.items[strTime] is 
+          // @noah, you're gonna have to insert into the right index, after this.state.items[strTime] is
           // populated with all events in day bc it renders in order of what's in the list
           if (!alreadyExists) {
             const startTime = event.startDate.split('T')[1].split('Z')[0]
@@ -140,7 +140,7 @@ export default class CalendarScreen extends Component {
               this.state.items[strTime] = []
             }
 
-            /*some possible pseudocode for find blanks
+            /* some possible pseudocode for find blanks
             - pass in list of all events in the day
             - compare stored previous end time to start time for event
             - if there is time in between, create
@@ -150,7 +150,7 @@ export default class CalendarScreen extends Component {
                   length: endTime.getTime() - startTime.getTime(), //as done above
                   timeRange: timeRange, //string to display as Time range as done above
                   height: eventHeight, //60 * length as above
-                } 
+                }
             - store the end time for the new event in the state
             - keep iterating through until there is only one element left
             - special cases to add the first and last empty block (midnight to first event and last event end to midnight)
@@ -212,13 +212,13 @@ export default class CalendarScreen extends Component {
   
   // haven't tested
   editEvent(date, oldEvent) {
-    console.log((new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime())
+    // console.log((new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime())
     RNCalendarEvents.saveEvent(oldEvent.title, {
       id: oldEvent.id,
       startDate: date,
       endDate: (new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime(),
-      url: oldEvent.url
-    });
+      url: oldEvent.url,
+    })
   }
 
   renderItem(item) {
@@ -243,7 +243,7 @@ export default class CalendarScreen extends Component {
 
   renderEmptyDate() {
     return (
-      <TouchableOpacity onPress={()=>this.props.navigation.navigate('Picker')}>
+      <TouchableOpacity onPress = {() => this.props.navigation.navigate('Picker')}>
       <View style={styles.emptyDate}><Text style={{color: 'white'}}>Add +energy event!</Text></View>
       </TouchableOpacity>
     )

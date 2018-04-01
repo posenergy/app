@@ -115,7 +115,7 @@ resetNavigation(targetRoute) {
         type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
         text='Login' textColor='black'/>
       <View style={{alignSelf: 'center'}}>
-      <TouchableHighlight onPress={()=> Alert.alert(
+      <TouchableHighlight onPress={() => Alert.alert(
           'Forgot Password?',
           'Email positiveenergy@gmail.com for help!',
           [

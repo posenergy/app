@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import SchedModal from '../components/SchedModal'
-import RNCalendarEvents from 'react-native-calendar-events'
+// import RNCalendarEvents from 'react-native-calendar-events'
 
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
