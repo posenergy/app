@@ -7,7 +7,7 @@ export default StyleSheet.create({
     height: '55%',
     backgroundColor: '#F2F2F2',
     alignSelf: 'center',
-    marginBottom: '14.5%',
+    marginBottom: '13.25%',
   },
   textField: {
     justifyContent: 'center',

@@ -6,7 +6,6 @@ import styles from './styles'
 import Logo from '../../components/Logo'
 import Button from '../../components/Button'
 
-
 export default class LandingScreen extends React.Component {
   constructor(props) {
     super(props)
