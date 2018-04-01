@@ -8,9 +8,9 @@ import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainTabNavigator from './MainTab'
 
-// const mapStateToProps = state => ({
-//   nav: state.nav
-// })
+const mapStateToProps = state => ({
+  nav: state.nav
+})
 
 const MainAppNavigator = StackNavigator({
   Landing: {
@@ -27,15 +27,15 @@ const MainAppNavigator = StackNavigator({
   },
 })
 
-        // navigation = {addNavigationHelpers({
-        //   dispatch: this.props.dispatch,
-        //   state: this.props.nav,
-        // })}
 
 class AppNavigator extends Component {
   render () {
     return (
       <MainAppNavigator 
+          navigation = {addNavigationHelpers({
+          dispatch: this.props.dispatch,
+          state: this.props.nav,
+        })}
       />
     )
   }
