@@ -40,8 +40,8 @@ export default class PickerScreen extends Component {
     }
     let month = date.toLocaleDateString()
     let stripzeroes = parseInt(month, 10)
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December']
     return monthNames[stripzeroes] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + date.getMinutes() + ' ' + suffix
    }
 // The state will initially be passed in as a prop. Currently just generates today's date.
