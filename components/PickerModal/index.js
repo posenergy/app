@@ -53,7 +53,6 @@ export default class PickerScreen extends Component {
     }
     return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + time + ' ' + suffix
    }
-// The state will initially be passed in as a prop. Currently just generates today's date.
 
   render() {
     return (
