@@ -50,14 +50,10 @@ export default class PickerScreen extends Component {
   render() {
     return (
       <View style={styles.view}>
-        <TouchableOpacity
-          activeOpacity= {1}
-          onPress={() => this.closeModal()}>
           <Modal
             visible={this.state.modalVisible}
             justifyContent = "flex-end"
-            transparent={true}
-            closeOnTouchOutside = {true}>
+            transparent={true}>
             <View style={{
             flex: 0.9999,
             flexDirection: 'column',
@@ -83,7 +79,6 @@ export default class PickerScreen extends Component {
               </View>
             </View>
           </Modal>
-        </TouchableOpacity>
       </View>
     )
   }
