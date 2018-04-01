@@ -125,12 +125,12 @@ export default class CalendarScreen extends Component {
             if (eventID === this.state.items[strTime][i].id) {
               alreadyExists = true
             }
-            console.log((new Date(event.startDate).getTime()), (this.state.items[strTime][i].start.getTime()))
-            if ((new Date(event.startDate).getTime()) < (this.state.items[strTime][i].start.getTime())){
-              console.log((new Date(event.startDate).getTime()) - (this.state.items[strTime][i].start.getTime()))
-              eventIndex = i - 1//(event.allDay) ? 0 : i
-              console.log(eventIndex, event.title)
-            }
+            // console.log((new Date(event.startDate).getTime()), (this.state.items[strTime][i].start.getTime()))
+            // if ((new Date(event.startDate).getTime()) < (this.state.items[strTime][i].start.getTime())){
+            //   console.log((new Date(event.startDate).getTime()) - (this.state.items[strTime][i].start.getTime()))
+            //   eventIndex = i - 1//(event.allDay) ? 0 : i
+            //   console.log(eventIndex, event.title)
+            // }
           }
           if (!alreadyExists) {
             const startTime = event.startDate.split('T')[1].split('Z')[0]
