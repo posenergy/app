@@ -4,7 +4,7 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'flex-end',
     width: '100%',
-    height: '55%',
+    height: '60%',
     backgroundColor: '#F2F2F2',
     alignSelf: 'center',
   },
@@ -47,6 +47,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  image: {
+    width: 12,
+    height: 12,
+    alignSelf: 'flex-end',
+    marginRight: 6,
+    marginTop: 8,
   },
 })
 
