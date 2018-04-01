@@ -4,7 +4,7 @@ import { TabNavigator, TabBarBottom } from 'react-navigation' // 1.0.0-beta.14
 
 import { resetNavigation } from '../screens/LoginScreen'
 import ActivitiesStack from './ActivitiesStack'
-import CalendarStack from './CalendarStack'
+import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 
 import '../components/TabIcons/packages.png'
@@ -36,7 +36,7 @@ const MainTabNavigator = TabNavigator({
     }),
   },
   Calendar: {
-    screen: CalendarStack,
+    screen: CalendarScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
