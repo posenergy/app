@@ -1,4 +1,5 @@
 import React from 'react'
+import YouTube from 'react-native-youtube'
 import { StyleSheet, View } from 'react-native'
 import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
@@ -21,6 +22,7 @@ class MomentScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
+      // video: this.props.navigation.state.params.vid,
       check: true,
     }
   }
@@ -32,10 +34,19 @@ class MomentScreen extends React.Component {
             title = {this.state.title}
             image = {require('./../images/yoga.png')}
             text = {this.state.text}
-            varelement = {<Thumbnail
-              url="https://www.youtube.com/watch?v=cBPP_izKKSs"
-              imageWidth={244}
-              imageHeight={142} />}
+            varelement = {<YouTube
+              videoId="cBPP_izKKSs"
+              play={false}
+              fullscreen={true}
+              loop={false}
+
+              onReady={e => this.setState({ isReady: true })}
+              onChangeState={e => this.setState({ status: e.state })}
+              onChangeQuality={e => this.setState({ quality: e.quality })}
+              onError={e => this.setState({ error: e.error })}
+             
+              style={{ alignSelf: 'stretch', height: 142, width: 244, }}
+            />}
             varelement2 = {<CheckBox
               title='Include my buffer time in results.'
               checked ={this.state.check}

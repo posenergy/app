@@ -140,6 +140,7 @@ class SearchScreen extends React.Component {
                   title: item.name,
                   pict: item.img,
                   desc: item.description,
+                  // vid: item.vid,
                 })
                 }}>
                 <Moment
