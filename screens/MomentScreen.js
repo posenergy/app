@@ -1,7 +1,6 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
 import { StyleSheet, View } from 'react-native'
-import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
 import { CheckBox } from 'react-native-elements'
@@ -45,7 +44,7 @@ class MomentScreen extends React.Component {
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
              
-              style={{ alignSelf: 'stretch', height: 142, width: 244, }}
+              style={{ alignSelf: 'stretch', height: 142, width: 244 }}
             />}
             varelement2 = {<CheckBox
               title='Include my buffer time in results.'
