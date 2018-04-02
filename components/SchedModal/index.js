@@ -15,11 +15,11 @@ export default class SchedModal extends Component {
           source={this.props.image}
           style={styles.image}/>
         <Text style={styles.bold}>{this.props.title}</Text>
-        <Text style={styles.brand}>{this.props.italics}</Text>
-        <View height = '15%' width = '90%' flexDirection='column' alignItems='center' >
+        <Text style={styles.italics}>{this.props.brand}</Text>
+        <View height = '10%' width = '90%' flexDirection='column' alignItems='center' >
           <Text adjustsFontSizeToFit = {true}
                 allowFontScaling = {true}
-                numberOfLines={5}
+                numberOfLines={3}
                 flexWrap ='wrap'
                 minimumFontScale={0.9}
                 style={styles.text}>{this.props.text}</Text>

@@ -32,7 +32,7 @@ class MomentScreen extends React.Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <SchedModal
             title = {this.state.title}
-            brand = {this.state.brand}
+            brand = 'Branding'
             image = {require('./../images/yoga.png')}
             text = {this.state.text}
             varelement = {<Thumbnail
