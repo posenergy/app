@@ -86,13 +86,13 @@ export default StyleSheet.create({
     width: 300,
   },
  schedule: {
-    height: '35%',
+    height: 49,
     width: '100%',
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
   picker: {
     height: '12%',

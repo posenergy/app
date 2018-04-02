@@ -30,7 +30,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     marginTop: '4%',
-    marginBottom: '2%',
+    marginBottom: '3%',
   },
   bold: {
     fontSize: 21,

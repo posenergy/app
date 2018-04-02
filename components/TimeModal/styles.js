@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   innerContainer: {
     alignItems: 'center',
-    width: 286,
-    height: 440,
+    width: '80%',
+    height: '85%',
     backgroundColor: 'white',
     borderRadius: 11,
     flexDirection: 'column',
@@ -28,7 +28,6 @@ export default StyleSheet.create({
     height: 76,
     width: 282,
     marginTop: 15,
-    marginBottom: 0,
   },
   bold: {
     fontSize: 21,
@@ -36,10 +35,17 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
   },
+  italics: {
+    fontSize: 19,
+    marginTop: '5%',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    lineHeight: 22,
+    color: '#4F4F4F',
+  },
   var: {
+    marginBottom: '5%',
     justifyContent: 'flex-start',
-    alignSelf: 'center',
-    alignItems: 'center',
   },
   contentWrap: {
     flex: 1,

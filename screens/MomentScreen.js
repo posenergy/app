@@ -43,8 +43,8 @@ class MomentScreen extends React.Component {
                 <View flexDirection = 'row' justifyContent = 'space-between'>
                   <FlipToggle
                     value={this.state.check}
-                    buttonWidth={50}
-                    buttonHeight={25}
+                    buttonWidth={34}
+                    buttonHeight={21}
                     buttonRadius={50}
                     buttonOffColor={'#E5E5E5'}
                     sliderOffColor={'white'}
@@ -52,7 +52,7 @@ class MomentScreen extends React.Component {
                     sliderOnColor={'#E5E5E5'}
                     onToggle={() => this.setState({check: !this.state.check})}
                   />
-                  <Text textAlignVertical='center'>
+                  <Text fontSize={3} textAlign='right' textAlignVertical='center'>
                   Include my buffer time in results.
                   </Text>
                 </View>

@@ -15,10 +15,10 @@ export default class TimeModal extends Component {
           source={this.props.image}
           style={styles.image}/>
         <Text style={styles.bold}>{this.props.title}</Text>
-        <Text style={styles.text}>{this.props.text}</Text>
+        <Text style={styles.italics}>{this.props.brand}</Text>
+        <Text style={styles.text}>What time works for you?</Text>
         <View style={styles.var}>{this.props.varelement}</View>
-        <View>{this.props.varelement2}</View>
-        <View>{this.props.button}</View>
+        <View width='100%'>{this.props.button}</View>
       </View>
     )
   }
