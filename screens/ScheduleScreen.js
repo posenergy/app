@@ -5,7 +5,7 @@ import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
 class ScheduleScreen extends React.Component {
-  
+
   constructor(props) {
   super(props)
 
