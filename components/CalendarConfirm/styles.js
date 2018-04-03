@@ -47,19 +47,6 @@ export default StyleSheet.create({
     lineHeight: 22,
     color: '#4F4F4F',
   },
-  var: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    marginTop: '5%',
-    marginBottom: '5%',
-  },
-  var2: {
-    justifyContent: 'flex-start',
-    alignSelf: 'center',
-    alignItems: 'center',
-    marginTop: '5%',
-    marginBottom: '5%',
-  },
   contentWrap: {
     flex: 1,
     justifyContent: 'center',

@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-export default class SchedModal extends Component {
+export default class CalendarConfirm extends Component {
 
   render() {
     return (
@@ -27,9 +27,8 @@ export default class SchedModal extends Component {
                 ellipsizeMode= 'tail'
                 style={styles.text}>{this.props.text}</Text>
         </View>
-        <View style={styles.var}>{this.props.varelement}</View>
-        <View style={styles.var}>{this.props.varelement2}</View>
-        <View flex={1} width='100%'>{this.props.button}</View>
+        <View>{this.props.varelement}</View>
+        <View width='100%'>{this.props.button}</View>
       </View>
     )
   }

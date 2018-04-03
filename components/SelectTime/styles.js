@@ -12,12 +12,12 @@ export default StyleSheet.create({
   image: {
     height: 48,
     width: 48,
-    marginTop: 28,
+    marginTop: '2%',
     marginBottom: 8,
   },
   title: {
     fontStyle: 'italic',
-    fontSize: 26,
+    fontSize: 23,
     textAlign: 'center',
     lineHeight: 31,
   },
@@ -25,8 +25,7 @@ export default StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     lineHeight: 23,
-    height: 76,
-    width: 282,
+    width: '80%',
     marginTop: 15,
   },
   bold: {
@@ -45,7 +44,9 @@ export default StyleSheet.create({
   },
   var: {
     marginBottom: '5%',
-    justifyContent: 'flex-start',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   contentWrap: {
     flex: 1,

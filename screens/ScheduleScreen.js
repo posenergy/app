@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import TimeModal from '../components/TimeModal'
+import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
@@ -19,7 +19,7 @@ class ScheduleScreen extends React.Component {
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TimeModal
+      <SelectTime
           title = {this.state.title}
           image = {require('./../images/yoga.png')}
           brand = "Branding"

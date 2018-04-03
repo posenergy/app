@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-export default class TimeModal extends Component {
+export default class SelectTime extends Component {
 
   render() {
     return (

@@ -22,7 +22,7 @@ class MomentScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
-      brand: this.props.navigation.state.params.brand,
+      brand: 'Branding',
       check: true,
     }
   }
@@ -32,7 +32,7 @@ class MomentScreen extends React.Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <SchedModal
             title = {this.state.title}
-            brand = 'Branding'
+            brand ={this.state.brand}
             image = {require('./../images/yoga.png')}
             text = {this.state.text}
             varelement = {<Thumbnail
