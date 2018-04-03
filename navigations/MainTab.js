@@ -84,7 +84,7 @@ export default MainTabNavigator = TabNavigator({
   },
 },
   {
-    mode: 'modal',
+    // mode: 'modal',
     headerMode: 'screen',
   }
 )

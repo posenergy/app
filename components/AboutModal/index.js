@@ -39,11 +39,12 @@ export default class AboutModal extends Component {
   }
 
   render() {
+    //               visible={this.state.infoModal}
     // console.log(this.state.infoModal, this.props.navigation.state.params.infoModal)
     return (
         <View style={styles.Container}>
           <Modal
-              visible={this.state.infoModal}
+
               transparent={true}
               blurRadius={1}
               animationType={'slide'}
@@ -54,7 +55,7 @@ export default class AboutModal extends Component {
                     <TouchableOpacity
                     activeOpacity = { 0.5 }
                     style={styles.opacity}
-                    onPress={this.closeModal}>
+                    onPress={this.props.close}>
                     <Image
                     source={require('../../images/cancel.png')}
                     style={styles.image}
