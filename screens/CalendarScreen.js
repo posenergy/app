@@ -8,7 +8,7 @@ class CalendarScreen extends React.Component {
   constructor(props){
   	super(props)
   		this.state = {
-  			info: this.props.navigation.state.params.info,
+  			// info: this.props.navigation.state.params.info,
   		}
   }
 

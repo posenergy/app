@@ -44,7 +44,7 @@ export default class AboutModal extends Component {
     return (
         <View style={styles.Container}>
           <Modal
-
+              visible={this.state.infoModal}
               transparent={true}
               blurRadius={1}
               animationType={'slide'}
@@ -55,7 +55,7 @@ export default class AboutModal extends Component {
                     <TouchableOpacity
                     activeOpacity = { 0.5 }
                     style={styles.opacity}
-                    onPress={this.props.close}>
+                    onPress={this.closeModal}>
                     <Image
                     source={require('../../images/cancel.png')}
                     style={styles.image}

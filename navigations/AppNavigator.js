@@ -4,7 +4,7 @@ import AboutModal from '../components/AboutModal/index'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
-import MainTabNavigator from './MainTab'
+import MetaNav from './MainTab'
 
 const AppNavigator = StackNavigator({
   Landing: {
@@ -17,7 +17,7 @@ const AppNavigator = StackNavigator({
     screen: RegisterScreen,
   },
   MainTab: {
-    screen: MainTabNavigator,
+    screen: MetaNav,
   },
 })
 export default Root = StackNavigator({

@@ -1,11 +1,14 @@
 import React, { Component }from 'react'
-import { Image, TouchableOpacity, Text } from 'react-native'
+import { View, Image, TouchableOpacity, Text } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import ActivitiesStack from './ActivitiesStack'
 import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+
+import AboutModal from '../components/AboutModal'
+import App from '../App.js'
 
 import { infoVisibility } from '../redux/actions/infoAction'
 
@@ -22,7 +25,7 @@ import '../components/TabIcons/messages.png'
 //   infoVisibility,
 // }
 
-export default MainTabNavigator = TabNavigator({ 
+const MainTabNavigator = TabNavigator({ 
   Activities: {
     screen: ActivitiesStack,
     navigationOptions: ({ navigation }) => ({
@@ -89,6 +92,31 @@ export default MainTabNavigator = TabNavigator({
   }
 )
 
+const MetaNav = (props) => {
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MainTabNavigator)
+  const state = props.navigation.state
+
+  _onCloseModal= () => {
+      this.state = false
+  }
+
+  if (state.params && state.params.info) {
+    return 
+      <View>
+        <MainTabNavigator {...props} />
+          <AboutModal 
+          close = {this._onCloseModal.bind(this)}/>
+      </View>
+  }
+
+  return (
+    <View>
+      <MainTabNavigator {...props} />
+    </View>
+  )
+}
+MetaNav.router = MainTabNavigator.router
+
+export default MetaNav
+// export default connect(mapStateToProps, mapDispatchToProps)(MetaNav)
 
