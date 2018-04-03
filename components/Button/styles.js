@@ -22,6 +22,11 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
+  grey: {
+    fontSize: 20,
+    color: '#333333',
+    fontWeight: 'bold',
+  },
   blue: {
     fontSize: 20,
     color: '#1565C0',
@@ -92,7 +97,7 @@ export default StyleSheet.create({
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     alignItems: 'center',
-    justifyContent: 'center',
+
   },
   picker: {
     height: '12%',

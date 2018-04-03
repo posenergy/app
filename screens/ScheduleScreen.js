@@ -13,6 +13,7 @@ class ScheduleScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
+      brand: this.props.navigation.state.params.brand,
     }
   }
 
@@ -22,7 +23,7 @@ class ScheduleScreen extends React.Component {
       <SelectTime
           title = {this.state.title}
           image = {require('./../images/yoga.png')}
-          brand = "Branding"
+          brand = {this.state.brand}
           text = {this.state.text}
           varelement = {<RadioButtonList
                         radioprops = {[{label: 'Wed, Feb 3, 5:30 - 6:00 pm', value: 0 },

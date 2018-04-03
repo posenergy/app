@@ -1,17 +1,9 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import {View, Text } from 'react-native'
 import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
-import { CheckBox } from 'react-native-elements'
 import FlipToggle from 'react-native-flip-toggle-button'
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-  },
-})
 
 class MomentScreen extends React.Component {
 
@@ -22,7 +14,7 @@ class MomentScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
-      brand: 'Branding',
+      brand: this.props.navigation.state.params.brand,
       check: true,
     }
   }
@@ -40,7 +32,7 @@ class MomentScreen extends React.Component {
               imageWidth={244}
               imageHeight={142} />}
               varelement2 = {
-                <View flexDirection = 'row' justifyContent = 'space-between'>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                   <FlipToggle
                     value={this.state.check}
                     buttonWidth={34}
@@ -52,8 +44,8 @@ class MomentScreen extends React.Component {
                     sliderOnColor={'#E5E5E5'}
                     onToggle={() => this.setState({check: !this.state.check})}
                   />
-                  <Text fontSize={3} textAlign='right' textAlignVertical='center'>
-                  Include my buffer time in results.
+                  <Text style={{fontSize: 13.5, marginLeft: 10, color: '#4F4F4F', textAlignVertical: 'center'}}>
+                  Include my recovery time in results.
                   </Text>
                 </View>
               }
