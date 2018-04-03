@@ -7,11 +7,17 @@ export default StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderRadius: 5,
   },
-  button: {
-    margin: 30,
-    shadowColor: '#303838',
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
-    shadowOpacity: 0.35,
+  mvmt: {
+    position: 'absolute',
+    width: 415,
+    height: 300,
+    left: -207,
+  },
+  mind: {
+    position: 'absolute',
+    width: 415,
+    height: 300,
+    left: -207,
+    top: 300,
   },
 })

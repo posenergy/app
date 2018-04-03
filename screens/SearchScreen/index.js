@@ -115,8 +115,8 @@ class SearchScreen extends React.Component {
             }
           />
           <Button
-            type='login'
-            style={styles.buttonStyle}
+            type='filterButton'
+            
             onClick={() => this.props.mvmtVisibility()}
             text='Filter Activities'
           />
@@ -152,7 +152,7 @@ class SearchScreen extends React.Component {
             }
           />
           <Button
-            type='login'
+            type='filterButton'
             style={styles.buttonStyle}
             onClick={() => this.props.mindVisibility()}
             text='Filter Activities'
