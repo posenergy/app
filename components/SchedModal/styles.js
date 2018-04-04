@@ -32,6 +32,13 @@ export default StyleSheet.create({
     marginBottom: '3%',
     color: '#4F4F4F',
   },
+  textview: {
+    marginBottom: '2%',
+    height: '14%',
+    width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   bold: {
     fontSize: 21,
     fontWeight: 'bold',

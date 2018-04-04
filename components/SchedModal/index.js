@@ -20,7 +20,7 @@ export default class SchedModal extends Component {
           numberOfLines={1}
           style={styles.bold}>{this.props.title}</Text>
         <Text style={styles.italics}>{this.props.brand}</Text>
-        <View marginBottom= '2%' height = '14%' width = '90%' justifyContent= 'center' alignItems='center' >
+        <View style={styles.textview} >
           <Text adjustsFontSizeToFit = {true}
                 textAlign='center'
                 textAlignVertical='center'
