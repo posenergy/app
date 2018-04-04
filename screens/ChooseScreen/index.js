@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, TouchableOpacity, View } from 'react-native'
+import { Image, TouchableOpacity, View, } from 'react-native'
 
 import styles from './styles'
 
@@ -9,7 +9,7 @@ export default class ChooseScreen extends React.Component {
     return(
       <View style={styles.viewStyle}>
 
-        <TouchableOpacity
+        <TouchableOpacity 
           onPress={(event) => {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'Movement'})
@@ -17,7 +17,7 @@ export default class ChooseScreen extends React.Component {
           <Image style={styles.mvmt} source={require('./src/mvmt.png')}/>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        <TouchableOpacity 
           onPress={(event) => {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'Mindfulness'})

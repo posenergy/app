@@ -1,23 +1,27 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+
+const {height, width} = Dimensions.get('window')
 
 export default StyleSheet.create({
   viewStyle: {
     flex: 1,
-    alignItems: 'center',
+    flexDirection: 'column',
     backgroundColor: '#F2F2F2',
     borderRadius: 5,
   },
   mvmt: {
-    position: 'absolute',
-    width: 415,
-    height: 300,
-    left: -207,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height * 0.42,
+    ...ifIphoneX({
+      height: Dimensions.get('window').height * 0.43,
+    }),
   },
   mind: {
-    position: 'absolute',
-    width: 415,
-    height: 300,
-    left: -207,
-    top: 300,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height * 0.42,
+    ...ifIphoneX({
+      height: Dimensions.get('window').height * 0.43,
+    }),
   },
 })
