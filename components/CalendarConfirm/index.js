@@ -22,7 +22,7 @@ export default class CalendarConfirm extends Component {
           textAlignVertical='center'
           style={styles.bold}>{this.props.title}</Text>
         <Text style={styles.italics}>{this.props.brand}</Text>
-        <View marginBottom= '2%' height = '14%' width = '90%' justifyContent= 'center' alignItems='center' >
+        <View style={styles.view} >
           <Text adjustsFontSizeToFit = {true}
                 textAlign='center'
                 textAlignVertical='center'
@@ -31,8 +31,8 @@ export default class CalendarConfirm extends Component {
                 ellipsizeMode= 'tail'
                 style={styles.text}>{this.props.text}</Text>
         </View>
-        <View alignSelf = 'center' alignItems='center' marginTop='8%' marginBottom='19%' justifyContent= 'center' height ='30%'>{this.props.varelement}</View>
-        <View justifyContent= 'flex-end' width='100%'>{this.props.button}</View>
+        <View style={styles.var}>{this.props.varelement}</View>
+        <View style={styles.button}>{this.props.button}</View>
       </View>
     )
   }

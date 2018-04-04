@@ -50,5 +50,24 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    },
+  },
+  view: {
+    marginBottom: '2%',
+    height: '14%',
+    width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  var: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginTop: '8%',
+    marginBottom: '19%',
+    justifyContent: 'center',
+    height: '30%',
+  },
+  button: {
+    justifyContent: 'flex-end',
+    width: '100%',
+  },
 })
