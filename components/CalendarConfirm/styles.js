@@ -56,7 +56,7 @@ export default StyleSheet.create({
     height: '14%',
     width: '90%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   var: {
     alignSelf: 'center',
