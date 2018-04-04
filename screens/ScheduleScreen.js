@@ -1,11 +1,11 @@
 import React from 'react'
 import { View } from 'react-native'
-import SchedModal from '../components/SchedModal'
+import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
 class ScheduleScreen extends React.Component {
-  
+
   constructor(props) {
   super(props)
 
@@ -13,15 +13,17 @@ class ScheduleScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
+      brand: this.props.navigation.state.params.brand,
     }
   }
 
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <SchedModal
+      <SelectTime
           title = {this.state.title}
           image = {require('./../images/yoga.png')}
+          brand = {this.state.brand}
           text = {this.state.text}
           varelement = {<RadioButtonList
                         radioprops = {[{label: 'Wed, Feb 3, 5:30 - 6:00 pm', value: 0 },
@@ -30,10 +32,10 @@ class ScheduleScreen extends React.Component {
                                      {label: 'Thurs, Feb 4, 3:30 - 4:00 pm', value: 3 },
                                      {label: 'Fri, Feb 5, 9:00 - 9:30 am', value: 2 }]}
                       />}
-        />
-        <Button type='schedule'
-        onClick={() => this.props.navigation.navigate('Calendar')}
-        text='Add to Calendar' textColor='white'/>
+          button = {<Button type='schedule'
+                    onClick={() => this.props.navigation.navigate('Calendar')}
+                    text='Add to Calendar' textColor='white'/>}
+      />
     </View>
 	)
   }

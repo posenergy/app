@@ -173,7 +173,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
           </Text>
           <Button type='register'
             onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
-            text='Sign Up' textColor='black'/>
+            text='Sign Up' textColor='grey'/>
         </View>
       </ScrollView>
       </ImageBackground>

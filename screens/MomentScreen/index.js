@@ -4,6 +4,8 @@ import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
+import styles from './styles'
+
 
 class MomentScreen extends React.Component {
 
@@ -21,7 +23,7 @@ class MomentScreen extends React.Component {
 
   render() {
     return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.view}>
         <SchedModal
             title = {this.state.title}
             brand ={this.state.brand}
@@ -32,7 +34,7 @@ class MomentScreen extends React.Component {
               imageWidth={244}
               imageHeight={142} />}
               varelement2 = {
-                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                <View style={styles.toggle}>
                   <FlipToggle
                     value={this.state.check}
                     buttonWidth={34}
@@ -44,7 +46,7 @@ class MomentScreen extends React.Component {
                     sliderOnColor={'#E5E5E5'}
                     onToggle={() => this.setState({check: !this.state.check})}
                   />
-                  <Text style={{fontSize: 13.5, marginLeft: 10, color: '#4F4F4F', textAlignVertical: 'center'}}>
+                  <Text style={styles.toggleText}>
                   Include my recovery time in results.
                   </Text>
                 </View>

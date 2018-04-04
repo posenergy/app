@@ -22,6 +22,11 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
+  grey: {
+    fontSize: 20,
+    color: '#333333',
+    fontWeight: 'bold',
+  },
   blue: {
     fontSize: 20,
     color: '#1565C0',
@@ -87,12 +92,12 @@ export default StyleSheet.create({
   },
  schedule: {
     height: 49,
-    width: 286,
+    width: '100%',
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     alignItems: 'center',
-    justifyContent: 'center',
+
   },
   picker: {
     height: '12%',
