@@ -1,8 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 
-const {height, width} = Dimensions.get('window')
-
 export default StyleSheet.create({
   viewStyle: {
     flex: 1,
