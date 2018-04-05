@@ -1,7 +1,8 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
-import { StyleSheet, View, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import SchedModal from './../components/SchedModal'
+import CheckBox from 'react-native-checkbox'
 import Button from './../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
 
@@ -45,9 +46,9 @@ class MomentScreen extends React.Component {
               title='Include my buffer time in results.'
               checked ={this.state.check}
               checkedColor= 'black'
-              containerStyle= {styles.container}
+              // containerStyle= {styles.container}
               onPress={() => this.setState({check: !this.state.check})}/>}
-              varelement2 = {
+            varelement3 = {
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                   <FlipToggle
                     value={this.state.check}
