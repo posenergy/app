@@ -113,7 +113,7 @@ resetNavigation(targetRoute) {
         passwordSecure={true}/>
       <Button
         type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
-        text='Login' textColor='black'/>
+        text='Login' textColor='grey'/>
       </ScrollView>
       </ImageBackground>
     )

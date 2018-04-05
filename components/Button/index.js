@@ -6,7 +6,7 @@ import styles from './styles'
 export default class Button extends Component {
   static propTypes = {
     text: PropTypes.string,
-    textColor: PropTypes.oneOf(['red', 'white', 'black', 'whiteButtonText', 'blue', 'boldBlack']),
+    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'black', 'whiteButtonText', 'blue', 'boldBlack']),
     onClick: PropTypes.func.isRequired,
     onLong: PropTypes.func,
     type: PropTypes.oneOf([

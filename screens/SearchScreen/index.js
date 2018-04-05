@@ -73,7 +73,7 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
     }
-      
+
   }
 
   componentDidMount() {
@@ -104,6 +104,7 @@ class SearchScreen extends React.Component {
                   title: item.name,
                   pict: item.img,
                   desc: item.description,
+                  brand: item.partner,
                 })
                 }}>
                 <Moment
@@ -138,6 +139,7 @@ class SearchScreen extends React.Component {
                 const { navigate } = this.props.navigation
                 navigate('Moment', {
                   title: item.name,
+                  brand: item.partner,
                   pict: item.img,
                   desc: item.description,
                   // vid: item.vid,

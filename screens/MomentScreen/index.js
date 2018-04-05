@@ -1,9 +1,11 @@
 import React from 'react'
-import YouTube from 'react-native-youtube'
-import { StyleSheet, View, Text } from 'react-native'
+import {View, Text } from 'react-native'
+import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from './../components/SchedModal'
 import Button from './../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
+import styles from './styles'
+
 
 class MomentScreen extends React.Component {
 
@@ -14,7 +16,6 @@ class MomentScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
-      // video: this.props.navigation.state.params.vid,
       brand: this.props.navigation.state.params.brand,
       check: true,
     }
@@ -22,33 +23,18 @@ class MomentScreen extends React.Component {
 
   render() {
     return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.view}>
         <SchedModal
             title = {this.state.title}
             brand ={this.state.brand}
             image = {require('./../images/yoga.png')}
             text = {this.state.text}
-            varelement = {<YouTube
-              videoId="cBPP_izKKSs"
-              play={false}
-              fullscreen={true}
-              loop={false}
-
-              onReady={e => this.setState({ isReady: true })}
-              onChangeState={e => this.setState({ status: e.state })}
-              onChangeQuality={e => this.setState({ quality: e.quality })}
-              onError={e => this.setState({ error: e.error })}
-             
-              style={{ alignSelf: 'stretch', height: 142, width: 244 }}
-            />}
-            varelement2 = {<CheckBox
-              title='Include my buffer time in results.'
-              checked ={this.state.check}
-              checkedColor= 'black'
-              containerStyle= {styles.container}
-              onPress={() => this.setState({check: !this.state.check})}/>}
+            varelement = {<Thumbnail
+              url="https://www.youtube.com/watch?v=cBPP_izKKSs"
+              imageWidth={244}
+              imageHeight={142} />}
               varelement2 = {
-                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                <View style={styles.toggle}>
                   <FlipToggle
                     value={this.state.check}
                     buttonWidth={34}
@@ -60,7 +46,7 @@ class MomentScreen extends React.Component {
                     sliderOnColor={'#E5E5E5'}
                     onToggle={() => this.setState({check: !this.state.check})}
                   />
-                  <Text style={{fontSize: 13.5, marginLeft: 10, color: '#4F4F4F', textAlignVertical: 'center'}}>
+                  <Text style={styles.toggleText}>
                   Include my recovery time in results.
                   </Text>
                 </View>
