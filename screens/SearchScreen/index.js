@@ -80,6 +80,7 @@ class SearchScreen extends React.Component {
     return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category)
       .then((res) => res.json())
       .then(res => {
+        console.log(res)
         this.setState({
           moments: res,
         })
@@ -110,6 +111,7 @@ class SearchScreen extends React.Component {
                   id={item.id}
                   title={item.name}
                   time={item.duration}
+                  sweat={item.sweatIndex}
                 />
               </TouchableOpacity>
             }
