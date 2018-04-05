@@ -1,7 +1,8 @@
 import React from 'react'
-import {View, Text } from 'react-native'
-import Thumbnail from 'react-native-thumbnail-video'
+import YouTube from 'react-native-youtube'
+import { View, Text } from 'react-native'
 import SchedModal from './../components/SchedModal'
+import CheckBox from 'react-native-checkbox'
 import Button from './../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
 
@@ -14,6 +15,7 @@ class MomentScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
+      // video: this.props.navigation.state.params.vid,
       brand: this.props.navigation.state.params.brand,
       check: true,
     }
@@ -27,11 +29,26 @@ class MomentScreen extends React.Component {
             brand ={this.state.brand}
             image = {require('./../images/yoga.png')}
             text = {this.state.text}
-            varelement = {<Thumbnail
-              url="https://www.youtube.com/watch?v=cBPP_izKKSs"
-              imageWidth={244}
-              imageHeight={142} />}
-              varelement2 = {
+            varelement = {<YouTube
+              videoId="cBPP_izKKSs"
+              play={false}
+              fullscreen={true}
+              loop={false}
+
+              onReady={e => this.setState({ isReady: true })}
+              onChangeState={e => this.setState({ status: e.state })}
+              onChangeQuality={e => this.setState({ quality: e.quality })}
+              onError={e => this.setState({ error: e.error })}
+             
+              style={{ alignSelf: 'stretch', height: 142, width: 244 }}
+            />}
+            varelement2 = {<CheckBox
+              title='Include my buffer time in results.'
+              checked ={this.state.check}
+              checkedColor= 'black'
+              // containerStyle= {styles.container}
+              onPress={() => this.setState({check: !this.state.check})}/>}
+            varelement3 = {
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                   <FlipToggle
                     value={this.state.check}

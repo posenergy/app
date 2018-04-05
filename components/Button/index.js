@@ -17,6 +17,7 @@ export default class Button extends Component {
       'filter',
       'schedule',
       'picker',
+      'filterButton',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
