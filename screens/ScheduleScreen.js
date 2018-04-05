@@ -19,9 +19,9 @@ class ScheduleScreen extends React.Component {
   }
 
   saveEvent(){
-    RNCalendarEvents.saveEvent('Newnewevent', {
+    RNCalendarEvents.saveEvent('henlo', {
       startDate: '2018-04-05T19:16:00.000Z', //selected button
-      endDate: '2018-04-05T21:26:00.000Z', //selected button
+      endDate: '2018-04-05T19:20:00.000Z', //selected button
       calendarID: '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97', //+energy cal id
     })
     this.props.navigation.navigate('Calendar')

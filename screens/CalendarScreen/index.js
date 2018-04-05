@@ -118,7 +118,7 @@ export default class CalendarScreen extends Component {
             const startTime = event.startDate.split('T')[1].split('Z')[0]
             const endTime = event.endDate.split('T')[1].split('Z')[0]
             const eventLength = ((new Date(event.endDate).getTime()) - (new Date(event.startDate).getTime())) / (1000 * 60 * 60)
-            const eventHeight = (event.allDay) ? 60 : eventLength * 60
+            const eventHeight = (event.allDay || eventLength < 1) ? 60 : eventLength * 60
             const timeRange = (event.allDay) ? 'All Day' : startTime.split(':')[0] + ':' + startTime.split(':')[1] + ' - ' + endTime.split(':')[0] + ':' + endTime.split(':')[1]
             this.state.items[strTime].push({
               id: eventID,
@@ -133,53 +133,53 @@ export default class CalendarScreen extends Component {
           }
         })
         
-          for (let i = -15; i < 85; i++) {
-            const time = day.timestamp + i * 24 * 60 * 60 * 1000
-            const strTime = this.timeToString(time)
-            if (!this.state.items[strTime]) {
-              this.state.items[strTime] = []
-            }
-
-            /* some possible pseudocode for find blanks
-            - pass in list of all events in the day
-            - compare stored previous end time to start time for event
-            - if there is time in between, create
-                {name: "Positive energy event!",
-                  start: startTime,
-                  end: endTime,
-                  length: endTime.getTime() - startTime.getTime(), //as done above
-                  timeRange: timeRange, //string to display as Time range as done above
-                  height: eventHeight, //60 * length as above
-                }
-            - store the end time for the new event in the state
-            - keep iterating through until there is only one element left
-            - special cases to add the first and last empty block (midnight to first event and last event end to midnight)
-            */
-            // Insert blank slots here
-            // use .splice to insert into an index
-            // to get star
-
-            // console.log(new Date(day.dateString))
-            // if (this.state.items[strTime][0].start > (new Date(day.timeStamp * 24 * 60 * 60 * 1000))){
-            //   this.state.items[strTime].splice(0,0,{
-            //     name: 'Add +Energy Event',
-            //     start: (new Date(day.timeStamp * 24 * 60 * 60 * 1000))
-            //   })
-            // }
-            // for (let i = 0; i < this.state.items[strTime].length; i++) {
-              
-            // }
+        for (let i = -15; i < 85; i++) {
+          const time = day.timestamp + i * 24 * 60 * 60 * 1000
+          const strTime = this.timeToString(time)
+          if (!this.state.items[strTime]) {
+            this.state.items[strTime] = []
           }
-          const newItems = {}
-          Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
-          this.setState({
-            items: newItems,
-          })
+
+          /* some possible pseudocode for find blanks
+          - pass in list of all events in the day
+          - compare stored previous end time to start time for event
+          - if there is time in between, create
+              {name: "Positive energy event!",
+                start: startTime,
+                end: endTime,
+                length: endTime.getTime() - startTime.getTime(), //as done above
+                timeRange: timeRange, //string to display as Time range as done above
+                height: eventHeight, //60 * length as above
+              }
+          - store the end time for the new event in the state
+          - keep iterating through until there is only one element left
+          - special cases to add the first and last empty block (midnight to first event and last event end to midnight)
+          */
+          // Insert blank slots here
+          // use .splice to insert into an index
+          // to get star
+
+          // console.log(new Date(day.dateString))
+          // if (this.state.items[strTime][0].start > (new Date(day.timeStamp * 24 * 60 * 60 * 1000))){
+          //   this.state.items[strTime].splice(0,0,{
+          //     name: 'Add +Energy Event',
+          //     start: (new Date(day.timeStamp * 24 * 60 * 60 * 1000))
+          //   })
+          // }
+          // for (let i = 0; i < this.state.items[strTime].length; i++) {
+            
+          // }
+        }
+        const newItems = {}
+        Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
+        this.setState({
+          items: newItems,
+        })
       // console.log(this.state.items)
-      console.log(allEvents)
+      // console.log(allEvents)
       })
       .catch (error => {
-        // console.log(error) Alert, couldn't fetch events from calendar sorry!
+        // Alert, couldn't fetch events from calendar sorry!
         for (let i = -15; i < 85; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
@@ -240,7 +240,8 @@ export default class CalendarScreen extends Component {
         <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
         <Text style={{color: 'white'}}>{item.name}</Text>
-        {/* <Text style={{color: 'white'}}>[+energy]</Text> */}
+        {item.height > 60 &&
+        <Text style={{color: 'white'}}>[+energy]</Text>}
         </View>
         </TouchableOpacity>
       )
