@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import SchedModal from '../components/SchedModal'
-// import RNCalendarEvents from 'react-native-calendar-events'
+import RNCalendarEvents from 'react-native-calendar-events'
 
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
@@ -18,13 +18,14 @@ class ScheduleScreen extends React.Component {
     }
   }
 
-  // saveEvent(){
-  //   RNCalendarEvents.saveEvent(this.state.title, {
-  //     startDate: '2016-08-19T19:26:00.000Z', //selected button
-  //     endDate: '2017-08-19T19:26:00.000Z', //selected button
-  //     calendarID: '141', //+energy cal id
-  //   });
-  // }
+  saveEvent(){
+    RNCalendarEvents.saveEvent('Newnewevent', {
+      startDate: '2018-04-05T19:16:00.000Z', //selected button
+      endDate: '2018-04-05T21:26:00.000Z', //selected button
+      calendarID: '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97', //+energy cal id
+    })
+    this.props.navigation.navigate('Calendar')
+  }
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -41,8 +42,8 @@ class ScheduleScreen extends React.Component {
                       />}
         />
         <Button type='schedule'
-        onClick={() => this.props.navigation.navigate('Calendar')}
-        text='Add to Calendar' textColor='white'/>
+          onClick={() => this.saveEvent()}
+          text='Add to Calendar' textColor='white'/>
     </View>
 	)
   }

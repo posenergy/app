@@ -127,7 +127,7 @@ export default class CalendarScreen extends Component {
               end: endDate,
               length: eventLength,
               timeRange: timeRange,
-              calendar: event.calendar.title,
+              calendar: event.calendar.id,
               height: eventHeight,
             })
           }
@@ -176,10 +176,22 @@ export default class CalendarScreen extends Component {
             items: newItems,
           })
       // console.log(this.state.items)
-      // console.log(allEvents)
+      console.log(allEvents)
       })
       .catch (error => {
         // console.log(error) Alert, couldn't fetch events from calendar sorry!
+        for (let i = -15; i < 85; i++) {
+          const time = day.timestamp + i * 24 * 60 * 60 * 1000
+          const strTime = this.timeToString(time)
+          if (!this.state.items[strTime]) {
+            this.state.items[strTime] = []
+          }
+        }
+        const newItems = {}
+        Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
+        this.setState({
+          items: newItems,
+        })
       })
     }, 1000)
   }
@@ -211,21 +223,21 @@ export default class CalendarScreen extends Component {
   }
   
   // haven't tested
-  editEvent(date, oldEvent) {
+  editEvent() { //date, oldEvent
     // console.log((new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime())
-    RNCalendarEvents.saveEvent(oldEvent.title, {
-      id: oldEvent.id,
-      startDate: date,
-      endDate: (new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime(),
-      url: oldEvent.url,
-    })
+    // RNCalendarEvents.saveEvent(oldEvent.title, {
+    //   id: oldEvent.id,
+    //   startDate: date,
+    //   endDate: (new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime(),
+    //   url: oldEvent.url,
+    // })
   }
 
   renderItem(item) {
-    if (item.calendar === '+Energy') {
+    if (item.calendar === '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97') {
       return (
         <TouchableOpacity onPress={this.editEvent()}>
-        <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
+        <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
         <Text style={{color: 'white'}}>{item.name}</Text>
         {/* <Text style={{color: 'white'}}>[+energy]</Text> */}

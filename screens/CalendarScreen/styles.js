@@ -10,7 +10,7 @@ export default StyleSheet.create({
       marginTop: 17,
     },
     emptyDate: {
-      backgroundColor: '#545680',
+      backgroundColor: 'rgba(84, 86, 128, 0.75)',
       flex: 1,
       borderRadius: 5,
       padding: 10,
