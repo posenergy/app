@@ -49,10 +49,10 @@ class SearchScreen extends React.Component {
     let tagUrl = ''
     if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
       this.props.tags.forEach(function(i) {
-      tagUrl += '&tag[]=' + i
+      tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&duration=' + this.props.duration + tagUrl)
+      '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
@@ -62,10 +62,10 @@ class SearchScreen extends React.Component {
       })
     } else if (this.props.visibleMvmt !== true && prevProps.visibleMvmt === true) {
       this.props.tags.forEach(function(i) {
-      tagUrl += '&tag[]=' + i
+      tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + tagUrl)
+      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
@@ -117,11 +117,11 @@ class SearchScreen extends React.Component {
             }
           />
 
-        <TouchableOpacity 
-          style = {styles.activities}
-          onPress={() => this.props.mvmtVisibility()}>
-          <Image source={require('./src/button.png')}/>
-        </TouchableOpacity>
+          <TouchableOpacity 
+            style = {styles.activities}
+            onPress={() => this.props.mvmtVisibility()}>
+            <Image source={require('./src/button.png')}/>
+          </TouchableOpacity>
           {
             this.props.visibleMvmt &&
               <MvmtModal/>
@@ -153,11 +153,11 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-        <TouchableOpacity 
-          style = {styles.activities}
-          onPress={() => this.props.mvmtVisibility()}>
-          <Image source={require('./src/button.png')}/>
-        </TouchableOpacity>
+          <TouchableOpacity 
+            style = {styles.activities}
+            onPress={() => this.props.mindVisibility()}>
+            <Image source={require('./src/button.png')}/>
+          </TouchableOpacity>
           {
             this.props.visibleMind &&
               <MindModal/>
