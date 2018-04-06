@@ -21,9 +21,9 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 // Use the following line of code to autorehydrate and persist your store
 // NOTE!!!!: uncomment and comment persistor.purge() if you want to clear persisting cache
 // export const store = compose(persistedReducer, {}, applyMiddleware(thunk, log))
-export const store = createStore(persistedReducer)
+export const store = createStore(persistedReducer, applyMiddleware(thunk, log))
 export const persistor = persistStore(store)
-persistor.purge()
+// persistor.purge()
 
 store.subscribe(() => {
 })

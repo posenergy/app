@@ -9,6 +9,8 @@ import AppNavigator from '../../navigations/AppNavigator'
 // 	AppNavigator.router.getActionForPathAndParams('MainTab')
 // )
 
+// put this code in the file for onClick button, store.purge after
+
 const nav = (state = initialState, action) => {
 	let nextState
 	switch (action.type) {

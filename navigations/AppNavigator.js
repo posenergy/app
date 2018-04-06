@@ -27,15 +27,15 @@ const MainAppNavigator = StackNavigator({
   },
 })
 
-
+        //   navigation = {addNavigationHelpers({
+        //   dispatch: this.props.dispatch,
+        //   state: this.props.nav,
+        // })}
 class AppNavigator extends Component {
   render () {
     return (
       <MainAppNavigator 
-          navigation = {addNavigationHelpers({
-          dispatch: this.props.dispatch,
-          state: this.props.nav,
-        })}
+
       />
     )
   }

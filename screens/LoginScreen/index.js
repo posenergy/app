@@ -50,46 +50,6 @@ class LoginScreen extends ValidationComponent {
       }))
   }
 
-  async loginUserNew(email, password) {
-  if ((email !== '') && (password !== '')) {
-    try {
-      let responseJSON
-      const apiUrl = `${config.apiUrl}/auth/login`
-      const response = fetchival('apiUrl').post({
-        email: email,
-        password: password,
-      }).then(function(response) {
-        if (response.status >= 200 && response.status < 300) {
-          return response.json()
-        }
-        throw new Error(response.statusText)
-      })
-      if (!response.ok) {
-        Alert.alert(
-          'Login Incorrect',
-          'Please check your email and password.',
-          [
-            {text: 'Try Again'},
-          ],
-          { cancelable: true }
-        )
-        return false
-      } 
-      else {
-        this.props.token(response.token)
-        this.props.login(this.state.email)
-        console.log(this.props.login(this.state.email))
-        this.resetNavigation('MainTab')
-        responseJSON = await response.json()
-      }
-      return responseJSON
-    } catch(error) {
-      console.error(error)
-    }
-  }
-}
-
-
   async loginUser(email, password) {
   if ((email !== '') && (password !== '')) {
     try {
@@ -125,7 +85,7 @@ class LoginScreen extends ValidationComponent {
 
         // console.log(this.props.token(responseJSON.token))
         // console.log("###############")
-        // console.log(this.props.token)
+        await console.log(this.props.token)
 
       }
 
@@ -166,4 +126,4 @@ class LoginScreen extends ValidationComponent {
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
