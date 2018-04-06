@@ -100,12 +100,12 @@ class SearchScreen extends React.Component {
             renderItem={({item}) =>
               <TouchableOpacity style={styles.button}
                 onPress={(event) => {
-                const { navigate } = this.props.navigation
-                navigate('Moment', {
-                  title: item.name,
-                  pict: item.img,
-                  desc: item.description,
-                })
+                  const { navigate } = this.props.navigation
+                  navigate('Moment', {
+                    title: item.name,
+                    pict: item.img,
+                    desc: item.description,
+                  })
                 }}>
                 <Moment
                   id={item.id}

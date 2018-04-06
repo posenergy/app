@@ -1,13 +1,36 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
+
+// put sweats in a separate view, add flex to the entire thing so 
+// that flexDirection is a row and flex-end puts the sweats at the end
+// of the box
 
 const Moment = ({title, time, pict, sweat}) => (
 	<View style={styles.moment}>
 		<Text style={styles.momentTitle}> {title} </Text>
-		<Text style={styles.momentTime}> {time} minutes</Text>
-		<Text style={styles.momentTime}> {sweat} minutes</Text>
+		<View style = {styles.textAndSweat}>
+			<Text style={styles.momentTime}> {time} minutes </Text>
+			{ (sweat == 0) && 
+				<View style={styles.sweat}>
+					<Image source={require('./src/sweat.png')}/>
+				</View>
+			}
+			{ (sweat == 1) && 
+				<View style={styles.sweat}>
+					<Image source={require('./src/sweat.png')}/>
+					<Image source={require('./src/sweat.png')}/>
+				</View>
+			}
+			{ (sweat == 2) && 
+				<View style={styles.sweat}>
+					<Image source={require('./src/sweat.png')}/>
+					<Image source={require('./src/sweat.png')}/>
+					<Image source={require('./src/sweat.png')}/>
+				</View>
+			}
+		</View>
 	</View>
 )
 

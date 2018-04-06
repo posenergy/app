@@ -2,13 +2,14 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   moment: {
-    height: 77,
+    flex: 1,
+    height: 97,
     width: 376,
     alignSelf: 'center',
     justifyContent: 'center',
     borderBottomColor: 'rgba(51, 51, 51, 0.2)',
     borderBottomWidth: 1,
-    margin: 10,
+    margin: 5,
   },
   momentTitle: {
     padding: 2,
@@ -29,5 +30,13 @@ export default StyleSheet.create({
   pict: {
     height: 45,
     width: 45,
+  },
+  sweat: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingRight: 20,
+  },
+  textAndSweat: {
+    flexDirection: 'row',
   },
 })

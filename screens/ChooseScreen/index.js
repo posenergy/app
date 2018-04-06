@@ -14,7 +14,7 @@ export default class ChooseScreen extends React.Component {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'Movement'})
           }}>
-          <Image style={styles.mvmt} source={require('./src/mvmt.png')}/>
+          <Image style={styles.mvmt} source={require('../src/mvmt.png')}/>
         </TouchableOpacity>
 
         <TouchableOpacity
