@@ -117,7 +117,7 @@ class SearchScreen extends React.Component {
           />
           <Button
             type='filterButton'
-            
+
             onClick={() => this.props.mvmtVisibility()}
             text='Filter Activities'
           />

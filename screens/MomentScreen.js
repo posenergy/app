@@ -39,7 +39,7 @@ class MomentScreen extends React.Component {
               onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
-             
+
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
             />}
             varelement2 = {<CheckBox
