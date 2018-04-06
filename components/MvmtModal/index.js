@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, Text, View } from 'react-native'
+import { Modal, Text, View, TouchableOpacity, Image } from 'react-native'
 import styles from './styles'
 import { connect } from 'react-redux'
 
@@ -11,7 +11,7 @@ import { barAction, cycleAction, danceAction, hiitAction,
         fifteenAction, thirtyAction, sixtyAction } from '../../redux/actions/mvmtButtonsActions'
 
 import Button from '../../components/Button'
-import StyleText from '../../components/StyleText'
+import ModalStyleText from '../../components/ModalStyleText'
 import FilterButton from '../../components/FilterButton'
 
 const mapStateToProps = state => ({
@@ -77,17 +77,57 @@ class MvmtModal extends Component {
     }
   }
 
-  buttonRow = (tag) => {
-    this.props.rowAction()
+  buttonStrength = (tag) => {
+    this.props.strengthAction()
 
-    if (this.props.row) {
+    if (this.props.strength) {
       this.props.del_tag(tag)
     } else {
       this.props.add_tag(tag)
     }
   }
 
-    buttonBar = (tag) => {
+  buttonStretch = (tag) => {
+    this.props.stretchAction()
+
+    if (this.props.stretch) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonHiit = (tag) => {
+    this.props.hiitAction()
+
+    if (this.props.hiit) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonDance = (tag) => {
+    this.props.danceAction()
+
+    if (this.props.dance) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonPilates = (tag) => {
+    this.props.pilatesAction()
+
+    if (this.props.pilates) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonBar = (tag) => {
     this.props.barAction()
 
     if (this.props.bar) {
@@ -97,7 +137,7 @@ class MvmtModal extends Component {
     }
   }
 
-    buttonYoga = (tag) => {
+  buttonYoga = (tag) => {
     this.props.yogaAction()
 
     if (this.props.yoga) {
@@ -136,89 +176,114 @@ class MvmtModal extends Component {
     this.props.sixtyAction()
     this.props.duration(time)
   }
-  // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //     tags: [],
-  //     sweat: 'Medium',
-  //     duration: 30,
-  //     buttonColor: '#F2F2F2',
-  //   }
-  // }
-
-  // changeTag(tag) {
-  //   this.setState({tags: [...this.state.tags, tag]})
-  // }
-
-  // changeSweat(sweat) {
-  //   this.setState({ sweat: sweat })
-  // }
-
-  // changeDuration(duration) {
-  //   this.setState({ duration: duration})
-  // }
- 
-  // componentDidUpdate(prevProps, prevState) {
-  // }
 
   render() {
     return(
-      <View style={styles.Container}>
+      <View backgroundColor='transparent' style={styles.Container}>
         <Modal
+          transparent={true}
+          blurRadius={1}
+          style={styles.modal}
           animationType={'slide'}>
-          <View style={styles.modalContainer}>
+          <View backgroundColor= 'transparent' style={styles.modalContainer}>
             <View style={styles.innerContainer}>
-
-              <Text style={styles.title}>Filter Activities</Text>
-
-              <StyleText text='ACTIVITIES'/>
-              <View style={styles.buttons}>
-                <FilterButton
-                  titleProp='Run'
-                  onPressProp={() => this.buttonRun('Run')} />
-                <FilterButton
-                  titleProp='Row'
-                  onPressProp={() => this.buttonRow('Row')} />
-                <FilterButton
-                  titleProp='Bar'
-                  onPressProp={() => this.buttonBar('Bar')} />
-                <FilterButton
-                  titleProp='Yoga'
-                  onPressProp={() => this.buttonYoga('Yoga')} />
+              <TouchableOpacity
+                activeOpacity = { 0.5 }
+                style={styles.opacity}
+                onPress={() => this.props.mvmtVisibility()}>
+                <Image
+                source={require('../../images/cancel.png')}
+                style={styles.image}/>
+              </TouchableOpacity>
+              <View style={styles.filteract}>
+                <Image
+                  source={require('../../images/filter.png')}
+                  style={styles.imageheader}/>
+                <Text alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
+                Filter Activities
+                </Text>
               </View>
-
-              <StyleText text='SWEAT'/>
-              <View style={styles.buttons}>
-                <FilterButton
-                  titleProp='Low'
-                  onPressProp={() => this.buttonLow(0)} />
-                <FilterButton
-                  titleProp='Medium'
-                  onPressProp={() => this.buttonMed(1)} />
-                <FilterButton
-                  titleProp='High'
-                  onPressProp={() => this.buttonHigh(2)} />
+              <View style={styles.bigview}>
+                <ModalStyleText text='ACTIVITIES'/>
+                <View style={styles.buttons}>
+                  <FilterButton
+                    titleProp='Barre'
+                    width={57}
+                    onPressProp={() => this.buttonBar('Bar')} />
+                  <FilterButton
+                    titleProp='Dance'
+                    width={74}
+                    onPressProp={() => this.buttonDance('Dance')} />
+                 <FilterButton
+                    titleProp='HIIT'
+                    width={57}
+                    onPressProp={() => this.buttonHiit('Hiit')} />
+                  <FilterButton
+                    titleProp='Pilates'
+                    width={77}
+                    onPressProp={() => this.buttonPilates('Pilates')} />
+                </View>
+                <View style={styles.buttons}>
+                  <FilterButton
+                    titleProp='Run'
+                    width={54}
+                    onPressProp={() => this.buttonRun('Run')} />
+                  <FilterButton
+                    titleProp='Strength'
+                    width={81}
+                    onPressProp={() => this.buttonStrength('Strength')} />
+                  <FilterButton
+                    titleProp='Stretch'
+                    width={82}
+                    onPressProp={() => this.buttonStretch('Stretch')} />
+                  <FilterButton
+                    titleProp='Yoga'
+                    width={52}
+                    onPressProp={() => this.buttonYoga('Yoga')} />
+                </View>
               </View>
-
-              <StyleText text='DURATION'/>
-              <View style={styles.buttons}>
-                <FilterButton
-                  titleProp='< 15 min'
-                  onPressProp={() => this.buttonFifteen(15)} />
-                <FilterButton
-                  titleProp='< 30 min'
-                  onPressProp={() => this.buttonThirty(30)} />
-                <FilterButton
-                  titleProp='< 60 min'
-                  onPressProp={() => this.buttonSixty(60)} />
+              <View marginBottom= {30}>
+                <ModalStyleText text='SWEAT'/>
+                <View style={styles.buttons}>
+                       <FilterButton
+                         titleProp='Low'
+                         width={77.2}
+                         onPressProp={() => this.buttonLow(0)} />
+                       <FilterButton
+                         titleProp='Medium'
+                         width={107.6}
+                         onPressProp={() => this.buttonMed(1)} />
+                       <FilterButton
+                         titleProp='High'
+                         width={91.9}
+                         onPressProp={() => this.buttonHigh(2)} />
+                     </View>
               </View>
-              <Button
-                type='login'
-                style={styles.button}
-                onClick={() => {this.buttonClicked()}}
-                text= 'Apply'
-              />
+              <View marginBottom= {60}>
+                <ModalStyleText text='DURATION'/>
+                <View style={styles.buttons}>
+                  <FilterButton
+                    titleProp='< 15 min'
+                    width={94}
+                    marginRight={6}
+                    onPressProp={() => this.buttonFifteen(15)} />
+                  <FilterButton
+                    titleProp='< 30 min'
+                    width={94}
+                    marginRight={6}
+                    onPressProp={() => this.buttonThirty(30)} />
+                  <FilterButton
+                    titleProp='< 60 min'
+                    width={94}
+                    marginRight={6}
+                    onPressProp={() => this.buttonSixty(60)} />
+                </View>
+              </View>
+            <Button
+              justifyContent= 'flex-end'
+              type ='mindmodal'
+              onClick={() => {this.buttonClicked()}}
+              text = 'Apply'/>
             </View>
           </View>
         </Modal>

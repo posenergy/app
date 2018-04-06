@@ -14,6 +14,11 @@ import styles from './styles'
 export default class PickerScreen extends Component {
   constructor(props) {
     super(props)
+<<<<<<< HEAD
+=======
+    this.state = {chosenDate: new Date(),
+                  modalVisible: false}
+>>>>>>> master
     this.setDate = this.setDate.bind(this)
   }
 

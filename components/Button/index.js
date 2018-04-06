@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import { Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+=======
+import { Text, View, TouchableOpacity } from 'react-native'
+>>>>>>> master
 import PropTypes from 'prop-types'
 import styles from './styles'
 
 export default class Button extends Component {
   static propTypes = {
     text: PropTypes.string,
-    textColor: PropTypes.oneOf(['red', 'white', 'black', 'whiteButtonText', 'blue', 'boldBlack']),
+    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'black', 'blacksmall', 'whiteButtonText', 'blue', 'boldBlack']),
     onClick: PropTypes.func.isRequired,
     onLong: PropTypes.func,
     type: PropTypes.oneOf([
@@ -17,6 +21,8 @@ export default class Button extends Component {
       'filter',
       'schedule',
       'picker',
+      'filterButton',
+      'mindmodal',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
