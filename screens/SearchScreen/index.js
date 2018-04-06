@@ -61,10 +61,10 @@ class SearchScreen extends React.Component {
       })
     } else if (this.props.visibleMvmt !== true && prevProps.visibleMvmt === true) {
       this.props.tags.forEach(function(i) {
-      tagUrl += '&tag[]=' + i
+      tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + tagUrl)
+      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
