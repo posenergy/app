@@ -41,7 +41,7 @@ export default StyleSheet.create({
   },
   textview2: {
     marginBottom: '2%',
-    height: 40 ,
+    height: 40,
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
