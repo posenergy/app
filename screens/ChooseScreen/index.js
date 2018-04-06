@@ -9,20 +9,20 @@ export default class ChooseScreen extends React.Component {
     return(
       <View style={styles.viewStyle}>
 
-        <TouchableOpacity style={styles.button}
+        <TouchableOpacity
           onPress={(event) => {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'movement'})
           }}>
-          <Image source={require('./src/mvmt.png')}/>
+          <Image style={styles.mvmt} source={require('./src/mvmt.png')}/>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}
+        <TouchableOpacity
           onPress={(event) => {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'mindfulness'})
           }}>
-          <Image source={require('./src/mind.png')}/>
+          <Image style={styles.mind} source={require('./src/mind.png')}/>
         </TouchableOpacity>
 
       </View>

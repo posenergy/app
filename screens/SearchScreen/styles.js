@@ -29,4 +29,7 @@ export default StyleSheet.create({
   buttonStyle: {
     justifyContent: 'flex-end',
   },
+  activities: {
+    alignSelf: 'center',
+  },
 })
