@@ -39,27 +39,26 @@ class MomentScreen extends React.Component {
               onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
-
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
             />}
-              varelement2 = {
-                <View style={styles.toggle}>
-                  <FlipToggle
-                    value={this.state.check}
-                    buttonWidth={34}
-                    buttonHeight={21}
-                    buttonRadius={50}
-                    buttonOffColor={'#E5E5E5'}
-                    sliderOffColor={'white'}
-                    buttonOnColor={'#545680'}
-                    sliderOnColor={'#E5E5E5'}
-                    onToggle={() => this.setState({check: !this.state.check})}
-                  />
-                  <Text style={styles.toggleText}>
-                  Include my recovery time in results.
-                  </Text>
-                </View>
-              }
+            varelement2 = {
+              <View style={styles.toggle}>
+                <FlipToggle
+                  value={this.state.check}
+                  buttonWidth={34}
+                  buttonHeight={21}
+                  buttonRadius={50}
+                  buttonOffColor={'#E5E5E5'}
+                  sliderOffColor={'white'}
+                  buttonOnColor={'#545680'}
+                  sliderOnColor={'#E5E5E5'}
+                  onToggle={() => this.setState({check: !this.state.check})}
+                />
+                <Text style={styles.toggleText}>
+                Include my recovery time in results.
+                </Text>
+              </View>
+            }
             button = {<Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
