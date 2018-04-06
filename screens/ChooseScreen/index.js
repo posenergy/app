@@ -22,7 +22,7 @@ export default class ChooseScreen extends React.Component {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'Mindfulness'})
           }}>
-          <Image style={styles.mind} source={require('./src/mind.png')}/>
+          <Image style={styles.mind} source={require('../src/mind.png')}/>
         </TouchableOpacity>
 
       </View>

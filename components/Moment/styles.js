@@ -7,8 +7,6 @@ export default StyleSheet.create({
     width: 376,
     alignSelf: 'center',
     justifyContent: 'center',
-    borderBottomColor: 'rgba(51, 51, 51, 0.2)',
-    borderBottomWidth: 1,
     margin: 5,
   },
   momentTitle: {
@@ -18,6 +16,7 @@ export default StyleSheet.create({
     fontSize: 21,
     lineHeight: 25,
     marginLeft: 20,
+    marginRight: 10,
   },
   momentTime: {
     flex: 1,
@@ -28,11 +27,13 @@ export default StyleSheet.create({
     marginLeft: 20,
   },
   icon: {
-    height: 5,
-    width: 5,
+    height: 45,
+    width: 45,
   },
   iconAndMoment: {
     flexDirection: 'row',
+    borderBottomColor: 'rgba(51, 51, 51, 0.2)',
+    borderBottomWidth: 1,
   },
   sweat: {
     flexDirection: 'row',
@@ -40,6 +41,7 @@ export default StyleSheet.create({
     paddingRight: 20,
   },
   textAndSweat: {
+    marginTop: 4,
     flexDirection: 'row',
   },
 })
