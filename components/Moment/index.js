@@ -9,8 +9,8 @@ import PropTypes from 'prop-types'
 
 const Moment = ({icon, title, time, pict, sweat}) => (
 	<View style={styles.iconAndMoment}>
-		<View style={{ width: 45, height: 45 }}>
-			<Image source={icon}/>
+		<View >
+			<Image style={{ width: 45, height: 45 }} source={icon}/>
 		</View>
 		<View style={styles.moment}>
 			<Text style={styles.momentTitle}> {title} </Text>
