@@ -27,9 +27,12 @@ export default StyleSheet.create({
     lineHeight: 23,
     marginLeft: 20,
   },
-  pict: {
-    height: 45,
-    width: 45,
+  icon: {
+    height: 5,
+    width: 5,
+  },
+  iconAndMoment: {
+    flexDirection: 'row',
   },
   sweat: {
     flexDirection: 'row',

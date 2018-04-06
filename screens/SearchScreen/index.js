@@ -112,6 +112,7 @@ class SearchScreen extends React.Component {
                   title={item.name}
                   time={item.duration}
                   sweat={item.sweatIndex}
+                  icon={require('../src/danceIcon.png')}
                 />
               </TouchableOpacity>
             }
@@ -149,6 +150,7 @@ class SearchScreen extends React.Component {
                   id={item.id}
                   title={item.name}
                   time={item.duration}
+                  // icon={item.url}
                 />
               </TouchableOpacity>
             }

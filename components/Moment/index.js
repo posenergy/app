@@ -7,34 +7,40 @@ import PropTypes from 'prop-types'
 // that flexDirection is a row and flex-end puts the sweats at the end
 // of the box
 
-const Moment = ({title, time, pict, sweat}) => (
-	<View style={styles.moment}>
-		<Text style={styles.momentTitle}> {title} </Text>
-		<View style = {styles.textAndSweat}>
-			<Text style={styles.momentTime}> {time} minutes </Text>
-			{ (sweat == 0) && 
-				<View style={styles.sweat}>
-					<Image source={require('./src/sweat.png')}/>
-				</View>
-			}
-			{ (sweat == 1) && 
-				<View style={styles.sweat}>
-					<Image source={require('./src/sweat.png')}/>
-					<Image source={require('./src/sweat.png')}/>
-				</View>
-			}
-			{ (sweat == 2) && 
-				<View style={styles.sweat}>
-					<Image source={require('./src/sweat.png')}/>
-					<Image source={require('./src/sweat.png')}/>
-					<Image source={require('./src/sweat.png')}/>
-				</View>
-			}
+const Moment = ({icon, title, time, pict, sweat}) => (
+	<View style={styles.iconAndMoment}>
+		<View style={styles.icon}>
+			<Image source={icon}/>
+		</View>
+		<View style={styles.moment}>
+			<Text style={styles.momentTitle}> {title} </Text>
+			<View style = {styles.textAndSweat}>
+				<Text style={styles.momentTime}> {time} minutes </Text>
+				{ (sweat == 0) && 
+					<View style={styles.sweat}>
+						<Image source={require('./src/sweat.png')}/>
+					</View>
+				}
+				{ (sweat == 1) && 
+					<View style={styles.sweat}>
+						<Image source={require('./src/sweat.png')}/>
+						<Image source={require('./src/sweat.png')}/>
+					</View>
+				}
+				{ (sweat == 2) && 
+					<View style={styles.sweat}>
+						<Image source={require('./src/sweat.png')}/>
+						<Image source={require('./src/sweat.png')}/>
+						<Image source={require('./src/sweat.png')}/>
+					</View>
+				}
+			</View>
 		</View>
 	</View>
 )
 
 Moment.propTypes = {
+	icon: PropTypes.string,
 	title: PropTypes.string,
 	time: PropTypes.number,
 	pict: PropTypes.string,
