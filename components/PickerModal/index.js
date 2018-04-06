@@ -14,19 +14,10 @@ import styles from './styles'
 export default class PickerScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = {chosenDate: new Date(),
-                  modalVisible: true}
     this.setDate = this.setDate.bind(this)
   }
 
-  openModal = () => {
-    this.setState({modalVisible: true})
-  }
-
-  closeModal = () => {
-    this.setState({modalVisible: false})
-  }
-
+  
   setDate(newDate) {
     this.setState({chosenDate: newDate})
   }
@@ -58,7 +49,7 @@ export default class PickerScreen extends Component {
     return (
       <View style={styles.view}>
           <Modal
-            visible={this.state.modalVisible}
+            visible={this.props.modalVisible}
             justifyContent = "flex-end"
             transparent={true}>
             <View style={{
@@ -72,7 +63,7 @@ export default class PickerScreen extends Component {
                     <TouchableOpacity
                       activeOpacity = { 0.5 }
                       style={styles.opacity}
-                      onPress={this.closeModal}>
+                      onPress={this.props.closeModal}>
                         <Image
                           source={require('../../images/cancel.png')}
                           style={styles.image}/>
@@ -80,16 +71,16 @@ export default class PickerScreen extends Component {
                   <Text style={styles.transtextField}> Confirm Time </Text>
                   <Text style={styles.textField}
                         textColor = '#545680'>
-                    {this.getDateString(this.state.chosenDate)}
+                    {this.getDateString(this.props.chosenDate)}
                   </Text>
                 <View style={styles.datePicker}>
                   <DatePickerIOS
-                    date={this.state.chosenDate}
+                    date={this.props.chosenDate}
                     onDateChange={this.setDate}
                   />
                 </View>
                  <Button type='picker'
-                    onClick={() => this.closeModal()}
+                    onClick={this.props.closeModal}
                     text='Next' textColor='white'/>
                 </View>
               </View>

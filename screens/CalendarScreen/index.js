@@ -9,6 +9,8 @@ export default class CalendarScreen extends Component {
     super(props)
     this.state = {
       items: {},
+      modalVisible: false,
+      chosenDate: null,
     }
   }
   componentDidMount() {
@@ -39,10 +41,24 @@ export default class CalendarScreen extends Component {
             alignSelf = 'flex-end'
             marginTop = '40%'/>
         </TouchableOpacity>
-        {/* <PickerScreen/> */}
+        {this.state.modalVisible &&
+          <PickerScreen
+            openModal={this.openModal}
+            closeModal={this.closeModal}
+            chosenDate={this.state.chosenDate}
+          />}
       </View>
     )
   }
+
+  openModal = () => {
+    this.setState({modalVisible: true})
+  }
+
+  closeModal = () => {
+    this.setState({modalVisible: false})
+  }
+
           //   <Agenda
     //   // the list of items that have to be displayed in agenda. If you want to render item as empty date
     //   // the value of date key kas to be an empty array []. If there exists no value for date key it is
@@ -258,7 +274,11 @@ export default class CalendarScreen extends Component {
   }
   
   // haven't tested
-  editEvent() { //date, oldEvent
+  editEvent = (item) => { //date, oldEvent
+    this.setState({
+      chosenDate: item.start,
+      modalVisible: true
+    })
     // console.log((new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime())
     // RNCalendarEvents.saveEvent(oldEvent.title, {
     //   id: oldEvent.id,
@@ -270,7 +290,7 @@ export default class CalendarScreen extends Component {
   renderItem(item) {
     if (item.calendar === '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97') {
       return (
-        <TouchableOpacity onPress={this.editEvent()}>
+        <TouchableOpacity onPress={() => {this.editEvent(item)}}>
         <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
         <Text style={{color: 'white'}}>{item.name}</Text>
