@@ -1,12 +1,67 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  innerContainer: {
+  Container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
     alignItems: 'center',
+    flexDirection: 'column',
+  },
+  modal: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'column',
+  },
+  opacity: {
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-end',
+    alignItems: 'flex-end',
+    marginRight: 5,
+    height: 12,
+    width: 12,
+  },
+  filteract: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+  },
+  imageheader: {
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+    marginRight: 5,
+  },
+  innerContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: 340,
+    height: 492,
     backgroundColor: 'white',
     borderRadius: 5,
-    width: 333,
-    height: 492,
+    flexDirection: 'column',
+  },
+  image: {
+    width: 12,
+    height: 12,
+    alignSelf: 'flex-end',
+    marginTop: 15,
+    marginRight: 6,
+  },
+  bigview: {
+    marginTop: 40,
+    marginBottom: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     marginTop: 20,
@@ -16,6 +71,10 @@ export default StyleSheet.create({
   },
   buttons: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 16,
+    width: 333,
   },
 })
