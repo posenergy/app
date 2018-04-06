@@ -107,20 +107,6 @@ class MvmtModal extends Component {
     }
   }
 
-  buttonGen = (tag) => {
-    let str = "this.props."+ tag + "Action()"
-    let str1 = "this.props."+ tag
-    console.log(this.props[str], str)
-    console.log(this.props[tag], tag, "######")
-    eval(str)
-    // window["this"]["props"][tag]["Action"]();
-    if (eval(str1)){
-      this.props.del_tag(tag)
-    } else {
-      this.props.add_tag('Yoga')
-    }
-  }
-
   buttonLow = (drip) => {
     this.props.lowAction()
     this.props.sweat(drip)

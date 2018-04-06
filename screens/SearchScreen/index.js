@@ -8,7 +8,6 @@ import { mindVisibility } from '../../redux/actions/mindModalActions'
 import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
 import { connect } from 'react-redux'
 
-import Button from '../../components/Button'
 import Moment from '../../components/Moment'
 import MvmtModal from '../../components/MvmtModal'
 import MindModal from '../../components/MindModal'
@@ -117,7 +116,7 @@ class SearchScreen extends React.Component {
             }
           />
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style = {styles.activities}
             onPress={() => this.props.mvmtVisibility()}>
             <Image source={require('./src/button.png')}/>
@@ -153,7 +152,7 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-          <TouchableOpacity 
+          <TouchableOpacity
             style = {styles.activities}
             onPress={() => this.props.mindVisibility()}>
             <Image source={require('./src/button.png')}/>

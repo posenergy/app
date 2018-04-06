@@ -31,5 +31,5 @@ export default StyleSheet.create({
   },
   activities: {
     alignSelf: 'center',
-  }
+  },
 })
