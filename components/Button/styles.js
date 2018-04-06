@@ -104,11 +104,8 @@ export default StyleSheet.create({
     height: '12%',
     width: '100%',
     margin: 0,
-    backgroundColor: '#545680',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 51,
-    width: 420,
     backgroundColor: '#545680',
   },
 })

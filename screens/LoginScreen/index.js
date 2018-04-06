@@ -149,7 +149,7 @@ resetNavigation(targetRoute) {
         loading={this.state.buttonClicked}
         />
       <View style={{alignSelf: 'center'}}>
-      <TouchableHighlight onPress={()=> Alert.alert(
+      <TouchableHighlight onPress={() => Alert.alert(
           'Forgot Password?',
           'Email positiveenergy@gmail.com for help!',
           [
