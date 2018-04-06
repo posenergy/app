@@ -87,7 +87,7 @@ class MvmtModal extends Component {
     }
   }
 
-    buttonBar = (tag) => {
+  buttonBar = (tag) => {
     this.props.barAction()
 
     if (this.props.bar) {
@@ -97,13 +97,27 @@ class MvmtModal extends Component {
     }
   }
 
-    buttonYoga = (tag) => {
+  buttonYoga = (tag) => {
     this.props.yogaAction()
 
     if (this.props.yoga) {
       this.props.del_tag(tag)
     } else {
       this.props.add_tag(tag)
+    }
+  }
+
+  buttonGen = (tag) => {
+    let str = "this.props."+ tag + "Action()"
+    let str1 = "this.props."+ tag
+    console.log(this.props[str], str)
+    console.log(this.props[tag], tag, "######")
+    eval(str)
+    // window["this"]["props"][tag]["Action"]();
+    if (eval(str1)){
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag('Yoga')
     }
   }
 

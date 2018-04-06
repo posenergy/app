@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, TouchableOpacity } from 'react-native'
+import { FlatList, View, TouchableOpacity, Image } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -12,6 +12,7 @@ import Button from '../../components/Button'
 import Moment from '../../components/Moment'
 import MvmtModal from '../../components/MvmtModal'
 import MindModal from '../../components/MindModal'
+
 
 const mapStateToProps = state => ({
   visibleMind: state.toggleMindVisibility.visible,
@@ -115,12 +116,12 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-          <Button
-            type='login'
-            style={styles.buttonStyle}
-            onClick={() => this.props.mvmtVisibility()}
-            text='Filter Activities'
-          />
+
+        <TouchableOpacity 
+          style = {styles.activities}
+          onPress={() => this.props.mvmtVisibility()}>
+          <Image source={require('./src/button.png')}/>
+        </TouchableOpacity>
           {
             this.props.visibleMvmt &&
               <MvmtModal/>
@@ -152,12 +153,11 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-          <Button
-            type='login'
-            style={styles.buttonStyle}
-            onClick={() => this.props.mindVisibility()}
-            text='Filter Activities'
-          />
+        <TouchableOpacity 
+          style = {styles.activities}
+          onPress={() => this.props.mvmtVisibility()}>
+          <Image source={require('./src/button.png')}/>
+        </TouchableOpacity>
           {
             this.props.visibleMind &&
               <MindModal/>
