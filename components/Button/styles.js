@@ -8,6 +8,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(52, 52, 52, 0)',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  spinner: {
+    'paddingLeft': 20,
   },
   red: {
     fontSize: 20,

@@ -1,5 +1,12 @@
 import React from 'react'
-import { View, Alert, ScrollView, Text, ImageBackground } from 'react-native'
+import {
+  ActivityIndicator,
+  Alert,
+  ImageBackground,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 
@@ -19,6 +26,7 @@ export default class RegisterScreen2 extends ValidationComponent {
       password: '',
       confirmpassword: '',
       gender: '',
+      buttonClicked: false,
     }
   }
 
@@ -41,7 +49,18 @@ resetNavigation(targetRoute) {
  }
 
 async writeUser(name, email, password, confirmpassword, gender) {
+  if (name === '') {
+    return Alert.alert(
+      'Unable to create user',
+      'Please Input a Name',
+      [
+        {text: 'Try Again'},
+      ],
+      { cancelable: true }
+    )
+  }
   if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+    this.setState({ buttonClicked: true })
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
@@ -67,6 +86,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
           ],
           { cancelable: true }
         )
+        this.setState({ buttonClicked: false })
       } else {
         responseJSON = await response.json()
         this.resetNavigation('MainTab')
@@ -139,6 +159,10 @@ async writeUser(name, email, password, confirmpassword, gender) {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style={styles.container}>
+      {
+        this.state.buttonClicked &&
+          <ActivityIndicator size="large" />
+      }
       <ScrollView
         style={styles.view}
         showsVerticalScrollIndicator = {false}
@@ -172,7 +196,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
             Passwords must be at least 7 characters long and contain at least one number.
           </Text>
           <Button type='register'
-            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+            onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
             text='Sign Up' textColor='black'/>
         </View>
       </ScrollView>

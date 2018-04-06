@@ -1,5 +1,13 @@
 import React from 'react'
-import { View, Text, ImageBackground, ScrollView, Alert, TouchableHighlight} from 'react-native'
+import {
+  ActivityIndicator,
+  Alert,
+  ImageBackground,
+  ScrollView,
+  Text,
+  TouchableHighlight,
+  View, 
+} from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 
 import config from '../../config/config'
@@ -18,6 +26,7 @@ export default class LoginScreen extends ValidationComponent {
     this.state = {
       email: '',
       password: '',
+      buttonClicked: false,
     }
   }
 
@@ -37,7 +46,28 @@ resetNavigation(targetRoute) {
  }
 
   async loginUser(email, password) {
+  if (email === '') {
+    Alert.alert(
+      'Login Incorrect',
+      'No Email Given.',
+      [
+        {text: 'Try Again'},
+      ],
+      { cancelable: true }
+    ) 
+  }
+  if (password === '') {
+    Alert.alert(
+      'Login Incorrect',
+      'No Password Given.',
+      [
+        {text: 'Try Again'},
+      ],
+      { cancelable: true }
+    ) 
+  }
   if ((email !== '') && (password !== '')) {
+    this.setState({buttonClicked: true})
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/auth/login`
@@ -61,6 +91,7 @@ resetNavigation(targetRoute) {
           ],
           { cancelable: true }
         )
+        this.setState({buttonClicked: false})
         return false
       } else {
         this.resetNavigation('MainTab')
@@ -69,6 +100,7 @@ resetNavigation(targetRoute) {
 
       return responseJSON
     } catch(error) {
+      this.setState({buttonClicked: false})
       console.error(error)
     }
   }
@@ -113,7 +145,9 @@ resetNavigation(targetRoute) {
         passwordSecure={true}/>
       <Button
         type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
-        text='Login' textColor='black'/>
+        text='Login' textColor='black'
+        loading={this.state.buttonClicked}
+        />
       <View style={{alignSelf: 'center'}}>
       <TouchableHighlight onPress={()=> Alert.alert(
           'Forgot Password?',
