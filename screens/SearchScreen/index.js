@@ -115,7 +115,6 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-
           <TouchableOpacity
             style = {styles.activities}
             onPress={() => this.props.mvmtVisibility()}>
@@ -142,6 +141,7 @@ class SearchScreen extends React.Component {
                   brand: item.partner,
                   pict: item.img,
                   desc: item.description,
+                  // vid: item.vid,
                 })
                 }}>
                 <Moment

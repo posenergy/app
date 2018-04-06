@@ -73,6 +73,36 @@ class MindModal extends Component {
     }
   }
 
+  buttonGratitude = (tag) => {
+    this.props.gratitudeAction()
+
+    if (this.props.gratitude) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonSkin = (tag) => {
+    this.props.skinAction()
+
+    if (this.props.skin) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonInspired = (tag) => {
+    this.props.inspiredAction()
+
+    if (this.props.inspired) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
   buttonFifteen = (time) => {
     this.props.fifteenAction()
     this.props.duration(time)
@@ -109,6 +139,15 @@ class MindModal extends Component {
                 <FilterButton
                   titleProp='Meditate'
                   onPressProp={() => {this.buttonMeditate('Meditate')}} />
+                <FilterButton
+                  titleProp='Show Gratitude'
+                  onPressProp={() => {this.buttonGratitude('Gratitude')}} />
+                <FilterButton
+                  titleProp='Skin Care'
+                  onPressProp={() => {this.buttonSkin('Skin')}} />
+                <FilterButton
+                  titleProp='Get Inspired'
+                  onPressProp={() => {this.buttonInspired('Inspired')}} />
               </View>
 
               <StyleText text='DURATION'/>

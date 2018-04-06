@@ -77,10 +77,50 @@ class MvmtModal extends Component {
     }
   }
 
-  buttonRow = (tag) => {
-    this.props.rowAction()
+  buttonStrength = (tag) => {
+    this.props.strengthAction()
 
-    if (this.props.row) {
+    if (this.props.strength) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonStretch = (tag) => {
+    this.props.stretchAction()
+
+    if (this.props.stretch) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonHiit = (tag) => {
+    this.props.hiitAction()
+
+    if (this.props.hiit) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonDance = (tag) => {
+    this.props.danceAction()
+
+    if (this.props.dance) {
+      this.props.del_tag(tag)
+    } else {
+      this.props.add_tag(tag)
+    }
+  }
+
+  buttonPilates = (tag) => {
+    this.props.pilatesAction()
+
+    if (this.props.pilates) {
       this.props.del_tag(tag)
     } else {
       this.props.add_tag(tag)
@@ -175,14 +215,26 @@ class MvmtModal extends Component {
               <StyleText text='ACTIVITIES'/>
               <View style={styles.buttons}>
                 <FilterButton
+                  titleProp='Barre'
+                  onPressProp={() => this.buttonBar('Bar')} />
+                <FilterButton
+                  titleProp='Dance'
+                  onPressProp={() => this.buttonDance('Dance')} />
+                <FilterButton
+                  titleProp='HIIT'
+                  onPressProp={() => this.buttonHiit('Hiit')} />
+                <FilterButton
+                  titleProp='Pilates'
+                  onPressProp={() => this.buttonPilates('Pilates')} />
+                <FilterButton
                   titleProp='Run'
                   onPressProp={() => this.buttonRun('Run')} />
                 <FilterButton
-                  titleProp='Row'
-                  onPressProp={() => this.buttonRow('Row')} />
+                  titleProp='Strength'
+                  onPressProp={() => this.buttonStrength('Strength')} />
                 <FilterButton
-                  titleProp='Bar'
-                  onPressProp={() => this.buttonBar('Bar')} />
+                  titleProp='Stretch'
+                  onPressProp={() => this.buttonStretch('Stretch')} />
                 <FilterButton
                   titleProp='Yoga'
                   onPressProp={() => this.buttonYoga('Yoga')} />
