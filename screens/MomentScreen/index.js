@@ -29,10 +29,25 @@ class MomentScreen extends React.Component {
             brand ={this.state.brand}
             image = {require('./../images/yoga.png')}
             text = {this.state.text}
-            varelement = {<Thumbnail
-              url="https://www.youtube.com/watch?v=cBPP_izKKSs"
-              imageWidth={244}
-              imageHeight={142} />}
+            varelement = {        
+            <SchedModal
+            title = {this.state.title}
+            brand ={this.state.brand}
+            image = {require('./../images/yoga.png')}
+            text = {this.state.text}
+            varelement = {<YouTube
+              videoId="cBPP_izKKSs"
+              play={false}
+              fullscreen={true}
+              loop={false}
+
+              onReady={e => this.setState({ isReady: true })}
+              onChangeState={e => this.setState({ status: e.state })}
+              onChangeQuality={e => this.setState({ quality: e.quality })}
+              onError={e => this.setState({ error: e.error })}
+             
+              style={{ alignSelf: 'stretch', height: 142, width: 244 }}
+            />}
               varelement2 = {
                 <View style={styles.toggle}>
                   <FlipToggle
