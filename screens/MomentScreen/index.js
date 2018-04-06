@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import YouTube from 'react-native-youtube'
-import Thumbnail from 'react-native-thumbnail-video'
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
