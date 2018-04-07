@@ -84,8 +84,7 @@ export default class CalendarScreen extends Component {
     //   style={{}}
     // />
   _isOpen(day, minute) {
-    const bools = []
-    return this.state.items[day].reduce((acc, { start, end }, i) => {
+    return this.state.items[day].reduce((acc, { start, end }) => {
       if (!acc) return acc
       const startDate = new Date(start)
       const endDate = new Date(end)
@@ -153,6 +152,9 @@ export default class CalendarScreen extends Component {
         const yesterday = new Date()
         yesterday.setDate(yesterday.getDate() - 1)
         for (const time in this.state.items) {
+          if (this.state.items[time].length === 0) {
+            continue
+          }
           this.state.items[time] = this.state.items[time].filter(x => !!x.calendar)
           const now = new Date(time)
           now.setTime(this._adjustTime(now))
