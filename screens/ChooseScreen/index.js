@@ -12,7 +12,7 @@ export default class ChooseScreen extends React.Component {
         <TouchableOpacity
           onPress={(event) => {
           const { navigate } = this.props.navigation
-          navigate('Search', {category: 'Movement'})
+          navigate('Search', {category: 'movement'})
           }}>
           <Image style={styles.mvmt} source={require('./src/mvmt.png')}/>
         </TouchableOpacity>
@@ -20,7 +20,7 @@ export default class ChooseScreen extends React.Component {
         <TouchableOpacity
           onPress={(event) => {
           const { navigate } = this.props.navigation
-          navigate('Search', {category: 'Mindfulness'})
+          navigate('Search', {category: 'mindfulness'})
           }}>
           <Image style={styles.mind} source={require('./src/mind.png')}/>
         </TouchableOpacity>
