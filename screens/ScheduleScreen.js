@@ -40,17 +40,10 @@ class ScheduleScreen extends React.Component {
                                      {label: 'Thurs, Feb 4, 3:30 - 4:00 pm', value: 3 },
                                      {label: 'Fri, Feb 5, 9:00 - 9:30 am', value: 2 }]}
                       />}
-<<<<<<< HEAD
         />
         <Button type='schedule'
           onClick={() => this.saveEvent()}
           text='Add to Calendar' textColor='white'/>
-=======
-          button = {<Button type='schedule'
-                    onClick={() => this.props.navigation.navigate('Calendar')}
-                    text='Add to Calendar' textColor='white'/>}
-      />
->>>>>>> master
     </View>
 	)
   }

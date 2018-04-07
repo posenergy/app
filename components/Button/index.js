@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
 import { Text, TouchableOpacity, ActivityIndicator } from 'react-native'
-=======
-import { Text, View, TouchableOpacity } from 'react-native'
->>>>>>> master
 import PropTypes from 'prop-types'
 import styles from './styles'
 
