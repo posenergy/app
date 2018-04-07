@@ -1,11 +1,10 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 import YouTube from 'react-native-youtube'
+import {View, Text } from 'react-native'
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
 import styles from './styles'
-
 
 class MomentScreen extends React.Component {
 
@@ -40,7 +39,6 @@ class MomentScreen extends React.Component {
               onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
-             
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
             />}
             varelement2 = {
