@@ -1,5 +1,4 @@
 import React from 'react'
-import fetchival from 'fetchival'
 import { ImageBackground, ScrollView, Alert} from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
@@ -8,7 +7,7 @@ import { connect } from 'react-redux'
 import config from '../../config/config'
 import styles from './styles'
 
-import { login } from '../../redux/actions/userActions'
+import { prepopulate } from '../../redux/actions/userActions'
 import { token } from '../../redux/actions/tokenActions'
 
 import Logo from '../../components/Logo'
@@ -20,8 +19,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  login,
   token,
+  prepopulate,
 }
 
 class LoginScreen extends ValidationComponent {
@@ -31,8 +30,8 @@ class LoginScreen extends ValidationComponent {
     this.initialState = {
       email: '',
       password: '',
-    };
-    this.state = this.initialState;
+    }
+    this.state = this.initialState
   }
 
   onSubmit() {
@@ -48,6 +47,31 @@ class LoginScreen extends ValidationComponent {
         index: 0,
         actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
       }))
+  }
+
+  async fetchUserInfo(token) {
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+        },
+      })
+      if (!response.ok) {
+        return false
+      } else {
+        responseJSON = await response.json()
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email)
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
   }
 
   async loginUser(email, password) {
@@ -76,20 +100,12 @@ class LoginScreen extends ValidationComponent {
           { cancelable: true }
         )
         return false
-      } 
-      else {
-        this.props.login(this.state.email)
+      } else {
         this.resetNavigation('MainTab')
         responseJSON = await response.json()
         this.props.token(responseJSON.token)
-
-        // console.log(this.props.token(responseJSON.token))
-        // console.log("###############")
-        await console.log(this.props.token)
-
-      }
-
-      return responseJSON
+        this.fetchUserInfo(responseJSON.token)
+      } return responseJSON
     } catch(error) {
       console.error(error)
     }

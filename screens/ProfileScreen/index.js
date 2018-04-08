@@ -1,16 +1,18 @@
 import React from 'react'
 import {ScrollView} from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
-import config from '../../config/config'
 import styles from './styles'
 import Button from '../../components/Button'
 
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
+import { persistor } from '../../redux/store'
 import { token } from '../../redux/actions/tokenActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
+  user: state.userReducer,
 })
 
 const mapDispatchToProps = {
@@ -32,34 +34,15 @@ class ProfileScreen extends React.Component {
     }
   }
 
-  async getprofile(tokened) {
-    try {
-      let responseJSON
-      const apiUrl = `${config.apiUrl}/users/id`
-      const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'x-access-token': tokened,
-        },
-      })
-      if (!response.ok) {
-    console.log(this.props.token)
-
-                return false
-      } 
-      else {
-        responseJSON = await response.json()
-        console.log(responseJSON)
-      }
-
-      return responseJSON
-    } catch(error) {
-      console.error(error)
-    }
+  logout = () => {
+    persistor.purge()
+    this.props.navigation.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        key: null,
+        actions: [ NavigationActions.navigate({ routeName: 'Landing' }) ],
+      }))
   }
-
 
   render() {
     return (
@@ -67,12 +50,12 @@ class ProfileScreen extends React.Component {
         contentContainerStyle={styles.view}
         showsVerticalScrollIndicator = {false} >
       <BlackStyleTextInput
-        pholder='Name'
+        pholder={this.props.user.name}
         imagelink = {require('../../images/profileblack.png')}
         changeFunction={name => this.setState({name})}
         borderBottomColor= 'black'/>
       <BlackStyleTextInput
-        pholder='Email'
+        pholder={this.props.user.email}
         imagelink = {require('../../images/mailblack.png')}
         changeFunction={email => this.setState({email})}/>
       <BlackStyleTextInput
@@ -81,27 +64,27 @@ class ProfileScreen extends React.Component {
         changeFunction={password => this.setState({password})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder='Buffer Time'
+        pholder={this.props.user.buffer.toString()}
         imagelink = {require('../../images/buffertime.png')}
         changeFunction={buffertime => this.setState({buffertime})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder='Wakeup'
+        pholder={this.props.user.startTime.toString()}
         imagelink = {require('../../images/sun.png')}
         changeFunction={wakeup => this.setState({wakeup})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder='Bedtime'
+        pholder={this.props.user.endTime.toString()}
         imagelink = {require('../../images/night.png')}
         changeFunction={bedtime => this.setState({bedtime})}
         passwordSecure={true}/>
-      <Button 
-      type = 'login'
-      onClick = {() => this.getprofile(this.state.token)}>
+      <Button
+        type = 'schedule'
+        onClick = {() => {this.logout()}}>
       </Button>
       </ScrollView>
     )
   }
 }
 
-export default connect ( mapStateToProps, mapDispatchToProps)(ProfileScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

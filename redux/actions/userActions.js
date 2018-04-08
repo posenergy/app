@@ -1,14 +1,12 @@
-export const LOGIN = 'LOGIN'
-export const LOGOUT = 'LOGOUT'
+export const PREPOPULATE = 'PREPOPULATE'
 
-export const login = (email) => {
+export const prepopulate = (name, buffer, start, end, email) => {
   return {
-    type: 'LOGIN',
+    type: 'PREPOPULATE',
+    name: name,
+    buffer: buffer,
+    startTime: start,
+    endTime: end,
     email: email,
-  }
-}
- 
-export const signup = (username, password) => {
-  return (dispatch) => {
   }
 }

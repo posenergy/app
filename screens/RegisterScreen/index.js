@@ -2,14 +2,27 @@ import React from 'react'
 import { View, Alert, ScrollView, Text, ImageBackground } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
 
 import config from '../../config/config'
 import styles from './styles'
 
+import { token } from '../../redux/actions/tokenActions'
+import { prepopulate } from '../../redux/actions/userActions'
+
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
 
-export default class RegisterScreen2 extends ValidationComponent {
+const mapStateToProps = state => ({
+  token: state.token,
+})
+
+const mapDispatchToProps = {
+  token,
+  prepopulate,
+}
+
+class RegisterScreen extends ValidationComponent {
   constructor(props) {
     super(props)
 
@@ -32,51 +45,77 @@ export default class RegisterScreen2 extends ValidationComponent {
     })
   }
 
-resetNavigation(targetRoute) {
-   const navigateAction = NavigationActions.reset({
-     index: 0,
-     actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
-   })
-   this.props.navigation.dispatch(navigateAction)
- }
+  resetNavigation(targetRoute) {
+     const navigateAction = NavigationActions.reset({
+       index: 0,
+       actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
+     })
+     this.props.navigation.dispatch(navigateAction)
+   }
 
-async writeUser(name, email, password, confirmpassword, gender) {
-  if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+  async fetchUserInfo(token) {
     try {
       let responseJSON
-      const apiUrl = `${config.apiUrl}/users`
-      let response = await fetch(apiUrl, {
-        method: 'POST',
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'x-access-token': token,
         },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          hash: password,
-          gender: gender,
-        }),
       })
       if (!response.ok) {
-        Alert.alert(
-          'Unable to create user',
-          'Please try again! Is it possible that your email is already in use?',
-          [
-            {text: 'Try Again'},
-          ],
-          { cancelable: true }
-        )
+        return false
       } else {
         responseJSON = await response.json()
-        this.resetNavigation('MainTab')
-      }
-      return responseJSON
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email)
+      } return responseJSON
     } catch(error) {
       console.error(error)
     }
   }
-}
+
+  async writeUser(name, email, password, confirmpassword) {
+    if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+      try {
+        let responseJSON
+        const apiUrl = `${config.apiUrl}/users`
+        let response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            hash: password,
+          }),
+        })
+        if (!response.ok) {
+          Alert.alert(
+            'Unable to create user',
+            'Please try again! Is it possible that your email is already in use?',
+            [
+              {text: 'Try Again'},
+            ],
+            { cancelable: true }
+          )
+        } else {
+          responseJSON = await response.json()
+          await this.props.token(responseJSON.token)
+          this.fetchUserInfo(responseJSON.token)
+          this.resetNavigation('MainTab')
+        }
+        return responseJSON
+      } catch(error) {
+        console.error(error)
+      }
+    }
+  }
 
 
   validEmail(email) {
@@ -172,7 +211,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
             Passwords must be at least 7 characters long and contain at least one number.
           </Text>
           <Button type='register'
-            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
             text='Sign Up' textColor='black'/>
         </View>
       </ScrollView>
@@ -182,4 +221,4 @@ async writeUser(name, email, password, confirmpassword, gender) {
 
 }
 
-
+export default connect(mapStateToProps, mapDispatchToProps) (RegisterScreen)

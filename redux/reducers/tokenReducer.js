@@ -1,13 +1,13 @@
 import { TOKEN } from '../actions/tokenActions'
 
 const initialState = {
-  token: ''
+  token: '',
 }
 
 const tokenReducer = (state = initialState, action) => {
   switch (action.type) {
       case TOKEN:
-        return Object.assign({}, state, { 
+        return Object.assign({}, state, {
           token: action.token,
         })
     default: return state
