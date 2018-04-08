@@ -5,9 +5,14 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   button: {
     padding: 10,
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(52, 52, 52, 0)',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  spinner: {
+    'paddingLeft': 20,
   },
   red: {
     fontSize: 20,
@@ -134,19 +139,18 @@ export default StyleSheet.create({
   },
  schedule: {
     height: 49,
-    width: '100%',
+    width: 292,
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     alignItems: 'center',
-
   },
   picker: {
     height: '12%',
     width: '100%',
     margin: 0,
-    backgroundColor: '#545680',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#545680',
   },
 })

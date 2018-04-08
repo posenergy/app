@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
@@ -22,10 +22,12 @@ export default class Button extends Component {
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
+    loading: PropTypes.bool,
   }
   static defaultProps = {
     type: 'default',
     text: '',
+    loading: false,
   }
 
   _renderText = () =>
@@ -34,6 +36,9 @@ export default class Button extends Component {
   _renderIcon = () =>
     this.props.icon !== '' &&
     this.props.icon
+  _renderLoader = () =>
+    this.props.loading &&
+    <ActivityIndicator size="large" style={styles.spinner}/>
 
   render() {
     if (this.props.type === 'filter') {
@@ -59,6 +64,7 @@ export default class Button extends Component {
         {this.props.img}
         {this._renderIcon()}
         {this._renderText()}
+        {this._renderLoader()}
       </TouchableOpacity>
     )
   }
