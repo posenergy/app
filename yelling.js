@@ -55,13 +55,16 @@ const styles = StyleSheet.create({
   },
   headerText: {
     textAlign: 'left',
-    fontSize: 14,
-    width: 270,
+    fontSize: 16,
+    fontWeight: '500',
     fontWeight: 'bold',
   },
   content: {
     padding: 20,
     backgroundColor: '#fff',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
   active: {
     backgroundColor: 'white',
@@ -73,9 +76,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
-  },
-  contentText: {
-    marginLeft: 20,
   },
 })
 
@@ -93,23 +93,14 @@ export default class ExampleView extends Component {
     this.setState({ activeSection: section })
   }
 
-  imageDecide = () => {
-    if (isActive){
-      return (require('./src/filledicon.png'))
-    }
-    else{
-      return (require('./src/icon.png'))
-    }
-  }
-
   _renderHeader(section, i, isActive) {
     return (
       <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
         <View style={styles.imagecont}>
         <Image
           marginRight={8}
-          marginLeft={20}
-          source= {isActive ? require('./src/filledicon.png'): require('./src/icon.png')}
+          marginLeft={15}
+          source={require('./src/icon.png')}
         />
         <Text style={styles.headerText}>{section.title}</Text>
         </View>
@@ -120,7 +111,7 @@ export default class ExampleView extends Component {
   _renderContent(section, i, isActive) {
     return (
       <Animatable.View duration={400} style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-        <Animatable.Text style={styles.contentText} animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
+        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
       </Animatable.View>
     )
   }

@@ -4,6 +4,7 @@ import styles from './styles'
 
 import Logo from '../../components/Logo'
 import Button from '../../components/Button'
+import AboutModal from '../../components/AboutModal'
 
 export default class LandingScreen extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class LandingScreen extends React.Component {
       source={require('../../images/gradient.png')}
       style = {styles.viewStyle}>
         <ScrollView>
+        <AboutModal/>
         <Logo />
         <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Register')}
           text="Sign Up" textColor="grey"
