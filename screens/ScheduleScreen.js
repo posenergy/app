@@ -4,6 +4,8 @@ import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
+import RNCalendarEvents from 'react-native-calendar-events'
+
 class ScheduleScreen extends React.Component {
 
   constructor(props) {
@@ -18,9 +20,12 @@ class ScheduleScreen extends React.Component {
   }
 
   saveEvent(){
-    RNCalendarEvents.saveEvent('henlo', {
-      startDate: '2018-04-05T19:16:00.000Z', //selected button
-      endDate: '2018-04-05T19:20:00.000Z', //selected button
+    const desc = this.state.brand + ': ' + this.state.text + '\nCurated for you by [+energy]'
+    RNCalendarEvents.saveEvent(this.state.title, {
+      startDate: '2018-04-09T10:16:00.000Z', //selected button
+      endDate: '2018-04-09T19:20:00.000Z', //selected button
+      url: 'youtube.com',
+      notes: desc,
       calendarID: '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97', //+energy cal id
     })
     this.props.navigation.navigate('Calendar')

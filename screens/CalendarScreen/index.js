@@ -4,6 +4,7 @@ import { Agenda } from 'react-native-calendars'
 import RNCalendarEvents from 'react-native-calendar-events'
 import styles from './styles'
 import PickerScreen from '../../components/PickerModal'
+
 export default class CalendarScreen extends Component {
   constructor(props) {
     super(props)
@@ -36,7 +37,8 @@ export default class CalendarScreen extends Component {
           
         />
         <TouchableOpacity
-          style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}>
+          style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
+          onPress={() => this.addEvent()}>
           <Image source={require('../../images/plus.png')}
             alignSelf = 'flex-end'
             marginTop = '40%'/>
@@ -127,6 +129,7 @@ export default class CalendarScreen extends Component {
             this.state.items[strTime] = []
           }
           let alreadyExists = false
+          let is_posE = false
           const eventID = event.id
           // if event already exists, dont add it to new items when day reloads
           for (let i = 0; i < this.state.items[strTime].length; i++) {
@@ -139,6 +142,10 @@ export default class CalendarScreen extends Component {
           // so don't need to .splice() to insert into current location, can just push
           // @noah, you're gonna have to insert into the right index, after this.state.items[strTime] is
           // populated with all events in day bc it renders in order of what's in the list
+          console.log(event)
+          if (event.notes.includes("[+energy]")){
+            is_posE = true
+          }
           if (!alreadyExists) {
             const startDate2 = new Date(event.startDate)
             // startDate2.setTime(this._adjustTime(startDate2))
@@ -159,6 +166,7 @@ export default class CalendarScreen extends Component {
               timeRange: timeRange,
               calendar: event.calendar.id,
               height: eventHeight,
+              posE: is_posE
             })
           }
         })
@@ -168,15 +176,11 @@ export default class CalendarScreen extends Component {
         const yesterday = new Date()
         yesterday.setDate(yesterday.getDate() - 1)
         for (const time in this.state.items) {
-          if (this.state.items[time].length === 0) {
-            continue
-          }
+
           this.state.items[time] = this.state.items[time].filter(x => !!x.calendar)
           const now = new Date(time)
           now.setTime(this._adjustTime(now))
-          if (now < yesterday) {
-            continue
-          }
+
           let minutes = 0
           const slots = Array.from({ length: 1440 }, (x, i) => i)
                              .filter(n => n > START_TIME && n < END_TIME)
@@ -249,32 +253,6 @@ export default class CalendarScreen extends Component {
     }, 1000)
   }
   
-  oldLoadItems(day) {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000
-        const strTime = this.timeToString(time)
-        if (!this.state.items[strTime]) {
-            this.state.items[strTime] = []
-          const numItems = Math.floor(Math.random() * 5)
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
-            })
-          }
-        }
-      }
-      // console.log(this.state.items)
-      const newItems = {}
-      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
-      this.setState({
-        items: newItems,
-      })
-    }, 1000)
-    // console.log(`Load Items for ${day.year}-${day.month}`)
-  }
-  
   // haven't tested
   editEvent = (item) => { //date, oldEvent
     this.setState({
@@ -290,10 +268,10 @@ export default class CalendarScreen extends Component {
     // })
   }
   renderItem(item) {
-    if (item.calendar === '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97') {
+    if (item.posE) {
       return (
         <TouchableOpacity onPress={() => {this.editEvent(item)}}>
-        <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
+        <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 1)'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
         <Text style={{color: 'white'}}>{item.name}</Text>
         {item.height > 60 &&
@@ -312,7 +290,7 @@ export default class CalendarScreen extends Component {
         </TouchableOpacity>
       )
     }
-    return (
+    else return (
       <View style={[styles.item, {height: item.height}]}>
       <Text>{item.timeRange}</Text>
       <Text>{item.name}</Text>
@@ -320,8 +298,12 @@ export default class CalendarScreen extends Component {
     )
   }
   addEvent(){
+    this.setState({
+      chosenDate: new Date(),
+      modalVisible: true,
+    })
   }
-  renderEmptyDate() {
+  renderEmptyDate(day) {
     return (
       <TouchableOpacity onPress = {() => this.addEvent()}>
       <View style={styles.emptyDate}><Text style={{color: 'white'}}>Add +energy event!</Text></View>
