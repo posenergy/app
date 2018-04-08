@@ -2,12 +2,12 @@ import React from 'react'
 import { View } from 'react-native'
 import SchedModal from '../components/SchedModal'
 import RNCalendarEvents from 'react-native-calendar-events'
-
+import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 
 class ScheduleScreen extends React.Component {
-  
+
   constructor(props) {
   super(props)
 
@@ -17,6 +17,7 @@ class ScheduleScreen extends React.Component {
       text: this.props.navigation.state.params.desc,
       items: {},
       buttons: [],
+      brand: this.props.navigation.state.params.brand,
     }
   }
 
@@ -146,9 +147,10 @@ class ScheduleScreen extends React.Component {
   render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <SchedModal
+      <SelectTime
           title = {this.state.title}
           image = {require('./../images/yoga.png')}
+          brand = {this.state.brand}
           text = {this.state.text}
           varelement = {<RadioButtonList
                         radioprops = {this.state.buttons}

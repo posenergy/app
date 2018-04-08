@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
 export default class Button extends Component {
   static propTypes = {
     text: PropTypes.string,
-    textColor: PropTypes.oneOf(['red', 'white', 'black', 'whiteButtonText', 'blue', 'boldBlack']),
+    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'black', 'blacksmall', 'whiteButtonText', 'blue', 'boldBlack']),
     onClick: PropTypes.func.isRequired,
     onLong: PropTypes.func,
     type: PropTypes.oneOf([
@@ -17,6 +17,8 @@ export default class Button extends Component {
       'filter',
       'schedule',
       'picker',
+      'filterButton',
+      'mindmodal',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
@@ -41,14 +43,17 @@ export default class Button extends Component {
   render() {
     if (this.props.type === 'filter') {
       return (
-      <TouchableOpacity
-        onPress={this.props.onClick}
-        style={[styles.filterButton, styles[this.props.type]]}
-      >
-        {this.props.img}
-        {this._renderIcon()}
-        {this._renderText()}
-      </TouchableOpacity>
+      <View
+        style={styles.wrapview}
+        width={this.props.width}>
+        <TouchableOpacity
+          onPress={this.props.onClick}
+          style={[styles[this.props.type]]}>
+          {this.props.img}
+          {this._renderIcon()}
+          {this._renderText()}
+        </TouchableOpacity>
+      </View>
     )
     }
     return (
