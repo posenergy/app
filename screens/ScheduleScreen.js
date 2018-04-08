@@ -16,15 +16,15 @@ class ScheduleScreen extends React.Component {
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
       items: {},
-      buttons: []
+      buttons: [],
     }
   }
 
-  saveEvent(){
+  saveEvent() {
     RNCalendarEvents.saveEvent('henlo', {
-      startDate: '2018-04-05T19:16:00.000Z', //selected button
-      endDate: '2018-04-05T19:20:00.000Z', //selected button
-      calendarID: '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97', //+energy cal id
+      startDate: '2018-04-05T19:16:00.000Z', // selected button
+      endDate: '2018-04-05T19:20:00.000Z', // selected button
+      calendarID: '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97', // +energy cal id
     })
     this.props.navigation.navigate('Calendar')
   }
@@ -34,7 +34,7 @@ class ScheduleScreen extends React.Component {
       if (!acc) return acc
       const startDate = new Date(start)
       const endDate = new Date(end)
-      return (minute < startDate) || (minute > endDate)
+      return minute < startDate || minute > endDate
     }, true)
   }
 
@@ -61,7 +61,7 @@ class ScheduleScreen extends React.Component {
     startDate.setSeconds(0)
     startDate.setMilliseconds(0)
     // next week
-    endDate = new Date()
+    const endDate = new Date()
     endDate.setSeconds(0)
     endDate.setMilliseconds(0)
     endDate.setDate(endDate.getDate() + 10)
@@ -71,7 +71,7 @@ class ScheduleScreen extends React.Component {
           const strTime = event.occurrenceDate.split('T')[0]
           if (!this.state.items[strTime]) {
             this.state.items[strTime] = []
-          } 
+          }
           if (!event.allDay) {
             const startDate2 = new Date(event.startDate)
             const endDate2 = new Date(event.endDate)
@@ -83,13 +83,12 @@ class ScheduleScreen extends React.Component {
             })
           }
         })
-        const days = [0,1,2,3,4,5,6,7,8,9]
+        const days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         const times = []
         let num_scheduled
-        for (day of days) {
+        for (const day of days) {
           num_scheduled = 0
           if (times.length >= 5) {
-            console.log(times)
             this.setState({ buttons: times.slice(0, 5) })
             return
           }
@@ -116,7 +115,7 @@ class ScheduleScreen extends React.Component {
             }
             const currTime = new Date(now.getTime() + minute * 60000)
             const key = this.timeToString(currTime)
-            const isOpen = !!this.state.items[key] ? this._isOpen(key, currTime) : true
+            const isOpen = this.state.items[key] ? this._isOpen(key, currTime) : true
             if (!isOpen) {
               minutes = 0
               return
@@ -139,15 +138,6 @@ class ScheduleScreen extends React.Component {
           })
         }
         this.setState({ buttons: times })
-
-        // [
-        //   {label: 'Wed, Feb 3, 5:30 - 6:00 pm', value: 0 },
-        //   {label: 'Wed, Feb 3, 6:00 - 6:30 pm', value: 1 },
-        //   {label: 'Thurs, Feb 4, 9:00 - 9:30 am', value: 2 },
-        //   {label: 'Thurs, Feb 4, 3:30 - 4:00 pm', value: 3 },
-        //   {label: 'Fri, Feb 5, 9:00 - 9:30 am', value: 2 }
-        // ]
-                      
       }).catch(err => {
         console.error(err)
       })

@@ -34,8 +34,8 @@ export default class Button extends Component {
   _renderIcon = () =>
     this.props.icon !== '' &&
     this.props.icon
-  _renderLoader = () => 
-    this.props.loading && 
+  _renderLoader = () =>
+    this.props.loading &&
     <ActivityIndicator size="large" style={styles.spinner}/>
 
   render() {

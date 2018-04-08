@@ -38,7 +38,8 @@ export default class CalendarScreen extends Component {
           
         />
         <TouchableOpacity
-          style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}>
+          style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
+          onPress={this.addEvent}>
           <Image source={require('../../images/plus.png')}
             alignSelf = 'flex-end'
             marginTop = '40%'/>
@@ -58,50 +59,7 @@ export default class CalendarScreen extends Component {
   closeModal = () => {
     this.setState({modalVisible: false})
   }
-          //   <Agenda
-    //   // the list of items that have to be displayed in agenda. If you want to render item as empty date
-    //   // the value of date key kas to be an empty array []. If there exists no value for date key it is
-    //   // considered that the date in question is not yet loaded
-    //   items={this.state.items}
-    //   // callback that gets called when items for a certain month should be loaded (month became visible)
-    //   loadItemsForMonth={this.loadItems.bind(this)}
-    //   // callback that fires when the calendar is opened or closed
-    //   onCalendarToggled={(calendarOpened) => {console.log(calendarOpened)}}
-    //   // callback that gets called on day press
-    //   onDayPress={(day)=>{console.log('day pressed')}}
-    //   // callback that gets called when day changes while scrolling agenda list
-    //   onDayChange={(day)=>{console.log('day changed')}}
-    //   // Max amount of months allowed to scroll to the past. Default = 50
-    //   pastScrollRange={50}
-    //   // Max amount of months allowed to scroll to the future. Default = 50
-    //   futureScrollRange={50}
-    //   // specify how each item should be rendered in agenda
-    //   renderItem={(item, firstItemInDay) => {return (<View />)}}
-    //   // specify how each date should be rendered. day can be undefined if the item is not first in that day.
-    //   renderDay={(day, item) => {return (<View />)}}
-    //   // specify how empty date content with no items should be rendered
-    //   renderEmptyDate={() => {return (<View />)}}
-    //   // specify how agenda knob should look like
-    //   renderKnob={() => {return (<View />)}}
-    //   // specify what should be rendered instead of ActivityIndicator
-    //   renderEmptyData = {() => {return (<View />)}}
-    //   // specify your item comparison function for increased performance
-    //   rowHasChanged={(r1, r2) => {return r1.text !== r2.text}}
-    //   // Hide knob button. Default = false
-    //   hideKnob={true}
-    //   // By default, agenda dates are marked if they have at least one item, but you can override this if needed
-    //   markedDates={{
-    //     '2012-05-16': {selected: true, marked: true},
-    //     '2012-05-17': {marked: true},
-    //     '2012-05-18': {disabled: true}
-    //   }}
-    //   // agenda container style
-    //   style={{}}
-    // />
   _isOpen(day, minute) {
-    if (day === '2018-04-08') {
-      console.log(minute.toString(), this.state.items[day].map(x=>x.start.toString()))
-    }
     return this.state.items[day].reduce((acc, { start, end, timeRange }) => {
       if (!acc || timeRange === 'All Day') return acc
       const startDate = moment(start)
@@ -127,6 +85,7 @@ export default class CalendarScreen extends Component {
             this.state.items[strTime] = []
           }
           let alreadyExists = false
+          let is_posE = false
           const eventID = event.id
           // if event already exists, dont add it to new items when day reloads
           for (let i = 0; i < this.state.items[strTime].length; i++) {
@@ -134,11 +93,9 @@ export default class CalendarScreen extends Component {
               alreadyExists = true
             }
           }
-          // if event doesn't already exist, push it to the list with key of date. this works bc the
-          // fetch all events already has them in order,
-          // so don't need to .splice() to insert into current location, can just push
-          // @noah, you're gonna have to insert into the right index, after this.state.items[strTime] is
-          // populated with all events in day bc it renders in order of what's in the list
+          if (event.notes.includes('[+energy]')) {
+            is_posE = true
+          }
           if (!alreadyExists) {
             const startDate2 = new Date(event.startDate)
             // startDate2.setTime(this._adjustTime(startDate2))
@@ -158,6 +115,7 @@ export default class CalendarScreen extends Component {
               timeRange: timeRange,
               calendar: event.calendar.id,
               height: eventHeight,
+              posE: is_posE,
             })
           }
         })
@@ -169,7 +127,7 @@ export default class CalendarScreen extends Component {
           if (this.state.items[time].length === 0) {
             continue
           }
-          this.state.items[time] = this.state.items[time].filter(x => !!x.calendar)
+          this.state.items[time] = this.state.items[time].filter(x => Boolean(x.calendar))
           const now = moment(time)
           if (now < yesterday) {
             continue
@@ -183,11 +141,8 @@ export default class CalendarScreen extends Component {
             if (isOpen) {
               minutes += 1
             }
-            if (time === '2018-04-08') {
-              // console.log('isOpen', now.toString())
-            }
             // if minutes is > an hour, or we hit a not open slot, or we are at end of day
-            if (minutes >= 60 || (!isOpen && minutes > 0) || (minute === END_TIME-1 && minutes > 0)) {
+            if (minutes >= 60 || (!isOpen && minutes > 0) || (minute === END_TIME - 1 && minutes > 0)) {
               const startDate2 = currTime.clone().subtract(minutes, 'minute')
               const endDate2 = currTime
               const addZeros = i => i > 9 ? `${i}` : `0${i}`
@@ -247,22 +202,14 @@ export default class CalendarScreen extends Component {
       })
     }, 1000)
   }
-  // haven't tested
-  editEvent = (item) => { //date, oldEvent
+  editEvent = (item) => {
     this.setState({
       chosenDate: item.start,
-      modalVisible: true
+      modalVisible: true,
     })
-    // console.log((new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime())
-    // RNCalendarEvents.saveEvent(oldEvent.title, {
-    //   id: oldEvent.id,
-    //   startDate: date,
-    //   endDate: (new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime(),
-    //   url: oldEvent.url,
-    // })
   }
   renderItem(item) {
-    if (item.calendar === '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97') {
+    if (item.posE) {
       return (
         <TouchableOpacity onPress={() => {this.editEvent(item)}}>
         <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
@@ -273,8 +220,7 @@ export default class CalendarScreen extends Component {
         </View>
         </TouchableOpacity>
       )
-    }
-    else if (!item.calendar) {
+    } else if (!item.calendar) {
       return (
         <TouchableOpacity onPress = {() => this.addEvent()}>
         <View style={styles.emptyDate}>
@@ -291,7 +237,11 @@ export default class CalendarScreen extends Component {
       </View>
     )
   }
-  addEvent(){
+  addEvent() {
+    this.setState({
+      chosenDate: new Date(),
+      modalVisible: true,
+    })
   }
   renderEmptyDate() {
     return (

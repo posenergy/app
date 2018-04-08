@@ -1,12 +1,11 @@
 import React from 'react'
 import {
-  ActivityIndicator,
   Alert,
   ImageBackground,
   ScrollView,
   Text,
   TouchableHighlight,
-  View, 
+  View,
 } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 
@@ -54,7 +53,7 @@ resetNavigation(targetRoute) {
         {text: 'Try Again'},
       ],
       { cancelable: true }
-    ) 
+    )
   }
   if (password === '') {
     Alert.alert(
@@ -64,7 +63,7 @@ resetNavigation(targetRoute) {
         {text: 'Try Again'},
       ],
       { cancelable: true }
-    ) 
+    )
   }
   if ((email !== '') && (password !== '')) {
     this.setState({buttonClicked: true})

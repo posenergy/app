@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  ActivityIndicator,
   Alert,
   ImageBackground,
   ScrollView,

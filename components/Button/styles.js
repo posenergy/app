@@ -5,7 +5,6 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   button: {
     padding: 10,
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(52, 52, 52, 0)',
     flexWrap: 'wrap',
