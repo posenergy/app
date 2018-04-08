@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imagecont: {
-    flexDirection:'row',
+    flexDirection: 'row',
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
   },
@@ -93,15 +93,6 @@ export default class ExampleView extends Component {
     this.setState({ activeSection: section })
   }
 
-  imageDecide = () => {
-    if (isActive){
-      return (require('./src/filledicon.png'))
-    }
-    else{
-      return (require('./src/icon.png'))
-    }
-  }
-
   _renderHeader(section, i, isActive) {
     return (
       <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
@@ -109,7 +100,7 @@ export default class ExampleView extends Component {
         <Image
           marginRight={8}
           marginLeft={20}
-          source= {isActive ? require('./src/filledicon.png'): require('./src/icon.png')}
+          source= {isActive ? require('./src/filledicon.png') : require('./src/icon.png')}
         />
         <Text style={styles.headerText}>{section.title}</Text>
         </View>
