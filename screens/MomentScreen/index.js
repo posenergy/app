@@ -1,6 +1,6 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
-import {View, Text } from 'react-native'
+import {View, Text, Image } from 'react-native'
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
@@ -39,9 +39,11 @@ class MomentScreen extends React.Component {
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
             />)
     } else {
-      return (<View
-          height={142}
-          width={244}/>)
+      return (<View height={142} width={244}>
+                <Image
+                  style={{flex: 1}}
+                  source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}/>
+              </View>)
     }
   }
 
