@@ -8,25 +8,38 @@ import {
   View,
 } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
+import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
 
 import config from '../../config/config'
 import styles from './styles'
 
+import { prepopulate } from '../../redux/actions/userActions'
+import { token } from '../../redux/actions/tokenActions'
+
 import Logo from '../../components/Logo'
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
-import { NavigationActions } from 'react-navigation'
 
+const mapStateToProps = state => ({
+  token: state.token,
+})
 
-export default class LoginScreen extends ValidationComponent {
+const mapDispatchToProps = {
+  token,
+  prepopulate,
+}
+
+class LoginScreen extends ValidationComponent {
   constructor(props) {
     super(props)
 
-    this.state = {
+    this.initialState = {
       email: '',
       password: '',
       buttonClicked: false,
     }
+    this.state = this.initialState
   }
 
   onSubmit() {
@@ -36,13 +49,38 @@ export default class LoginScreen extends ValidationComponent {
     })
   }
 
-resetNavigation(targetRoute) {
-   const navigateAction = NavigationActions.reset({
-     index: 0,
-     actions: [ NavigationActions.navigate({ routeName: targetRoute}) ],
-   })
-   this.props.navigation.dispatch(navigateAction)
- }
+  resetNavigation(targetRoute) {
+    this.props.navigation.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+      }))
+  }
+
+  async fetchUserInfo(token) {
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+        },
+      })
+      if (!response.ok) {
+        return false
+      } else {
+        responseJSON = await response.json()
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email)
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
+  }
 
   async loginUser(email, password) {
   if (email === '') {
@@ -95,9 +133,9 @@ resetNavigation(targetRoute) {
       } else {
         this.resetNavigation('MainTab')
         responseJSON = await response.json()
-      }
-
-      return responseJSON
+        this.props.token(responseJSON.token)
+        this.fetchUserInfo(responseJSON.token)
+      } return responseJSON
     } catch(error) {
       this.setState({buttonClicked: false})
       console.error(error)
@@ -105,22 +143,6 @@ resetNavigation(targetRoute) {
   }
 }
 
-  // async getActiveRecent() {
-  //   try {
-  //     const response = await fetch(config.apiUrl + '/users', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     })
-  //     if (response.ok) {
-  //       const responseJSON = await response.json()
-  //     }
-  //   } catch(error) {
-  //     console.error(error)
-  //   }
-  // }
 
   render() {
     return (
@@ -164,3 +186,5 @@ resetNavigation(targetRoute) {
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

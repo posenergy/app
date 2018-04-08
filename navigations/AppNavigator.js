@@ -1,12 +1,16 @@
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
+import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainTabNavigator from './MainTab'
 
 const AppNavigator = StackNavigator({
+  Splash: {
+    screen: SplashScreen,
+  },
   Landing: {
     screen: LandingScreen,
   },
