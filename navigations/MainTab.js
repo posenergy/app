@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, TouchableOpacity } from 'react-native'
-import {TabNavigator } from 'react-navigation' // 1.0.0-beta.14
+import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
 import ActivitiesStack from './ActivitiesStack'
 import CalendarScreen from '../screens/CalendarScreen'

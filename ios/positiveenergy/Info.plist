@@ -52,7 +52,7 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>This app requires access to the calendar</string>
+	<string>[+energy] uses your calendar to schedule wellness activities. Your information will not be shared.</string>
 	<key>CodePushDeploymentKey</key>
 	<string>deployment-key-here</string>
 	<key>UIAppFonts</key>
@@ -86,6 +86,9 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>CIRCULARSTD-BLACK_0.ttf</string>
+		<string>CIRCULARSTD-BOLD.ttf</string>
+		<string>CIRCULARSTD-BOOK_0.ttf</string>
 	</array>
 </dict>
 </plist>
