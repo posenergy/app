@@ -145,11 +145,7 @@ export default StyleSheet.create({
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
-<<<<<<< HEAD
-=======
     alignItems: 'center',
-
->>>>>>> origin
   },
   picker: {
     height: '12%',

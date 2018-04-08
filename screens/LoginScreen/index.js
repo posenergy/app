@@ -143,7 +143,6 @@ resetNavigation(targetRoute) {
         changeFunction={password => this.setState({password})}
         passwordSecure={true}/>
       <Button
-<<<<<<< HEAD
         type='login' onClick={() => !this.state.buttonClicked && this.loginUser(this.state.email, this.state.password)}
         text='Login' textColor='black'
         loading={this.state.buttonClicked}
@@ -160,10 +159,6 @@ resetNavigation(targetRoute) {
       <Text style={{color: 'white'}}>Forgot Password?</Text>
       </TouchableHighlight>
       </View>
-=======
-        type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
-        text='Login' textColor='grey'/>
->>>>>>> origin
       </ScrollView>
       </ImageBackground>
     )

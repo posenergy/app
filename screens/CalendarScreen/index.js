@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { Agenda } from 'react-native-calendars'
 import RNCalendarEvents from 'react-native-calendar-events'
 import styles from './styles'
-import PickerScreen from '../../components/PickerModal'
+import PickerModal from '../../components/PickerModal'
 import moment from 'moment'
 
 export default class CalendarScreen extends Component {
@@ -11,9 +11,20 @@ export default class CalendarScreen extends Component {
     super(props)
     this.state = {
       items: {},
-      modalVisible: false,
+      pickerModalVisible: false,
       chosenDate: null,
+      setDate: () => this.setPickerDate
     }
+  }
+  openPickerModal = () => {
+    this.setState({pickerModalVisible: true})
+  }
+  closePickerModal = () => {
+    this.setState({pickerModalVisible: false})
+  }
+  
+  setPickerDate(newDate) {
+    this.setState({chosenDate: newDate})
   }
   componentDidMount() {
     RNCalendarEvents.authorizeEventStore()
@@ -39,25 +50,20 @@ export default class CalendarScreen extends Component {
         />
         <TouchableOpacity
           style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
-          onPress={this.addEvent}>
+          onPress={this.addEvent.bind(this)}>
           <Image source={require('../../images/plus.png')}
             alignSelf = 'flex-end'
             marginTop = '40%'/>
         </TouchableOpacity>
-        {this.state.modalVisible &&
-          <PickerScreen
-            openModal={this.openModal}
-            closeModal={this.closeModal}
+        {this.state.pickerModalVisible &&
+          <PickerModal
+            openPickerModal={this.openPickerModal}
+            closePickerModal={this.closePickerModal}
             chosenDate={this.state.chosenDate}
+            setDate={this.state.setDate}
           />}
       </View>
     )
-  }
-  openModal = () => {
-    this.setState({modalVisible: true})
-  }
-  closeModal = () => {
-    this.setState({modalVisible: false})
   }
   _isOpen(day, minute) {
     return this.state.items[day].reduce((acc, { start, end, timeRange }) => {
@@ -205,7 +211,13 @@ export default class CalendarScreen extends Component {
   editEvent = (item) => {
     this.setState({
       chosenDate: item.start,
-      modalVisible: true,
+      pickerModalVisible: true
+    })
+  }
+  addEvent() {
+    this.setState({
+      chosenDate: new Date(),
+      pickerModalVisible: true
     })
   }
   renderItem(item) {
@@ -222,7 +234,7 @@ export default class CalendarScreen extends Component {
       )
     } else if (!item.calendar) {
       return (
-        <TouchableOpacity onPress = {() => this.addEvent()}>
+        <TouchableOpacity onPress = {this.addEvent.bind(this)}>
         <View style={styles.emptyDate}>
           <Text style={{color: 'white'}}>{item.timeRange}</Text>
           <Text style={{color: 'white'}}>{item.name}</Text>
@@ -237,15 +249,9 @@ export default class CalendarScreen extends Component {
       </View>
     )
   }
-  addEvent() {
-    this.setState({
-      chosenDate: new Date(),
-      modalVisible: true,
-    })
-  }
   renderEmptyDate() {
     return (
-      <TouchableOpacity onPress = {() => this.addEvent()}>
+      <TouchableOpacity onPress = {this.addEvent.bind(this)}>
       <View style={styles.emptyDate}><Text style={{color: 'white'}}>Add +energy event!</Text></View>
       </TouchableOpacity>
     )
