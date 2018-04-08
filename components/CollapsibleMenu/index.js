@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     padding: 10,
   },
-  headerText: {
+  headerTextField: {
     textAlign: 'left',
     fontSize: 14,
     width: 270,
@@ -102,7 +102,7 @@ export default class ExampleView extends Component {
           marginLeft={20}
           source= {isActive ? require('./src/filledicon.png') : require('./src/icon.png')}
         />
-        <Text style={styles.headerText}>{section.title}</Text>
+        <Text style={styles.headerTextField}>{section.title}</Text>
         </View>
       </Animatable.View>
     )
