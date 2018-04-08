@@ -1,21 +1,28 @@
 import React from 'react'
-import {
-  Alert,
-  ImageBackground,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native'
+import { Alert, ImageBackground, ScrollView, Text, View } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
 
 import config from '../../config/config'
 import styles from './styles'
 
+import { token } from '../../redux/actions/tokenActions'
+import { prepopulate } from '../../redux/actions/userActions'
+
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
 
-export default class RegisterScreen2 extends ValidationComponent {
+const mapStateToProps = state => ({
+  token: state.token,
+})
+
+const mapDispatchToProps = {
+  token,
+  prepopulate,
+}
+
+class RegisterScreen extends ValidationComponent {
   constructor(props) {
     super(props)
 
@@ -28,65 +35,101 @@ export default class RegisterScreen2 extends ValidationComponent {
       buttonClicked: false,
     }
   }
-
-resetNavigation(targetRoute) {
-   const navigateAction = NavigationActions.reset({
-     index: 0,
-     actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
-   })
-   this.props.navigation.dispatch(navigateAction)
- }
-
-async writeUser(name, email, password, confirmpassword, gender) {
-  if (name === '') {
-    return Alert.alert(
-      'Unable to create user',
-      'Please Input a Name',
-      [
-        {text: 'Try Again'},
-      ],
-      { cancelable: true }
-    )
+  
+  // ensures that all fields are filled before submission
+  onSubmit() {
+    this.validate({
+      name: {required: true},
+      email: {required: true},
+      password: {required: true, minlength: 7},
+      confirmpassword: {required: true, minlength: 7},
+    })
   }
-  if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
-    this.setState({ buttonClicked: true })
+
+  async fetchUserInfo(token) {
     try {
       let responseJSON
-      const apiUrl = `${config.apiUrl}/users`
-      let response = await fetch(apiUrl, {
-        method: 'POST',
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'x-access-token': token,
         },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          hash: password,
-          gender: gender,
-        }),
       })
       if (!response.ok) {
-        Alert.alert(
-          'Unable to create user',
-          'Please try again! Is it possible that your email is already in use?',
-          [
-            {text: 'Try Again'},
-          ],
-          { cancelable: true }
-        )
-        this.setState({ buttonClicked: false })
+        return false
       } else {
         responseJSON = await response.json()
-        this.resetNavigation('MainTab')
-      }
-      return responseJSON
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email)
+      } return responseJSON
     } catch(error) {
       this.setState({ buttonClicked: false })
       console.error(error)
     }
   }
-}
+  
+  resetNavigation(targetRoute) {
+     const navigateAction = NavigationActions.reset({
+       index: 0,
+       actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+     })
+     this.props.navigation.dispatch(navigateAction)
+   }
+  
+  async writeUser(name, email, password, confirmpassword) {
+    if (name === '') {
+      return Alert.alert(
+        'Unable to create user',
+        'Please Input a Name',
+        [
+          {text: 'Try Again'},
+        ],
+        { cancelable: true }
+      )
+    }
+    if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+      this.setState({ buttonClicked: true })
+      try {
+        let responseJSON
+        const apiUrl = `${config.apiUrl}/users`
+        let response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            hash: password,
+          }),
+        })
+        if (!response.ok) {
+          Alert.alert(
+            'Unable to create user',
+            'Please try again! Is it possible that your email is already in use?',
+            [
+              {text: 'Try Again'},
+            ],
+            { cancelable: true }
+          )
+          this.setState({ buttonClicked: false })
+        } else {
+          responseJSON = await response.json()
+          await this.props.token(responseJSON.token)
+          this.fetchUserInfo(responseJSON.token)
+          this.resetNavigation('MainTab')
+        }
+        return responseJSON
+      } catch(error) {
+        console.error(error)
+      }
+    }
+  }
 
 
   validEmail(email) {
@@ -182,7 +225,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
             Passwords must be at least 7 characters long and contain at least one number.
           </Text>
           <Button type='register'
-            onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+            onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
             loading={this.state.buttonClicked}
             text='Sign Up' textColor='black'/>
         </View>
@@ -193,4 +236,4 @@ async writeUser(name, email, password, confirmpassword, gender) {
 
 }
 
-
+export default connect(mapStateToProps, mapDispatchToProps) (RegisterScreen)

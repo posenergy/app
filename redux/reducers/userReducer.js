@@ -1,23 +1,27 @@
-import { LOGIN } from '../actions/userActions'
+import { PREPOPULATE } from '../actions/userActions'
 
-const initialState = {
-  name: '',
-  username: '',
-  pass: '',
+const defaultState = {
+    isLoggedIn: false,
+    name: '',
+    buffer: '',
+    startTime: '',
+    endTime: '',
+    email: '',
 }
-
-const user = (state = initialState, action) => {
+ 
+const userReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case LOGIN: {
-        return Object.assign({}, state, {
-          name: action.payload.name,
-          username: action.payload.username,
-          pass: action.payload.pass,
-        })
-    }
-    default:
-      return state
+    case PREPOPULATE:
+      return Object.assign({}, state, {
+        isLoggedIn: true,
+        name: action.name,
+        buffer: action.buffer,
+        startTime: action.startTime,
+        endTime: action.endTime,
+        email: action.email,
+      })
+    default: return state
   }
 }
 
-export default user
+export default userReducer
