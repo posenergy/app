@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Alert, ScrollView, Text, ImageBackground } from 'react-native'
+import { Alert, ImageBackground, ScrollView, Text, View } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -32,9 +32,10 @@ class RegisterScreen extends ValidationComponent {
       password: '',
       confirmpassword: '',
       gender: '',
+      buttonClicked: false,
     }
   }
-
+  
   // ensures that all fields are filled before submission
   onSubmit() {
     this.validate({
@@ -44,14 +45,6 @@ class RegisterScreen extends ValidationComponent {
       confirmpassword: {required: true, minlength: 7},
     })
   }
-
-  resetNavigation(targetRoute) {
-     const navigateAction = NavigationActions.reset({
-       index: 0,
-       actions: [ NavigationActions.navigate({ routeName: 'MainTab'}) ],
-     })
-     this.props.navigation.dispatch(navigateAction)
-   }
 
   async fetchUserInfo(token) {
     try {
@@ -74,12 +67,32 @@ class RegisterScreen extends ValidationComponent {
                                responseJSON.email)
       } return responseJSON
     } catch(error) {
+      this.setState({ buttonClicked: false })
       console.error(error)
     }
   }
-
+  
+  resetNavigation(targetRoute) {
+     const navigateAction = NavigationActions.reset({
+       index: 0,
+       actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+     })
+     this.props.navigation.dispatch(navigateAction)
+   }
+  
   async writeUser(name, email, password, confirmpassword) {
+    if (name === '') {
+      return Alert.alert(
+        'Unable to create user',
+        'Please Input a Name',
+        [
+          {text: 'Try Again'},
+        ],
+        { cancelable: true }
+      )
+    }
     if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+      this.setState({ buttonClicked: true })
       try {
         let responseJSON
         const apiUrl = `${config.apiUrl}/users`
@@ -104,6 +117,7 @@ class RegisterScreen extends ValidationComponent {
             ],
             { cancelable: true }
           )
+          this.setState({ buttonClicked: false })
         } else {
           responseJSON = await response.json()
           await this.props.token(responseJSON.token)
@@ -211,7 +225,8 @@ class RegisterScreen extends ValidationComponent {
             Passwords must be at least 7 characters long and contain at least one number.
           </Text>
           <Button type='register'
-            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
+            onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
+            loading={this.state.buttonClicked}
             text='Sign Up' textColor='black'/>
         </View>
       </ScrollView>

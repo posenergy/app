@@ -1,5 +1,12 @@
 import React from 'react'
-import { ImageBackground, ScrollView, Alert} from 'react-native'
+import {
+  Alert,
+  ImageBackground,
+  ScrollView,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -30,6 +37,7 @@ class LoginScreen extends ValidationComponent {
     this.initialState = {
       email: '',
       password: '',
+      buttonClicked: false,
     }
     this.state = this.initialState
   }
@@ -75,7 +83,28 @@ class LoginScreen extends ValidationComponent {
   }
 
   async loginUser(email, password) {
+  if (email === '') {
+    Alert.alert(
+      'Login Incorrect',
+      'No Email Given.',
+      [
+        {text: 'Try Again'},
+      ],
+      { cancelable: true }
+    )
+  }
+  if (password === '') {
+    Alert.alert(
+      'Login Incorrect',
+      'No Password Given.',
+      [
+        {text: 'Try Again'},
+      ],
+      { cancelable: true }
+    )
+  }
   if ((email !== '') && (password !== '')) {
+    this.setState({buttonClicked: true})
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/auth/login`
@@ -99,6 +128,7 @@ class LoginScreen extends ValidationComponent {
           ],
           { cancelable: true }
         )
+        this.setState({buttonClicked: false})
         return false
       } else {
         this.resetNavigation('MainTab')
@@ -107,6 +137,7 @@ class LoginScreen extends ValidationComponent {
         this.fetchUserInfo(responseJSON.token)
       } return responseJSON
     } catch(error) {
+      this.setState({buttonClicked: false})
       console.error(error)
     }
   }
@@ -134,8 +165,22 @@ class LoginScreen extends ValidationComponent {
         changeFunction={password => this.setState({password})}
         passwordSecure={true}/>
       <Button
-        type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
-        text='Login' textColor='black'/>
+        type='login' onClick={() => !this.state.buttonClicked && this.loginUser(this.state.email, this.state.password)}
+        text='Login' textColor='black'
+        loading={this.state.buttonClicked}
+        />
+      <View style={{alignSelf: 'center'}}>
+      <TouchableHighlight onPress={() => Alert.alert(
+          'Forgot Password?',
+          'Email positiveenergy@gmail.com for help!',
+          [
+            {text: 'Ok'},
+          ],
+          { cancelable: true }
+        )}>
+      <Text style={{color: 'white'}}>Forgot Password?</Text>
+      </TouchableHighlight>
+      </View>
       </ScrollView>
       </ImageBackground>
     )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
 import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
@@ -23,4 +24,18 @@ export default AppNavigator = StackNavigator({
   MainTab: {
     screen: MainTabNavigator,
   },
+}, {
+  transitionConfig: () => ({
+    screenInterpolator: (sceneProps) => {
+      // Disable the transition animation when resetting to the home screen.
+      if (
+        sceneProps.index === 0 &&
+        sceneProps.scene.route.routeName !== 'Home' &&
+        sceneProps.scenes.length > 2
+      ) return null
+
+      // Otherwise, use the usual horizontal animation.
+      return CardStackStyleInterpolator.forHorizontal(sceneProps)
+    },
+  }),
 })

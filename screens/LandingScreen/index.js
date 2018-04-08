@@ -1,11 +1,9 @@
 import React from 'react'
 import { ScrollView, ImageBackground } from 'react-native'
-
 import styles from './styles'
 
 import Logo from '../../components/Logo'
 import Button from '../../components/Button'
-
 
 export default class LandingScreen extends React.Component {
   constructor(props) {
@@ -20,10 +18,10 @@ export default class LandingScreen extends React.Component {
         <ScrollView>
         <Logo />
         <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Register')}
-          text="Sign Up" textColor="black"
+          text="Sign Up" textColor="grey"
         />
         <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Login')}
-          text="Login" textColor="black"
+          text="Login" textColor="grey"
         />
         </ScrollView>
       </ImageBackground>

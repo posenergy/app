@@ -8,28 +8,28 @@ import {
 import * as Animatable from 'react-native-animatable'
 import Accordion from 'react-native-collapsible/Accordion'
 
-const BACON_IPSUM = 'Filler content. Filler content. Filler content. Filler content.'
+const FILLER_IPSUM = 'Filler content. Filler content. Filler content. Filler content.'
 
 const CONTENT = [
   {
     title: 'What is the "Activities" button for?',
-    content: BACON_IPSUM,
+    content: FILLER_IPSUM,
   },
   {
     title: 'What is the "Calendar" button for?',
-    content: BACON_IPSUM,
+    content: FILLER_IPSUM,
   },
   {
     title: 'Why do you add 30 minutes to every workout?',
-    content: BACON_IPSUM,
+    content: FILLER_IPSUM,
   },
   {
     title: 'How do you choose the acitivities?',
-    content: BACON_IPSUM,
+    content: FILLER_IPSUM,
   },
   {
     title: 'Can I make a custom activity?',
-    content: BACON_IPSUM,
+    content: FILLER_IPSUM,
   },
 ]
 
