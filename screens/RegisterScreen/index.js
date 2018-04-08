@@ -1,5 +1,11 @@
 import React from 'react'
-import { View, Alert, ScrollView, Text, ImageBackground } from 'react-native'
+import {
+  Alert,
+  ImageBackground,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 
@@ -19,17 +25,8 @@ export default class RegisterScreen2 extends ValidationComponent {
       password: '',
       confirmpassword: '',
       gender: '',
+      buttonClicked: false,
     }
-  }
-
-  // ensures that all fields are filled before submission
-  onSubmit() {
-    this.validate({
-      name: {required: true},
-      email: {required: true},
-      password: {required: true, minlength: 7},
-      confirmpassword: {required: true, minlength: 7},
-    })
   }
 
 resetNavigation(targetRoute) {
@@ -41,7 +38,18 @@ resetNavigation(targetRoute) {
  }
 
 async writeUser(name, email, password, confirmpassword, gender) {
+  if (name === '') {
+    return Alert.alert(
+      'Unable to create user',
+      'Please Input a Name',
+      [
+        {text: 'Try Again'},
+      ],
+      { cancelable: true }
+    )
+  }
   if (this.checkPwd(password) && this.validPassword(password, confirmpassword) && this.validEmail(email)) {
+    this.setState({ buttonClicked: true })
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
@@ -67,12 +75,14 @@ async writeUser(name, email, password, confirmpassword, gender) {
           ],
           { cancelable: true }
         )
+        this.setState({ buttonClicked: false })
       } else {
         responseJSON = await response.json()
         this.resetNavigation('MainTab')
       }
       return responseJSON
     } catch(error) {
+      this.setState({ buttonClicked: false })
       console.error(error)
     }
   }
@@ -172,8 +182,9 @@ async writeUser(name, email, password, confirmpassword, gender) {
             Passwords must be at least 7 characters long and contain at least one number.
           </Text>
           <Button type='register'
-            onClick={() => this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
-            text='Sign Up' textColor='grey'/>
+            onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+            loading={this.state.buttonClicked}
+            text='Sign Up' textColor='black'/>
         </View>
       </ScrollView>
       </ImageBackground>
