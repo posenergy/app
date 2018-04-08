@@ -12,14 +12,14 @@ export default StyleSheet.create({
   image: {
     height: 48,
     width: 48,
-    marginTop: 24,
+    marginTop: 28,
     marginBottom: 8,
   },
   title: {
     fontStyle: 'italic',
-    fontSize: 22,
+    fontSize: 26,
     textAlign: 'center',
-    lineHeight: 26,
+    lineHeight: 31,
   },
   text: {
     textAlign: 'center',
@@ -39,16 +39,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textview2: {
-    marginBottom: '2%',
-    height: 40,
-    width: '90%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   bold: {
+    fontSize: 21,
     fontWeight: 'bold',
     textAlign: 'center',
+    lineHeight: 25,
     width: '90%',
     marginBottom: '2%',
   },
@@ -63,14 +58,13 @@ export default StyleSheet.create({
   var: {
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: '3%',
-    marginBottom: '1%',
+    marginTop: '5%',
   },
   var2: {
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: '6.5%',
-    marginBottom: '5.5%',
+    marginTop: '7.5%',
+    marginBottom: '7.5%',
   },
   contentWrap: {
     flex: 1,
