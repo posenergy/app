@@ -90,7 +90,7 @@ class SearchScreen extends React.Component {
   }
 
   render() {
-    if (this.state.category === 'Movement') {
+    if (this.state.category === 'movement') {
       return (
         <View style={styles.viewStyle}>
           <FlatList
@@ -102,9 +102,10 @@ class SearchScreen extends React.Component {
                 const { navigate } = this.props.navigation
                 navigate('Moment', {
                   title: item.name,
-                  pict: item.img,
+                  img: item.img,
                   desc: item.description,
                   brand: item.partner,
+                  vid: item.vid,
                 })
                 }}>
                 <Moment
@@ -139,9 +140,9 @@ class SearchScreen extends React.Component {
                 navigate('Moment', {
                   title: item.name,
                   brand: item.partner,
-                  pict: item.img,
+                  img: item.img,
                   desc: item.description,
-                  // vid: item.vid,
+                  vid: item.vid,
                 })
                 }}>
                 <Moment

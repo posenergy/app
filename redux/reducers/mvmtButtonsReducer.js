@@ -25,85 +25,85 @@ const toggleMvmtButtons = (state = initialState, action) => {
   switch (action.type) {
     case BAR: {
       return Object.assign({}, state, {
-        craft: !state.bar,
+        bar: !state.bar,
       })
     }
 
     case CYCLE: {
       return Object.assign({}, state, {
-        journal: !state.cycle,
+        cycle: !state.cycle,
       })
     }
 
     case DANCE: {
       return Object.assign({}, state, {
-        meditate: !state.dance,
+        dance: !state.dance,
       })
     }
 
     case HIIT: {
       return Object.assign({}, state, {
-        gratitude: !state.hiit,
+        hiit: !state.hiit,
       })
     }
 
     case KICK: {
       return Object.assign({}, state, {
-        skin: !state.kick,
+        kick: !state.kick,
       })
     }
 
     case PILATES: {
       return Object.assign({}, state, {
-        inspired: !state.pilates,
+        pilates: !state.pilates,
       })
     }
 
     case ROW: {
       return Object.assign({}, state, {
-        journal: !state.row,
+        row: !state.row,
       })
     }
 
     case RUN: {
       return Object.assign({}, state, {
-        meditate: !state.run,
+        run: !state.run,
       })
     }
 
     case STRENGTH: {
       return Object.assign({}, state, {
-        gratitude: !state.strength,
+        strength: !state.strength,
       })
     }
 
     case STRETCH: {
       return Object.assign({}, state, {
-        skin: !state.stretch,
+        stretch: !state.stretch,
       })
     }
 
     case YOGA: {
       return Object.assign({}, state, {
-        inspired: !state.yoga,
+        yoga: !state.yoga,
       })
     }
 
     case LOW: {
       return Object.assign({}, state, {
-        fifteen: !state.low,
+        low: !state.low,
       })
     }
 
     case MEDIUM: {
       return Object.assign({}, state, {
-        thirty: !state.medium,
+        medium: !state.medium,
       })
     }
 
     case HIGH: {
       return Object.assign({}, state, {
-        sixty: !state.high,
+        high: !state.high,
       })
     }
 
