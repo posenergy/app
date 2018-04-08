@@ -7,7 +7,7 @@ import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainTabNavigator from './MainTab'
 
-const MainAppNavigator = StackNavigator({
+export default AppNavigator = StackNavigator({
   Splash: {
     screen: SplashScreen,
   },
@@ -24,13 +24,3 @@ const MainAppNavigator = StackNavigator({
     screen: MainTabNavigator,
   },
 })
-
-class AppNavigator extends Component {
-  render() {
-    return(
-      <MainAppNavigator />
-    )
-  }
-}
-
-export default AppNavigator
