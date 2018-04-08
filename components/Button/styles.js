@@ -138,13 +138,12 @@ export default StyleSheet.create({
     width: 300,
   },
  schedule: {
-    justifyContent: 'center',
-    alignItems: 'center',
     height: 49,
-    width: '100%',
+    width: 292,
     backgroundColor: '#545680',
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
+    alignItems: 'center',
   },
   picker: {
     height: '12%',

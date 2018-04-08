@@ -14,12 +14,16 @@ export default class SchedModal extends Component {
         <Image
           source={this.props.image}
           style={styles.image}/>
-        <Text
-          adjustsFontSizeToFit = {true}
-          allowFontScaling = {true}
-          numberOfLines={1}
-          style={styles.bold}>{this.props.title}</Text>
-        <Text style={styles.italics}>{this.props.brand}</Text>
+        <View style={styles.textview2} >
+          <Text
+            adjustsFontSizeToFit = {true}
+            allowFontScaling = {true}
+            numberOfLines={2}
+            style={styles.bold}>{this.props.title}</Text>
+        </View>
+        <View justifyContent='center'>
+          <Text style={styles.italics}>{this.props.brand}</Text>
+        </View>
         <View style={styles.textview} >
           <Text adjustsFontSizeToFit = {true}
                 textAlign='center'
