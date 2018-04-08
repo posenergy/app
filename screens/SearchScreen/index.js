@@ -91,7 +91,7 @@ class SearchScreen extends React.Component {
   }
 
   render() {
-    if (this.state.category === 'Movement') {
+    if (this.state.category === 'movement') {
       return (
         <View style={styles.viewStyle}>
           <FlatList

@@ -3,10 +3,6 @@ import { View, Text, Image } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
-// put sweats in a separate view, add flex to the entire thing so 
-// that flexDirection is a row and flex-end puts the sweats at the end
-// of the box
-
 const Moment = ({icon, title, time, pict, sweat}) => (
 	<View style={styles.iconAndMoment}>
 		<View >

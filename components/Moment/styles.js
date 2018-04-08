@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   moment: {
     flex: 1,
-    height: 97,
+    height: 77,
     width: 376,
     alignSelf: 'center',
     justifyContent: 'center',
@@ -27,6 +27,7 @@ export default StyleSheet.create({
     marginLeft: 20,
   },
   icon: {
+    alignSelf: 'center',
     height: 45,
     width: 45,
   },
