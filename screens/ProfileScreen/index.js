@@ -79,6 +79,8 @@ class ProfileScreen extends React.Component {
         changeFunction={bedtime => this.setState({bedtime})}
         passwordSecure={true}/>
       <Button
+        text = "Log Out"
+        textColor = "white"
         type = 'schedule'
         onClick = {() => {this.logout()}}>
       </Button>
