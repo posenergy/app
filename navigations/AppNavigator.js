@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
@@ -8,7 +7,7 @@ import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainTabNavigator from './MainTab'
 
-export default AppNavigator = StackNavigator({
+const AppNavigator = StackNavigator({
   Splash: {
     screen: SplashScreen,
   },
@@ -39,3 +38,5 @@ export default AppNavigator = StackNavigator({
     },
   }),
 })
+
+export default AppNavigator
