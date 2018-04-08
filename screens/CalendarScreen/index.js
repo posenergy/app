@@ -13,7 +13,7 @@ export default class CalendarScreen extends Component {
       items: {},
       pickerModalVisible: false,
       chosenDate: null,
-      setDate: () => this.setPickerDate
+      setDate: () => this.setPickerDate,
     }
   }
   openPickerModal = () => {
@@ -211,13 +211,13 @@ export default class CalendarScreen extends Component {
   editEvent = (item) => {
     this.setState({
       chosenDate: item.start,
-      pickerModalVisible: true
+      pickerModalVisible: true,
     })
   }
   addEvent() {
     this.setState({
       chosenDate: new Date(),
-      pickerModalVisible: true
+      pickerModalVisible: true,
     })
   }
   renderItem(item) {
