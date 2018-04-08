@@ -4,7 +4,7 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'flex-end',
     width: '100%',
-    height: '60%',
+    height: 370,
     backgroundColor: '#F2F2F2',
     alignSelf: 'center',
   },

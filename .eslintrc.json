@@ -39,6 +39,7 @@
       "react/display-name": "warn",
       "react/no-unescaped-entities": "off",
       "react/prop-types": "off",
+      "react/no-direct-mutation-state": "off",
       "comma-dangle": [2, "always-multiline"],
       "no-cond-assign": [2, "except-parens"],
       "no-console": [2, {"allow": ["warn", "error"]}],
