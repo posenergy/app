@@ -30,16 +30,6 @@ export default class RegisterScreen2 extends ValidationComponent {
     }
   }
 
-  // ensures that all fields are filled before submission
-  onSubmit() {
-    this.validate({
-      name: {required: true},
-      email: {required: true},
-      password: {required: true, minlength: 7},
-      confirmpassword: {required: true, minlength: 7},
-    })
-  }
-
 resetNavigation(targetRoute) {
    const navigateAction = NavigationActions.reset({
      index: 0,
@@ -93,6 +83,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
       }
       return responseJSON
     } catch(error) {
+      this.setState({ buttonClicked: false })
       console.error(error)
     }
   }
@@ -159,10 +150,6 @@ async writeUser(name, email, password, confirmpassword, gender) {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style={styles.container}>
-      {
-        this.state.buttonClicked &&
-          <ActivityIndicator size="large" />
-      }
       <ScrollView
         style={styles.view}
         showsVerticalScrollIndicator = {false}
@@ -197,6 +184,7 @@ async writeUser(name, email, password, confirmpassword, gender) {
           </Text>
           <Button type='register'
             onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword, this.state.gender)}
+            loading={this.state.buttonClicked}
             text='Sign Up' textColor='black'/>
         </View>
       </ScrollView>

@@ -144,7 +144,7 @@ resetNavigation(targetRoute) {
         changeFunction={password => this.setState({password})}
         passwordSecure={true}/>
       <Button
-        type='login' onClick={() => this.loginUser(this.state.email, this.state.password)}
+        type='login' onClick={() => !this.state.buttonClicked && this.loginUser(this.state.email, this.state.password)}
         text='Login' textColor='black'
         loading={this.state.buttonClicked}
         />

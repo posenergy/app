@@ -42,7 +42,7 @@ export default class Button extends Component {
     if (this.props.type === 'filter') {
       return (
       <TouchableOpacity
-        onPress={!this.props.loading && this.props.onClick}
+        onPress={this.props.onClick}
         style={[styles.filterButton, styles[this.props.type]]}
       >
         {this.props.img}

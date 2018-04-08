@@ -4,11 +4,15 @@ import { Agenda } from 'react-native-calendars'
 import RNCalendarEvents from 'react-native-calendar-events'
 import styles from './styles'
 import PickerScreen from '../../components/PickerModal'
+import moment from 'moment'
+
 export default class CalendarScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
       items: {},
+      modalVisible: false,
+      chosenDate: null,
     }
   }
   componentDidMount() {
@@ -39,9 +43,20 @@ export default class CalendarScreen extends Component {
             alignSelf = 'flex-end'
             marginTop = '40%'/>
         </TouchableOpacity>
-        {/* <PickerScreen/> */}
+        {this.state.modalVisible &&
+          <PickerScreen
+            openModal={this.openModal}
+            closeModal={this.closeModal}
+            chosenDate={this.state.chosenDate}
+          />}
       </View>
     )
+  }
+  openModal = () => {
+    this.setState({modalVisible: true})
+  }
+  closeModal = () => {
+    this.setState({modalVisible: false})
   }
           //   <Agenda
     //   // the list of items that have to be displayed in agenda. If you want to render item as empty date
@@ -84,22 +99,23 @@ export default class CalendarScreen extends Component {
     //   style={{}}
     // />
   _isOpen(day, minute) {
-    return this.state.items[day].reduce((acc, { start, end }) => {
-      if (!acc) return acc
-      const startDate = new Date(start)
-      const endDate = new Date(end)
+    if (day === '2018-04-08') {
+      console.log(minute.toString(), this.state.items[day].map(x=>x.start.toString()))
+    }
+    return this.state.items[day].reduce((acc, { start, end, timeRange }) => {
+      if (!acc || timeRange === 'All Day') return acc
+      const startDate = moment(start)
+      const endDate = moment(end)
       return (minute < startDate) || (minute > endDate)
     }, true)
   }
-
   _adjustTime(date) {
     return date.getTime() + date.getTimezoneOffset() * 60000
   }
-
   loadItems(day) {
     setTimeout(() => {
-    const startDate = new Date('2018-03-10')
-    const endDate = new Date('2018-04-25')
+    const startDate = moment().subtract(14, 'days').toDate()
+    const endDate = moment().add(21, 'days').toDate()
     
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
@@ -130,15 +146,14 @@ export default class CalendarScreen extends Component {
             // endDate2.setTime(this._adjustTime(endDate2))
             const eventLength = (endDate2.getTime() - startDate2.getTime()) / (1000 * 60 * 60)
             const eventHeight = (event.allDay || eventLength < 1) ? 60 : eventLength * 60
-
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.getHours())}:${addZeros(d.getMinutes())}`
             const timeRange = (event.allDay) ? 'All Day' : `${buildTime(startDate2)}-${buildTime(endDate2)}`
             this.state.items[strTime].push({
               id: eventID,
               name: event.title,
-              start: startDate2,
-              end: endDate2,
+              start: moment(startDate2),
+              end: moment(endDate2),
               length: eventLength,
               timeRange: timeRange,
               calendar: event.calendar.id,
@@ -149,15 +164,13 @@ export default class CalendarScreen extends Component {
         // TODO: make these dynamic
         var START_TIME = 300
         var END_TIME = 1140
-        const yesterday = new Date()
-        yesterday.setDate(yesterday.getDate() - 1)
+        const yesterday = moment().subtract(1, 'day')
         for (const time in this.state.items) {
           if (this.state.items[time].length === 0) {
             continue
           }
           this.state.items[time] = this.state.items[time].filter(x => !!x.calendar)
-          const now = new Date(time)
-          now.setTime(this._adjustTime(now))
+          const now = moment(time)
           if (now < yesterday) {
             continue
           }
@@ -165,17 +178,20 @@ export default class CalendarScreen extends Component {
           const slots = Array.from({ length: 1440 }, (x, i) => i)
                              .filter(n => n > START_TIME && n < END_TIME)
           slots.forEach(minute => {
-            const currTime = new Date(now.getTime() + minute * 60000)
+            const currTime = now.clone().add(minute, 'minute')
             const isOpen = this._isOpen(time, currTime)
             if (isOpen) {
               minutes += 1
             }
+            if (time === '2018-04-08') {
+              // console.log('isOpen', now.toString())
+            }
             // if minutes is > an hour, or we hit a not open slot, or we are at end of day
             if (minutes >= 60 || (!isOpen && minutes > 0) || (minute === END_TIME-1 && minutes > 0)) {
-              const startDate2 = new Date(currTime.getTime() - minutes * 60000)
+              const startDate2 = currTime.clone().subtract(minutes, 'minute')
               const endDate2 = currTime
               const addZeros = i => i > 9 ? `${i}` : `0${i}`
-              const buildTime = d => `${addZeros(d.getHours())}:${addZeros(d.getMinutes())}`
+              const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
               const timeRange = `${buildTime(startDate2)}-${buildTime(endDate2)}`
               const newEvent = {
                 name: 'Add a +energy event',
@@ -208,7 +224,6 @@ export default class CalendarScreen extends Component {
             this.state.items[strTime] = []
           }
         }
-
         const newItems = {}
         Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
         this.setState({
@@ -232,35 +247,12 @@ export default class CalendarScreen extends Component {
       })
     }, 1000)
   }
-  
-  oldLoadItems(day) {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000
-        const strTime = this.timeToString(time)
-        if (!this.state.items[strTime]) {
-            this.state.items[strTime] = []
-          const numItems = Math.floor(Math.random() * 5)
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
-            })
-          }
-        }
-      }
-      // console.log(this.state.items)
-      const newItems = {}
-      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
-      this.setState({
-        items: newItems,
-      })
-    }, 1000)
-    // console.log(`Load Items for ${day.year}-${day.month}`)
-  }
-  
   // haven't tested
-  editEvent() { //date, oldEvent
+  editEvent = (item) => { //date, oldEvent
+    this.setState({
+      chosenDate: item.start,
+      modalVisible: true
+    })
     // console.log((new Date(oldEvent.endDate).getTime()) - (new Date(oldEvent.startDate).getTime()) + date.getTime())
     // RNCalendarEvents.saveEvent(oldEvent.title, {
     //   id: oldEvent.id,
@@ -272,7 +264,7 @@ export default class CalendarScreen extends Component {
   renderItem(item) {
     if (item.calendar === '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97') {
       return (
-        <TouchableOpacity onPress={this.editEvent()}>
+        <TouchableOpacity onPress={() => {this.editEvent(item)}}>
         <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
         <Text style={{color: 'white'}}>{item.name}</Text>
@@ -313,6 +305,7 @@ export default class CalendarScreen extends Component {
   }
   timeToString(time) {
     const date = new Date(time)
+    date.setTime(date.getTime() - date.getTimezoneOffset() * 60000)
     return date.toISOString().split('T')[0]
   }
 }
