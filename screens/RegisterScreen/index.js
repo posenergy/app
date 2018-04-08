@@ -35,16 +35,6 @@ class RegisterScreen extends ValidationComponent {
       buttonClicked: false,
     }
   }
-  
-  // ensures that all fields are filled before submission
-  onSubmit() {
-    this.validate({
-      name: {required: true},
-      email: {required: true},
-      password: {required: true, minlength: 7},
-      confirmpassword: {required: true, minlength: 7},
-    })
-  }
 
   async fetchUserInfo(token) {
     try {
@@ -75,7 +65,7 @@ class RegisterScreen extends ValidationComponent {
   resetNavigation(targetRoute) {
      const navigateAction = NavigationActions.reset({
        index: 0,
-       actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+       actions: [ NavigationActions.navigate({ routeName: targetRoute }, {genModalVisible: true}) ],
      })
      this.props.navigation.dispatch(navigateAction)
    }

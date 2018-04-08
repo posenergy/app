@@ -1,10 +1,11 @@
 import React from 'react'
 import { Image, TouchableOpacity } from 'react-native'
-import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation' // 1.0.0-beta.14
 
 import ActivitiesStack from './ActivitiesStack'
 import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+import AboutModal from '../components/AboutModal'
 
 import '../components/TabIcons/packages.png'
 import '../components/TabIcons/feedback.png'
@@ -21,11 +22,6 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/activitiesMan.png')}
         />
       ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
-      <Image source={require('../images/info.png')}/>
-    </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1 },
-    headerTintColor: 'white',
     }),
   },
   Calendar: {
@@ -37,11 +33,6 @@ const MainTabNavigator = TabNavigator({
         source={require('../components/TabIcons/calendar.png')}
       />
     ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
-      <Image source={require('../images/info.png')}/>
-    </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
-    headerTintColor: 'white',
     }),
   },
   Profile: {
@@ -53,17 +44,35 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/profile.png')}
         />
       ),
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
-      <Image source={require('../images/info.png')}/>
-    </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
-    headerTintColor: 'white',
     }),
   },
 },
 
-{
+{ 
+  initialRouteName: 'Activities',
+  navigationOptions: ({ navigation }) => ({
+    headerRight: (
+    <TouchableOpacity activeOpacity = { 0.5 } padding={200} onPress={() => navigation.navigate('About')}>
+      <Image source={require('../images/info.png')}/>
+    </TouchableOpacity>),
+  headerStyle: { backgroundColor: '#545680', borderWidth: 1},
+  headerTintColor: 'white',
+  }),
   headerMode: 'screen',
 })
 
-export default MainTabNavigator
+const RootStack = StackNavigator(
+  {
+    Main: {
+      screen: MainTabNavigator,
+    },
+    About: {
+      screen: AboutModal,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+export default RootStack

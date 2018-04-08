@@ -9,27 +9,15 @@ import styles from './styles'
 import Button from '../Button'
 
 export default class GenModal extends Component {
-  state = {
-    modalVisible: true,
-  };
-
-  openModal = () => {
-    this.setState({modalVisible: true})
-  }
-
-  closeModal = () => {
-    this.setState({modalVisible: false})
-  }
-
   render() {
     return (
         <View style={styles.Container}>
           <Modal
-              visible={this.state.modalVisible}
+              visible={this.props.genModalVisible}
               transparent={true}
               blurRadius={1}
               animationType={'slide'}
-              onRequestClose={this.closeModal}>
+              onRequestClose={this.props.modalCommand}>
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <Image
@@ -42,7 +30,7 @@ export default class GenModal extends Component {
                   source={this.props.image}
                   style={styles.place} />
                   <Button
-                      onClick= {() => this.closeModal()}
+                      onClick= {this.props.modalCommand}
                       type='modal'
                       textColor='white'
                       text= {this.props.bname}>
