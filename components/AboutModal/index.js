@@ -14,7 +14,7 @@ import StyleText from '../StyleText'
 
 export default class AboutModal extends Component {
   state = {
-    modalVisible: true,
+    modalVisible: false,
   };
 
   openModal = () => {
