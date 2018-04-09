@@ -34,6 +34,7 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    fontFamily: 'Circular Std',
     textAlign: 'left',
     lineHeight: 19,
     width: 276,
