@@ -8,6 +8,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     margin: 5,
+    flexDirection: 'column',
   },
   momentTitle: {
     padding: 2,
@@ -15,16 +16,16 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 21,
     lineHeight: 25,
-    marginLeft: 20,
+    marginLeft: 10,
     marginRight: 10,
   },
   momentTime: {
     flex: 1,
     color: '#4f4f4f',
     textAlign: 'left',
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: 23,
-    marginLeft: 20,
+    marginLeft: 10,
   },
   icon: {
     alignSelf: 'center',
@@ -40,9 +41,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingRight: 20,
+    marginLeft: 5,
   },
   textAndSweat: {
-    marginTop: 4,
+    marginTop: 2,
     flexDirection: 'row',
   },
 })
