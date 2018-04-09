@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Text } from 'react-native'
+import { View, Image, TextInput } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
@@ -10,7 +10,7 @@ const StyleTextInput = ({pholder, changeFunction, cap, passwordSecure, nameProp,
     source={imagelink}
     style = {styles.image}
   />
-  <Text
+  <TextInput
     style={styles.styleTextInput}
     placeholder={pholder}
     onChangeText={changeFunction}
