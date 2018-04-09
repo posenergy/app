@@ -80,7 +80,7 @@ class ProfileScreen extends React.Component {
         passwordSecure={true}/>
       <Button
         text = "Log Out"
-        textColor = "white"
+        textcolor = "white"
         type = 'schedule'
         onClick = {() => {this.logout()}}>
       </Button>
