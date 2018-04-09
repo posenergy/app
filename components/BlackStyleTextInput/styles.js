@@ -9,6 +9,7 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     marginBottom: 11,
+    fontFamily: 'Circular Std',
   },
   viewStyle: {
     flexDirection: 'row',

@@ -16,6 +16,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 21,
     lineHeight: 25,
+    fontFamily: 'Circular Std',
     marginLeft: 20,
   },
   momentTime: {
@@ -23,6 +24,7 @@ export default StyleSheet.create({
     color: '#4f4f4f',
     textAlign: 'left',
     fontSize: 20,
+    fontFamily: 'Circular Std',
     lineHeight: 23,
     marginLeft: 20,
   },

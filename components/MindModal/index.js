@@ -140,7 +140,7 @@ class MindModal extends Component {
                 <Image
                   source={require('../../images/filter.png')}
                   style={styles.imageheader}/>
-                <Text alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
+                <Text color='#4F4F4F' fontFamily='CircularStd-Book' alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
                 Filter Activities
                 </Text>
               </View>
@@ -199,6 +199,7 @@ class MindModal extends Component {
               </View>
             <Button
               justifyContent= 'flex-end'
+              textColor='greysmall'
               type ='mindmodal'
               onClick={() => this.props.mindVisibility()}
               text = 'Apply'/>

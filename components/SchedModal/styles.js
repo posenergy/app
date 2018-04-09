@@ -20,6 +20,7 @@ export default StyleSheet.create({
     fontSize: 26,
     textAlign: 'center',
     lineHeight: 31,
+    fontFamily: 'Circular Std',
   },
   text: {
     textAlign: 'center',
@@ -31,6 +32,7 @@ export default StyleSheet.create({
     marginTop: '4%',
     marginBottom: '3%',
     color: '#4F4F4F',
+    fontFamily: 'Circular Std',
   },
   textview: {
     marginBottom: '2%',
@@ -46,6 +48,7 @@ export default StyleSheet.create({
     lineHeight: 25,
     width: '90%',
     marginBottom: '2%',
+    fontFamily: 'Circular Std',
   },
   italics: {
     fontSize: 19,
@@ -54,6 +57,7 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
     lineHeight: 22,
     color: '#4F4F4F',
+    fontFamily: 'Circular Std',
   },
   var: {
     alignSelf: 'center',

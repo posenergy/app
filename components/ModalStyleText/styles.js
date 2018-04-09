@@ -20,6 +20,7 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 16,
+    fontFamily: 'Circular Std',
     color: 'black',
     marginBottom: 11,
     textAlign: 'left',

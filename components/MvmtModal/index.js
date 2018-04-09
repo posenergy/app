@@ -199,7 +199,7 @@ class MvmtModal extends Component {
                 <Image
                   source={require('../../images/filter.png')}
                   style={styles.imageheader}/>
-                <Text alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
+                <Text color='#4F4F4F' fontFamily='CircularStd-Book' alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
                 Filter Activities
                 </Text>
               </View>
@@ -282,6 +282,7 @@ class MvmtModal extends Component {
             <Button
               justifyContent= 'flex-end'
               type ='mindmodal'
+              textColor='greysmall'
               onClick={() => {this.buttonClicked()}}
               text = 'Apply'/>
             </View>
