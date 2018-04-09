@@ -26,6 +26,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     borderRadius: 10,
     backgroundColor: 'rgba(0,0,0,0.00001)', // 40% opaque
+    fontFamily: 'Circular Std',
   },
 
 })

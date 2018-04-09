@@ -8,6 +8,10 @@ export default StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderRadius: 5,
   },
+  mvmtTouch: {
+    borderBottomColor: 'white',
+    borderBottomWidth: 5,
+  },
   mvmt: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height * 0.42,

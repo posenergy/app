@@ -44,6 +44,8 @@ class SearchScreen extends React.Component {
     }
   }
 
+// if moment array length == 0 (nothing has been filtered),
+// simply get all of the moments based on category
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
     if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
@@ -112,6 +114,9 @@ class SearchScreen extends React.Component {
                   id={item.id}
                   title={item.name}
                   time={item.duration}
+                  sweat={item.sweatIndex}
+                  icon={item.icon}
+                  brand={item.partner}
                 />
               </TouchableOpacity>
             }
@@ -149,6 +154,8 @@ class SearchScreen extends React.Component {
                   id={item.id}
                   title={item.name}
                   time={item.duration}
+                  icon={item.icon}
+                  brand={item.partner}
                 />
               </TouchableOpacity>
             }

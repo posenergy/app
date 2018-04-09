@@ -1,14 +1,11 @@
-import { BAR, CYCLE, DANCE, HIIT, KICK, PILATES, ROW, RUN, STRENGTH, STRETCH,
+import { BAR, DANCE, HIIT, PILATES, RUN, STRENGTH, STRETCH,
         YOGA, LOW, MEDIUM, HIGH, FIFTEEN, THIRTY, SIXTY } from '../actions/mvmtButtonsActions'
 
 const initialState = {
   bar: false,
-  cycle: false,
   dance: false,
   hiit: false,
-  kick: false,
   pilates: false,
-  row: false,
   run: false,
   strength: false,
   stretch: false,
@@ -25,85 +22,67 @@ const toggleMvmtButtons = (state = initialState, action) => {
   switch (action.type) {
     case BAR: {
       return Object.assign({}, state, {
-        bar: !state.bar,
-      })
-    }
-
-    case CYCLE: {
-      return Object.assign({}, state, {
-        cycle: !state.cycle,
+        craft: !state.bar,
       })
     }
 
     case DANCE: {
       return Object.assign({}, state, {
-        dance: !state.dance,
+        meditate: !state.dance,
       })
     }
 
     case HIIT: {
       return Object.assign({}, state, {
-        hiit: !state.hiit,
-      })
-    }
-
-    case KICK: {
-      return Object.assign({}, state, {
-        kick: !state.kick,
+        gratitude: !state.hiit,
       })
     }
 
     case PILATES: {
       return Object.assign({}, state, {
-        pilates: !state.pilates,
-      })
-    }
-
-    case ROW: {
-      return Object.assign({}, state, {
-        row: !state.row,
+        inspired: !state.pilates,
       })
     }
 
     case RUN: {
       return Object.assign({}, state, {
-        run: !state.run,
+        meditate: !state.run,
       })
     }
 
     case STRENGTH: {
       return Object.assign({}, state, {
-        strength: !state.strength,
+        gratitude: !state.strength,
       })
     }
 
     case STRETCH: {
       return Object.assign({}, state, {
-        stretch: !state.stretch,
+        skin: !state.stretch,
       })
     }
 
     case YOGA: {
       return Object.assign({}, state, {
-        yoga: !state.yoga,
+        inspired: !state.yoga,
       })
     }
 
     case LOW: {
       return Object.assign({}, state, {
-        low: !state.low,
+        fifteen: !state.low,
       })
     }
 
     case MEDIUM: {
       return Object.assign({}, state, {
-        medium: !state.medium,
+        thirty: !state.medium,
       })
     }
 
     case HIGH: {
       return Object.assign({}, state, {
-        high: !state.high,
+        sixty: !state.high,
       })
     }
 

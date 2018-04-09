@@ -20,8 +20,8 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'center',
     alignSelf: 'center',
-    width: '85%',
-    height: '55%',
+    width: 340,
+    height: 492,
     backgroundColor: 'white',
     borderRadius: 12,
     flexDirection: 'column',
@@ -34,6 +34,7 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    fontFamily: 'Circular Std',
     textAlign: 'left',
     lineHeight: 19,
     width: 276,
@@ -44,8 +45,8 @@ export default StyleSheet.create({
     width: 12,
     height: 12,
     alignSelf: 'flex-end',
-    marginTop: 15,
-    marginRight: 6,
+    marginTop: 10,
+    marginRight: 10,
   },
   bold: {
     fontSize: 21,

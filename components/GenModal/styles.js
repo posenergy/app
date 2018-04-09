@@ -41,6 +41,7 @@ export default StyleSheet.create({
     fontSize: 26,
     textAlign: 'center',
     lineHeight: 31,
+    fontFamily: 'Circular Std',
   },
   text: {
     fontSize: 21,
@@ -49,6 +50,7 @@ export default StyleSheet.create({
     width: 276,
     marginTop: 25,
     marginBottom: 15,
+    fontFamily: 'Circular Std',
   },
   bold: {
     fontSize: 21,
@@ -56,6 +58,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
     marginBottom: 20,
+    fontFamily: 'Circular Std',
   },
   contentWrap: {
     flex: 1,
