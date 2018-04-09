@@ -50,7 +50,6 @@ export default StyleSheet.create({
     width: '100%',
     marginBottom: 50,
     borderRadius: 5,
-    backgroundColor: 'rgba(0,0,0,0.00001)',
   },
   datePicker: {
     backgroundColor: 'white',
