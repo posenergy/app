@@ -8,7 +8,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     margin: 5,
-    flexDirection: 'column',
   },
   momentTitle: {
     padding: 2,
@@ -16,7 +15,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 21,
     lineHeight: 25,
-    marginLeft: 10,
+    marginLeft: 20,
     marginRight: 10,
     fontFamily: 'Circular Std',
   },
@@ -43,10 +42,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingRight: 20,
-    marginLeft: 5,
   },
   textAndSweat: {
-    marginTop: 2,
+    marginTop: 4,
     flexDirection: 'row',
   },
 })
+
