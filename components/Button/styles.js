@@ -19,8 +19,11 @@ export default StyleSheet.create({
     color: '#D50000',
   },
   white: {
-    fontSize: 20,
-    color: '#fff',
+    fontSize: 16,
+    lineHeight: 19,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlignVertical: 'center',
   },
   black: {
     fontSize: 20,
@@ -96,7 +99,7 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     height: 27,
-    marginRight: 5,
+    borderRadius: 5,
   },
   login: {
     marginTop: 13,
