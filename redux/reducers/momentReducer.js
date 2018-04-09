@@ -12,6 +12,8 @@ const filterState = (state = initialState, action) => {
     case DEL_ALL_TAGS: {
       return Object.assign({}, state,
         { tags: [],
+          sweat: null,
+          duration: null,
       })
     }
 

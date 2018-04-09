@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
   visibleMvmt: state.toggleMvmtVisibility.visible,
   tags: state.filterState.tags,
   sweat: state.filterState.sweat,
-  duration: state.filterState.duration,
+  durat: state.filterState.duration,
 })
 
 const mapDispatchToProps = {
@@ -66,8 +66,28 @@ class SearchScreen extends React.Component {
       .catch((error) => {
         console.error(error)
       })
-    }
-    if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
+    } if (this.props.durat === null && this.props.sweat === null) {
+        this.props.tags.forEach(function(i) {
+          tagUrl += i + '&tag[]='
+        })
+        const url = config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
+          '&sweat=' + '&duration=' + '&tag[]=' + tagUrl
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-access-token': this.props.token,
+          },
+        })
+          .then((res) => res.json())
+          .then(res => {
+            this.setState({ moments: res })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+    } else if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
       this.props.tags.forEach(function(i) {
         tagUrl += i + '&tag[]='
       })
@@ -113,6 +133,29 @@ class SearchScreen extends React.Component {
   }
 
   componentDidMount() {
+    let tagUrl = ''
+    if (this.props.durat === null && this.props.sweat === null) {
+        this.props.tags.forEach(function(i) {
+          tagUrl += i + '&tag[]='
+        })
+        const url = config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
+          '&sweat=' + '&duration=' + '&tag[]=' + tagUrl
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-access-token': this.props.token,
+          },
+        })
+          .then((res) => res.json())
+          .then(res => {
+            this.setState({ moments: res })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+    }
     const url = config.apiUrl + '/moments/search/cat/?cat=' + this.state.category
     return fetch(url, {
       method: 'GET',
@@ -132,10 +175,6 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
   }
-
-// module.exports object with each category as keys, require statements as values
-// for each item, if statement about what category the item is and then get the correct
-// require statement
 
   render() {
     if (this.state.category === 'movement') {
