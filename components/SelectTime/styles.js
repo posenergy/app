@@ -30,6 +30,7 @@ export default StyleSheet.create({
   },
   bold: {
     fontSize: 21,
+    justifyContent: 'center',
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 25,
@@ -38,6 +39,8 @@ export default StyleSheet.create({
     fontSize: 19,
     marginTop: '5%',
     fontStyle: 'italic',
+    justifyContent: 'center',
+    textAlignVertical: 'center',
     textAlign: 'center',
     lineHeight: 22,
     color: '#4F4F4F',

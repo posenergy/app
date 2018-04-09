@@ -14,7 +14,7 @@ import StyleText from '../StyleText'
 
 export default class AboutModal extends Component {
   state = {
-    modalVisible: true,
+    modalVisible: false,
   };
 
   openModal = () => {
@@ -36,8 +36,7 @@ export default class AboutModal extends Component {
               onRequestClose={this.closeModal}>
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
-                <ScrollView contentContainerStyle={styles.scroll}>
-                    <TouchableOpacity
+                <TouchableOpacity
                     activeOpacity = { 0.5 }
                     style={styles.opacity}
                     onPress={this.closeModal}>
@@ -45,7 +44,8 @@ export default class AboutModal extends Component {
                     source={require('../../images/cancel.png')}
                     style={styles.image}
                     />
-                    </TouchableOpacity>
+                </TouchableOpacity>
+                <ScrollView contentContainerStyle={styles.scroll}>
                     <StyleText text = "WHO WE ARE" />
                     <Text style={styles.text}>[+energy] was dreamed up by three ultra busy graduate students who believe we all need to make more time for our minds and bodies, giving us the energy necessary to live our lives fully! </Text>
                     <StyleText text = "HOW TO REACH US" />
