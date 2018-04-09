@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, TouchableOpacity } from 'react-native'
+import { FlatList, View, TouchableOpacity, Image } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -8,10 +8,10 @@ import { mindVisibility } from '../../redux/actions/mindModalActions'
 import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
 import { connect } from 'react-redux'
 
-import Button from '../../components/Button'
 import Moment from '../../components/Moment'
 import MvmtModal from '../../components/MvmtModal'
 import MindModal from '../../components/MindModal'
+
 
 const mapStateToProps = state => ({
   visibleMind: state.toggleMindVisibility.visible,
@@ -62,10 +62,10 @@ class SearchScreen extends React.Component {
     let tagUrl = ''
     if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
       this.props.tags.forEach(function(i) {
-      tagUrl += '&tag[]=' + i
+      tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&duration=' + this.props.duration + tagUrl)
+      '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
@@ -75,10 +75,10 @@ class SearchScreen extends React.Component {
       })
     } else if (this.props.visibleMvmt !== true && prevProps.visibleMvmt === true) {
       this.props.tags.forEach(function(i) {
-      tagUrl += '&tag[]=' + i
+      tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + tagUrl)
+      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
@@ -87,7 +87,7 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
     }
-      
+
   }
 
   componentDidMount() {
@@ -118,12 +118,22 @@ class SearchScreen extends React.Component {
             renderItem={({item}) =>
               <TouchableOpacity style={styles.button}
                 onPress={(event) => {
+<<<<<<< HEAD
                   const { navigate } = this.props.navigation
                   navigate('Moment', {
                     title: item.name,
                     pict: item.img,
                     desc: item.description,
                   })
+=======
+                const { navigate } = this.props.navigation
+                navigate('Moment', {
+                  title: item.name,
+                  pict: item.img,
+                  desc: item.description,
+                  brand: item.partner,
+                })
+>>>>>>> master
                 }}>
                 <Moment
                   id={item.id}
@@ -135,12 +145,11 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-          <Button
-            type='filterButton'
-            
-            onClick={() => this.props.mvmtVisibility()}
-            text='Filter Activities'
-          />
+          <TouchableOpacity
+            style = {styles.activities}
+            onPress={() => this.props.mvmtVisibility()}>
+            <Image source={require('./src/button.png')}/>
+          </TouchableOpacity>
           {
             this.props.visibleMvmt &&
               <MvmtModal/>
@@ -159,6 +168,7 @@ class SearchScreen extends React.Component {
                 const { navigate } = this.props.navigation
                 navigate('Moment', {
                   title: item.name,
+                  brand: item.partner,
                   pict: item.img,
                   desc: item.description,
                   // vid: item.vid,
@@ -173,12 +183,11 @@ class SearchScreen extends React.Component {
               </TouchableOpacity>
             }
           />
-          <Button
-            type='filterButton'
-            style={styles.buttonStyle}
-            onClick={() => this.props.mindVisibility()}
-            text='Filter Activities'
-          />
+          <TouchableOpacity
+            style = {styles.activities}
+            onPress={() => this.props.mindVisibility()}>
+            <Image source={require('./src/button.png')}/>
+          </TouchableOpacity>
           {
             this.props.visibleMind &&
               <MindModal/>
