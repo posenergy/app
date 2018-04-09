@@ -26,18 +26,6 @@ const mapDispatchToProps = {
   mvmtVisibility,
 }
 
-const icons = {
-  pilates: require('../src/pilatesIcon.png'),
-  stretching: require('../src/stretchingIcon.png'),
-  run: require('../src/runIcon.png'),
-  barre: require('../src/barreIcon.png'),
-  hiit: require('../src/hiitIcon.png'),
-  strength: require('../src/strengthIcon.png'),
-  dance: require('../src/danceIcon.png'),
-  yoga: require('../src/yogaIcon.png'),
-  journal: require('../src/journalIcon.png'),
-}
-
 class SearchScreen extends React.Component {
 
   buttonClickedMind = () => {
@@ -54,6 +42,22 @@ class SearchScreen extends React.Component {
     this.state = {
       category: this.props.navigation.state.params.category,
     }
+  }
+
+  check = (icon) => {
+    if (icon == '../src/journalIcon.png') {
+        return this.icons.journal
+      }
+    else {
+        return this.icons.yoga
+      }
+
+      // case DANCE: {
+      //   return Object.assign({}, state, {
+      //     meditate: !state.dance,
+      //   })
+      // }
+    
   }
 
 // if moment array length == 0 (nothing has been filtered), 
@@ -118,29 +122,21 @@ class SearchScreen extends React.Component {
             renderItem={({item}) =>
               <TouchableOpacity style={styles.button}
                 onPress={(event) => {
-<<<<<<< HEAD
                   const { navigate } = this.props.navigation
                   navigate('Moment', {
                     title: item.name,
                     pict: item.img,
                     desc: item.description,
+                    brand: item.partner,
                   })
-=======
-                const { navigate } = this.props.navigation
-                navigate('Moment', {
-                  title: item.name,
-                  pict: item.img,
-                  desc: item.description,
-                  brand: item.partner,
-                })
->>>>>>> master
                 }}>
                 <Moment
                   id={item.id}
                   title={item.name}
                   time={item.duration}
                   sweat={item.sweatIndex}
-                  icon={require('../src/danceIcon.png')}
+                  icon={item.icon}
+                  brand={item.partner}
                 />
               </TouchableOpacity>
             }
@@ -178,7 +174,8 @@ class SearchScreen extends React.Component {
                   id={item.id}
                   title={item.name}
                   time={item.duration}
-                  icon={require('../src/journalIcon.png')}
+                  icon={item.icon}
+                  brand={item.partner}
                 />
               </TouchableOpacity>
             }

@@ -9,7 +9,7 @@ export default class ChooseScreen extends React.Component {
     return(
       <View style={styles.viewStyle}>
 
-        <TouchableOpacity
+        <TouchableOpacity style = {styles.mvmtTouch}
           onPress={(event) => {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'movement'})
