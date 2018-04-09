@@ -13,6 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   modalContainer: {
     justifyContent: 'center',

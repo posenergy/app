@@ -101,13 +101,14 @@ class SearchScreen extends React.Component {
             renderItem={({item}) =>
               <TouchableOpacity style={styles.button}
                 onPress={(event) => {
-                  const { navigate } = this.props.navigation
-                  navigate('Moment', {
-                    title: item.name,
-                    pict: item.img,
-                    desc: item.description,
-                    brand: item.partner,
-                  })
+                const { navigate } = this.props.navigation
+                navigate('Moment', {
+                  title: item.name,
+                  img: item.img,
+                  desc: item.description,
+                  brand: item.partner,
+                  vid: item.vid,
+                })
                 }}>
                 <Moment
                   id={item.id}
@@ -144,9 +145,9 @@ class SearchScreen extends React.Component {
                 navigate('Moment', {
                   title: item.name,
                   brand: item.partner,
-                  pict: item.img,
+                  img: item.img,
                   desc: item.description,
-                  // vid: item.vid,
+                  vid: item.vid,
                 })
                 }}>
                 <Moment
