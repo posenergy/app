@@ -13,33 +13,21 @@ import StyleText from '../StyleText'
 
 
 export default class AboutModal extends Component {
-  state = {
-    modalVisible: false,
-  };
-
-  openModal = () => {
-    this.setState({modalVisible: true})
-  }
-
-  closeModal = () => {
-    this.setState({modalVisible: false})
-  }
-
   render() {
     return (
         <View style={styles.Container}>
           <Modal
-              visible={this.state.modalVisible}
+              // visible={this.state.modalVisible}
               transparent={true}
               blurRadius={1}
-              animationType={'slide'}
-              onRequestClose={this.closeModal}>
+              animationType={'slide'}>
+               {/* onRequestClose={this.closeModal}> */}
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <TouchableOpacity
                     activeOpacity = { 0.5 }
                     style={styles.opacity}
-                    onPress={this.closeModal}>
+                    onPress={this.props.closeModal}>
                     <Image
                     source={require('../../images/cancel.png')}
                     style={styles.image}

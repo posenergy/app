@@ -3,7 +3,7 @@ import { Image, TouchableOpacity } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation' // 1.0.0-beta.14
 
 import ActivitiesStack from './ActivitiesStack'
-import CalendarScreen from '../screens/CalendarScreen'
+import CalendarStack from './CalendarStack'
 import ProfileScreen from '../screens/ProfileScreen'
 import AboutModal from '../components/AboutModal'
 
@@ -25,7 +25,7 @@ const MainTabNavigator = TabNavigator({
     }),
   },
   Calendar: {
-    screen: CalendarScreen,
+    screen: CalendarStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
@@ -50,6 +50,9 @@ const MainTabNavigator = TabNavigator({
 
 { 
   initialRouteName: 'Activities',
+  tabBarOptions: {
+    activeTintColor: '#545680',
+  },
   navigationOptions: ({ navigation }) => ({
     headerRight: (
     <TouchableOpacity activeOpacity = { 0.5 } padding={200} onPress={() => navigation.navigate('About')}>
@@ -71,6 +74,7 @@ const RootStack = StackNavigator(
     },
   },
   {
+    initialRouteName: 'Main',
     mode: 'modal',
     headerMode: 'none',
   }

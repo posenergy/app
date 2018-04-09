@@ -65,7 +65,7 @@ class RegisterScreen extends ValidationComponent {
   resetNavigation(targetRoute) {
      const navigateAction = NavigationActions.reset({
        index: 0,
-       actions: [ NavigationActions.navigate({ routeName: targetRoute }, {genModalVisible: true}) ],
+       actions: [ NavigationActions.navigate({ routeName: targetRoute, params: { genModalVisible: true } }) ],
      })
      this.props.navigation.dispatch(navigateAction)
    }

@@ -23,9 +23,38 @@ export default class CalendarScreen extends Component {
     this.setState({pickerModalVisible: false})
   }
   
+  nextScreen = () => {
+    this.setState({pickerModalVisible: false})
+    const { navigate } = this.props.navigation
+    navigate('Choose', {startTime: this.state.chosenDate})
+  }
+
   setPickerDate(newDate) {
     this.setState({chosenDate: newDate})
   }
+  getDateString(date) {
+    let hours = date.getHours()
+    let suffix = 'AM'
+    if (hours > 12) {
+      hours -= 12
+      suffix = 'PM'
+    } else if (hours === 12) {
+      suffix = 'PM'
+    }
+    let time = ''
+    let month = date.toLocaleDateString()
+    let stripzeroes = parseInt(month, 10)
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December']
+    let minutes = date.getMinutes()
+    if (minutes < 10) {
+      time = '0' + minutes
+    } else {
+      time = minutes
+    }
+    return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + time + ' ' + suffix
+   }
+
   componentDidMount() {
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
@@ -45,8 +74,14 @@ export default class CalendarScreen extends Component {
           renderEmptyDate={this.renderEmptyDate.bind(this)}
           rowHasChanged={this.rowHasChanged.bind(this)}
           selected={this.timeToString(new Date())}
-       // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-          
+          theme={{
+            agendaDayTextColor: '#545680',
+            agendaDayNumColor: '#545680',
+            selectedDayBackgroundColor: '#545680',
+            selectedColor: 'black',
+            agendaTodayColor: '#545680',
+            agendaKnobColor: '#545680',
+          }}
         />
         <TouchableOpacity
           style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
@@ -59,8 +94,10 @@ export default class CalendarScreen extends Component {
           <PickerModal
             openPickerModal={this.openPickerModal}
             closePickerModal={this.closePickerModal}
+            nextScreen={this.nextScreen}
             chosenDate={this.state.chosenDate}
-            setDate={this.state.setDate}
+            getDateString={this.getDateString(this.state.chosenDate)}
+            setPickerDate={this.state.setPickerDate}
           />}
       </View>
     )
@@ -224,7 +261,7 @@ export default class CalendarScreen extends Component {
     if (item.posE) {
       return (
         <TouchableOpacity onPress={() => {this.editEvent(item)}}>
-        <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
+        <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
         <Text style={{color: 'white'}}>{item.name}</Text>
         {item.height > 60 &&

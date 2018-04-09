@@ -53,7 +53,7 @@ class LoginScreen extends ValidationComponent {
     this.props.navigation.dispatch(
       NavigationActions.reset({
         index: 0,
-        actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+        actions: [ NavigationActions.navigate({ routeName: targetRoute, params: { genModalVisible: false } }) ],
       }))
   }
 
@@ -166,7 +166,7 @@ class LoginScreen extends ValidationComponent {
         passwordSecure={true}/>
       <Button
         type='login' onClick={() => !this.state.buttonClicked && this.loginUser(this.state.email, this.state.password)}
-        text='Login' textColor='black'
+        text='Log In' textColor='grey'
         loading={this.state.buttonClicked}
         />
       <View style={{alignSelf: 'center'}}>

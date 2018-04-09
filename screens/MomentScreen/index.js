@@ -1,10 +1,23 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
 import {View, Text } from 'react-native'
+
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
 import styles from './styles'
+import { persistor } from '../../redux/store'
+import { token } from '../../redux/actions/tokenActions'
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({
+  token: state.tokenReducer.token,
+  user: state.userReducer,
+})
+
+const mapDispatchToProps = {
+  token,
+}
 
 class MomentScreen extends React.Component {
 
@@ -13,12 +26,18 @@ class MomentScreen extends React.Component {
 
     this.state = {
       // video: this.props.navigation.state.params.vid,
+      time: this.props.navigation.state.params.time,
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
       check: true,
     }
+  }
+  
+  setLength(){
+    const buffertime = this.props.user.buffer
+    
   }
 
   render() {
@@ -28,7 +47,7 @@ class MomentScreen extends React.Component {
             title = {this.state.title}
             brand ={this.state.brand}
             image = {require('../../images/yoga.png')}
-            text = {this.state.text}
+            text = {this.state.text.split('`')[0]}
             varelement = {<YouTube
               videoId="cBPP_izKKSs"
               play={false}
@@ -59,11 +78,13 @@ class MomentScreen extends React.Component {
                 </Text>
               </View>
             }
+
             button = {<Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation
                 navigate('Schedule', {
+                  time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                   title: this.state.title,
                   pict: this.state.pict,
                   desc: this.state.text,
@@ -78,4 +99,4 @@ class MomentScreen extends React.Component {
 
 }
 
-export default MomentScreen
+export default connect(mapStateToProps, mapDispatchToProps)(MomentScreen)

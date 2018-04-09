@@ -105,6 +105,7 @@ class SearchScreen extends React.Component {
                   pict: item.img,
                   desc: item.description,
                   brand: item.partner,
+                  time: item.duration,
                 })
                 }}>
                 <Moment
@@ -141,6 +142,7 @@ class SearchScreen extends React.Component {
                   brand: item.partner,
                   pict: item.img,
                   desc: item.description,
+                  time: item.duration,
                   // vid: item.vid,
                 })
                 }}>
