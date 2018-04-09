@@ -77,4 +77,5 @@ export default StyleSheet.create({
     marginTop: 16,
     width: 333,
   },
+  
 })

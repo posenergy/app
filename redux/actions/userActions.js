@@ -1,10 +1,12 @@
-export const LOGIN = 'LOGIN'
+export const PREPOPULATE = 'PREPOPULATE'
 
-export const login = (name, username, pass) => ({
-    type: LOGIN,
-    payload: {
-        name,
-        username,
-        pass,
-    },
-})
+export const prepopulate = (name, buffer, start, end, email) => {
+  return {
+    type: 'PREPOPULATE',
+    name: name,
+    buffer: buffer,
+    startTime: start,
+    endTime: end,
+    email: email,
+  }
+}

@@ -1,14 +1,11 @@
-import { BAR, CYCLE, DANCE, HIIT, KICK, PILATES, ROW, RUN, STRENGTH, STRETCH,
+import { BAR, DANCE, HIIT, PILATES, RUN, STRENGTH, STRETCH,
         YOGA, LOW, MEDIUM, HIGH, FIFTEEN, THIRTY, SIXTY } from '../actions/mvmtButtonsActions'
 
 const initialState = {
   bar: false,
-  cycle: false,
   dance: false,
   hiit: false,
-  kick: false,
   pilates: false,
-  row: false,
   run: false,
   strength: false,
   stretch: false,
@@ -29,12 +26,6 @@ const toggleMvmtButtons = (state = initialState, action) => {
       })
     }
 
-    case CYCLE: {
-      return Object.assign({}, state, {
-        journal: !state.cycle,
-      })
-    }
-
     case DANCE: {
       return Object.assign({}, state, {
         meditate: !state.dance,
@@ -47,21 +38,9 @@ const toggleMvmtButtons = (state = initialState, action) => {
       })
     }
 
-    case KICK: {
-      return Object.assign({}, state, {
-        skin: !state.kick,
-      })
-    }
-
     case PILATES: {
       return Object.assign({}, state, {
         inspired: !state.pilates,
-      })
-    }
-
-    case ROW: {
-      return Object.assign({}, state, {
-        journal: !state.row,
       })
     }
 

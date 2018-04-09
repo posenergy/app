@@ -143,7 +143,7 @@ class ScheduleScreen extends React.Component {
       })
   }
 
-  render() {
+render() {
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <SelectTime
@@ -152,15 +152,16 @@ class ScheduleScreen extends React.Component {
           brand = {this.state.brand}
           text = {this.state.text}
           varelement = {<RadioButtonList
-                        radioprops = {this.state.buttons}
-                        />}
-        />
-        <Button type='schedule'
-          onClick={() => this.saveEvent()}
-          text='Add to Calendar' textColor='white'/>
+            radioprops = {this.state.buttons}
+          />}
+          button = {<Button type='schedule'
+                    onClick={() => this.props.navigation.navigate('Calendar')}
+                    text='Add to Calendar' textColor='white'/>}
+      />
     </View>
-	)
+  )
   }
 }
 
 export default ScheduleScreen
+
