@@ -16,5 +16,6 @@ export default StyleSheet.create({
     marginLeft: 10,
     color: '#4F4F4F',
     textAlignVertical: 'center',
+    fontFamily: 'Circular Std',
   },
 })
