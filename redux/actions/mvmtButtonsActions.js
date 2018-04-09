@@ -1,3 +1,4 @@
+export const DEL_ALL_MVMT = 'DEL_ALL_MVMT'
 export const BAR = 'BAR'
 export const DANCE = 'DANCE'
 export const HIIT = 'HIIT'
@@ -14,6 +15,10 @@ export const HIGH = 'HIGH'
 export const FIFTEEN = 'FIFTEEN'
 export const THIRTY = 'THIRTY'
 export const SIXTY = 'SIXTY'
+
+export const del_all_mvmt = () => ({
+	type: 'DEL_ALL_MVMT',
+})
 
 export const barAction = () => ({
 		type: 'BAR',

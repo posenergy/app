@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '300',
     marginBottom: 20,
+    fontFamily: 'Circular Std',
   },
   header: {
     backgroundColor: '#F5FCFF',
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: 270,
     fontWeight: 'bold',
+    fontFamily: 'Circular Std',
   },
   content: {
     padding: 20,
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
   },
   contentText: {
     marginLeft: 20,
+    fontFamily: 'Circular Std',
   },
 })
 

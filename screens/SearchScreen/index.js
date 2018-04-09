@@ -12,8 +12,9 @@ import Moment from '../../components/Moment'
 import MvmtModal from '../../components/MvmtModal'
 import MindModal from '../../components/MindModal'
 
-
 const mapStateToProps = state => ({
+  token: state.tokenReducer.token,
+  filterTags: state.filterState.tags,
   visibleMind: state.toggleMindVisibility.visible,
   visibleMvmt: state.toggleMvmtVisibility.visible,
   tags: state.filterState.tags,
@@ -44,27 +45,65 @@ class SearchScreen extends React.Component {
     }
   }
 
+// if moment array length == 0 (nothing has been filtered),
+// simply get all of the moments based on category
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
-    if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
-      this.props.tags.forEach(function(i) {
-      tagUrl += i + '&tag[]='
+    if (this.props.filterTags === []) {
+      const url = config.apiUrl + '/moments/search/cat/?cat=' + this.state.category
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
       })
-      return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
       .then((res) => res.json())
       .then(res => {
-        this.setState({ moments: res })
+        this.setState({
+          moments: res,
+        })
       })
       .catch((error) => {
         console.error(error)
       })
-    } else if (this.props.visibleMvmt !== true && prevProps.visibleMvmt === true) {
+    }
+    if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
       this.props.tags.forEach(function(i) {
-      tagUrl += i + '&tag[]='
+        tagUrl += i + '&tag[]='
       })
-      return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-      '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + '&tag[]=' + tagUrl)
+      const url = config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
+        '&duration=' + this.props.duration + '&tag[]=' + tagUrl
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+      })
+        .then((res) => res.json())
+        .then(res => {
+          this.setState({ moments: res })
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    } else if (this.props.visibleMvmt !== true && prevProps.visibleMvmt === true) {
+        this.props.tags.forEach(function(i) {
+          tagUrl += i + '&tag[]='
+        })
+        const url = config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
+          '&sweat=' + this.props.sweat + '&duration=' + this.props.duration + '&tag[]=' + tagUrl
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-access-token': this.props.token,
+          },
+        })
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
@@ -73,11 +112,18 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
     }
-
   }
 
   componentDidMount() {
-    return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category)
+    const url = config.apiUrl + '/moments/search/cat/?cat=' + this.state.category
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'x-access-token': this.props.token,
+      },
+    })
       .then((res) => res.json())
       .then(res => {
         this.setState({
@@ -88,6 +134,10 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
   }
+
+// module.exports object with each category as keys, require statements as values
+// for each item, if statement about what category the item is and then get the correct
+// require statement
 
   render() {
     if (this.state.category === 'movement') {
@@ -102,16 +152,20 @@ class SearchScreen extends React.Component {
                 const { navigate } = this.props.navigation
                 navigate('Moment', {
                   title: item.name,
-                  pict: item.img,
+                  img: item.img,
                   desc: item.description,
                   brand: item.partner,
                   time: item.duration,
+                  vid: item.vid,
                 })
-                }}>
+               }}>
                 <Moment
                   id={item.id}
                   title={item.name}
                   time={item.duration}
+                  sweat={item.sweatIndex}
+                  icon={item.icon}
+                  brand={item.partner}
                 />
               </TouchableOpacity>
             }
@@ -140,16 +194,18 @@ class SearchScreen extends React.Component {
                 navigate('Moment', {
                   title: item.name,
                   brand: item.partner,
-                  pict: item.img,
+                  img: item.img,
                   desc: item.description,
                   time: item.duration,
-                  // vid: item.vid,
+                  vid: item.vid,
                 })
                 }}>
                 <Moment
                   id={item.id}
                   title={item.name}
                   time={item.duration}
+                  icon={item.icon}
+                  brand={item.partner}
                 />
               </TouchableOpacity>
             }

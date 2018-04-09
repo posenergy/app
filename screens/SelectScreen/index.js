@@ -10,10 +10,10 @@ class SelectScreen extends React.Component {
   super(props)
 
     this.state = {
-      title: '',
-      pict: '',
-      text: '',
-      brand: '',
+      title: this.props.navigation.state.params.title,
+      pict: this.props.navigation.state.params.pict,
+      text: this.props.navigation.state.params.desc,
+      brand: this.props.navigation.state.params.brand,
       date: '',
       day: '',
       time: '',

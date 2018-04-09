@@ -1,10 +1,21 @@
 import React from 'react'
 import { Image, TouchableOpacity, View } from 'react-native'
-import GenModal from '../../components/GenModal'
+import { connect } from 'react-redux'
+
+import { del_all_tags } from '../../redux/actions/momentActions'
+import { del_all_mvmt } from '../../redux/actions/mvmtButtonsActions'
+import { del_all_mind } from '../../redux/actions/mindButtonsActions'
 
 import styles from './styles'
+import GenModal from '../../components/GenModal'
 
-export default class ChooseScreen extends React.Component {
+const mapDispatchToProps = {
+  del_all_tags,
+  del_all_mvmt,
+  del_all_mind,
+}
+
+class ChooseScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -53,15 +64,18 @@ export default class ChooseScreen extends React.Component {
   }
 
   render() {
+    this.props.del_all_tags()
+    this.props.del_all_mvmt()
+    this.props.del_all_mind()
     return(
       <View style={styles.viewStyle}>
 
-        <TouchableOpacity style={styles.button}
+        <TouchableOpacity style = {styles.mvmtTouch}
           onPress={(event) => {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'movement'})
           }}>
-          <Image resizeMode="stretch" style={{ margin: 0, alignSelf: 'stretch'}} source={require('./src/mvmt.png')}/>
+          <Image style={styles.mvmt} source={require('../src/mvmt.png')}/>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button}
@@ -69,7 +83,7 @@ export default class ChooseScreen extends React.Component {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'mindfulness'})
           }}>
-          <Image resizeMode="stretch" style={{ margin: 0 }} source={require('./src/mind.png')}/>
+          <Image style={styles.mind} source={require('../src/mind.png')}/>
         </TouchableOpacity>
         {this.state.genModalVisible &&
           <GenModal
@@ -81,3 +95,5 @@ export default class ChooseScreen extends React.Component {
     )
   }
 }
+
+export default connect(null, mapDispatchToProps)(ChooseScreen)

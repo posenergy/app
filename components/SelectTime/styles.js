@@ -27,6 +27,7 @@ export default StyleSheet.create({
     lineHeight: 23,
     width: '80%',
     marginTop: 15,
+    fontFamily: 'Circular Std',
   },
   bold: {
     fontSize: 21,
@@ -34,6 +35,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 25,
+    fontFamily: 'Circular Std',
   },
   italics: {
     fontSize: 19,
@@ -44,6 +46,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
     color: '#4F4F4F',
+    fontFamily: 'Circular Std',
   },
   var: {
     marginBottom: '5%',

@@ -27,8 +27,8 @@ export default class FilterButton extends React.Component {
         text={this.props.titleProp}
         onClick={this.props.onPressProp}
         width= {this.props.width}
-        type='filter'
-        textColor= 'blacksmall'
+        type={this.props.typeProp}
+        textColor= {this.props.textColor}
       />
     )
   }

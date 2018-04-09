@@ -5,8 +5,7 @@ import { connect } from 'react-redux'
 
 import { del_tag, add_tag, sweat, duration } from '../../redux/actions/momentActions'
 import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
-import { barAction, cycleAction, danceAction, hiitAction,
-        kickAction, pilatesAction, rowAction, runAction, strengthAction,
+import { barAction, danceAction, hiitAction, pilatesAction, runAction, strengthAction,
         stretchAction, yogaAction, lowAction, mediumAction, highAction,
         fifteenAction, thirtyAction, sixtyAction } from '../../redux/actions/mvmtButtonsActions'
 
@@ -18,12 +17,9 @@ const mapStateToProps = state => ({
   tags: state.tags,
   duration: state.duration,
   bar: state.toggleMvmtButtons.bar,
-  cycle: state.toggleMvmtButtons.cycle,
   dance: state.toggleMvmtButtons.dance,
   hiit: state.toggleMvmtButtons.hiit,
-  kick: state.toggleMvmtButtons.kick,
   pilates: state.toggleMvmtButtons.pilates,
-  row: state.toggleMvmtButtons.row,
   run: state.toggleMvmtButtons.run,
   strength: state.toggleMvmtButtons.strength,
   stretch: state.toggleMvmtButtons.stretch,
@@ -43,12 +39,9 @@ const mapDispatchToProps = {
   duration,
   mvmtVisibility,
   barAction,
-  cycleAction,
   danceAction,
   hiitAction,
-  kickAction,
   pilatesAction,
-  rowAction,
   runAction,
   strengthAction,
   stretchAction,
@@ -60,6 +53,16 @@ const mapDispatchToProps = {
   thirtyAction,
   sixtyAction,
 }
+
+//   const executeFunctionByName = (functionName, context, args ) => {
+//   var args = Array.prototype.slice.call(arguments, 2);
+//   var namespaces = functionName.split(".");
+//   var func = namespaces.pop();
+//   for(var i = 0; i < namespaces.length; i++) {
+//     context = context[namespaces[i]];
+//   }
+//   return context[func].apply(context, args);
+// }
 
 class MvmtModal extends Component {
 
@@ -199,7 +202,7 @@ class MvmtModal extends Component {
                 <Image
                   source={require('../../images/filter.png')}
                   style={styles.imageheader}/>
-                <Text alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
+                <Text color='#4F4F4F' fontFamily='CircularStd-Book' alignSelf='center' justifyContent='flex-start' fontSize={16} lineHeight={29}>
                 Filter Activities
                 </Text>
               </View>
@@ -208,37 +211,53 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Barre'
+                    typeProp={ this.props.bar ? 'filterClick' : 'filter' }
                     width={57}
+                    textColor={ this.props.bar ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonBar('Bar')} />
                   <FilterButton
                     titleProp='Dance'
+                    typeProp={ this.props.dance ? 'filterClick' : 'filter' }
                     width={74}
+                    textColor={ this.props.dance ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonDance('Dance')} />
                  <FilterButton
                     titleProp='HIIT'
+                    typeProp={ this.props.hiit ? 'filterClick' : 'filter' }
                     width={57}
+                    textColor={ this.props.hiit ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonHiit('Hiit')} />
                   <FilterButton
                     titleProp='Pilates'
+                    typeProp={ this.props.pilates ? 'filterClick' : 'filter' }
                     width={77}
+                    textColor={ this.props.pilates ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonPilates('Pilates')} />
                 </View>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Run'
+                    typeProp={ this.props.run ? 'filterClick' : 'filter' }
                     width={54}
+                    textColor={ this.props.run ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonRun('Run')} />
                   <FilterButton
                     titleProp='Strength'
+                    typeProp={ this.props.strength ? 'filterClick' : 'filter' }
                     width={81}
+                    textColor={ this.props.strength ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonStrength('Strength')} />
                   <FilterButton
                     titleProp='Stretch'
+                    typeProp={ this.props.stretch ? 'filterClick' : 'filter' }
                     width={82}
+                    textColor={ this.props.stretch ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonStretch('Stretch')} />
                   <FilterButton
                     titleProp='Yoga'
+                    typeProp={ this.props.yoga ? 'filterClick' : 'filter' }
                     width={52}
+                    textColor={ this.props.yoga ? 'white' : 'blacksmall'}
                     onPressProp={() => this.buttonYoga('Yoga')} />
                 </View>
               </View>
@@ -247,15 +266,21 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                        <FilterButton
                          titleProp='Low'
+                         typeProp={ this.props.low ? 'filterClick' : 'filter' }
                          width={77.2}
+                         textColor={ this.props.low ? 'white' : 'blacksmall'}
                          onPressProp={() => this.buttonLow(0)} />
                        <FilterButton
                          titleProp='Medium'
+                         typeProp={ this.props.medium ? 'filterClick' : 'filter' }
                          width={107.6}
+                         textColor={ this.props.medium ? 'white' : 'blacksmall'}
                          onPressProp={() => this.buttonMed(1)} />
                        <FilterButton
                          titleProp='High'
+                         typeProp={ this.props.high ? 'filterClick' : 'filter' }
                          width={91.9}
+                         textColor={ this.props.high ? 'white' : 'blacksmall'}
                          onPressProp={() => this.buttonHigh(2)} />
                      </View>
               </View>
@@ -264,17 +289,23 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='< 15 min'
+                    typeProp={ this.props.fifteen ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.fifteen ? 'white' : 'blacksmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonFifteen(15)} />
                   <FilterButton
                     titleProp='< 30 min'
+                    typeProp={ this.props.thirty ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.thirty ? 'white' : 'blacksmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonThirty(30)} />
                   <FilterButton
                     titleProp='< 60 min'
+                    typeProp={ this.props.sixty ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.sixty ? 'white' : 'blacksmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonSixty(60)} />
                 </View>
@@ -282,6 +313,7 @@ class MvmtModal extends Component {
             <Button
               justifyContent= 'flex-end'
               type ='mindmodal'
+              textColor='greysmall'
               onClick={() => {this.buttonClicked()}}
               text = 'Apply'/>
             </View>
