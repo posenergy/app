@@ -19,6 +19,7 @@ export default StyleSheet.create({
     fontStyle: 'italic',
     fontSize: 26,
     textAlign: 'center',
+    textAlignVertical: 'center',
     lineHeight: 31,
   },
   text: {

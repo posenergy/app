@@ -42,7 +42,7 @@ class MomentScreen extends React.Component {
       return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
-                  source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}/>
+                  source={{uri: this.state.img}}/>
               </View>)
     }
   }
