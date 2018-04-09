@@ -20,8 +20,11 @@ export default StyleSheet.create({
     fontFamily: 'Circular Std',
   },
   white: {
-    fontSize: 20,
-    color: '#fff',
+    fontSize: 16,
+    lineHeight: 19,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlignVertical: 'center',
     fontFamily: 'Circular Std',
   },
   black: {
@@ -104,7 +107,7 @@ export default StyleSheet.create({
     height: 27,
     borderRadius: 5,
   },
-  filterclick: {
+  filterClick: {
     margin: 0,
     backgroundColor: '#545680',
     display: 'flex',
@@ -112,7 +115,7 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     height: 27,
-    marginRight: 5,
+    borderRadius: 5,
   },
   login: {
     marginTop: 13,

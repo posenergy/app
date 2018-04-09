@@ -202,15 +202,13 @@ class RegisterScreen extends ValidationComponent {
               imagelink = {require('../../images/profile.png')}
               passwordSecure = {false}
               changeFunction ={name => this.setState({name})}
-              returnKeyType = {"next"}
-            />
+              returnKeyType = {'next'}/>
             <StyleTextInput
               pholder='Email'
               imagelink = {require('../../images/mail.png')}
               passwordSecure = {false}
               changeFunction ={email => this.setState({email})}
-              returnKeyType = {"next"}
-            />
+              returnKeyType = {'next'}/>
             <StyleTextInput
               pholder='Password'
               imagelink = {require('../../images/lock.png')}

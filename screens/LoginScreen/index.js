@@ -18,7 +18,6 @@ import styles from './styles'
 import { prepopulate } from '../../redux/actions/userActions'
 import { token } from '../../redux/actions/tokenActions'
 
-import Logo from '../../components/Logo'
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
 
@@ -169,11 +168,13 @@ class LoginScreen extends ValidationComponent {
             pholder='Email'
             imagelink = {require('../../images/mail.png')}
             type='white'
+            returnKeyType = {'next'}
             changeFunction={email => this.setState({email})}/>
           <StyleTextInput
             pholder='Password'
             imagelink = {require('../../images/lock.png')}
             type='white'
+            returnKeyType = {'next'}
             changeFunction={password => this.setState({password})}
             passwordSecure={true}/>
           <Button
