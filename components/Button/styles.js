@@ -126,6 +126,18 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginBottom: 13,
   },
+  purple: {
+    marginTop: 13,
+    backgroundColor: '#545680',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    height: 50,
+    width: 292,
+    margin: 8,
+    borderRadius: 5,
+    marginBottom: 13,
+  },
   register: {
     marginTop: 13,
     backgroundColor: '#F2F2F2',

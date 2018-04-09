@@ -44,6 +44,16 @@ class ProfileScreen extends React.Component {
       }))
   }
 
+  getHour(time) {
+    let hours = time.substr(0, 2)
+    let mins = time.substr(2, 4)
+    return hours + ':' + mins
+  }
+
+  getMins(minutes) {
+    return minutes + ' minutes'
+  }
+
   render() {
     return (
       <ScrollView
@@ -59,29 +69,24 @@ class ProfileScreen extends React.Component {
         imagelink = {require('../../images/mailblack.png')}
         changeFunction={email => this.setState({email})}/>
       <BlackStyleTextInput
-        pholder='Password'
-        imagelink = {require('../../images/lockblack.png')}
-        changeFunction={password => this.setState({password})}
-        passwordSecure={true}/>
-      <BlackStyleTextInput
-        pholder={this.props.user.buffer.toString()}
+        pholder={this.getMins(this.props.user.buffer.toString())}
         imagelink = {require('../../images/buffertime.png')}
         changeFunction={buffertime => this.setState({buffertime})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder={this.props.user.startTime.toString()}
+        pholder={this.getHour(this.props.user.startTime.toString())}
         imagelink = {require('../../images/sun.png')}
         changeFunction={wakeup => this.setState({wakeup})}
         passwordSecure={true}/>
       <BlackStyleTextInput
-        pholder={this.props.user.endTime.toString()}
+        pholder={this.getHour(this.props.user.endTime.toString())}
         imagelink = {require('../../images/night.png')}
         changeFunction={bedtime => this.setState({bedtime})}
         passwordSecure={true}/>
       <Button
         text = "Log Out"
-        textColor = "white"
-        type = 'schedule'
+        textColor="white"
+        type = 'purple'
         onClick = {() => {this.logout()}}>
       </Button>
       </ScrollView>
