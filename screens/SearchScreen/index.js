@@ -44,23 +44,7 @@ class SearchScreen extends React.Component {
     }
   }
 
-  check = (icon) => {
-    if (icon == '../src/journalIcon.png') {
-        return this.icons.journal
-      }
-    else {
-        return this.icons.yoga
-      }
-
-      // case DANCE: {
-      //   return Object.assign({}, state, {
-      //     meditate: !state.dance,
-      //   })
-      // }
-    
-  }
-
-// if moment array length == 0 (nothing has been filtered), 
+// if moment array length == 0 (nothing has been filtered),
 // simply get all of the moments based on category
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
@@ -98,7 +82,6 @@ class SearchScreen extends React.Component {
     return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category)
       .then((res) => res.json())
       .then(res => {
-        console.log(res)
         this.setState({
           moments: res,
         })
@@ -107,10 +90,6 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
   }
-
-// module.exports object with each category as keys, require statements as values
-// for each item, if statement about what category the item is and then get the correct
-// require statement
 
   render() {
     if (this.state.category === 'movement') {
