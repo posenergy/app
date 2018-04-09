@@ -26,6 +26,18 @@ const mapDispatchToProps = {
   mvmtVisibility,
 }
 
+const icons = {
+  pilates: require('../src/pilatesIcon.png'),
+  stretching: require('../src/stretchingIcon.png'),
+  run: require('../src/runIcon.png'),
+  barre: require('../src/barreIcon.png'),
+  hiit: require('../src/hiitIcon.png'),
+  strength: require('../src/strengthIcon.png'),
+  dance: require('../src/danceIcon.png'),
+  yoga: require('../src/yogaIcon.png'),
+  journal: require('../src/journalIcon.png'),
+}
+
 class SearchScreen extends React.Component {
 
   buttonClickedMind = () => {
@@ -42,19 +54,6 @@ class SearchScreen extends React.Component {
     this.state = {
       category: this.props.navigation.state.params.category,
     }
-  }
-
-  const icons = {
-    pilates: require('../src/journalIcon.png')
-    stretching: 
-    run: 
-    barre: 
-    hiit: 
-    strength: 
-    dance:
-    yoga:
-    journal: '../src/journalIcon.png',
-
   }
 
 // if moment array length == 0 (nothing has been filtered), 
