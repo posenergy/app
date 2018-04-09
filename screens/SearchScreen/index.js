@@ -44,6 +44,21 @@ class SearchScreen extends React.Component {
     }
   }
 
+  const icons = {
+    pilates: require('../src/journalIcon.png')
+    stretching: 
+    run: 
+    barre: 
+    hiit: 
+    strength: 
+    dance:
+    yoga:
+    journal: '../src/journalIcon.png',
+
+  }
+
+// if moment array length == 0 (nothing has been filtered), 
+// simply get all of the moments based on category
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
     if (this.props.visibleMind !== true && prevProps.visibleMind === true) {
@@ -89,6 +104,10 @@ class SearchScreen extends React.Component {
         console.error(error)
       })
   }
+
+// module.exports object with each category as keys, require statements as values
+// for each item, if statement about what category the item is and then get the correct
+// require statement
 
   render() {
     if (this.state.category === 'movement') {
@@ -150,7 +169,7 @@ class SearchScreen extends React.Component {
                   id={item.id}
                   title={item.name}
                   time={item.duration}
-                  // icon={item.url}
+                  icon={require('../src/journalIcon.png')}
                 />
               </TouchableOpacity>
             }
