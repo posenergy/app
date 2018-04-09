@@ -19,6 +19,7 @@ export default StyleSheet.create({
     flex: 3,
     color: '#F2F2F2',
     marginBottom: 11,
+    fontFamily: 'Circular Std',
   },
   image: {
     flex: 1,

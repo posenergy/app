@@ -38,6 +38,15 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
     fontFamily: 'Circular Std',
   },
+  greysmall: {
+    fontSize: 16,
+    lineHeight: 19,
+    marginTop: 2,
+    color: '#4F4F4F',
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    fontFamily: 'CircularStd-Book',
+  },
   grey: {
     fontSize: 20,
     color: '#333333',

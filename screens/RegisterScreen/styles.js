@@ -16,7 +16,7 @@ export default StyleSheet.create({
         alignSelf: 'center',
         marginTop: 7,
         fontSize: 12,
-
+        fontFamily: 'Circular Std',
     },
     header: {
         color: '#000000',
@@ -48,6 +48,7 @@ export default StyleSheet.create({
         backgroundColor: 'transparent',
         width: 300,
         marginBottom: 15,
+        fontFamily: 'Circular Std',
     },
     view: {
         flex: 1,
