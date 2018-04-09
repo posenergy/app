@@ -83,6 +83,7 @@ Moment.propTypes = {
   time: PropTypes.number,
   pict: PropTypes.string,
   sweat: PropTypes.number,
+  brand: PropTypes.string,
 }
 
 export default Moment
