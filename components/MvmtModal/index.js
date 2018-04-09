@@ -61,17 +61,13 @@ const mapDispatchToProps = {
   sixtyAction,
 }
 
-//   const executeFunctionByName = (functionName, context, args ) => {
-//   var args = Array.prototype.slice.call(arguments, 2);
-//   var namespaces = functionName.split(".");
-//   var func = namespaces.pop();
-//   for(var i = 0; i < namespaces.length; i++) {
-//     context = context[namespaces[i]];
-//   }
-//   return context[func].apply(context, args);
-// }
-
 class MvmtModal extends Component {
+  constructor(props){
+  super(props)
+    this.state = {
+      bar: false,
+    }
+  }
 
   buttonClicked = () => {
     this.props.mvmtVisibility()
@@ -138,6 +134,7 @@ class MvmtModal extends Component {
   }
 
   buttonBar = (tag) => {
+    this.setState({ bar: !this.state.bar })
     this.props.barAction()
 
     if (this.props.bar) {
@@ -218,36 +215,44 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Barre'
+                    typeProp={ this.state.bar ? 'filterClick' : 'filter' }
                     width={57}
                     onPressProp={() => this.buttonBar('Bar')} />
                   <FilterButton
                     titleProp='Dance'
+                    typeProp='filter'
                     width={74}
                     onPressProp={() => this.buttonDance('Dance')} />
                  <FilterButton
                     titleProp='HIIT'
+                    typeProp='filter'
                     width={57}
                     onPressProp={() => this.buttonHiit('Hiit')} />
                   <FilterButton
                     titleProp='Pilates'
+                    typeProp='filter'
                     width={77}
                     onPressProp={() => this.buttonPilates('Pilates')} />
                 </View>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Run'
+                    typeProp='filter'
                     width={54}
                     onPressProp={() => this.buttonRun('Run')} />
                   <FilterButton
                     titleProp='Strength'
+                    typeProp='filter'
                     width={81}
                     onPressProp={() => this.buttonStrength('Strength')} />
                   <FilterButton
                     titleProp='Stretch'
+                    typeProp='filter'
                     width={82}
                     onPressProp={() => this.buttonStretch('Stretch')} />
                   <FilterButton
                     titleProp='Yoga'
+                    typeProp='filter'
                     width={52}
                     onPressProp={() => this.buttonYoga('Yoga')} />
                 </View>
@@ -257,14 +262,17 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                        <FilterButton
                          titleProp='Low'
+                         typeProp='filter'
                          width={77.2}
                          onPressProp={() => this.buttonLow(0)} />
                        <FilterButton
                          titleProp='Medium'
+                         typeProp='filter'
                          width={107.6}
                          onPressProp={() => this.buttonMed(1)} />
                        <FilterButton
                          titleProp='High'
+                         typeProp='filter'
                          width={91.9}
                          onPressProp={() => this.buttonHigh(2)} />
                      </View>
@@ -274,16 +282,19 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='< 15 min'
+                    typeProp='filter'
                     width={94}
                     marginRight={6}
                     onPressProp={() => this.buttonFifteen(15)} />
                   <FilterButton
                     titleProp='< 30 min'
+                    typeProp='filter'
                     width={94}
                     marginRight={6}
                     onPressProp={() => this.buttonThirty(30)} />
                   <FilterButton
                     titleProp='< 60 min'
+                    typeProp='filter'
                     width={94}
                     marginRight={6}
                     onPressProp={() => this.buttonSixty(60)} />

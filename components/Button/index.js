@@ -19,6 +19,7 @@ export default class Button extends Component {
       'picker',
       'filterButton',
       'mindmodal',
+      'filterClick',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
@@ -41,7 +42,7 @@ export default class Button extends Component {
     <ActivityIndicator size="large" style={styles.spinner}/>
 
   render() {
-    if (this.props.type === 'filter') {
+    if (this.props.type === 'filter' || this.props.type === 'filterClick') {
       return (
       <View
         style={styles.wrapview}

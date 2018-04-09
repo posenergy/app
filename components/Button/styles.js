@@ -88,7 +88,7 @@ export default StyleSheet.create({
     height: 27,
     borderRadius: 5,
   },
-  filterclick: {
+  filterClick: {
     margin: 0,
     backgroundColor: '#545680',
     display: 'flex',
