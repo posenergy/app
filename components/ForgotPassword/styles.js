@@ -6,6 +6,6 @@ export default StyleSheet.create({
         alignSelf: 'center',
         marginTop: 7,
         fontSize: 11,
-
+        fontFamily: 'Circular Std',
     },
 })

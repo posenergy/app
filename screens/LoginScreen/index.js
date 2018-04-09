@@ -178,7 +178,7 @@ class LoginScreen extends ValidationComponent {
           ],
           { cancelable: true }
         )}>
-      <Text style={{color: 'white'}}>Forgot Password?</Text>
+      <Text style={{fontFamily: 'Circular Std', color: 'white'}}>Forgot Password?</Text>
       </TouchableHighlight>
       </View>
       </ScrollView>
