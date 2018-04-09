@@ -60,18 +60,20 @@ export default class PickerScreen extends Component {
               alignItems: 'center'}}>
                 <View style={styles.innerContainer}>
                     <TouchableOpacity
-                      activeOpacity = { 0.5 }
-                      style={styles.opacity}
+                      activeOpacity = {0.5}
+                      justifyContent= 'flex-start'
                       onPress={this.props.closePickerModal}>
                         <Image
                           source={require('../../images/cancel.png')}
                           style={styles.image}/>
                     </TouchableOpacity>
                   <Text style={styles.transtextField}> Confirm Time </Text>
-                  <Text style={styles.textField}
-                        textColor = '#545680'>
-                    {this.getDateString(this.props.chosenDate)}
-                  </Text>
+                  <View style={styles.textview}>
+                    <Text style={styles.textField}
+                          textColor = '#545680'>
+                      {this.getDateString(this.props.chosenDate)}
+                    </Text>
+                  </View>
                 <View style={styles.datePicker}>
                   <DatePickerIOS
                     date={this.props.chosenDate}

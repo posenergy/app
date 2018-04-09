@@ -14,5 +14,6 @@ export default StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     color: '#4F4F4F',
+    fontFamily: 'Circular Std',
   },
 })
