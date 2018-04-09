@@ -1,6 +1,6 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
-import {View, Text } from 'react-native'
+import {View, Text, Image } from 'react-native'
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
@@ -12,12 +12,38 @@ class MomentScreen extends React.Component {
   super(props)
 
     this.state = {
-      // video: this.props.navigation.state.params.vid,
+      vid: this.props.navigation.state.params.vid,
       title: this.props.navigation.state.params.title,
-      pict: this.props.navigation.state.params.pict,
+      img: this.props.navigation.state.params.img,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
       check: true,
+    }
+  }
+
+  parseVid = () => {
+    if (this.state.vid) {
+      const url = this.state.vid
+      const split1 = url.split('?v=')
+      const split2 = split1[1].split('&')
+      return (<YouTube
+              videoId={split2[0]}
+              play={false}
+              fullscreen={true}
+              loop={false}
+
+              onReady={e => this.setState({ isReady: true })}
+              onChangeState={e => this.setState({ status: e.state })}
+              onChangeQuality={e => this.setState({ quality: e.quality })}
+              onError={e => this.setState({ error: e.error })}
+              style={{ alignSelf: 'stretch', height: 142, width: 244 }}
+            />)
+    } else {
+      return (<View height={142} width={244}>
+                <Image
+                  style={{flex: 1}}
+                  source={{uri: this.state.img}}/>
+              </View>)
     }
   }
 
@@ -29,18 +55,7 @@ class MomentScreen extends React.Component {
             brand ={this.state.brand}
             image = {require('../../images/yoga.png')}
             text = {this.state.text}
-            varelement = {<YouTube
-              videoId="cBPP_izKKSs"
-              play={false}
-              fullscreen={true}
-              loop={false}
-
-              onReady={e => this.setState({ isReady: true })}
-              onChangeState={e => this.setState({ status: e.state })}
-              onChangeQuality={e => this.setState({ quality: e.quality })}
-              onError={e => this.setState({ error: e.error })}
-              style={{ alignSelf: 'stretch', height: 142, width: 244 }}
-            />}
+            varelement = {this.parseVid()}
             varelement2 = {
               <View style={styles.toggle}>
                 <FlipToggle

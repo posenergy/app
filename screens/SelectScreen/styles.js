@@ -29,6 +29,7 @@ export default StyleSheet.create({
     fontSize: 18,
     lineHeight: 21,
     color: '#333333',
+    fontFamily: 'Circular Std',
   },
   textview: {
     alignSelf: 'center',
