@@ -1,5 +1,4 @@
 import { Image, Text, View } from 'react-native'
-
 import PropTypes from 'prop-types'
 import React from 'react'
 import styles from './styles'
@@ -19,7 +18,7 @@ const Moment = ({ icon, brand, pict, sweat, title, time }) => (
       {icon === '../src/strengthIcon.png' &&
         <Image style={{ width: 45, height: 45, marginLeft: 20, marginTop: 23, marginRight: 0 }}
           source={require('../../screens/src/strengthIcon.png')} />}
-      {icon === '../src/hiitIcon.png' &&
+      {icon === '../src/HIITIcon.png' &&
         <Image style={{ width: 50, height: 50, marginLeft: 18, marginTop: 20, marginRight: 0 }}
           source={require('../../screens/src/hiitIcon.png')} />}
       {icon === '../src/barreIcon.png' &&
