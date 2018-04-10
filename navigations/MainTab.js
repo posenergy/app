@@ -73,7 +73,7 @@ const MainTabNavigator = TabNavigator({
   },
   navigationOptions: ({ navigation }) => ({
     headerRight: <ConnectedInfoButton />,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
+    headerStyle: { backgroundColor: '#545680' },
     headerTintColor: 'white',
   }),
   headerMode: 'screen',

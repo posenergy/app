@@ -37,7 +37,9 @@ class ChooseScreen extends React.Component {
         title: 'Welcome!',
         text: '[+energy] helps you discover wellness content and integrate it into your busy life by instantly adding chosen events to your calendar, and continually syncing with it.',
         bname: 'Next',
-        image: () => {require('../../images/slide1.png')},
+        image: <Image
+                source= {require('../../images/slide1.png')}
+                style={styles.modalIndex} />,
         modalCommand: this.nextModal,
       },
     }
@@ -51,7 +53,9 @@ class ChooseScreen extends React.Component {
         text: 'Click "Activities" to browse on demand content and then add it to your calendar. Start by choosing "Mindfulness" or "Movement."',
         bname: 'Next',
         bold: 'Ready to get planning?',
-        image: () => {require('../../images/slide2.png')},
+        image: <Image
+                source= {require('../../images/slide2.png')}
+                style={styles.modalIndex} />,
         modalCommand: this.nextModal,
       }
     } else if(this.state.genModalCounter === 2) {
@@ -59,7 +63,9 @@ class ChooseScreen extends React.Component {
         title: 'Welcome!',
         text: 'Click "Calendar" to find availability and then browse activities. Click on open time slots to start scheduling!',
         bname: 'Let`s go!',
-        image: () => {require('../../images/slide3.png')},
+        image: <Image
+                source= {require('../../images/slide3.png')}
+                style={styles.modalIndex} />,
         modalCommand: this.closeModal,
       }
     }
