@@ -1,8 +1,6 @@
 import { Image, Text, View } from 'react-native'
-
 import PropTypes from 'prop-types'
 import React from 'react'
-import { View, Text, Image } from 'react-native'
 import styles from './styles'
 
 const Moment = ({ icon, brand, pict, sweat, title, time }) => (

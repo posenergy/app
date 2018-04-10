@@ -21,15 +21,16 @@ export default StyleSheet.create({
     height: 45,
     width: 45,
   },
-
   flatListStyle: {
     flex: 1,
   },
-
   buttonStyle: {
     justifyContent: 'flex-end',
   },
   activities: {
     alignSelf: 'center',
+  },
+  empty: {
+    fontFamily: 'CircularStd-Book',
   },
 })
