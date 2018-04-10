@@ -44,12 +44,12 @@ export default StyleSheet.create({
   },
   bold: {
     fontSize: 21,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 25,
     width: '90%',
     marginBottom: '2%',
-    fontFamily: 'Circular Std',
+    fontFamily: 'CircularStd-Bold',
   },
   italics: {
     fontSize: 19,
@@ -59,6 +59,7 @@ export default StyleSheet.create({
     lineHeight: 22,
     color: '#4F4F4F',
     fontFamily: 'Circular Std',
+    marginBottom: 2,
   },
   var: {
     alignSelf: 'center',

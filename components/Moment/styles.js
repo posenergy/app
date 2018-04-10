@@ -16,7 +16,7 @@ export default StyleSheet.create({
     lineHeight: 25,
     marginLeft: 7,
     marginRight: 10,
-    fontFamily: 'Circular Std',
+    fontFamily: 'CircularStd-Bold',
   },
   momentTime: {
     flex: 1,

@@ -32,10 +32,6 @@ class MomentScreen extends React.Component {
       check: true,
     }
   }
-  
-  // setLength() {
-  //   const buffertime = this.props.user.buffer
-  // }
 
   parseVid = () => {
     if (this.state.vid) {
@@ -69,7 +65,7 @@ class MomentScreen extends React.Component {
             title = {this.state.title}
             brand ={this.state.brand}
             image = {require('../../images/yoga.png')}
-            text = {this.state.text}
+            text = {this.state.text.split('`')[0]}
             varelement = {this.parseVid()}
             varelement2 = {
               <View style={styles.toggle}>
@@ -111,6 +107,7 @@ class MomentScreen extends React.Component {
                   desc: this.state.text,
                   brand: this.state.brand,
                   vid: this.state.vid,
+                  check: this.state.check
                 })
               }}
               text='Schedule' textColor='white'/>}

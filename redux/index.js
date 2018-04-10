@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 
+import aboutModal from './reducers/aboutModalReducer'
 import userReducer from './reducers/userReducer'
 import filterState from './reducers/momentReducer'
 import toggleMindVisibility from './reducers/mindModalReducer'
@@ -17,7 +18,7 @@ const rootReducer = combineReducers({
   toggleMindButtons,
   toggleMvmtButtons,
   tokenReducer,
-  
+  aboutModal,
 })
 
 export default (state, action) => {
