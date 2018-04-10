@@ -23,6 +23,9 @@ class ChooseScreen extends React.Component {
   }
 
   render() {
+    this.props.del_all_tags()
+    this.props.del_all_mvmt()
+    this.props.del_all_mind()
     return(
       <View style={styles.viewStyle}>
 

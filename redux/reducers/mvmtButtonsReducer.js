@@ -135,6 +135,10 @@ const toggleMvmtButtons = (state = initialState, action) => {
       })
     }
 
+    case DEL_ALL_MVMT: {
+      return Object.assign({}, state, state)
+    }
+
     default: return state
   }
 

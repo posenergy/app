@@ -17,14 +17,16 @@ export default StyleSheet.create({
     lineHeight: 25,
     marginLeft: 20,
     marginRight: 10,
+    fontFamily: 'Circular Std',
   },
   momentTime: {
     flex: 1,
     color: '#4f4f4f',
     textAlign: 'left',
-    fontSize: 20,
+    fontSize: 18,
+    fontFamily: 'Circular Std',
     lineHeight: 23,
-    marginLeft: 20,
+    marginLeft: 10,
   },
   icon: {
     alignSelf: 'center',
@@ -46,3 +48,4 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
 })
+

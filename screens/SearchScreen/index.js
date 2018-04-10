@@ -45,6 +45,8 @@ class SearchScreen extends React.Component {
     }
   }
 
+// if moment array length == 0 (nothing has been filtered),
+// simply get all of the moments based on category
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
     if (this.props.filterTags === []) {
@@ -210,6 +212,10 @@ class SearchScreen extends React.Component {
       })
   }
 
+// module.exports object with each category as keys, require statements as values
+// for each item, if statement about what category the item is and then get the correct
+// require statement
+
   render() {
     if (this.state.category === 'movement') {
       return (
@@ -220,14 +226,15 @@ class SearchScreen extends React.Component {
             renderItem={({item}) =>
               <TouchableOpacity style={styles.button}
                 onPress={(event) => {
-                  const { navigate } = this.props.navigation
-                  navigate('Moment', {
-                    title: item.name,
-                    pict: item.img,
-                    desc: item.description,
-                    brand: item.partner,
-                  })
-                }}>
+                const { navigate } = this.props.navigation
+                navigate('Moment', {
+                  title: item.name,
+                  img: item.img,
+                  desc: item.description,
+                  brand: item.partner,
+                  vid: item.vid,
+                })
+               }}>
                 <Moment
                   id={item.id}
                   title={item.name}
@@ -263,9 +270,9 @@ class SearchScreen extends React.Component {
                 navigate('Moment', {
                   title: item.name,
                   brand: item.partner,
-                  pict: item.img,
+                  img: item.img,
                   desc: item.description,
-                  // vid: item.vid,
+                  vid: item.vid,
                 })
                 }}>
                 <Moment

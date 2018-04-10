@@ -17,6 +17,7 @@ export default StyleSheet.create({
   red: {
     fontSize: 20,
     color: '#D50000',
+    fontFamily: 'Circular Std',
   },
   white: {
     fontSize: 16,
@@ -24,11 +25,13 @@ export default StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlignVertical: 'center',
+    fontFamily: 'Circular Std',
   },
   black: {
     fontSize: 20,
     color: 'black',
     fontWeight: 'bold',
+    fontFamily: 'Circular Std',
   },
   blacksmall: {
     fontSize: 16,
@@ -36,20 +39,33 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     textAlignVertical: 'center',
+    fontFamily: 'Circular Std',
+  },
+  greysmall: {
+    fontSize: 16,
+    lineHeight: 19,
+    marginTop: 2,
+    color: '#4F4F4F',
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    fontFamily: 'CircularStd-Book',
   },
   grey: {
     fontSize: 20,
     color: '#333333',
     fontWeight: 'bold',
+    fontFamily: 'Circular Std',
   },
   blue: {
     fontSize: 20,
     color: '#1565C0',
+    fontFamily: 'Circular Std',
   },
   boldBlack: {
     fontSize: 15,
     color: 'black',
     fontWeight: 'bold',
+    fontFamily: 'Circular Std',
   },
   filterButton: {
     marginTop: 13,
