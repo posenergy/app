@@ -69,6 +69,7 @@ class ChooseScreen extends React.Component {
 
   closeModal = () => {
     this.props.onboarding()
+    this.setState({genModalVisible: false})
   }
 
   render() {
