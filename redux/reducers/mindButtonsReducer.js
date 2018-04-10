@@ -16,7 +16,17 @@ const initialState = {
 const toggleMindButtons = (state = initialState, action) => {
   switch (action.type) {
     case DEL_ALL_MIND: {
-      return Object.assign({}, state, state)
+      return Object.assign({}, state, {
+        craft: false,
+        journal: false,
+        meditate: false,
+        gratitude: false,
+        skin: false,
+        inspired: false,
+        fifteen: false,
+        thirty: false,
+        sixty: false,
+      })
     }
 
     case CRAFT: {

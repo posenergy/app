@@ -117,7 +117,22 @@ const toggleMvmtButtons = (state = initialState, action) => {
     }
 
     case DEL_ALL_MVMT: {
-      return Object.assign({}, state, state)
+      return Object.assign({}, state, {
+          bar: false,
+          dance: false,
+          hiit: false,
+          pilates: false,
+          run: false,
+          strength: false,
+          stretch: false,
+          yoga: false,
+          low: false,
+          medium: false,
+          high: false,
+          fifteen: false,
+          thirty: false,
+          sixty: false,
+      })
     }
 
     default: return state

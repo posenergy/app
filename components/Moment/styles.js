@@ -15,7 +15,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 21,
     lineHeight: 25,
-    marginLeft: 20,
+    marginLeft: 7,
     marginRight: 10,
     fontFamily: 'Circular Std',
   },
