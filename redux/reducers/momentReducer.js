@@ -1,13 +1,19 @@
-import { ADD_TAG, DEL_TAG, SWEAT, DURATION } from '../actions/momentActions'
+import { ADD_TAG, DEL_TAG, DEL_ALL_TAGS, SWEAT, DURATION } from '../actions/momentActions'
 
 const initialState = {
   tags: [],
   sweat: 0,
-  duration: 30,
+  duration: 0,
 }
 
 const filterState = (state = initialState, action) => {
   switch(action.type) {
+
+    case DEL_ALL_TAGS: {
+      return Object.assign({}, state,
+        { tags: [],
+      })
+    }
 
     case DEL_TAG: {
       return Object.assign({}, state,

@@ -1,3 +1,5 @@
+export const DEL_ALL_MIND = 'DEL_ALL_MIND'
+
 export const CRAFT = 'CRAFT'
 export const JOURNAL = 'JOURNAL'
 export const MEDITATE = 'MEDITATE'
@@ -8,6 +10,10 @@ export const INSPIRED = 'INSPIRED'
 export const FIFTEEN = 'FIFTEEN'
 export const THIRTY = 'THIRTY'
 export const SIXTY = 'SIXTY'
+
+export const del_all_mind = () => ({
+    type: 'DEL_ALL_MIND',
+})
 
 export const craftAction = () => ({
     type: 'CRAFT',
