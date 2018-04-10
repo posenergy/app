@@ -1,4 +1,4 @@
-import { PREPOPULATE } from '../actions/userActions'
+import { PREPOPULATE, ONBOARDING } from '../actions/userActions'
 
 const defaultState = {
     isLoggedIn: false,
@@ -7,6 +7,7 @@ const defaultState = {
     startTime: '',
     endTime: '',
     email: '',
+    onboarding: false,
 }
  
 const userReducer = (state = defaultState, action) => {
@@ -19,6 +20,11 @@ const userReducer = (state = defaultState, action) => {
         startTime: action.startTime,
         endTime: action.endTime,
         email: action.email,
+      })
+
+    case ONBOARDING:
+      return Object.assign({}, state, {
+        onboarding: !state.onboarding
       })
     default: return state
   }

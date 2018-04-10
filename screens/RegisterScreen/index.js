@@ -8,7 +8,7 @@ import config from '../../config/config'
 import styles from './styles'
 
 import { token } from '../../redux/actions/tokenActions'
-import { prepopulate } from '../../redux/actions/userActions'
+import { prepopulate, onboarding } from '../../redux/actions/userActions'
 
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   token,
   prepopulate,
+  onboarding,
 }
 
 class RegisterScreen extends ValidationComponent {
@@ -112,6 +113,7 @@ class RegisterScreen extends ValidationComponent {
           responseJSON = await response.json()
           await this.props.token(responseJSON.token)
           this.fetchUserInfo(responseJSON.token)
+          this.props.onboarding()
           this.resetNavigation('MainTab')
         }
         return responseJSON

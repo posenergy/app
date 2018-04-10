@@ -5,21 +5,27 @@ import { connect } from 'react-redux'
 import { del_all_tags } from '../../redux/actions/momentActions'
 import { del_all_mvmt } from '../../redux/actions/mvmtButtonsActions'
 import { del_all_mind } from '../../redux/actions/mindButtonsActions'
+import { onboarding } from '../../redux/actions/userActions'
 
 import styles from './styles'
 import GenModal from '../../components/GenModal'
+
+const mapStateToProps = state => {
+  onboard: state.user.onboarding
+}
 
 const mapDispatchToProps = {
   del_all_tags,
   del_all_mvmt,
   del_all_mind,
+  onboarding,
 }
 
 class ChooseScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      genModalVisible: true,
+      genModalVisible: this.props.onboard,
       // genModalVisible: this.props.navigation.state.params.genModalVisible,
       genModalCounter: 1,
       genModalContent: {
@@ -61,7 +67,7 @@ class ChooseScreen extends React.Component {
   }
 
   closeModal = () => {
-    this.setState({genModalVisible: false})
+    this.props.onboarding()
   }
 
   render() {
