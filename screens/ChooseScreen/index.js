@@ -19,6 +19,7 @@ class ChooseScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      genModalVisible: true,
       // genModalVisible: this.props.navigation.state.params.genModalVisible,
       genModalCounter: 1,
       genModalContent: {
@@ -69,7 +70,6 @@ class ChooseScreen extends React.Component {
     this.props.del_all_mind()
     return(
       <View style={styles.viewStyle}>
-
         <TouchableOpacity style = {styles.mvmtTouch}
           onPress={(event) => {
           const { navigate } = this.props.navigation

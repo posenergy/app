@@ -29,6 +29,8 @@ class ScheduleScreen extends React.Component {
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
       time: this.props.navigation.state.params.time,
+      vid: this.props.navigation.state.params.vid,
+      value: new Date (),
       items: {},
       buttons: [],
     }
@@ -36,14 +38,12 @@ class ScheduleScreen extends React.Component {
 
   setValue = (value) => {this.setState({value: value})}
 
-  // if vid get url, if img get text.split
   saveEvent = (eventstart) => {
     RNCalendarEvents.saveEvent(this.state.title, {
-      startDate: eventstart.toString(), // selected button
-      endDate: (eventstart + this.state.time).toString(), // selected button + time
-      notes: this.state.text.split('`')[0] + '\nCurated by [+energy]'
+      startDate: eventstart.toISOString(), // selected button
+      endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
+      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]' ,
     })
-    // this.resetNavigation()
     this.props.navigation.navigate('Calendar')
   }
 
@@ -174,7 +174,7 @@ render() {
             setValue = {this.setValue}
           />}
           button = {<Button type='schedule'
-                    onClick={() => this.saveEvent()}
+                    onClick={() => this.saveEvent(this.state.value)}
                     text='Add to Calendar' textColor='white'/>}
       />
     </View>

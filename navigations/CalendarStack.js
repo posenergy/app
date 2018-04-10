@@ -37,7 +37,7 @@ const CalendarStack = StackNavigator({
       headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
     }),
   },
-  Schedule: {
+  Select: {
     screen: SelectScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Schedule',

@@ -5,8 +5,20 @@ import RNCalendarEvents from 'react-native-calendar-events'
 import styles from './styles'
 import PickerModal from '../../components/PickerModal'
 import moment from 'moment'
+import { persistor } from '../../redux/store'
+import { token } from '../../redux/actions/tokenActions'
+import { connect } from 'react-redux'
 
-export default class CalendarScreen extends Component {
+const mapStateToProps = state => ({
+  token: state.tokenReducer.token,
+  user: state.userReducer,
+})
+
+const mapDispatchToProps = {
+  token,
+}
+
+class CalendarScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,7 +38,7 @@ export default class CalendarScreen extends Component {
   nextScreen = () => {
     this.setState({pickerModalVisible: false})
     const { navigate } = this.props.navigation
-    navigate('Choose', {startTime: this.state.chosenDate})
+    navigate('Choose', {eventStart: this.state.chosenDate})
   }
 
   setPickerDate(newDate) {
@@ -163,8 +175,8 @@ export default class CalendarScreen extends Component {
           }
         })
         // TODO: make these dynamic
-        var START_TIME = 300
-        var END_TIME = 1140
+        var START_TIME = this.props.user.startTime
+        var END_TIME = this.props.user.endTime
         const yesterday = moment().subtract(1, 'day')
         for (const time in this.state.items) {
           if (this.state.items[time].length === 0) {
@@ -302,3 +314,5 @@ export default class CalendarScreen extends Component {
     return date.toISOString().split('T')[0]
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarScreen)

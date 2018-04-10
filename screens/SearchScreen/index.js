@@ -157,6 +157,7 @@ class SearchScreen extends React.Component {
                   brand: item.partner,
                   time: item.duration,
                   vid: item.vid,
+                  eventStart: this.props.navigation.state.params.eventStart,
                 })
                }}>
                 <Moment
@@ -198,6 +199,7 @@ class SearchScreen extends React.Component {
                   desc: item.description,
                   time: item.duration,
                   vid: item.vid,
+                  eventStart: this.props.navigation.state.params.eventStart,
                 })
                 }}>
                 <Moment

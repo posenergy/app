@@ -52,6 +52,9 @@ const MainTabNavigator = TabNavigator({
   initialRouteName: 'Activities',
   tabBarOptions: {
     activeTintColor: '#545680',
+    style:{
+      backgroundColor:'white',
+    },
   },
   navigationOptions: ({ navigation }) => ({
     headerRight: (
