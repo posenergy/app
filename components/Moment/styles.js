@@ -14,7 +14,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     fontSize: 21,
     lineHeight: 25,
-    marginLeft: 10,
+    marginLeft: 7,
     marginRight: 10,
     fontFamily: 'Circular Std',
   },

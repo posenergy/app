@@ -2,6 +2,8 @@ import React from 'react'
 import { Image, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 
+import { mindVisibility } from '../../redux/actions/mindModalActions'
+import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
 import { del_all_tags } from '../../redux/actions/momentActions'
 import { del_all_mvmt } from '../../redux/actions/mvmtButtonsActions'
 import { del_all_mind } from '../../redux/actions/mindButtonsActions'
@@ -14,15 +16,21 @@ const mapStateToProps = state => ({
   user: state.userReducer,
 })
 
+const mapStateToProps = state => ({
+  mind: state.toggleMindVisibility.visible,
+  mvmt: state.toggleMvmtVisibility.visible,
+})
+
 const mapDispatchToProps = {
   del_all_tags,
   del_all_mvmt,
   del_all_mind,
   onboarding,
+  mindVisibility,
+  mvmtVisibility,
 }
 
 class ChooseScreen extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -70,6 +78,18 @@ class ChooseScreen extends React.Component {
   closeModal = () => {
     this.props.onboarding()
     this.setState({genModalVisible: false})
+
+  reduxProps = () => {
+    this.props.del_all_tags()
+    this.props.del_all_mvmt()
+    this.props.del_all_mind()
+    if (this.props.mind) {
+      this.props.mindVisibility()
+    }
+    if (this.props.mvmt) {
+      this.props.mvmtVisibility()
+    }
+
   }
 
   render() {
@@ -77,6 +97,7 @@ class ChooseScreen extends React.Component {
       <View style={styles.viewStyle}>
         <TouchableOpacity style = {styles.mvmtTouch}
           onPress={(event) => {
+          this.reduxProps()
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'movement'})
           }}>
@@ -85,6 +106,7 @@ class ChooseScreen extends React.Component {
 
         <TouchableOpacity style={styles.button}
           onPress={(event) => {
+          this.reduxProps()
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'mindfulness'})
           }}>
