@@ -34,7 +34,7 @@ export default StyleSheet.create({
     width: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
   },
   title: {
     fontStyle: 'italic',
@@ -51,6 +51,7 @@ export default StyleSheet.create({
     marginTop: 25,
     marginBottom: 15,
     fontFamily: 'Circular Std',
+    height: 175,
   },
   bold: {
     fontSize: 21,

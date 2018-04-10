@@ -44,7 +44,6 @@ class OnboardingScreen extends React.Component {
   }
 }
 
-
 export default OnboardingScreen
 
 

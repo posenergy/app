@@ -22,7 +22,7 @@ export default class CalendarScreen extends Component {
   closePickerModal = () => {
     this.setState({pickerModalVisible: false})
   }
-  
+
   setPickerDate(newDate) {
     this.setState({chosenDate: newDate})
   }
@@ -46,7 +46,7 @@ export default class CalendarScreen extends Component {
           rowHasChanged={this.rowHasChanged.bind(this)}
           selected={this.timeToString(new Date())}
        // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-          
+
         />
         <TouchableOpacity
           style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
@@ -80,7 +80,7 @@ export default class CalendarScreen extends Component {
     setTimeout(() => {
     const startDate = moment().subtract(14, 'days').toDate()
     const endDate = moment().add(21, 'days').toDate()
-    
+
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         allEvents.forEach(event => {
@@ -177,7 +177,7 @@ export default class CalendarScreen extends Component {
             return 0
           })
         }
-        
+
         for (let i = -15; i < 85; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
