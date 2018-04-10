@@ -21,11 +21,12 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/activitiesMan.png')}
         />
       ),
+    headerStyle: { backgroundColor: '#545680', justifyContent: 'center', borderWidth: 1 },
+    headerTintColor: 'white',
+    headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1 },
-    headerTintColor: 'white',
     }),
   },
   Calendar: {
@@ -37,11 +38,12 @@ const MainTabNavigator = TabNavigator({
         source={require('../components/TabIcons/calendar.png')}
       />
     ),
+    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
+    headerTintColor: 'white',
+    headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
-    headerTintColor: 'white',
     }),
   },
   Profile: {
@@ -53,11 +55,12 @@ const MainTabNavigator = TabNavigator({
           source={require('../components/TabIcons/profile.png')}
         />
       ),
+    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
+    headerTintColor: 'white',
+    headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
-    headerTintColor: 'white',
     }),
   },
 },

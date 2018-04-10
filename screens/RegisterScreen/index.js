@@ -224,10 +224,10 @@ class RegisterScreen extends ValidationComponent {
             <Text style={styles.link}>
               Passwords must be at least 7 characters long and contain at least one number.
             </Text>
-            <Button type='register'
+            <Button type='login'
               onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
               loading={this.state.buttonClicked}
-              text='Sign Up' textColor='black'/>
+              text='Sign Up' textColor='grey'/>
           </View>
         </View>
         </KeyboardAvoidingView>

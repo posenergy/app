@@ -155,7 +155,7 @@ class LoginScreen extends ValidationComponent {
             style={styles.view}
             flexDirection= 'column'
             justifyContent= 'flex-end'
-            marginBottom= '5%'
+            marginBottom= '13%'
             showsVerticalScrollIndicator = {false} >
           <Image
               style={styles.logoImage}
@@ -183,7 +183,7 @@ class LoginScreen extends ValidationComponent {
             loading={this.state.buttonClicked}
             />
           <View style={{alignSelf: 'center'}}>
-          <TouchableHighlight onPress={() => Alert.alert(
+          <TouchableHighlight underlayColor='transparent' onPress={() => Alert.alert(
               'Forgot Password?',
               'Email positiveenergy@gmail.com for help!',
               [
