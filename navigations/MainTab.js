@@ -26,7 +26,7 @@ const MainTabNavigator = TabNavigator({
     headerTintColor: 'white',
     headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
     tabBarOptions: {activeTintColor: 'red',
-      inactiveTintColor: 'gray', size: 25,},
+      inactiveTintColor: 'gray', size: 25},
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
@@ -47,7 +47,7 @@ const MainTabNavigator = TabNavigator({
       activeTintColor: '#ffffff',
       inactiveBackgroundColor: 'red',
       labelStyle: {
-        color: 'white'
+        color: 'white',
       },
     },
     headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
