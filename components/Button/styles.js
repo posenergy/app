@@ -153,7 +153,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#545680',
     flex: 1,
-    height: '5%',
+    height: 50,
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     width: 300,
