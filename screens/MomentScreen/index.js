@@ -17,7 +17,7 @@ class MomentScreen extends React.Component {
       img: this.props.navigation.state.params.img,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
-      category: this.props.navigation.state.params.category,
+      type: this.props.navigation.state.params.type,
       check: true,
     }
   }
@@ -32,32 +32,26 @@ class MomentScreen extends React.Component {
               play={false}
               fullscreen={true}
               loop={false}
+
               onReady={e => this.setState({ isReady: true })}
               onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
-            />)
-    } else {
+            />)}
+    else if (this.state.img) {
       return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
                   source={{uri: this.state.img}}/>
               </View>)
-    } else {
-      if (this.category == 'movement') {
-        return (<View height={142} width={244}>
-                <Image
-                  style={{flex: 1}}
-                  source={require('../../images/move.png')}/>
-              </View>)
-      } else {
-        return (<View height={142} width={244}>
+    }
+    else{
+      return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
                   source={require('../../images/mind.png')}/>
               </View>)
-      }
     }
   }
 
