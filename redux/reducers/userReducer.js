@@ -24,7 +24,7 @@ const userReducer = (state = defaultState, action) => {
 
     case ONBOARDING:
       return Object.assign({}, state, {
-        onboarding: !state.onboarding
+        onboarding: !state.onboarding,
       })
     default: return state
   }

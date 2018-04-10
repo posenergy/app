@@ -37,9 +37,9 @@ const ActivitiesStack = StackNavigator({
     }),
   },
 },
-{ 
+{
   initialRouteName: 'Choose',
-  headerMode: 'none' 
+  headerMode: 'none',
 }
 )
 

@@ -5,7 +5,6 @@ import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import FlipToggle from 'react-native-flip-toggle-button'
 import styles from './styles'
-import { persistor } from '../../redux/store'
 import { token } from '../../redux/actions/tokenActions'
 import { connect } from 'react-redux'
 
@@ -34,10 +33,9 @@ class MomentScreen extends React.Component {
     }
   }
   
-  setLength(){
-    const buffertime = this.props.user.buffer
-    
-  }
+  // setLength() {
+  //   const buffertime = this.props.user.buffer
+  // }
 
   parseVid = () => {
     if (this.state.vid) {

@@ -20,7 +20,6 @@ class SelectScreen extends React.Component {
   }
 
   render() {
-    console.log(this.state.eventStart)
     return(
       <View style={styles.view2}>
         <CalendarConfirm

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, TouchableOpacity } from 'react-native'
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation' // 1.0.0-beta.14
+import { StackNavigator, TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 
 import ActivitiesStack from './ActivitiesStack'
 import CalendarStack from './CalendarStack'
@@ -48,12 +48,12 @@ const MainTabNavigator = TabNavigator({
   },
 },
 
-{ 
+{
   initialRouteName: 'Activities',
   tabBarOptions: {
     activeTintColor: '#545680',
-    style:{
-      backgroundColor:'white',
+    style: {
+      backgroundColor: 'white',
     },
   },
   navigationOptions: ({ navigation }) => ({
@@ -81,5 +81,5 @@ const RootStack = StackNavigator(
     mode: 'modal',
     headerMode: 'none',
   }
-);
+)
 export default RootStack

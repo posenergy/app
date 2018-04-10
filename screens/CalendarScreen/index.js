@@ -5,7 +5,6 @@ import RNCalendarEvents from 'react-native-calendar-events'
 import styles from './styles'
 import PickerModal from '../../components/PickerModal'
 import moment from 'moment'
-import { persistor } from '../../redux/store'
 import { token } from '../../redux/actions/tokenActions'
 import { connect } from 'react-redux'
 

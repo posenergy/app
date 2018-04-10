@@ -14,9 +14,6 @@ import GenModal from '../../components/GenModal'
 
 const mapStateToProps = state => ({
   user: state.userReducer,
-})
-
-const mapStateToProps = state => ({
   mind: state.toggleMindVisibility.visible,
   mvmt: state.toggleMvmtVisibility.visible,
 })
@@ -35,36 +32,33 @@ class ChooseScreen extends React.Component {
     super(props)
     this.state = {
       genModalVisible: this.props.user.onboarding,
-      // genModalVisible: this.props.navigation.state.params.genModalVisible,
       genModalCounter: 1,
       genModalContent: {
-        title: "Welcome!",
-        text: "[+energy] helps you discover wellness content and integrate it into your busy life by instantly adding chosen events to your calendar, and continually syncing with it.",
-        bname: "Next",
+        title: 'Welcome!',
+        text: '[+energy] helps you discover wellness content and integrate it into your busy life by instantly adding chosen events to your calendar, and continually syncing with it.',
+        bname: 'Next',
         image: () => {require('../../images/slide1.png')},
         modalCommand: this.nextModal,
-      }
+      },
     }
   }
 
   nextModal = () => {
-    //(this.state && this.state.genModalCounter == 3) ? this.closeModal: this.nextModal,
-    let content={}
-    if(this.state.genModalCounter == 1) {
+    let content = {}
+    if(this.state.genModalCounter === 1) {
       content = {
-        title: "Welcome!",
-        text: "Click 'Activities' to browse on demand content and then add it to your calendar. Start by choosing 'Mindfulness' or 'Movement.'",
-        bname: "Next",
-        bold: "Ready to get planning?",
+        title: 'Welcome!',
+        text: 'Click "Activities" to browse on demand content and then add it to your calendar. Start by choosing "Mindfulness" or "Movement."',
+        bname: 'Next',
+        bold: 'Ready to get planning?',
         image: () => {require('../../images/slide2.png')},
         modalCommand: this.nextModal,
       }
-    }
-    else if(this.state.genModalCounter == 2) {
+    } else if(this.state.genModalCounter === 2) {
       content = {
-        title: "Welcome!",
-        text: "Click 'Calendar' to find availability and then browse activities. Click on open time slots to start scheduling!",
-        bname: "Let's go!",
+        title: 'Welcome!',
+        text: 'Click "Calendar" to find availability and then browse activities. Click on open time slots to start scheduling!',
+        bname: 'Let`s go!',
         image: () => {require('../../images/slide3.png')},
         modalCommand: this.closeModal,
       }
@@ -78,6 +72,7 @@ class ChooseScreen extends React.Component {
   closeModal = () => {
     this.props.onboarding()
     this.setState({genModalVisible: false})
+  }
 
   reduxProps = () => {
     this.props.del_all_tags()
@@ -115,7 +110,7 @@ class ChooseScreen extends React.Component {
         {this.state.genModalVisible &&
           <GenModal
             {...this.state.genModalContent}
-          />  
+          />
         }
       </View>
 
