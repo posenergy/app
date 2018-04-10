@@ -231,25 +231,25 @@ class MvmtModal extends Component {
                     titleProp='Barre'
                     typeProp={ this.props.bar ? 'filterClick' : 'filter' }
                     width={57}
-                    textColor={ this.props.bar ? 'white' : 'blacksmall'}
+                    textColor={ this.props.bar ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonBar('Barre')} />
                   <FilterButton
                     titleProp='Dance'
                     typeProp={ this.props.dance ? 'filterClick' : 'filter' }
                     width={74}
-                    textColor={ this.props.dance ? 'white' : 'blacksmall'}
+                    textColor={ this.props.dance ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonDance('Dance')} />
                  <FilterButton
                     titleProp='HIIT'
                     typeProp={ this.props.hiit ? 'filterClick' : 'filter' }
                     width={57}
-                    textColor={ this.props.hiit ? 'white' : 'blacksmall'}
+                    textColor={ this.props.hiit ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonHiit('HIIT')} />
                   <FilterButton
                     titleProp='Pilates'
                     typeProp={ this.props.pilates ? 'filterClick' : 'filter' }
                     width={77}
-                    textColor={ this.props.pilates ? 'white' : 'blacksmall'}
+                    textColor={ this.props.pilates ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonPilates('Pilates')} />
                 </View>
                 <View style={styles.buttons}>
@@ -257,25 +257,25 @@ class MvmtModal extends Component {
                     titleProp='Run'
                     typeProp={ this.props.run ? 'filterClick' : 'filter' }
                     width={54}
-                    textColor={ this.props.run ? 'white' : 'blacksmall'}
+                    textColor={ this.props.run ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonRun('Run')} />
                   <FilterButton
                     titleProp='Strength'
                     typeProp={ this.props.strength ? 'filterClick' : 'filter' }
                     width={81}
-                    textColor={ this.props.strength ? 'white' : 'blacksmall'}
+                    textColor={ this.props.strength ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonStrength('Strength Training')} />
                   <FilterButton
                     titleProp='Stretch'
                     typeProp={ this.props.stretch ? 'filterClick' : 'filter' }
                     width={82}
-                    textColor={ this.props.stretch ? 'white' : 'blacksmall'}
+                    textColor={ this.props.stretch ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonStretch('Stretch')} />
                   <FilterButton
                     titleProp='Yoga'
                     typeProp={ this.props.yoga ? 'filterClick' : 'filter' }
                     width={52}
-                    textColor={ this.props.yoga ? 'white' : 'blacksmall'}
+                    textColor={ this.props.yoga ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonYoga('Yoga')} />
                 </View>
               </View>
@@ -286,19 +286,19 @@ class MvmtModal extends Component {
                          titleProp='Low'
                          typeProp={ this.props.low ? 'filterClick' : 'filter' }
                          width={77.2}
-                         textColor={ this.props.low ? 'white' : 'blacksmall'}
+                         textColor={ this.props.low ? 'white' : 'greysmall'}
                          onPressProp={() => this.buttonLow(0)} />
                        <FilterButton
                          titleProp='Medium'
                          typeProp={ this.props.medium ? 'filterClick' : 'filter' }
                          width={107.6}
-                         textColor={ this.props.medium ? 'white' : 'blacksmall'}
+                         textColor={ this.props.medium ? 'white' : 'greysmall'}
                          onPressProp={() => this.buttonMed(1)} />
                        <FilterButton
                          titleProp='High'
                          typeProp={ this.props.high ? 'filterClick' : 'filter' }
                          width={91.9}
-                         textColor={ this.props.high ? 'white' : 'blacksmall'}
+                         textColor={ this.props.high ? 'white' : 'greysmall'}
                          onPressProp={() => this.buttonHigh(2)} />
                      </View>
               </View>
@@ -309,21 +309,21 @@ class MvmtModal extends Component {
                     titleProp='< 15 min'
                     typeProp={ this.props.fifteen ? 'filterClick' : 'filter' }
                     width={94}
-                    textColor={ this.props.fifteen ? 'white' : 'blacksmall'}
+                    textColor={ this.props.fifteen ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonFifteen(15)} />
                   <FilterButton
                     titleProp='< 30 min'
                     typeProp={ this.props.thirty ? 'filterClick' : 'filter' }
                     width={94}
-                    textColor={ this.props.thirty ? 'white' : 'blacksmall'}
+                    textColor={ this.props.thirty ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonThirty(30)} />
                   <FilterButton
                     titleProp='< 60 min'
                     typeProp={ this.props.sixty ? 'filterClick' : 'filter' }
                     width={94}
-                    textColor={ this.props.sixty ? 'white' : 'blacksmall'}
+                    textColor={ this.props.sixty ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonSixty(60)} />
                 </View>

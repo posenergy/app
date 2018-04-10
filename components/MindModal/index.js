@@ -165,13 +165,13 @@ class MindModal extends Component {
                     titleProp='Craft'
                     typeProp={ this.props.craft ? 'filterClick' : 'filter' }
                     width={136}
-                    textColor={ this.props.craft ? 'white' : 'blacksmall'}
+                    textColor={ this.props.craft ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonCraft('Craft')}} />
                   <FilterButton
                     titleProp='Journal'
                     typeProp={ this.props.journal ? 'filterClick' : 'filter' }
                     width={149}
-                    textColor={ this.props.journal ? 'white' : 'blacksmall'}
+                    textColor={ this.props.journal ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonJournal('Journal')}} />
                 </View>
                 <View style={styles.buttons}>
@@ -179,13 +179,13 @@ class MindModal extends Component {
                     titleProp='Meditate'
                     typeProp={ this.props.meditate ? 'filterClick' : 'filter' }
                     width={117}
-                    textColor={ this.props.meditate ? 'white' : 'blacksmall'}
+                    textColor={ this.props.meditate ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonMeditate('Meditate')}} />
                   <FilterButton
                     titleProp='Show Gratitude'
                     typeProp={ this.props.gratitude ? 'filterClick' : 'filter' }
                     width={168}
-                    textColor={ this.props.gratitude ? 'white' : 'blacksmall'}
+                    textColor={ this.props.gratitude ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonGratitude('Show Gratitude')}} />
                 </View>
                 <View style={styles.buttons}>
@@ -193,13 +193,13 @@ class MindModal extends Component {
                     titleProp='Skin Care'
                     typeProp={ this.props.skin ? 'filterClick' : 'filter' }
                     width={129}
-                    textColor={ this.props.skin ? 'white' : 'blacksmall'}
+                    textColor={ this.props.skin ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonSkin('Skin Care')}} />
                   <FilterButton
                     titleProp='Get Inspired'
                     typeProp={ this.props.inspired ? 'filterClick' : 'filter' }
                     width={154}
-                    textColor={ this.props.inspired ? 'white' : 'blacksmall'}
+                    textColor={ this.props.inspired ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonInspired('Get Inspired')}} />
                 </View>
               </View>
@@ -210,21 +210,21 @@ class MindModal extends Component {
                     titleProp='< 15 min'
                     typeProp={ this.props.fifteen ? 'filterClick' : 'filter' }
                     width={94}
-                    textColor={ this.props.fifteen ? 'white' : 'blacksmall'}
+                    textColor={ this.props.fifteen ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonFifteen(15)} />
                   <FilterButton
                     titleProp='< 30 min'
                     typeProp={ this.props.thirty ? 'filterClick' : 'filter' }
                     width={94}
-                    textColor={ this.props.thirty ? 'white' : 'blacksmall'}
+                    textColor={ this.props.thirty ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonThirty(30)} />
                   <FilterButton
                     titleProp='< 60 min'
                     typeProp={ this.props.sixty ? 'filterClick' : 'filter' }
                     width={94}
-                    textColor={ this.props.sixty ? 'white' : 'blacksmall'}
+                    textColor={ this.props.sixty ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonSixty(60)} />
                 </View>
