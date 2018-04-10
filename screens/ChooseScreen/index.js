@@ -10,9 +10,9 @@ import { onboarding } from '../../redux/actions/userActions'
 import styles from './styles'
 import GenModal from '../../components/GenModal'
 
-const mapStateToProps = state => {
-  onboard: state.user.onboarding
-}
+const mapStateToProps = state => ({
+  user: state.userReducer,
+})
 
 const mapDispatchToProps = {
   del_all_tags,
@@ -22,10 +22,11 @@ const mapDispatchToProps = {
 }
 
 class ChooseScreen extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
-      genModalVisible: this.props.onboard,
+      genModalVisible: this.props.user.onboarding,
       // genModalVisible: this.props.navigation.state.params.genModalVisible,
       genModalCounter: 1,
       genModalContent: {
@@ -71,9 +72,6 @@ class ChooseScreen extends React.Component {
   }
 
   render() {
-    this.props.del_all_tags()
-    this.props.del_all_mvmt()
-    this.props.del_all_mind()
     return(
       <View style={styles.viewStyle}>
         <TouchableOpacity style = {styles.mvmtTouch}
@@ -102,4 +100,4 @@ class ChooseScreen extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ChooseScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseScreen)

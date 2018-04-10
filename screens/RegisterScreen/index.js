@@ -110,10 +110,10 @@ class RegisterScreen extends ValidationComponent {
           )
           this.setState({ buttonClicked: false })
         } else {
+          this.props.onboarding()
           responseJSON = await response.json()
           await this.props.token(responseJSON.token)
           this.fetchUserInfo(responseJSON.token)
-          this.props.onboarding()
           this.resetNavigation('MainTab')
         }
         return responseJSON
