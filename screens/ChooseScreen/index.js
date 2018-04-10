@@ -16,15 +16,19 @@ const mapDispatchToProps = {
 
 class ChooseScreen extends React.Component {
 
-  render() {
+  reduxProps = () => {
     this.props.del_all_tags()
     this.props.del_all_mvmt()
     this.props.del_all_mind()
+  }
+
+  render() {
     return(
       <View style={styles.viewStyle}>
 
         <TouchableOpacity style = {styles.mvmtTouch}
           onPress={(event) => {
+          this.reduxProps()
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'movement'})
           }}>
@@ -33,6 +37,7 @@ class ChooseScreen extends React.Component {
 
         <TouchableOpacity
           onPress={(event) => {
+          this.reduxProps()
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'mindfulness'})
           }}>

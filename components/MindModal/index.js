@@ -8,6 +8,7 @@ import { mindVisibility } from '../../redux/actions/mindModalActions'
 import { craftAction, journalAction, meditateAction, gratitudeAction,
         skinAction, inspiredAction, fifteenAction, thirtyAction,
         sixtyAction } from '../../redux/actions/mindButtonsActions'
+import { del_duration } from '../../redux/actions/momentActions'
 
 import Button from '../../components/Button'
 import FilterButton from '../../components/FilterButton'
@@ -27,6 +28,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   del_tag,
+  del_duration,
   add_tag,
   duration,
   mindVisibility,
@@ -105,17 +107,29 @@ class MindModal extends Component {
 
   buttonFifteen = (time) => {
     this.props.fifteenAction()
-    this.props.duration(time)
+    if (this.props.fifteen) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonThirty = (time) => {
     this.props.thirtyAction()
-    this.props.duration(time)
+    if (this.props.thirty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonSixty = (time) => {
     this.props.sixtyAction()
-    this.props.duration(time)
+    if (this.props.sixty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   render() {
@@ -172,7 +186,7 @@ class MindModal extends Component {
                     typeProp={ this.props.gratitude ? 'filterClick' : 'filter' }
                     width={168}
                     textColor={ this.props.gratitude ? 'white' : 'blacksmall'}
-                    onPressProp={() => {this.buttonGratitude('Gratitude')}} />
+                    onPressProp={() => {this.buttonGratitude('Show Gratitude')}} />
                 </View>
                 <View style={styles.buttons}>
                   <FilterButton
@@ -180,13 +194,13 @@ class MindModal extends Component {
                     typeProp={ this.props.skin ? 'filterClick' : 'filter' }
                     width={129}
                     textColor={ this.props.skin ? 'white' : 'blacksmall'}
-                    onPressProp={() => {this.buttonSkin('Skin')}} />
+                    onPressProp={() => {this.buttonSkin('Skin Care')}} />
                   <FilterButton
                     titleProp='Get Inspired'
                     typeProp={ this.props.inspired ? 'filterClick' : 'filter' }
                     width={154}
                     textColor={ this.props.inspired ? 'white' : 'blacksmall'}
-                    onPressProp={() => {this.buttonInspired('Inspired')}} />
+                    onPressProp={() => {this.buttonInspired('Get Inspired')}} />
                 </View>
               </View>
               <View marginBottom= {100}>

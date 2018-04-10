@@ -9,6 +9,8 @@ import { barAction, danceAction, hiitAction, pilatesAction, runAction, strengthA
         stretchAction, yogaAction, lowAction, mediumAction, highAction,
         fifteenAction, thirtyAction, sixtyAction } from '../../redux/actions/mvmtButtonsActions'
 
+import { del_sweat, del_duration } from '../../redux/actions/momentActions'
+
 import Button from '../../components/Button'
 import ModalStyleText from '../../components/ModalStyleText'
 import FilterButton from '../../components/FilterButton'
@@ -34,6 +36,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   del_tag,
+  del_sweat,
+  del_duration,
   add_tag,
   sweat,
   duration,
@@ -142,32 +146,56 @@ class MvmtModal extends Component {
 
   buttonLow = (drip) => {
     this.props.lowAction()
-    this.props.sweat(drip)
+    if (this.props.low) {
+      this.props.del_sweat()
+    } else {
+      this.props.sweat(drip)
+    }
   }
 
   buttonMed = (drip) => {
     this.props.mediumAction()
-    this.props.sweat(drip)
+    if (this.props.medium) {
+      this.props.del_sweat()
+    } else {
+      this.props.sweat(drip)
+    }
   }
 
   buttonHigh = (drip) => {
     this.props.highAction()
-    this.props.sweat(drip)
+    if (this.props.high) {
+      this.props.del_sweat()
+    } else {
+        this.props.sweat(drip)
+    }
   }
 
   buttonFifteen = (time) => {
     this.props.fifteenAction()
-    this.props.duration(time)
+    if (this.props.fifteen) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonThirty = (time) => {
     this.props.thirtyAction()
-    this.props.duration(time)
+    if (this.props.thirty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonSixty = (time) => {
     this.props.sixtyAction()
-    this.props.duration(time)
+    if (this.props.sixty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   render() {
@@ -204,7 +232,7 @@ class MvmtModal extends Component {
                     typeProp={ this.props.bar ? 'filterClick' : 'filter' }
                     width={57}
                     textColor={ this.props.bar ? 'white' : 'blacksmall'}
-                    onPressProp={() => this.buttonBar('Bar')} />
+                    onPressProp={() => this.buttonBar('Barre')} />
                   <FilterButton
                     titleProp='Dance'
                     typeProp={ this.props.dance ? 'filterClick' : 'filter' }
@@ -216,7 +244,7 @@ class MvmtModal extends Component {
                     typeProp={ this.props.hiit ? 'filterClick' : 'filter' }
                     width={57}
                     textColor={ this.props.hiit ? 'white' : 'blacksmall'}
-                    onPressProp={() => this.buttonHiit('Hiit')} />
+                    onPressProp={() => this.buttonHiit('HIIT')} />
                   <FilterButton
                     titleProp='Pilates'
                     typeProp={ this.props.pilates ? 'filterClick' : 'filter' }
@@ -236,7 +264,7 @@ class MvmtModal extends Component {
                     typeProp={ this.props.strength ? 'filterClick' : 'filter' }
                     width={81}
                     textColor={ this.props.strength ? 'white' : 'blacksmall'}
-                    onPressProp={() => this.buttonStrength('Strength')} />
+                    onPressProp={() => this.buttonStrength('Strength Training')} />
                   <FilterButton
                     titleProp='Stretch'
                     typeProp={ this.props.stretch ? 'filterClick' : 'filter' }

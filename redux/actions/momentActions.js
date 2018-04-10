@@ -3,6 +3,8 @@ export const DEL_TAG = 'DEL_TAG'
 export const SWEAT = 'SWEAT'
 export const DURATION = 'DURATION'
 export const DEL_ALL_TAGS = 'DEL_ALL_TAGS'
+export const DEL_SWEAT = 'DEL_SWEAT'
+export const DEL_DURATION = 'DEL_DURATION'
 
 export function del_tag(tag) {
   return { type: DEL_TAG, tag }
@@ -22,4 +24,12 @@ export function duration(duration) {
 
 export function del_all_tags() {
 	return { type: DEL_ALL_TAGS }
+}
+
+export function del_duration() {
+	return { type: DEL_DURATION }
+}
+
+export function del_sweat() {
+	return { type: DEL_SWEAT }
 }
