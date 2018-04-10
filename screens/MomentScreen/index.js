@@ -17,6 +17,7 @@ class MomentScreen extends React.Component {
       img: this.props.navigation.state.params.img,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
+      category: this.props.navigation.state.params.category,
       check: true,
     }
   }
@@ -31,7 +32,6 @@ class MomentScreen extends React.Component {
               play={false}
               fullscreen={true}
               loop={false}
-
               onReady={e => this.setState({ isReady: true })}
               onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e => this.setState({ quality: e.quality })}
@@ -44,6 +44,20 @@ class MomentScreen extends React.Component {
                   style={{flex: 1}}
                   source={{uri: this.state.img}}/>
               </View>)
+    } else {
+      if (this.category == 'movement') {
+        return (<View height={142} width={244}>
+                <Image
+                  style={{flex: 1}}
+                  source={require('../../images/move.png')}/>
+              </View>)
+      } else {
+        return (<View height={142} width={244}>
+                <Image
+                  style={{flex: 1}}
+                  source={require('../../images/mind.png')}/>
+              </View>)
+      }
     }
   }
 

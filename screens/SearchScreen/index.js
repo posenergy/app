@@ -227,6 +227,7 @@ class SearchScreen extends React.Component {
                   desc: item.description,
                   brand: item.partner,
                   vid: item.vid,
+                  category: item.category,
                 })
                }}>
                 <Moment
@@ -267,6 +268,7 @@ class SearchScreen extends React.Component {
                   img: item.img,
                   desc: item.description,
                   vid: item.vid,
+                  category: item.category,
                 })
                 }}>
                 <Moment
