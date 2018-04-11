@@ -197,7 +197,7 @@ class CalendarScreen extends Component {
             const startDate2 = new Date(event.startDate)
             const endDate2 = new Date(event.endDate)
             const eventLength = (endDate2.getTime() - startDate2.getTime()) / (1000 * 60 * 60)
-            const eventHeight = (event.allDay || eventLength < 1) ? 60 : eventLength * 60
+            const eventHeight = (event.allDay) ? 60 : (eventLength < 1) ? 50 : eventLength * 60
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.getHours())}:${addZeros(d.getMinutes())}`
             const timeRange = (event.allDay) ? 'All Day' : `${buildTime(startDate2)}-${buildTime(endDate2)}`
@@ -315,7 +315,7 @@ class CalendarScreen extends Component {
         <TouchableOpacity onPress={() => {this.editEvent(item)}}>
         <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
         <Text style={{color: 'white'}}>{item.timeRange}</Text>
-        <Text style={{color: 'white'}}>{' ' + item.name}</Text>
+        <Text style={{color: 'white'}}>{item.name}</Text>
         {item.height > 60 &&
         <Text style={{color: 'white'}}>[+energy]</Text>}
         </View>
