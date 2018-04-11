@@ -21,7 +21,7 @@ class InfoButton extends React.Component {
     return <TouchableOpacity activeOpacity={0.5} padding={200} onPress={() => {
       this.props.open()
     }}>
-      <Image source={require('../images/info.png')} />
+      <Image source={require('../images/info.png')} marginRight={10} marginBottom={5}/>
     </TouchableOpacity>
   }
 }
