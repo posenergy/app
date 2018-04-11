@@ -42,7 +42,6 @@ class ScheduleScreen extends React.Component {
   setValue = (value) => {this.setState({value: value})}
 
   saveEvent = (eventstart) => {
-    console.log("TOKEN HELLO AJNFO", eventstart)
     this.addMomentToUser(eventstart)
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button

@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
   user: state.userReducer,
+  picker: state.userReducer.pickerDate,
 })
 
 const mapDispatchToProps = {
@@ -92,7 +93,7 @@ class MomentScreen extends React.Component {
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation
-                this.props.navigation.state.params.eventStart &&
+                if (this.props.picker !== null) {
                 navigate('Select', {
                   time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                   title: this.state.title,
@@ -101,9 +102,9 @@ class MomentScreen extends React.Component {
                   brand: this.state.brand,
                   vid: this.state.vid,
                   icon: this.state.icon,
-                  eventStart: this.props.navigation.state.params.eventStart,
-                )}
-                navigate('Schedule', {
+                  eventStart: this.props.picker,
+                })}
+                else { navigate('Schedule', {
                   time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                   title: this.state.title,
                   pict: this.state.pict,
@@ -114,7 +115,7 @@ class MomentScreen extends React.Component {
                   icon: this.state.icon,
                   check: this.state.check,
                 })
-              }}
+              }}}
               text='Schedule' textColor='white'/>}
           />
       </View>
