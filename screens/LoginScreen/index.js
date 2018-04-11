@@ -2,10 +2,11 @@ import React from 'react'
 import {
   Alert,
   ImageBackground,
-  ScrollView,
   Text,
+  Image,
   TouchableHighlight,
   View,
+  KeyboardAvoidingView,
 } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
@@ -17,7 +18,6 @@ import styles from './styles'
 import { prepopulate } from '../../redux/actions/userActions'
 import { token } from '../../redux/actions/tokenActions'
 
-import Logo from '../../components/Logo'
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
 
@@ -149,39 +149,53 @@ class LoginScreen extends ValidationComponent {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style={styles.container}>
-      <ScrollView
-        style={styles.view}
-        showsVerticalScrollIndicator = {false} >
-      <Logo/>
-      <StyleTextInput
-        pholder='Email'
-        imagelink = {require('../../images/mail.png')}
-        type='white'
-        changeFunction={email => this.setState({email})}/>
-      <StyleTextInput
-        pholder='Password'
-        imagelink = {require('../../images/lock.png')}
-        type='white'
-        changeFunction={password => this.setState({password})}
-        passwordSecure={true}/>
-      <Button
-        type='login' onClick={() => !this.state.buttonClicked && this.loginUser(this.state.email, this.state.password)}
-        text='Log In' textColor='grey'
-        loading={this.state.buttonClicked}
-        />
-      <View style={{alignSelf: 'center'}}>
-      <TouchableHighlight onPress={() => Alert.alert(
-          'Forgot Password?',
-          'Email positiveenergy@gmail.com for help!',
-          [
-            {text: 'Ok'},
-          ],
-          { cancelable: true }
-        )}>
-      <Text style={{fontFamily: 'Circular Std', color: 'white'}}>Forgot Password?</Text>
-      </TouchableHighlight>
-      </View>
-      </ScrollView>
+        <KeyboardAvoidingView
+          behavior="padding">
+          <View
+            style={styles.view}
+            flexDirection= 'column'
+            justifyContent= 'flex-end'
+            marginBottom= '13%'
+            showsVerticalScrollIndicator = {false} >
+          <Image
+              style={styles.logoImage}
+              height={130}
+              width={130}
+              marginBottom= '40%'
+              alignSelf= 'center'
+              source={require('../../images/logo_image.png')}/>
+          <StyleTextInput
+            pholder='Email'
+            imagelink = {require('../../images/mail.png')}
+            type='white'
+            returnKeyType = {'next'}
+            changeFunction={email => this.setState({email})}/>
+          <StyleTextInput
+            pholder='Password'
+            imagelink = {require('../../images/lock.png')}
+            type='white'
+            returnKeyType = {'next'}
+            changeFunction={password => this.setState({password})}
+            passwordSecure={true}/>
+          <Button
+            type='login' onClick={() => !this.state.buttonClicked && this.loginUser(this.state.email, this.state.password)}
+            text='Log In' textColor='grey'
+            loading={this.state.buttonClicked}
+            />
+          <View style={{alignSelf: 'center'}}>
+          <TouchableHighlight underlayColor='transparent' onPress={() => Alert.alert(
+              'Forgot Password?',
+              'Email positiveenergy@gmail.com for help!',
+              [
+                {text: 'Ok'},
+              ],
+              { cancelable: true }
+            )}>
+          <Text style={{fontFamily: 'Circular Std', color: 'white'}}>Forgot Password?</Text>
+          </TouchableHighlight>
+          </View>
+          </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     )
   }
