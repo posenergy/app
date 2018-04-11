@@ -35,7 +35,7 @@ class ScheduleScreen extends React.Component {
       value: new Date (),
       items: {},
       buttons: [],
-      buffer: false,
+      buffer: this.props.user.buffer,
     }
   }
 
@@ -72,6 +72,10 @@ class ScheduleScreen extends React.Component {
   }
 
     async addMomentToUser(eventstart) {
+      let buff = 0
+      if (this.state.check) {
+        buff = this.state.buffer
+      }
       try {
         let responseJSON
         const apiUrl = `${config.apiUrl}/users/moments/`
@@ -86,15 +90,15 @@ class ScheduleScreen extends React.Component {
             momentId: this.state.id,
             time: eventstart,
             duration: this.state.time,
-            buffer: this.state.check,
+            buffer: buff,
           }),
         })
         if(!response.ok){
-          console.log("Didn't work")
+          console.log("Didn't work this", response)
           return false
         }
         else {
-        console.log("HIHIHI", this.state.id, this.state.time, this.state.check, this.props.token)
+        console.log("It worked!", this.state.id, this.state.time, this.state.check, this.props.token)
         responseJSON = await response.json()
         }
         return responseJSON

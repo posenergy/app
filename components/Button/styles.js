@@ -32,7 +32,7 @@ export default StyleSheet.create({
   whiteLogOut: {
     fontSize: 20,
     lineHeight: 19,
-    color: 'white',
+    color: '#fff',
     textAlignVertical: 'center',
     fontFamily: 'Circular Std',
   },
