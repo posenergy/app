@@ -1,8 +1,16 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
+import { connect } from 'react-redux'
+
+import { pickerDate } from '../../redux/actions/userActions'
+
 import CalendarConfirm from '../../components/CalendarConfirm'
 import Button from '../../components/Button'
 import styles from './styles'
+
+const mapDispatchToProps = {
+  pickerDate,
+}
 
 class SelectScreen extends React.Component {
 
@@ -18,6 +26,11 @@ class SelectScreen extends React.Component {
       icon: this.props.navigation.state.params.icon,
       check: this.props.navigation.state.params.check, 
     }
+  }
+
+  navAndRemove = () => {
+    this.props.navigation.navigate('Calendar')
+    this.props.pickerDate(null)
   }
 
   render() {
@@ -38,7 +51,7 @@ class SelectScreen extends React.Component {
                 </View>
               </View>}
             button = {<Button type='schedule' justifyContent='flex-end'
-                    onClick={() => this.props.navigation.navigate('Calendar')}
+                    onClick={this.navAndRemove}
                     text='Add to Calendar' textColor='white'/>}
           />
       </View>
@@ -47,4 +60,4 @@ class SelectScreen extends React.Component {
 
 }
 
-export default SelectScreen
+export default connect (null, mapDispatchToProps)(SelectScreen)

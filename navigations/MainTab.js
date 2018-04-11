@@ -63,7 +63,7 @@ const MainTabNavigator = TabNavigator({
       ),
     }),
   },
-},{
+}, {
   initialRouteName: 'Activities',
   tabBarOptions: {
     activeTintColor: '#545680',

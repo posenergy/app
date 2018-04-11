@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { Agenda } from 'react-native-calendars'
-import RNCalendarEvents from 'react-native-calendar-events'
-import styles from './styles'
-import PickerModal from '../../components/PickerModal'
-import moment from 'moment'
-import { token } from '../../redux/actions/tokenActions'
 import { connect } from 'react-redux'
+import RNCalendarEvents from 'react-native-calendar-events'
+
+import styles from './styles'
+import moment from 'moment'
+import PickerModal from '../../components/PickerModal'
+
+import { token } from '../../redux/actions/tokenActions'
+import { pickerDate } from '../../redux/actions/userActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
@@ -15,6 +18,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   token,
+  pickerDate,
 }
 
 class CalendarScreen extends Component {
@@ -49,9 +53,10 @@ class CalendarScreen extends Component {
   }
   
   nextScreen = () => {
+    this.props.pickerDate(this.state.chosenDate)
     this.setState({pickerModalVisible: false})
     const { navigate } = this.props.navigation
-    navigate('Choose', {eventStart: this.state.chosenDate})
+    navigate('Choose')
   }
 
   setPickerDate = (newDate) => {
