@@ -134,6 +134,8 @@ class CalendarScreen extends Component {
 
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
+        // store all the events that need to broken up across multiple days
+	      const multiDayEvents = []
         allEvents.forEach(event => {
           // Date of event
           const strTime = event.occurrenceDate.split('T')[0]
@@ -153,12 +155,49 @@ class CalendarScreen extends Component {
           if (event.notes.includes('[+energy]')) {
             is_posE = true
           }
+          // handle multi-day events
+          let eventEndDate = moment(event.endDate)
+          let strTime2 = strTime
+          if (!event.allDay && !alreadyExists) {
+            if (strTime2 !== this.timeToString(eventEndDate)) {
+              while (strTime2 !== this.timeToString(eventEndDate.clone().add(1, 'day'))) {
+                const first = strTime2 === strTime
+                const endDate2 = 
+                  strTime2 === this.timeToString(eventEndDate)
+                    ? moment(eventEndDate) 
+                    : moment(strTime2).add(1, 'day').subtract(1, 'minute')
+                const startDate2 = first
+                 ? moment(event.occurrenceDate)
+                 : moment(strTime2)
+                const eventLength = endDate2.minute() - startDate2.minute()
+                const addZeros = i => i > 9 ? `${i}` : `0${i}`
+                const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
+                const timeRange = `${buildTime(startDate2)}-${buildTime(endDate2)}`
+                if (!this.state.items[strTime2]) {
+                  this.state.items[strTime2] = []
+                }
+                this.state.items[strTime2].push({
+                  strTime: strTime2,
+                  id: event.id,
+                  name: (first ? '' : '[Continued] ') + event.title,
+                  start: startDate2,
+                  end: endDate2,
+                  length: eventLength,
+                  timeRange: timeRange,
+                  calendar: event.calendar.id,
+                  height: Math.min(eventLength * 60, 300),
+                  pos_E: is_posE,
+                })
+                strTime2 = this.timeToString(moment(strTime2).add(1, 'day').add(1, 'minute'))
+              }
+              return
+            }
+          }
           if (!alreadyExists) {
             const startDate2 = new Date(event.startDate)
             const endDate2 = new Date(event.endDate)
-            // endDate2.setTime(this._adjustTime(endDate2))
             const eventLength = (endDate2.getTime() - startDate2.getTime()) / (1000 * 60 * 60)
-            const eventHeight = (event.allDay || eventLength < 1) ? 60 : eventLength * 60
+            const eventHeight = (event.allDay) ? 60 : (eventLength < 1) ? 50 : eventLength * 60
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.getHours())}:${addZeros(d.getMinutes())}`
             const timeRange = (event.allDay) ? 'All Day' : `${buildTime(startDate2)}-${buildTime(endDate2)}`
