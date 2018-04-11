@@ -53,7 +53,8 @@ export default StyleSheet.create({
     view: {
         flex: 1,
         alignSelf: 'center',
-
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 

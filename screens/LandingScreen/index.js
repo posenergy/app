@@ -1,8 +1,7 @@
 import React from 'react'
-import { ScrollView, ImageBackground } from 'react-native'
+import { View, Text, Image, ImageBackground } from 'react-native'
 import styles from './styles'
 
-import Logo from '../../components/Logo'
 import Button from '../../components/Button'
 
 export default class LandingScreen extends React.Component {
@@ -15,15 +14,24 @@ export default class LandingScreen extends React.Component {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style = {styles.viewStyle}>
-        <ScrollView>
-        <Logo />
+        <View style={styles.view}>
+        <Image
+          style={styles.logoImage}
+          height={130}
+          width={130}
+          marginBottom= '5%'
+          alignSelf= 'center'
+          source={require('../../images/logo_image.png')}/>
+        <Text style={styles.blurb}>
+        Discover and schedule wellness activities
+        </Text>
         <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Register')}
           text="Sign Up" textColor="grey"
         />
         <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Login')}
-          text="Login" textColor="grey"
+          text="Log In" textColor="grey"
         />
-        </ScrollView>
+        </View>
       </ImageBackground>
     )
   }
