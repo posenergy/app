@@ -29,6 +29,13 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
     fontFamily: 'CircularStd-Book',
   },
+  whiteLogOut: {
+    fontSize: 20,
+    lineHeight: 19,
+    color: 'white',
+    textAlignVertical: 'center',
+    fontFamily: 'Circular Std',
+  },
   black: {
     fontSize: 20,
     color: 'black',
