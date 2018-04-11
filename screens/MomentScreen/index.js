@@ -38,6 +38,7 @@ class MomentScreen extends React.Component {
   parseVid = () => {
     if (this.state.vid) {
       const url = this.state.vid
+      if (url.includes('?v=')){
       const split1 = url.split('?v=')
       const split2 = split1[1].split('&')
       return (<YouTube
@@ -45,19 +46,53 @@ class MomentScreen extends React.Component {
               play={false}
               fullscreen={true}
               loop={false}
+
               onReady={e => this.setState({ isReady: true })}
               onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
-            />)
-    } else {
+            />)}
+      else if (state.type == 'movement'){
+        return (<View height={142} width={244}>
+                  <Image
+                    resizeMode='stretch'
+                    style={{flex: 1}}
+                    source={require('../src/mvmtDefault.png')}/>
+                </View>)
+        }
+      else {
+         return (<View height={142} width={244}>
+                  <Image
+                    resizeMode='stretch'
+                    style={{flex: 1}}
+                    source={require('../src/mindDefault.png')}/>
+                </View>)
+      }
+    }
+    else if (this.state.img) {
       return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
                   source={{uri: this.state.img}}/>
               </View>)
     }
+    else if (state.type == 'movement'){
+        return (<View height={142} width={244}>
+                  <Image
+                    resizeMode='stretch'
+                    style={{flex: 1}}
+                    source={require('../src/mvmtDefault.png')}/>
+                </View>)
+        }
+      else {
+         return (<View height={142} width={244}>
+                  <Image
+                    resizeMode='stretch'
+                    style={{flex: 1}}
+                    source={require('../src/mindDefault.png')}/>
+                </View>)
+      }
   }
 
   render() {
@@ -102,6 +137,7 @@ class MomentScreen extends React.Component {
                   vid: this.state.vid,
                   icon: this.state.icon,
                   eventStart: this.props.navigation.state.params.eventStart,
+                  check: this.state.check,                  
                 })}
                 navigate('Schedule', {
                   time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,

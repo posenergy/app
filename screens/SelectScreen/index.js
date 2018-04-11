@@ -12,11 +12,11 @@ class SelectScreen extends React.Component {
     this.state = {
       time: this.props.navigation.state.params.time,
       title: this.props.navigation.state.params.title,
-      pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
       eventStart: this.props.navigation.state.params.eventStart,
       icon: this.props.navigation.state.params.icon,
+      check: this.props.navigation.state.params.check, 
     }
   }
 
@@ -25,7 +25,7 @@ class SelectScreen extends React.Component {
       <View style={styles.view2}>
         <CalendarConfirm
             title = {this.state.title}
-            brand = 'Branding'
+            brand = {this.state.brand}
             image = {this.state.icon}
             text = {this.state.text}
             varelement = {

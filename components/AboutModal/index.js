@@ -41,6 +41,7 @@ export default class AboutModal extends Component {
                 <StyleText text="FAQ" />
                 <CollapsibleMenu />
               </ScrollView>
+              <View height={10}/>
             </View>
           </View>
         </Modal>

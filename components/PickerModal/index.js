@@ -61,8 +61,8 @@ export default class PickerScreen extends Component {
                   />
                 </View>
                  <Button type='picker'
-                    onClick={this.props.nextScreen}
-                    text='Next' textColor='white'/>
+                    onClick={this.props.bpress}
+                    text={this.props.bname} textColor='white'/>
                 </View>
               </View>
           </Modal>
