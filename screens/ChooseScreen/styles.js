@@ -13,7 +13,7 @@ export default StyleSheet.create({
     width: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
   },
   mvmtTouch: {
     borderBottomColor: 'white',

@@ -41,8 +41,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
     width: 276,
-    marginTop: 25,
-    marginBottom: 15,
+    marginTop: 15,
+    height: 150,
     fontFamily: 'Circular Std',
   },
   bold: {
@@ -51,6 +51,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
     marginBottom: 20,
+    height: 30,		
+    marginTop: 20,
     fontFamily: 'Circular Std',
   },
   contentWrap: {
