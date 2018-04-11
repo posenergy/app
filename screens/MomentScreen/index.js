@@ -29,6 +29,8 @@ class MomentScreen extends React.Component {
       img: this.props.navigation.state.params.img,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
+      icon: this.props.navigation.state.params.icon,
+      id: this.props.navigation.state.params.id,
       check: true,
     }
   }
@@ -64,7 +66,7 @@ class MomentScreen extends React.Component {
         <SchedModal
             title = {this.state.title}
             brand ={this.state.brand}
-            image = {require('../../images/yoga.png')}
+            image = {this.state.icon}
             text = {this.state.text.split('`')[0]}
             varelement = {this.parseVid()}
             varelement2 = {
@@ -98,6 +100,7 @@ class MomentScreen extends React.Component {
                   desc: this.state.text,
                   brand: this.state.brand,
                   vid: this.state.vid,
+                  icon: this.state.icon,
                   eventStart: this.props.navigation.state.params.eventStart,
                 })}
                 navigate('Schedule', {
@@ -107,7 +110,9 @@ class MomentScreen extends React.Component {
                   desc: this.state.text,
                   brand: this.state.brand,
                   vid: this.state.vid,
-                  check: this.state.check
+                  id: this.state.id,
+                  icon: this.state.icon,
+                  check: this.state.check,
                 })
               }}
               text='Schedule' textColor='white'/>}

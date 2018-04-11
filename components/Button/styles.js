@@ -20,8 +20,20 @@ export default StyleSheet.create({
     fontFamily: 'Circular Std',
   },
   white: {
-    fontSize: 20,
+    fontSize: 16,
+    lineHeight: 19,
+    marginTop: 2,
     color: '#fff',
+    borderRadius: 5,
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    fontFamily: 'CircularStd-Book',
+  },
+  whiteLogOut: {
+    fontSize: 20,
+    lineHeight: 19,
+    color: 'white',
+    textAlignVertical: 'center',
     fontFamily: 'Circular Std',
   },
   black: {
@@ -50,7 +62,6 @@ export default StyleSheet.create({
   grey: {
     fontSize: 20,
     color: '#333333',
-    fontWeight: 'bold',
     fontFamily: 'Circular Std',
   },
   blue: {
@@ -104,12 +115,13 @@ export default StyleSheet.create({
     height: 27,
     borderRadius: 5,
   },
-  filterclick: {
+  filterClick: {
     margin: 0,
     backgroundColor: '#545680',
     display: 'flex',
     flex: 1,
     width: '100%',
+    borderRadius: 5,
     alignItems: 'center',
     height: 27,
     marginRight: 5,
@@ -125,10 +137,14 @@ export default StyleSheet.create({
     margin: 8,
     borderRadius: 5,
     marginBottom: 13,
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
   },
-  register: {
+  purple: {
     marginTop: 13,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#545680',
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
@@ -148,7 +164,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#545680',
     flex: 1,
-    height: '5%',
+    height: 50,
     borderBottomLeftRadius: 11,
     borderBottomRightRadius: 11,
     width: 300,

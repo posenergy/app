@@ -1,11 +1,14 @@
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
+import React from 'react'
 
 import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import MainTabWrapper from './MainTab'
+
+import { HeaderBackButton } from 'react-navigation'
 
 const AppNavigator = StackNavigator({
   Splash: {
@@ -16,9 +19,15 @@ const AppNavigator = StackNavigator({
   },
   Login: {
     screen: LoginScreen,
+      navigationOptions: ({ navigation }) => ({
+      headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
+    }),
   },
   Register: {
     screen: RegisterScreen,
+      navigationOptions: ({ navigation }) => ({
+      headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
+    }),
   },
   MainTab: {
     screen: MainTabWrapper,

@@ -1,11 +1,13 @@
 import React from 'react'
 import { View } from 'react-native'
 import RNCalendarEvents from 'react-native-calendar-events'
+import { connect } from 'react-redux'
+
 import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
+import config from '../config/config'
 import { token } from './../redux/actions/tokenActions'
-import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
@@ -13,7 +15,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  token,
 }
 
 class ScheduleScreen extends React.Component {
@@ -28,15 +29,21 @@ class ScheduleScreen extends React.Component {
       brand: this.props.navigation.state.params.brand,
       time: this.props.navigation.state.params.time,
       vid: this.props.navigation.state.params.vid,
+      icon: this.props.navigation.state.params.icon,
+      id: this.props.navigation.state.params.id,
+      check: this.props.navigation.state.params.check,
       value: new Date (),
       items: {},
       buttons: [],
+      buffer: false,
     }
   }
 
   setValue = (value) => {this.setState({value: value})}
 
   saveEvent = (eventstart) => {
+    console.log("TOKEN HELLO AJNFO", eventstart)
+    this.addMomentToUser(eventstart)
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
@@ -62,6 +69,38 @@ class ScheduleScreen extends React.Component {
   timeToString(time) {
     const date = new Date(time)
     return date.toISOString().split('T')[0]
+  }
+
+    async addMomentToUser(eventstart) {
+      try {
+        let responseJSON
+        const apiUrl = `${config.apiUrl}/users/moments/`
+        let response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-access-token': this.props.token,
+          },
+          body: JSON.stringify({
+            momentId: this.state.id,
+            time: eventstart,
+            duration: this.state.time,
+            buffer: this.state.check,
+          }),
+        })
+        if(!response.ok){
+          console.log("Didn't work")
+          return false
+        }
+        else {
+        console.log("HIHIHI", this.state.id, this.state.time, this.state.check, this.props.token)
+        responseJSON = await response.json()
+        }
+        return responseJSON
+      } catch(error) {
+        console.error(error)
+      }
   }
 
   componentDidMount() {
@@ -164,7 +203,7 @@ render() {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <SelectTime
           title = {this.state.title}
-          image = {require('./../images/yoga.png')}
+          image = {this.state.icon}
           brand = {this.state.brand}
           text = {this.state.text}
           varelement = {<RadioButtonList

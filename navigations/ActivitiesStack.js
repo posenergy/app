@@ -19,21 +19,21 @@ const ActivitiesStack = StackNavigator({
     screen: SearchScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Search',
-      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+      headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
   Moment: {
     screen: MomentScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Moment',
-      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+      headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
   Schedule: {
     screen: ScheduleScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Schedule',
-      headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+      headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
 },

@@ -131,7 +131,7 @@ class CalendarScreen extends Component {
     setTimeout(() => {
     const startDate = moment().subtract(14, 'days').toDate()
     const endDate = moment().add(21, 'days').toDate()
-    
+
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         // store all the events that need to broken up across multiple days
@@ -266,7 +266,7 @@ class CalendarScreen extends Component {
             return 0
           })
         }
-        
+
         for (let i = -15; i < 85; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)

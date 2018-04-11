@@ -45,11 +45,11 @@ const MainTabNavigator = TabNavigator({
     screen: CalendarStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
-      tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('../components/TabIcons/calendar.png')}
-        />
-      ),
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../components/TabIcons/calendar.png')}
+      />
+    ),
     }),
   },
   Profile: {
@@ -75,6 +75,7 @@ const MainTabNavigator = TabNavigator({
     headerRight: <ConnectedInfoButton />,
     headerStyle: { backgroundColor: '#545680' },
     headerTintColor: 'white',
+    headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
   }),
   headerMode: 'screen',
 })

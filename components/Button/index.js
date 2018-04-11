@@ -6,7 +6,7 @@ import styles from './styles'
 export default class Button extends Component {
   static propTypes = {
     text: PropTypes.string,
-    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'black', 'blacksmall', 'greysmall', 'whiteButtonText', 'blue', 'boldBlack']),
+    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'whiteLogOut', 'black', 'blacksmall', 'greysmall', 'whiteButtonText', 'blue', 'boldBlack']),
     onClick: PropTypes.func.isRequired,
     onLong: PropTypes.func,
     type: PropTypes.oneOf([
@@ -17,6 +17,7 @@ export default class Button extends Component {
       'filter',
       'schedule',
       'picker',
+      'purple',
       'filterButton',
       'mindmodal',
       'filterClick',
