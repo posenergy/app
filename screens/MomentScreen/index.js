@@ -47,10 +47,11 @@ class MomentScreen extends React.Component {
               </View>)
     }
     else{
-      return (<View height={142} width={244}>
+      return (<View flex={1}>
                 <Image
+                  resizeMode='stretch'
                   style={{flex: 1}}
-                  source={require('../../images/mind.png')}/>
+                  source={require('../../images/sun.png')}/>
               </View>)
     }
   }
