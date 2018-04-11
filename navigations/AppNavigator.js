@@ -5,7 +5,7 @@ import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
-import RootStack from './MainTab'
+import MainTabWrapper from './MainTab'
 
 const AppNavigator = StackNavigator({
   Splash: {
@@ -21,7 +21,7 @@ const AppNavigator = StackNavigator({
     screen: RegisterScreen,
   },
   MainTab: {
-    screen: RootStack,
+    screen: MainTabWrapper,
   },
 }, {
   transitionConfig: () => ({

@@ -9,7 +9,7 @@ import { close, open } from '../redux/actions/aboutModalActions.js'
 
 import AboutModal from '../components/AboutModal'
 import ActivitiesStack from './ActivitiesStack'
-import CalendarScreen from '../screens/CalendarScreen'
+import CalendarStack from './CalendarStack'
 import ProfileScreen from '../screens/ProfileScreen'
 import React from 'react'
 import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
@@ -42,7 +42,7 @@ const MainTabNavigator = TabNavigator({
     },
   },
   Calendar: {
-    screen: CalendarScreen,
+    screen: CalendarStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
       tabBarIcon: ({ tintColor }) => (
@@ -73,7 +73,7 @@ const MainTabNavigator = TabNavigator({
   },
   navigationOptions: ({ navigation }) => ({
     headerRight: <ConnectedInfoButton />,
-    headerStyle: { backgroundColor: '#545680', borderWidth: 1},
+    headerStyle: { backgroundColor: '#545680' },
     headerTintColor: 'white',
   }),
   headerMode: 'screen',

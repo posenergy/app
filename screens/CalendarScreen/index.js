@@ -24,12 +24,13 @@ class CalendarScreen extends Component {
       items: {},
       pickerModalVisible: false,
       chosenDate: null,
-      setDate: () => this.setPickerDate,
     }
   }
+  
   openPickerModal = () => {
     this.setState({pickerModalVisible: true})
   }
+
   closePickerModal = () => {
     this.setState({pickerModalVisible: false})
   }
@@ -40,9 +41,10 @@ class CalendarScreen extends Component {
     navigate('Choose', {eventStart: this.state.chosenDate})
   }
 
-  setPickerDate(newDate) {
+  setPickerDate = (newDate) => {
     this.setState({chosenDate: newDate})
   }
+
   getDateString(date) {
     let hours = date.getHours()
     let suffix = 'AM'
@@ -75,6 +77,7 @@ class CalendarScreen extends Component {
         // console.log('denied')
       })
   }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -108,7 +111,7 @@ class CalendarScreen extends Component {
             nextScreen={this.nextScreen}
             chosenDate={this.state.chosenDate}
             getDateString={this.getDateString(this.state.chosenDate)}
-            setPickerDate={this.state.setPickerDate}
+            setPickerDate={this.setPickerDate.bind(null)}
           />}
       </View>
     )
@@ -152,7 +155,6 @@ class CalendarScreen extends Component {
           }
           if (!alreadyExists) {
             const startDate2 = new Date(event.startDate)
-            // startDate2.setTime(this._adjustTime(startDate2))
             const endDate2 = new Date(event.endDate)
             // endDate2.setTime(this._adjustTime(endDate2))
             const eventLength = (endDate2.getTime() - startDate2.getTime()) / (1000 * 60 * 60)
@@ -173,7 +175,7 @@ class CalendarScreen extends Component {
             })
           }
         })
-        // TODO: make these dynamic
+
         var START_TIME = this.props.user.startTime
         var END_TIME = this.props.user.endTime
         const yesterday = moment().subtract(1, 'day')

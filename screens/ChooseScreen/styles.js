@@ -8,6 +8,13 @@ export default StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderRadius: 5,
   },
+  modalIndex: {
+    height: 8,
+    width: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 40,
+  },
   mvmtTouch: {
     borderBottomColor: 'white',
     borderBottomWidth: 5,

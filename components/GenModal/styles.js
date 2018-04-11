@@ -29,13 +29,6 @@ export default StyleSheet.create({
     marginTop: 19,
 		marginBottom: 7,
   },
-  place: {
-    height: 8,
-    width: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 40,
-  },
   title: {
     fontStyle: 'italic',
     fontSize: 26,
