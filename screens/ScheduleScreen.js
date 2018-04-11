@@ -94,14 +94,10 @@ class ScheduleScreen extends React.Component {
           }),
         })
         if(!response.ok){
-          console.log("Didn't work this", response)
           return false
         }
-        else {
-        console.log("It worked!", this.state.id, this.state.time, this.state.check, this.props.token)
-        responseJSON = await response.json()
+        else if (response.ok) {
         }
-        return responseJSON
       } catch(error) {
         console.error(error)
       }

@@ -92,7 +92,7 @@ class MomentScreen extends React.Component {
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation
-                {this.props.navigation.state.params.eventStart &&
+                this.props.navigation.state.params.eventStart &&
                 navigate('Select', {
                   time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                   title: this.state.title,
@@ -102,7 +102,7 @@ class MomentScreen extends React.Component {
                   vid: this.state.vid,
                   icon: this.state.icon,
                   eventStart: this.props.navigation.state.params.eventStart,
-                })}
+                )}
                 navigate('Schedule', {
                   time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                   title: this.state.title,
