@@ -20,9 +20,14 @@ export default StyleSheet.create({
     fontFamily: 'Circular Std',
   },
   white: {
-    fontSize: 20,
+    fontSize: 16,
+    lineHeight: 19,
+    marginTop: 2,
     color: '#fff',
-    fontFamily: 'Circular Std',
+    borderRadius: 5,
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    fontFamily: 'CircularStd-Book',
   },
   black: {
     fontSize: 20,
@@ -104,12 +109,13 @@ export default StyleSheet.create({
     height: 27,
     borderRadius: 5,
   },
-  filterclick: {
+  filterClick: {
     margin: 0,
     backgroundColor: '#545680',
     display: 'flex',
     flex: 1,
     width: '100%',
+    borderRadius: 5,
     alignItems: 'center',
     height: 27,
     marginRight: 5,

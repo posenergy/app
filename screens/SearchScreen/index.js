@@ -228,11 +228,12 @@ class SearchScreen extends React.Component {
                   brand: item.partner,
                   time: item.duration,
                   vid: item.vid,
+                  id: item._id,
+                  icon: item.icon,
                   eventStart: this.props.navigation.state.params.eventStart,
                 })
                }}>
                 <Moment
-                  id={item.id}
                   title={item.name}
                   time={item.duration}
                   sweat={item.sweatIndex}
@@ -270,11 +271,12 @@ class SearchScreen extends React.Component {
                   desc: item.description,
                   time: item.duration,
                   vid: item.vid,
+                  id: item._id,
+                  icon: item.icon,
                   eventStart: this.props.navigation.state.params.eventStart,
                 })
                 }}>
                 <Moment
-                  id={item.id}
                   title={item.name}
                   time={item.duration}
                   icon={item.icon}
