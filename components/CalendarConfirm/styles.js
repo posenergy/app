@@ -20,7 +20,7 @@ export default StyleSheet.create({
     fontSize: 26,
     textAlign: 'center',
     lineHeight: 31,
-    fontFamily: 'Circular Std',    
+    fontFamily: 'Circular Std',
   },
   text: {
     textAlign: 'center',

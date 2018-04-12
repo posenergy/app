@@ -12,11 +12,9 @@ import ActivitiesStack from './ActivitiesStack'
 import CalendarStack from './CalendarStack'
 import ProfileScreen from '../screens/ProfileScreen'
 import React from 'react'
-import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { HeaderBackButton } from 'react-navigation'
 
 
 class InfoButton extends React.Component {

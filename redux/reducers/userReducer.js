@@ -1,4 +1,4 @@
-import { PREPOPULATE, ONBOARDING, PICKER } from '../actions/userActions'
+import { PREPOPULATE, ONBOARDING } from '../actions/userActions'
 
 const defaultState = {
     isLoggedIn: false,

@@ -9,7 +9,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#F2F2F2',
   },
-  viewStyle: {
+  viewStyles: {
     flex: 1,
     backgroundColor: '#F2F2F2',
     width: 400,

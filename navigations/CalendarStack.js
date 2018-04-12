@@ -60,7 +60,7 @@ transitionConfig: () => ({
     // Otherwise, use the usual horizontal animation.
     return CardStackStyleInterpolator.forHorizontal(sceneProps)
   },
-}) 
+}),
 }
 )
 

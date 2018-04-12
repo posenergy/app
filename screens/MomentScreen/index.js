@@ -39,7 +39,7 @@ class MomentScreen extends React.Component {
   parseVid = () => {
     if (this.state.vid) {
       const url = this.state.vid
-      if (url.includes('?v=')){
+      if (url.includes('?v=')) {
       const split1 = url.split('?v=')
       const split2 = split1[1].split('&')
       return (<YouTube

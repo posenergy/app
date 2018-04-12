@@ -29,7 +29,7 @@ class SelectScreen extends React.Component {
       eventStart: this.props.navigation.state.params.eventStart,
       date: null,
       day: null,
-      timeRange: null, 
+      timeRange: null,
       icon: this.props.navigation.state.params.icon,
       textwourl: null,
     }
@@ -48,36 +48,35 @@ class SelectScreen extends React.Component {
     const eventstart = new Date(this.state.eventStart)
     const enddate = (new Date(moment(eventstart).add(this.state.time, 'm'))).toISOString()
     const desc = (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
-    console.log(eventstart, enddate)    
     RNCalendarEvents.saveEvent(this.state.title, {
-      startDate: eventstart.toISOString(), 
+      startDate: eventstart.toISOString(),
       endDate: enddate,
       notes: desc,
     })
     this.resetNavigation('Calendar')
 }
 
-  componentDidMount(){
-    if (this.state.text.includes('`')){ 
+  componentDidMount() {
+    if (this.state.text.includes('`')) {
       this.setState({textwourl: this.state.text.split('`')[0]})
     } else {
       this.setState({textwourl: this.state.text})
-    } 
+    }
     this.setDateParams()
   }
 
   setDateParams = () => {
     const event = new Date(this.state.eventStart)
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-    const dayString = event.toLocaleDateString('en-US', options).split(",")[0]
-    const dateString = event.toLocaleDateString('en-US', options).split(",")[1] + ", " + event.toLocaleDateString('en-US', options).split(",")[2]
+    const dayString = event.toLocaleDateString('en-US', options).split(',')[0]
+    const dateString = event.toLocaleDateString('en-US', options).split(',')[1] + ', ' + event.toLocaleDateString('en-US', options).split(',')[2]
     let startTime = event.toLocaleString('en-US').split(', ')[1].split(' ')[0]
-    startTime = moment(event).format("hh:mm A")
-    const endTime = moment(event).add(this.state.time, 'm').format("hh:mm A")
+    startTime = moment(event).format('hh:mm A')
+    const endTime = moment(event).add(this.state.time, 'm').format('hh:mm A')
     this.setState({
       day: dayString,
       date: dateString,
-      timeRange: startTime + " - " + endTime,
+      timeRange: startTime + ' - ' + endTime,
     })
   }
 

@@ -126,7 +126,7 @@ export default StyleSheet.create({
     shadowColor: '#4F4F4F',
     shadowRadius: 2,
     shadowOpacity: 0.5,
-    shadowOffset: {width: 1, height: 3}
+    shadowOffset: {width: 1, height: 3},
   },
   login: {
     marginTop: 13,

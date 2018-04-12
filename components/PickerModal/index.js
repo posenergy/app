@@ -19,10 +19,6 @@ export default class PickerScreen extends Component {
     }
   }
 
-  setDate = () => {
-    this.setState({chosenDate: newDate})
-  }
-
   render() {
     return (
       <View style={styles.view}>
@@ -56,7 +52,7 @@ export default class PickerScreen extends Component {
                 <View style={styles.datePicker}>
                   <DatePickerIOS
                     date={this.props.chosenDate}
-                    onDateChange={this.props.setPickerDate || this.setDate}
+                    onDateChange={this.props.setPickerDate}
                     {...this.props.inputProps}
                   />
                 </View>

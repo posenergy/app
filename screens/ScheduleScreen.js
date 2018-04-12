@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
-import config from '../config/config'
 import { token } from './../redux/actions/tokenActions'
 import { pickerDate } from './../redux/actions/userActions'
 
@@ -47,7 +46,7 @@ class ScheduleScreen extends React.Component {
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
-      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]' ,
+      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]',
     })
     this.props.navigation.navigate('Calendar')
   }

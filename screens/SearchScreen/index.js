@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, TouchableOpacity, Text, Image } from 'react-native'
+import { FlatList, View, TouchableOpacity, Image } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -50,10 +50,8 @@ class SearchScreen extends React.Component {
   }
 
   flat() {
-    console.log(this.state.moments)
-    if (this.state.moments.length == 0){
+    if (this.state.moments.length === 0) {
       this.setState({ flatList: false })
-      console.log(this.state.flatList, "flatList")
     }
   }
 
@@ -94,8 +92,7 @@ class SearchScreen extends React.Component {
           .then((res) => res.json())
           .then(res => {
             this.flat()
-            this.setState({ moments: res, })
-            
+            this.setState({ moments: res })
             }
           )
           .catch((error) => {
@@ -206,7 +203,7 @@ class SearchScreen extends React.Component {
           .then((res) => res.json())
           .then(res => {
             this.setState({ moments: res,
-                            flatList: true, })
+                            flatList: true })
           })
           .catch((error) => {
             console.error(error)
@@ -222,9 +219,7 @@ class SearchScreen extends React.Component {
     })
       .then((res) => res.json())
       .then(res => {
-        this.setState({
-          moments: res,
-        })
+        this.setState({ moments: res })
         this.flat()
       })
       .catch((error) => {
@@ -239,7 +234,7 @@ class SearchScreen extends React.Component {
         <FlatList
           style={styles.flatListStyle}
           data={ this.state.moments }
-          renderItem={({item}) => 
+          renderItem={({item}) =>
             <TouchableOpacity style={styles.button}
               onPress={(event) => {
               const { navigate } = this.props.navigation
@@ -273,16 +268,16 @@ class SearchScreen extends React.Component {
           this.props.visibleMvmt &&
             <MvmtModal/>
         }
-      </View>
-    )} 
-      return (
+        </View>
+      )
+    } return (
         <View style={styles.viewStyle}>
             <FlatList
               data={this.state.moments}
-              renderItem={({item}) => 
+              renderItem={({item}) =>
                 <TouchableOpacity style={styles.button}
                   onPress={(event) => {
-                    const {navigate} = this.props.navigate
+                    const {navigate} = this.props.navigation
                     navigate('Moment', {
                       title: item.name,
                       img: item.img,
@@ -294,7 +289,7 @@ class SearchScreen extends React.Component {
                       icon: item.icon,
                     })
                   }}>
-                <Moment 
+                <Moment
                   title={item.name}
                   time={item.duration}
                   sweat={item.sweatIndex}
@@ -310,8 +305,7 @@ class SearchScreen extends React.Component {
           {
             this.props.visibleMind &&
               <MindModal/>
-          }
-        </View>
+          } </View>
       )
     }
 }

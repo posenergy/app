@@ -36,16 +36,16 @@ class CalendarScreen extends Component {
   }
   
   openPickerModal = (item) => {
-    const startTime = moment(item.start._i + " " + item.timeRange.split('-')[0], 'YYYY-MM-DD HH:mm')
-    if (item){
+    const startTime = moment(item.start._i + ' ' + item.timeRange.split('-')[0], 'YYYY-MM-DD HH:mm')
+    if (item) {
     this.setState({
-      pickerModalVisible: true,      
+      pickerModalVisible: true,
       chosenDate: new Date(startTime),
     })
   } else {
     this.setState({
       pickerModalVisible: true,
-      chosenDate: new Date(),      
+      chosenDate: new Date(),
     })
   }
   }
@@ -82,7 +82,6 @@ class CalendarScreen extends Component {
     const eventstart = this.state.chosenDate
     const eventid = this.state.eventid
     const length = this.state.eventlength * 60
-    console.log('eventstart: ', eventstart, '\neventid: ', eventid, '\nlenght: ', length)
     RNCalendarEvents.saveEvent({
       id: eventid,
       startDate: eventstart.toISOString(),
@@ -206,7 +205,6 @@ class CalendarScreen extends Component {
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
         // store all the events that need to broken up across multiple days
-	      const multiDayEvents = []
         allEvents.forEach(event => {
           // Date of event
           const strTime = event.occurrenceDate.split('T')[0]
@@ -233,13 +231,11 @@ class CalendarScreen extends Component {
             if (strTime2 !== this.timeToString(eventEndDate)) {
               while (strTime2 !== this.timeToString(eventEndDate.clone().add(1, 'day'))) {
                 const first = strTime2 === strTime
-                const endDate2 = 
-                  strTime2 === this.timeToString(eventEndDate)
-                    ? moment(eventEndDate) 
-                    : moment(strTime2).add(1, 'day').subtract(1, 'minute')
-                const startDate2 = first
-                 ? moment(event.occurrenceDate)
-                 : moment(strTime2)
+                const endDate2 =
+                  strTime2 === this.timeToString(eventEndDate) ? moment(eventEndDate) :
+                  moment(strTime2).add(1, 'day').subtract(1, 'minute')
+                const startDate2 = first ? moment(event.occurrenceDate) :
+                  moment(strTime2)
                 const eventLength = endDate2.minute() - startDate2.minute()
                 const addZeros = i => i > 9 ? `${i}` : `0${i}`
                 const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
