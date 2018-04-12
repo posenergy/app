@@ -36,10 +36,11 @@ class CalendarScreen extends Component {
   }
   
   openPickerModal = (item) => {
+    const startTime = moment(item.start._i + " " + item.timeRange.split('-')[0], 'YYYY-MM-DD HH:mm')
     if (item){
     this.setState({
       pickerModalVisible: true,      
-      chosenDate: new Date(),
+      chosenDate: new Date(startTime),
     })
   } else {
     this.setState({
