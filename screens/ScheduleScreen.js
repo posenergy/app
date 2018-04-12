@@ -1,9 +1,23 @@
 import React from 'react'
 import { View } from 'react-native'
 import RNCalendarEvents from 'react-native-calendar-events'
+import { connect } from 'react-redux'
+
 import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
+import { token } from './../redux/actions/tokenActions'
+import { pickerDateNull } from './../redux/actions/pickerActions'
+
+const mapStateToProps = state => ({
+  token: state.tokenReducer.token,
+  user: state.userReducer,
+})
+
+const mapDispatchToProps = {
+  pickerDateNull,
+  token,
+}
 
 class ScheduleScreen extends React.Component {
 
@@ -14,20 +28,29 @@ class ScheduleScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       pict: this.props.navigation.state.params.pict,
       text: this.props.navigation.state.params.desc,
+      brand: this.props.navigation.state.params.brand,
+      time: this.props.navigation.state.params.time,
+      vid: this.props.navigation.state.params.vid,
+      icon: this.props.navigation.state.params.icon,
+      id: this.props.navigation.state.params.id,
+      check: this.props.navigation.state.params.check,
+      value: new Date (),
       items: {},
       buttons: [],
-      brand: this.props.navigation.state.params.brand,
     }
   }
 
-  saveEvent() {
-    RNCalendarEvents.saveEvent('henlo', {
-      startDate: '2018-04-05T19:16:00.000Z', // selected button
-      endDate: '2018-04-05T19:20:00.000Z', // selected button
-      calendarID: '1CFEAAAB-91F7-4BA5-877B-FB447CE06B97', // +energy cal id
+  setValue = (value) => {this.setState({value: value})}
+
+  saveEvent = (eventstart) => {
+    RNCalendarEvents.saveEvent(this.state.title, {
+      startDate: eventstart.toISOString(), // selected button
+      endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
+      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]',
     })
     this.props.navigation.navigate('Calendar')
   }
+
 
   _isOpen(day, minute) {
     return this.state.items[day].reduce((acc, { start, end }) => {
@@ -48,14 +71,14 @@ class ScheduleScreen extends React.Component {
   }
 
   componentDidMount() {
+    this.props.pickerDateNull()
     this.renderTimes()
   }
 
   renderTimes() {
-    // TODO: NOT Hard code these
-    const EVENT_TIME = 30
-    var START_TIME = 300
-    var END_TIME = 1140
+    const EVENT_TIME = this.state.time
+    var START_TIME = this.props.user.startTime
+    var END_TIME = this.props.user.endTime
 
     const startDate = new Date()
     startDate.setSeconds(0)
@@ -148,14 +171,15 @@ render() {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <SelectTime
           title = {this.state.title}
-          image = {require('./../images/yoga.png')}
+          image = {this.state.icon}
           brand = {this.state.brand}
           text = {this.state.text}
           varelement = {<RadioButtonList
             radioprops = {this.state.buttons}
+            setValue = {this.setValue}
           />}
           button = {<Button type='schedule'
-                    onClick={() => this.props.navigation.navigate('Calendar')}
+                    onClick={() => this.saveEvent(this.state.value)}
                     text='Add to Calendar' textColor='white'/>}
       />
     </View>
@@ -163,5 +187,4 @@ render() {
   }
 }
 
-export default ScheduleScreen
-
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleScreen)

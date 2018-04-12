@@ -12,9 +12,6 @@ export default class Logo extends Component {
           width={130}
           alignSelf= 'center'
           source={require('./logo_image.png')}/>
-        <Image
-          style={styles.logoText}
-          source={require('./logo_text.png')}/>
       </View>
     )
   }

@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 
 import { del_tag, add_tag, sweat, duration } from '../../redux/actions/momentActions'
 import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
-import { barAction, cycleAction, danceAction, hiitAction,
-        kickAction, pilatesAction, rowAction, runAction, strengthAction,
+import { barAction, danceAction, hiitAction, pilatesAction, runAction, strengthAction,
         stretchAction, yogaAction, lowAction, mediumAction, highAction,
         fifteenAction, thirtyAction, sixtyAction } from '../../redux/actions/mvmtButtonsActions'
+
+import { del_sweat, del_duration } from '../../redux/actions/momentActions'
 
 import Button from '../../components/Button'
 import ModalStyleText from '../../components/ModalStyleText'
@@ -18,12 +19,9 @@ const mapStateToProps = state => ({
   tags: state.tags,
   duration: state.duration,
   bar: state.toggleMvmtButtons.bar,
-  cycle: state.toggleMvmtButtons.cycle,
   dance: state.toggleMvmtButtons.dance,
   hiit: state.toggleMvmtButtons.hiit,
-  kick: state.toggleMvmtButtons.kick,
   pilates: state.toggleMvmtButtons.pilates,
-  row: state.toggleMvmtButtons.row,
   run: state.toggleMvmtButtons.run,
   strength: state.toggleMvmtButtons.strength,
   stretch: state.toggleMvmtButtons.stretch,
@@ -38,17 +36,16 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   del_tag,
+  del_sweat,
+  del_duration,
   add_tag,
   sweat,
   duration,
   mvmtVisibility,
   barAction,
-  cycleAction,
   danceAction,
   hiitAction,
-  kickAction,
   pilatesAction,
-  rowAction,
   runAction,
   strengthAction,
   stretchAction,
@@ -60,16 +57,6 @@ const mapDispatchToProps = {
   thirtyAction,
   sixtyAction,
 }
-
-//   const executeFunctionByName = (functionName, context, args ) => {
-//   var args = Array.prototype.slice.call(arguments, 2);
-//   var namespaces = functionName.split(".");
-//   var func = namespaces.pop();
-//   for(var i = 0; i < namespaces.length; i++) {
-//     context = context[namespaces[i]];
-//   }
-//   return context[func].apply(context, args);
-// }
 
 class MvmtModal extends Component {
 
@@ -159,32 +146,56 @@ class MvmtModal extends Component {
 
   buttonLow = (drip) => {
     this.props.lowAction()
-    this.props.sweat(drip)
+    if (this.props.low) {
+      this.props.del_sweat()
+    } else {
+      this.props.sweat(drip)
+    }
   }
 
   buttonMed = (drip) => {
     this.props.mediumAction()
-    this.props.sweat(drip)
+    if (this.props.medium) {
+      this.props.del_sweat()
+    } else {
+      this.props.sweat(drip)
+    }
   }
 
   buttonHigh = (drip) => {
     this.props.highAction()
-    this.props.sweat(drip)
+    if (this.props.high) {
+      this.props.del_sweat()
+    } else {
+        this.props.sweat(drip)
+    }
   }
 
   buttonFifteen = (time) => {
     this.props.fifteenAction()
-    this.props.duration(time)
+    if (this.props.fifteen) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonThirty = (time) => {
     this.props.thirtyAction()
-    this.props.duration(time)
+    if (this.props.thirty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonSixty = (time) => {
     this.props.sixtyAction()
-    this.props.duration(time)
+    if (this.props.sixty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   render() {
@@ -218,37 +229,53 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Barre'
+                    typeProp={ this.props.bar ? 'filterClick' : 'filter' }
                     width={57}
-                    onPressProp={() => this.buttonBar('Bar')} />
+                    textColor={ this.props.bar ? 'white' : 'greysmall'}
+                    onPressProp={() => this.buttonBar('Barre')} />
                   <FilterButton
                     titleProp='Dance'
+                    typeProp={ this.props.dance ? 'filterClick' : 'filter' }
                     width={74}
+                    textColor={ this.props.dance ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonDance('Dance')} />
                  <FilterButton
                     titleProp='HIIT'
+                    typeProp={ this.props.hiit ? 'filterClick' : 'filter' }
                     width={57}
-                    onPressProp={() => this.buttonHiit('Hiit')} />
+                    textColor={ this.props.hiit ? 'white' : 'greysmall'}
+                    onPressProp={() => this.buttonHiit('HIIT')} />
                   <FilterButton
                     titleProp='Pilates'
+                    typeProp={ this.props.pilates ? 'filterClick' : 'filter' }
                     width={77}
+                    textColor={ this.props.pilates ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonPilates('Pilates')} />
                 </View>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Run'
+                    typeProp={ this.props.run ? 'filterClick' : 'filter' }
                     width={54}
+                    textColor={ this.props.run ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonRun('Run')} />
                   <FilterButton
                     titleProp='Strength'
+                    typeProp={ this.props.strength ? 'filterClick' : 'filter' }
                     width={81}
-                    onPressProp={() => this.buttonStrength('Strength')} />
+                    textColor={ this.props.strength ? 'white' : 'greysmall'}
+                    onPressProp={() => this.buttonStrength('Strength Training')} />
                   <FilterButton
                     titleProp='Stretch'
+                    typeProp={ this.props.stretch ? 'filterClick' : 'filter' }
                     width={82}
+                    textColor={ this.props.stretch ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonStretch('Stretch')} />
                   <FilterButton
                     titleProp='Yoga'
+                    typeProp={ this.props.yoga ? 'filterClick' : 'filter' }
                     width={52}
+                    textColor={ this.props.yoga ? 'white' : 'greysmall'}
                     onPressProp={() => this.buttonYoga('Yoga')} />
                 </View>
               </View>
@@ -257,15 +284,21 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                        <FilterButton
                          titleProp='Low'
+                         typeProp={ this.props.low ? 'filterClick' : 'filter' }
                          width={77.2}
+                         textColor={ this.props.low ? 'white' : 'greysmall'}
                          onPressProp={() => this.buttonLow(0)} />
                        <FilterButton
                          titleProp='Medium'
+                         typeProp={ this.props.medium ? 'filterClick' : 'filter' }
                          width={107.6}
+                         textColor={ this.props.medium ? 'white' : 'greysmall'}
                          onPressProp={() => this.buttonMed(1)} />
                        <FilterButton
                          titleProp='High'
+                         typeProp={ this.props.high ? 'filterClick' : 'filter' }
                          width={91.9}
+                         textColor={ this.props.high ? 'white' : 'greysmall'}
                          onPressProp={() => this.buttonHigh(2)} />
                      </View>
               </View>
@@ -274,17 +307,23 @@ class MvmtModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='< 15 min'
+                    typeProp={ this.props.fifteen ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.fifteen ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonFifteen(15)} />
                   <FilterButton
                     titleProp='< 30 min'
+                    typeProp={ this.props.thirty ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.thirty ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonThirty(30)} />
                   <FilterButton
                     titleProp='< 60 min'
+                    typeProp={ this.props.sixty ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.sixty ? 'white' : 'greysmall'}
                     marginRight={6}
                     onPressProp={() => this.buttonSixty(60)} />
                 </View>

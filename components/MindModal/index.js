@@ -8,6 +8,7 @@ import { mindVisibility } from '../../redux/actions/mindModalActions'
 import { craftAction, journalAction, meditateAction, gratitudeAction,
         skinAction, inspiredAction, fifteenAction, thirtyAction,
         sixtyAction } from '../../redux/actions/mindButtonsActions'
+import { del_duration } from '../../redux/actions/momentActions'
 
 import Button from '../../components/Button'
 import FilterButton from '../../components/FilterButton'
@@ -27,6 +28,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   del_tag,
+  del_duration,
   add_tag,
   duration,
   mindVisibility,
@@ -105,17 +107,29 @@ class MindModal extends Component {
 
   buttonFifteen = (time) => {
     this.props.fifteenAction()
-    this.props.duration(time)
+    if (this.props.fifteen) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonThirty = (time) => {
     this.props.thirtyAction()
-    this.props.duration(time)
+    if (this.props.thirty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   buttonSixty = (time) => {
     this.props.sixtyAction()
-    this.props.duration(time)
+    if (this.props.sixty) {
+      this.props.del_duration()
+    } else {
+      this.props.duration(time)
+    }
   }
 
   render() {
@@ -149,32 +163,44 @@ class MindModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Craft'
+                    typeProp={ this.props.craft ? 'filterClick' : 'filter' }
                     width={136}
+                    textColor={ this.props.craft ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonCraft('Craft')}} />
                   <FilterButton
                     titleProp='Journal'
+                    typeProp={ this.props.journal ? 'filterClick' : 'filter' }
                     width={149}
+                    textColor={ this.props.journal ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonJournal('Journal')}} />
                 </View>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Meditate'
+                    typeProp={ this.props.meditate ? 'filterClick' : 'filter' }
                     width={117}
+                    textColor={ this.props.meditate ? 'white' : 'greysmall'}
                     onPressProp={() => {this.buttonMeditate('Meditate')}} />
                   <FilterButton
                     titleProp='Show Gratitude'
+                    typeProp={ this.props.gratitude ? 'filterClick' : 'filter' }
                     width={168}
-                    onPressProp={() => {this.buttonGratitude('Gratitude')}} />
+                    textColor={ this.props.gratitude ? 'white' : 'greysmall'}
+                    onPressProp={() => {this.buttonGratitude('Show Gratitude')}} />
                 </View>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Skin Care'
+                    typeProp={ this.props.skin ? 'filterClick' : 'filter' }
                     width={129}
-                    onPressProp={() => {this.buttonSkin('Skin')}} />
+                    textColor={ this.props.skin ? 'white' : 'greysmall'}
+                    onPressProp={() => {this.buttonSkin('Skin Care')}} />
                   <FilterButton
                     titleProp='Get Inspired'
+                    typeProp={ this.props.inspired ? 'filterClick' : 'filter' }
                     width={154}
-                    onPressProp={() => {this.buttonInspired('Inspired')}} />
+                    textColor={ this.props.inspired ? 'white' : 'greysmall'}
+                    onPressProp={() => {this.buttonInspired('Get Inspired')}} />
                 </View>
               </View>
               <View marginBottom= {100}>
@@ -182,19 +208,25 @@ class MindModal extends Component {
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='< 15 min'
+                    typeProp={ this.props.fifteen ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.fifteen ? 'white' : 'greysmall'}
                     marginRight={6}
-                    onPressProp={() => {this.buttonFifteen(16)}} />
+                    onPressProp={() => this.buttonFifteen(15)} />
                   <FilterButton
                     titleProp='< 30 min'
+                    typeProp={ this.props.thirty ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.thirty ? 'white' : 'greysmall'}
                     marginRight={6}
-                    onPressProp={() => {this.buttonThirty(30)}} />
+                    onPressProp={() => this.buttonThirty(30)} />
                   <FilterButton
                     titleProp='< 60 min'
+                    typeProp={ this.props.sixty ? 'filterClick' : 'filter' }
                     width={94}
+                    textColor={ this.props.sixty ? 'white' : 'greysmall'}
                     marginRight={6}
-                    onPressProp={() => {this.buttonSixty(61)}} />
+                    onPressProp={() => this.buttonSixty(60)} />
                 </View>
               </View>
             <Button

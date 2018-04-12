@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, ImageBackground, ScrollView, Text, View } from 'react-native'
+import { Alert, ImageBackground, KeyboardAvoidingView, Text, View } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import config from '../../config/config'
 import styles from './styles'
 
 import { token } from '../../redux/actions/tokenActions'
-import { prepopulate } from '../../redux/actions/userActions'
+import { prepopulate, onboarding } from '../../redux/actions/userActions'
 
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   token,
   prepopulate,
+  onboarding,
 }
 
 class RegisterScreen extends ValidationComponent {
@@ -34,16 +35,6 @@ class RegisterScreen extends ValidationComponent {
       gender: '',
       buttonClicked: false,
     }
-  }
-  
-  // ensures that all fields are filled before submission
-  onSubmit() {
-    this.validate({
-      name: {required: true},
-      email: {required: true},
-      password: {required: true, minlength: 7},
-      confirmpassword: {required: true, minlength: 7},
-    })
   }
 
   async fetchUserInfo(token) {
@@ -71,7 +62,7 @@ class RegisterScreen extends ValidationComponent {
       console.error(error)
     }
   }
-  
+
   resetNavigation(targetRoute) {
      const navigateAction = NavigationActions.reset({
        index: 0,
@@ -79,7 +70,7 @@ class RegisterScreen extends ValidationComponent {
      })
      this.props.navigation.dispatch(navigateAction)
    }
-  
+
   async writeUser(name, email, password, confirmpassword) {
     if (name === '') {
       return Alert.alert(
@@ -119,6 +110,7 @@ class RegisterScreen extends ValidationComponent {
           )
           this.setState({ buttonClicked: false })
         } else {
+          this.props.onboarding()
           responseJSON = await response.json()
           await this.props.token(responseJSON.token)
           this.fetchUserInfo(responseJSON.token)
@@ -192,44 +184,45 @@ class RegisterScreen extends ValidationComponent {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style={styles.container}>
-      <ScrollView
-        style={styles.view}
-        showsVerticalScrollIndicator = {false}
-        contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
-        <View>
-          <StyleTextInput
-            pholder='Name'
-            imagelink = {require('../../images/profile.png')}
-            passwordSecure = {false}
-            changeFunction ={name => this.setState({name})}
-          />
-          <StyleTextInput
-            pholder='Email'
-            imagelink = {require('../../images/mail.png')}
-            passwordSecure = {false}
-            changeFunction ={email => this.setState({email})}
-          />
-          <StyleTextInput
-            pholder='Password'
-            imagelink = {require('../../images/lock.png')}
-            passwordSecure = {true}
-            changeFunction = {password => this.setState({password})}
-          />
-          <StyleTextInput
-            pholder='Confirm Password'
-            imagelink = {require('../../images/lock.png')}
-            passwordSecure = {true}
-            changeFunction ={confirmpassword => this.setState({confirmpassword})}
-          />
-          <Text style={styles.link}>
-            Passwords must be at least 7 characters long and contain at least one number.
-          </Text>
-          <Button type='register'
-            onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
-            loading={this.state.buttonClicked}
-            text='Sign Up' textColor='black'/>
+        <KeyboardAvoidingView
+          behavior="padding">
+        <View
+          style={styles.view}>
+          <View>
+            <StyleTextInput
+              pholder='Name'
+              imagelink = {require('../../images/profile.png')}
+              passwordSecure = {false}
+              changeFunction ={name => this.setState({name})}
+              returnKeyType = {'next'}/>
+            <StyleTextInput
+              pholder='Email'
+              imagelink = {require('../../images/mail.png')}
+              passwordSecure = {false}
+              changeFunction ={email => this.setState({email})}
+              returnKeyType = {'next'}/>
+            <StyleTextInput
+              pholder='Password'
+              imagelink = {require('../../images/lock.png')}
+              passwordSecure = {true}
+              changeFunction = {password => this.setState({password})}
+            />
+            <StyleTextInput
+              pholder='Confirm Password'
+              imagelink = {require('../../images/lock.png')}
+              passwordSecure = {true}
+              changeFunction ={confirmpassword => this.setState({confirmpassword})}
+            />
+            <Text style={styles.link}>
+              Passwords must be at least 7 characters long and contain at least one number.
+            </Text>
+            <Button type='login'
+              onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
+              loading={this.state.buttonClicked}
+              text='Sign Up' textColor='grey'/>
+          </View>
         </View>
-      </ScrollView>
+        </KeyboardAvoidingView>
       </ImageBackground>
     )
   }

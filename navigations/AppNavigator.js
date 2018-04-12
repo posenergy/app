@@ -1,11 +1,14 @@
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
+import React from 'react'
 
 import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
-import MainTabNavigator from './MainTab'
+import MainTabWrapper from './MainTab'
+
+import { HeaderBackButton } from 'react-navigation'
 
 const AppNavigator = StackNavigator({
   Splash: {
@@ -16,12 +19,18 @@ const AppNavigator = StackNavigator({
   },
   Login: {
     screen: LoginScreen,
+      navigationOptions: ({ navigation }) => ({
+      headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
+    }),
   },
   Register: {
     screen: RegisterScreen,
+      navigationOptions: ({ navigation }) => ({
+      headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
+    }),
   },
   MainTab: {
-    screen: MainTabNavigator,
+    screen: MainTabWrapper,
   },
 }, {
   transitionConfig: () => ({
@@ -29,7 +38,7 @@ const AppNavigator = StackNavigator({
       // Disable the transition animation when resetting to the home screen.
       if (
         sceneProps.index === 0 &&
-        sceneProps.scene.route.routeName !== 'Home' &&
+        sceneProps.scene.route.routeName !== 'MainTab' &&
         sceneProps.scenes.length > 2
       ) return null
 

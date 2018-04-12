@@ -1,18 +1,27 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation' // 1.0.0-beta.14
 
+import CalendarScreen from '../screens/CalendarScreen'
 import ChooseScreen from '../screens/ChooseScreen'
 import SearchScreen from '../screens/SearchScreen'
 import MomentScreen from '../screens/MomentScreen'
-import ScheduleScreen from '../screens/ScheduleScreen'
+import SelectScreen from '../screens/SelectScreen'
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
 import { HeaderBackButton } from 'react-navigation'
 
-const ActivitiesStack = StackNavigator({
+const CalendarStack = StackNavigator({
+  Calendar: {
+    screen: CalendarScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Calendar',
+    }),
+  },
   Choose: {
     screen: ChooseScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Choose',
+      headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
   Search: {
@@ -29,18 +38,30 @@ const ActivitiesStack = StackNavigator({
       headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
-  Schedule: {
-    screen: ScheduleScreen,
+  Select: {
+    screen: SelectScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Schedule',
       headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
 },
-{
-  initialRouteName: 'Choose',
-  headerMode: 'none',
+{ initialRouteName: 'Calendar',
+headerMode: 'none',
+transitionConfig: () => ({
+  screenInterpolator: (sceneProps) => {
+    // Disable the transition animation when resetting to the home screen.
+    if (
+      sceneProps.index === 0 &&
+      sceneProps.scene.route.routeName !== 'Calendar' &&
+      sceneProps.scenes.length > 2
+    ) return null
+
+    // Otherwise, use the usual horizontal animation.
+    return CardStackStyleInterpolator.forHorizontal(sceneProps)
+  },
+}),
 }
 )
 
-export default ActivitiesStack
+export default CalendarStack

@@ -6,7 +6,7 @@ import styles from './styles'
 export default class Button extends Component {
   static propTypes = {
     text: PropTypes.string,
-    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'black', 'blacksmall', 'greysmall', 'whiteButtonText', 'blue', 'boldBlack']),
+    textColor: PropTypes.oneOf(['red', 'grey', 'white', 'whiteLogOut', 'black', 'blacksmall', 'greysmall', 'whiteButtonText', 'blue', 'boldBlack']),
     onClick: PropTypes.func.isRequired,
     onLong: PropTypes.func,
     type: PropTypes.oneOf([
@@ -17,8 +17,10 @@ export default class Button extends Component {
       'filter',
       'schedule',
       'picker',
+      'purple',
       'filterButton',
       'mindmodal',
+      'filterClick',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
@@ -41,20 +43,20 @@ export default class Button extends Component {
     <ActivityIndicator size="large" style={styles.spinner}/>
 
   render() {
-    if (this.props.type === 'filter') {
+    if (this.props.type === 'filter' || this.props.type === 'filterClick') {
       return (
-      <View
-        style={styles.wrapview}
-        width={this.props.width}>
-        <TouchableOpacity
-          onPress={this.props.onClick}
-          style={[styles[this.props.type]]}>
-          {this.props.img}
-          {this._renderIcon()}
-          {this._renderText()}
-        </TouchableOpacity>
-      </View>
-    )
+        <View
+          style={styles.wrapview}
+          width={this.props.width}>
+          <TouchableOpacity
+            onPress={this.props.onClick}
+            style={[styles[this.props.type]]}>
+            {this.props.img}
+            {this._renderIcon()}
+            {this._renderText()}
+          </TouchableOpacity>
+        </View>
+      )
     }
     return (
       <TouchableOpacity
