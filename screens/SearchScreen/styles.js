@@ -9,6 +9,12 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#F2F2F2',
   },
+  viewStyle: {
+    flex: 1,
+    backgroundColor: '#F2F2F2',
+    width: 400,
+    height: 400,
+  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -21,9 +27,6 @@ export default StyleSheet.create({
     height: 45,
     width: 45,
   },
-  flatListStyle: {
-    flex: 1,
-  },
   buttonStyle: {
     justifyContent: 'flex-end',
   },
@@ -32,5 +35,6 @@ export default StyleSheet.create({
   },
   empty: {
     fontFamily: 'CircularStd-Book',
+    alignSelf: 'center',
   },
 })

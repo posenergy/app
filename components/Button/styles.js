@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-// const {height, width} = Dimensions.get('window')
-
 export default StyleSheet.create({
   button: {
     padding: 10,
@@ -125,6 +123,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: 27,
     marginRight: 5,
+    shadowColor: '#4F4F4F',
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    shadowOffset: {width: 1, height: 3}
   },
   login: {
     marginTop: 13,
