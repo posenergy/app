@@ -36,6 +36,24 @@ class MomentScreen extends React.Component {
     }
   }
 
+  defaultRender = () => {
+    if (this.state.category === 'movement') {
+      return (<View height={142} width={244}>
+        <Image
+          resizeMode='stretch'
+          style={{flex: 1}}
+          source={require('../src/mvmtDefault.png')}/>
+      </View>)
+    } else {
+        return (<View height={142} width={244}>
+          <Image
+            resizeMode='stretch'
+            style={{flex: 1}}
+            source={require('../src/mindDefault.png')}/>
+        </View>)
+      }
+    }
+
   parseVid = () => {
     if (this.state.vid) {
       const url = this.state.vid
@@ -106,7 +124,7 @@ class MomentScreen extends React.Component {
                   icon: this.state.icon,
                   eventStart: this.props.picker.pickerDate,
                 })
-                } else {
+                } else if (this.props.picker.pickerDate === null) {
                     navigate('Schedule', {
                     time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                     title: this.state.title,

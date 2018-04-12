@@ -7,7 +7,7 @@ import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
 import { token } from './../redux/actions/tokenActions'
-import { pickerDate } from './../redux/actions/userActions'
+import { pickerDateNull } from './../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  pickerDate,
+  pickerDateNull,
   token,
 }
 
@@ -71,7 +71,7 @@ class ScheduleScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.props.pickerDate(null)
+    this.props.pickerDateNull()
     this.renderTimes()
   }
 

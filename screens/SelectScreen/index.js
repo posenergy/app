@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import RNCalendarEvents from 'react-native-calendar-events'
 
-import { pickerDate } from '../../redux/actions/pickerActions'
+import { pickerDate, pickerDateNull } from '../../redux/actions/pickerActions'
 
 import moment from 'moment'
 import CalendarConfirm from '../../components/CalendarConfirm'
@@ -13,6 +13,7 @@ import styles from './styles'
 
 const mapDispatchToProps = {
   pickerDate,
+  pickerDateNull,
 }
 
 class SelectScreen extends React.Component {
@@ -44,7 +45,7 @@ class SelectScreen extends React.Component {
   }
 
   saveEvent = () => {
-    this.props.pickerDate(null)
+    this.props.pickerDateNull()
     const eventstart = new Date(this.state.eventStart)
     const enddate = (new Date(moment(eventstart).add(this.state.time, 'm'))).toISOString()
     const desc = (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'

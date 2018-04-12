@@ -270,7 +270,8 @@ class SearchScreen extends React.Component {
         }
         </View>
       )
-    } return (
+    } else if (this.state.category !== 'movement') {
+      return (
         <View style={styles.viewStyle}>
             <FlatList
               data={this.state.moments}
@@ -305,8 +306,9 @@ class SearchScreen extends React.Component {
           {
             this.props.visibleMind &&
               <MindModal/>
-          } </View>
+          }</View>
       )
+    }
     }
 }
 
