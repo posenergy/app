@@ -203,7 +203,7 @@ class MindModal extends Component {
                     onPressProp={() => {this.buttonInspired('Get Inspired')}} />
                 </View>
               </View>
-              <View marginBottom= {100}>
+              <View style={styles.bigview} marginBottom='55%'>
                 <ModalStyleText text='DURATION'/>
                 <View style={styles.buttons}>
                   <FilterButton
@@ -230,6 +230,7 @@ class MindModal extends Component {
                 </View>
               </View>
             <Button
+              marginTop = '40%'
               justifyContent= 'flex-end'
               textColor='greysmall'
               type ='mindmodal'

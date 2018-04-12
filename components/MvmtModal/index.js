@@ -279,7 +279,7 @@ class MvmtModal extends Component {
                     onPressProp={() => this.buttonYoga('Yoga')} />
                 </View>
               </View>
-              <View marginBottom= {30}>
+              <View style={styles.bigview}>
                 <ModalStyleText text='SWEAT'/>
                 <View style={styles.buttons}>
                        <FilterButton
@@ -302,7 +302,7 @@ class MvmtModal extends Component {
                          onPressProp={() => this.buttonHigh(2)} />
                      </View>
               </View>
-              <View marginBottom= {60}>
+              <View style={styles.bigview} marginBottom = "32%">
                 <ModalStyleText text='DURATION'/>
                 <View style={styles.buttons}>
                   <FilterButton
@@ -329,7 +329,8 @@ class MvmtModal extends Component {
                 </View>
               </View>
             <Button
-              justifyContent= 'flex-end'
+              position= 'absolute'
+              bottom= {0}
               type ='mindmodal'
               textColor='greysmall'
               onClick={() => {this.buttonClicked()}}
