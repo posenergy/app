@@ -17,14 +17,32 @@ class MomentScreen extends React.Component {
       img: this.props.navigation.state.params.img,
       text: this.props.navigation.state.params.desc,
       brand: this.props.navigation.state.params.brand,
-      type: this.props.navigation.state.params.type,
+      category: this.props.navigation.state.params.category,
       check: true,
     }
   }
 
+  typeRender = () => {
+    if (this.state.category === 'movement') {
+        return (<View height={142} width={244}>
+                  <Image
+                    resizeMode='stretch'
+                    style={{flex: 1}}
+                    source={require('../../images/move.png')}/>
+                </View>)
+    } else {
+         return (<View height={142} width={244}>
+                  <Image
+                    resizeMode='stretch'
+                    style={{flex: 1}}
+                    source={require('../../images/mind.png')}/>
+                </View>)
+      }
+  }
   parseVid = () => {
     if (this.state.vid) {
       const url = this.state.vid
+      if (url.includes('?v=')) {
       const split1 = url.split('?v=')
       const split2 = split1[1].split('&')
       return (<YouTube
@@ -38,22 +56,15 @@ class MomentScreen extends React.Component {
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
-            />)}
-    else if (this.state.img) {
+            />)
+      } else { this.typeRender() }
+    } else if (this.state.img) {
       return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
                   source={{uri: this.state.img}}/>
               </View>)
-    }
-    else{
-      return (<View flex={1}>
-                <Image
-                  resizeMode='stretch'
-                  style={{flex: 1}}
-                  source={require('../../images/sun.png')}/>
-              </View>)
-    }
+    } else { this.typeRender() }
   }
 
   render() {

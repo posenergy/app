@@ -25,12 +25,17 @@ const MainTabNavigator = TabNavigator({
     headerStyle: { backgroundColor: '#545680', justifyContent: 'center', borderWidth: 1 },
     headerTintColor: 'white',
     headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
-    tabBarOptions: {activeTintColor: 'red',
-      inactiveTintColor: 'gray', size: 25},
     headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     }),
+    tabBarOptions: {
+      activeTintColor: '#ffffff',
+      inactiveBackgroundColor: 'red',
+      labelStyle: {
+        color: 'white',
+      },
+    },
   },
   Calendar: {
     screen: CalendarScreen,
@@ -43,18 +48,18 @@ const MainTabNavigator = TabNavigator({
     ),
     headerStyle: { backgroundColor: '#545680', borderWidth: 1},
     headerTintColor: 'white',
-    tabBarOptions: {
+    headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
+    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
+      <Image source={require('../images/info.png')}/>
+    </TouchableOpacity>,
+    }),
+  tabBarOptions: {
       activeTintColor: '#ffffff',
       inactiveBackgroundColor: 'red',
       labelStyle: {
         color: 'white',
       },
     },
-    headerTitleStyle: {textAlign: 'center', alignSelf: 'center', marginBottom: 10, fontFamily: 'Circular Std', fontSize: 22, lineHeight: 26},
-    headerRight: <TouchableOpacity activeOpacity = { 0.5 } padding={200}>
-      <Image source={require('../images/info.png')}/>
-    </TouchableOpacity>,
-    }),
   },
   Profile: {
     screen: ProfileScreen,
@@ -72,6 +77,13 @@ const MainTabNavigator = TabNavigator({
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     }),
+  tabBarOptions: {
+      activeTintColor: '#ffffff',
+      inactiveBackgroundColor: 'red',
+      labelStyle: {
+        color: 'white',
+      },
+    },
   },
 },
 
