@@ -14,35 +14,10 @@ import styles from './styles'
 export default class PickerScreen extends Component {
   constructor(props) {
     super(props)
-    this.setDate = this.setDate.bind(this)
-  }
-
-  setDate(newDate) {
-    this.setState({chosenDate: newDate})
-  }
-
-  getDateString(date) {
-    let hours = date.getHours()
-    let suffix = 'AM'
-    if (hours > 12) {
-      hours -= 12
-      suffix = 'PM'
-    } else if (hours === 12) {
-      suffix = 'PM'
+    this.state = {
+      chosenDate: null,
     }
-    let time = ''
-    let month = date.toLocaleDateString()
-    let stripzeroes = parseInt(month, 10)
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December']
-    let minutes = date.getMinutes()
-    if (minutes < 10) {
-      time = '0' + minutes
-    } else {
-      time = minutes
-    }
-    return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + time + ' ' + suffix
-   }
+  }
 
   render() {
     return (
@@ -69,20 +44,21 @@ export default class PickerScreen extends Component {
                     </TouchableOpacity>
                   <Text style={styles.transtextField}> Confirm Time </Text>
                   <View style={styles.textview}>
-                    <Text style={styles.textField}
-                          textColor = '#545680'>
-                      {this.getDateString(this.props.chosenDate)}
-                    </Text>
+                  <Text style={styles.textField}
+                        textColor = '#545680'>
+                    {this.props.getDateString}
+                  </Text>
                   </View>
                 <View style={styles.datePicker}>
                   <DatePickerIOS
                     date={this.props.chosenDate}
-                    onDateChange={this.setDate}
+                    onDateChange={this.props.setPickerDate}
+                    {...this.props.inputProps}
                   />
                 </View>
                  <Button type='picker'
-                    onClick={this.props.closePickerModal}
-                    text='Next' textColor='white'/>
+                    onClick={this.props.bpress}
+                    text={this.props.bname} textColor='white'/>
                 </View>
               </View>
           </Modal>

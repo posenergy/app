@@ -1,31 +1,125 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { Agenda } from 'react-native-calendars'
+import { connect } from 'react-redux'
 import RNCalendarEvents from 'react-native-calendar-events'
-import styles from './styles'
-import PickerModal from '../../components/PickerModal'
-import moment from 'moment'
 
-export default class CalendarScreen extends Component {
+import styles from './styles'
+import moment from 'moment'
+import PickerModal from '../../components/PickerModal'
+
+import { token } from '../../redux/actions/tokenActions'
+import { pickerDate } from '../../redux/actions/pickerActions'
+
+const mapStateToProps = state => ({
+  token: state.tokenReducer.token,
+  user: state.userReducer,
+  pickerDate: state.pickerReducer.pickerDate,
+})
+
+const mapDispatchToProps = {
+  token,
+  pickerDate,
+}
+
+class CalendarScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
       items: {},
       pickerModalVisible: false,
+      editModalVisible: false,
       chosenDate: null,
-      setDate: () => this.setPickerDate,
+      eventid: null,
+      eventlength: null,
     }
   }
-  openPickerModal = () => {
-    this.setState({pickerModalVisible: true})
+  
+  openPickerModal = (item) => {
+    const startTime = moment(item.start._i + ' ' + item.timeRange.split('-')[0], 'YYYY-MM-DD HH:mm')
+    if (item) {
+    this.setState({
+      pickerModalVisible: true,
+      chosenDate: new Date(startTime),
+    })
+  } else {
+    this.setState({
+      pickerModalVisible: true,
+      chosenDate: new Date(),
+    })
   }
+  }
+
   closePickerModal = () => {
     this.setState({pickerModalVisible: false})
   }
+  
+  nextScreen = () => {
+    this.props.pickerDate(this.state.chosenDate)
+    this.setState({pickerModalVisible: false})
+    const { navigate } = this.props.navigation
+    navigate('Choose')
+  }
 
-  setPickerDate(newDate) {
+  setPickerDate = (newDate) => {
     this.setState({chosenDate: newDate})
   }
+
+  openEditModal = (item) => {
+    this.setState({
+      editModalVisible: true,
+      chosenDate: item.start._i,
+      eventid: item.id,
+      eventlength: item.length,
+    })
+  }
+
+  closeEditModal = () => {
+    this.setState({editModalVisible: false})
+  }
+  
+  editEvent = () => {
+    const eventstart = this.state.chosenDate
+    const eventid = this.state.eventid
+    const length = this.state.eventlength * 60
+    RNCalendarEvents.saveEvent({
+      id: eventid,
+      startDate: eventstart.toISOString(),
+      endDate: (new Date (eventstart.getTime() + length * 60000)).toISOString(),
+    })
+    this.closeEditModal()
+  }
+
+  addEvent() {
+    this.setState({
+      chosenDate: new Date(),
+      pickerModalVisible: true,
+    })
+  }
+
+  getDateString(date) {
+    let hours = date.getHours()
+    let suffix = 'AM'
+    if (hours > 12) {
+      hours -= 12
+      suffix = 'PM'
+    } else if (hours === 12) {
+      suffix = 'PM'
+    }
+    let time = ''
+    let month = date.toLocaleDateString()
+    let stripzeroes = parseInt(month, 10)
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December']
+    let minutes = date.getMinutes()
+    if (minutes < 10) {
+      time = '0' + minutes
+    } else {
+      time = minutes
+    }
+    return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + time + ' ' + suffix
+   }
+
   componentDidMount() {
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
@@ -35,6 +129,7 @@ export default class CalendarScreen extends Component {
         // console.log('denied')
       })
   }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -45,8 +140,21 @@ export default class CalendarScreen extends Component {
           renderEmptyDate={this.renderEmptyDate.bind(this)}
           rowHasChanged={this.rowHasChanged.bind(this)}
           selected={this.timeToString(new Date())}
-       // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-
+          theme={{
+            textSectionTitleColor: '#545680',
+            selectedDayBackgroundColor: '#545680',
+            dotColor: '#545680',
+            todayTextColor: '#545680',
+            selectedDotColor: '#ffffff',
+            textDayFontFamily: 'Circular Std',
+            textMonthFontFamily: 'Circular Std',
+            textDayHeaderFontFamily: 'Circular Std',
+            textDayFontSize: 15,
+            textMonthFontSize: 16,
+            textDayHeaderFontSize: 15,
+            agendaDayNumColor: '#545680',
+            agendaTodayColor: '#545680',
+          }}
         />
         <TouchableOpacity
           style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
@@ -59,8 +167,21 @@ export default class CalendarScreen extends Component {
           <PickerModal
             openPickerModal={this.openPickerModal}
             closePickerModal={this.closePickerModal}
+            bpress={this.nextScreen}
+            bname={'Next'}
             chosenDate={this.state.chosenDate}
-            setDate={this.state.setDate}
+            getDateString={this.getDateString(this.state.chosenDate)}
+            setPickerDate={this.setPickerDate.bind(null)}
+          />}
+        {this.state.editModalVisible &&
+          <PickerModal
+            openPickerModal={this.openEditModal}
+            closePickerModal={this.closeEditModal}
+            bpress={this.editEvent}
+            bname={'Update moment start time'}
+            chosenDate={this.state.chosenDate}
+            getDateString={this.getDateString(this.state.chosenDate)}
+            setPickerDate={this.setPickerDate.bind(null)}
           />}
       </View>
     )
@@ -83,6 +204,7 @@ export default class CalendarScreen extends Component {
 
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
+        // store all the events that need to broken up across multiple days
         allEvents.forEach(event => {
           // Date of event
           const strTime = event.occurrenceDate.split('T')[0]
@@ -102,13 +224,54 @@ export default class CalendarScreen extends Component {
           if (event.notes.includes('[+energy]')) {
             is_posE = true
           }
+          // handle multi-day events
+          let eventEndDate = moment(event.endDate)
+          let strTime2 = strTime
+          if (!event.allDay && !alreadyExists) {
+            if (strTime2 !== this.timeToString(eventEndDate)) {
+              while (strTime2 !== this.timeToString(eventEndDate.clone().add(1, 'day'))) {
+                const first = strTime2 === strTime
+                const endDate2 =
+                  strTime2 === this.timeToString(eventEndDate) ? moment(eventEndDate) :
+                  moment(strTime2).add(1, 'day').subtract(1, 'minute')
+                const startDate2 = first ? moment(event.occurrenceDate) :
+                  moment(strTime2)
+                const eventLength = endDate2.minute() - startDate2.minute()
+                const addZeros = i => i > 9 ? `${i}` : `0${i}`
+                const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
+                const timeRange = `${buildTime(startDate2)}-${buildTime(endDate2)}`
+                if (!this.state.items[strTime2]) {
+                  this.state.items[strTime2] = []
+                }
+                this.state.items[strTime2].push({
+                  strTime: strTime2,
+                  id: event.id,
+                  name: (first ? '' : '[Continued] ') + event.title,
+                  start: startDate2,
+                  end: endDate2,
+                  length: eventLength,
+                  timeRange: timeRange,
+                  calendar: event.calendar.id,
+                  height: Math.min(eventLength * 60, 300),
+                  pos_E: is_posE,
+                })
+                strTime2 = this.timeToString(moment(strTime2).add(1, 'day').add(1, 'minute'))
+              }
+              return
+            }
+          }
           if (!alreadyExists) {
             const startDate2 = new Date(event.startDate)
-            // startDate2.setTime(this._adjustTime(startDate2))
             const endDate2 = new Date(event.endDate)
-            // endDate2.setTime(this._adjustTime(endDate2))
             const eventLength = (endDate2.getTime() - startDate2.getTime()) / (1000 * 60 * 60)
-            const eventHeight = (event.allDay || eventLength < 1) ? 60 : eventLength * 60
+            let eventHeight = null
+            if (event.allDay) {
+              eventHeight = 60
+            } else if (eventLength < 1) {
+              eventHeight = 50
+            } else {
+              eventHeight = eventLength * 60
+            }
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.getHours())}:${addZeros(d.getMinutes())}`
             const timeRange = (event.allDay) ? 'All Day' : `${buildTime(startDate2)}-${buildTime(endDate2)}`
@@ -125,9 +288,9 @@ export default class CalendarScreen extends Component {
             })
           }
         })
-        // TODO: make these dynamic
-        var START_TIME = 300
-        var END_TIME = 1140
+
+        var START_TIME = this.props.user.startTime
+        var END_TIME = this.props.user.endTime
         const yesterday = moment().subtract(1, 'day')
         for (const time in this.state.items) {
           if (this.state.items[time].length === 0) {
@@ -208,51 +371,40 @@ export default class CalendarScreen extends Component {
       })
     }, 1000)
   }
-  editEvent = (item) => {
-    this.setState({
-      chosenDate: item.start,
-      pickerModalVisible: true,
-    })
-  }
-  addEvent() {
-    this.setState({
-      chosenDate: new Date(),
-      pickerModalVisible: true,
-    })
-  }
+
   renderItem(item) {
     if (item.posE) {
       return (
-        <TouchableOpacity onPress={() => {this.editEvent(item)}}>
-        <View style={[styles.item, {backgroundColor: 'rgba(84, 86, 128, 0.75)'}, {height: item.height}]}>
-        <Text style={{color: 'white'}}>{item.timeRange}</Text>
-        <Text style={{color: 'white'}}>{item.name}</Text>
+        // <TouchableOpacity onPress={() => {this.openEditModal(item)}}>
+        <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
+        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
+        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         {item.height > 60 &&
-        <Text style={{color: 'white'}}>[+energy]</Text>}
+        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>[+energy]</Text>}
         </View>
-        </TouchableOpacity>
+        // </TouchableOpacity>
       )
     } else if (!item.calendar) {
       return (
-        <TouchableOpacity onPress = {this.addEvent.bind(this)}>
+        <TouchableOpacity onPress = {() => {this.openPickerModal(item)}}>
         <View style={styles.emptyDate}>
-          <Text style={{color: 'white'}}>{item.timeRange}</Text>
-          <Text style={{color: 'white'}}>{item.name}</Text>
+          <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
+          <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         </View>
         </TouchableOpacity>
       )
     }
     return (
       <View style={[styles.item, {height: item.height}]}>
-      <Text>{item.timeRange}</Text>
-      <Text>{item.name}</Text>
+      <Text style={{fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
+      <Text style={{fontFamily: 'Circular Std'}}>{item.name}</Text>
       </View>
     )
   }
   renderEmptyDate() {
     return (
       <TouchableOpacity onPress = {this.addEvent.bind(this)}>
-      <View style={styles.emptyDate}><Text style={{color: 'white'}}>Add +energy event!</Text></View>
+      <View style={styles.emptyDate}><Text style={{color: 'white', fontFamily: 'Circular Std'}}>Add +energy event!</Text></View>
       </TouchableOpacity>
     )
   }
@@ -265,3 +417,5 @@ export default class CalendarScreen extends Component {
     return date.toISOString().split('T')[0]
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarScreen)

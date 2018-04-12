@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-// const {height, width} = Dimensions.get('window')
-
 export default StyleSheet.create({
   button: {
     padding: 10,
@@ -22,7 +20,17 @@ export default StyleSheet.create({
   white: {
     fontSize: 16,
     lineHeight: 19,
-    color: 'white',
+    marginTop: 2,
+    color: '#fff',
+    borderRadius: 5,
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    fontFamily: 'CircularStd-Book',
+  },
+  whiteLogOut: {
+    fontSize: 20,
+    lineHeight: 19,
+    color: '#fff',
     textAlignVertical: 'center',
     fontFamily: 'Circular Std',
   },
@@ -111,9 +119,14 @@ export default StyleSheet.create({
     display: 'flex',
     flex: 1,
     width: '100%',
+    borderRadius: 5,
     alignItems: 'center',
     height: 27,
-    borderRadius: 5,
+    marginRight: 5,
+    shadowColor: '#4F4F4F',
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    shadowOffset: {width: 1, height: 3},
   },
   login: {
     marginTop: 13,

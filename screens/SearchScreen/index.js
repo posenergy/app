@@ -29,19 +29,29 @@ const mapDispatchToProps = {
 
 class SearchScreen extends React.Component {
 
-  buttonClickedMind = () => {
+  buttonMind() {
     this.props.mindVisibility()
+    this.setState({ flatList: true})
   }
 
-  buttonClickedMvmt = () => {
+  buttonMvmt() {
     this.props.mvmtVisibility()
+    this.setState({ flatList: true})
   }
 
   constructor(props) {
     super(props)
 
     this.state = {
+      moments: null,
       category: this.props.navigation.state.params.category,
+      flatList: null,
+    }
+  }
+
+  flat() {
+    if (this.state.moments.length === 0) {
+      this.setState({ flatList: false })
     }
   }
 
@@ -58,6 +68,7 @@ class SearchScreen extends React.Component {
       })
       .then((res) => res.json())
       .then(res => {
+        this.flat()
         this.setState({
           moments: res,
         })
@@ -80,8 +91,10 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
+            this.flat()
             this.setState({ moments: res })
-          })
+            }
+          )
           .catch((error) => {
             console.error(error)
           })
@@ -101,6 +114,7 @@ class SearchScreen extends React.Component {
           .then((res) => res.json())
           .then(res => {
             this.setState({ moments: res })
+            this.flat()
           })
           .catch((error) => {
             console.error(error)
@@ -121,6 +135,7 @@ class SearchScreen extends React.Component {
           .then((res) => res.json())
           .then(res => {
             this.setState({ moments: res })
+            this.flat()
           })
           .catch((error) => {
             console.error(error)
@@ -141,6 +156,7 @@ class SearchScreen extends React.Component {
         .then((res) => res.json())
         .then(res => {
           this.setState({ moments: res })
+          this.flat()
         })
         .catch((error) => {
           console.error(error)
@@ -161,6 +177,7 @@ class SearchScreen extends React.Component {
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
+        this.flat()
       })
       .catch((error) => {
         console.error(error)
@@ -185,7 +202,8 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.setState({ moments: res })
+            this.setState({ moments: res,
+                            flatList: true })
           })
           .catch((error) => {
             console.error(error)
@@ -201,9 +219,8 @@ class SearchScreen extends React.Component {
     })
       .then((res) => res.json())
       .then(res => {
-        this.setState({
-          moments: res,
-        })
+        this.setState({ moments: res })
+        this.flat()
       })
       .catch((error) => {
         console.error(error)
@@ -212,84 +229,86 @@ class SearchScreen extends React.Component {
 
   render() {
     if (this.state.category === 'movement') {
+      return(
+      <View style={styles.viewStyle}>
+        <FlatList
+          style={styles.flatListStyle}
+          data={ this.state.moments }
+          renderItem={({item}) =>
+            <TouchableOpacity style={styles.button}
+              onPress={(event) => {
+              const { navigate } = this.props.navigation
+              navigate('Moment', {
+                title: item.name,
+                img: item.img,
+                desc: item.description,
+                brand: item.partner,
+                time: item.duration,
+                vid: item.vid,
+                id: item._id,
+                icon: item.icon,
+              })
+             }}>
+              <Moment
+                title={item.name}
+                time={item.duration}
+                sweat={item.sweatIndex}
+                icon={item.icon}
+                brand={item.partner}
+              />
+            </TouchableOpacity>
+          }
+        />
+        <TouchableOpacity
+          style = {styles.activities}
+          onPress={() => this.props.mvmtVisibility()}>
+          <Image source={require('./src/button.png')}/>
+        </TouchableOpacity>
+        {
+          this.props.visibleMvmt &&
+            <MvmtModal/>
+        }
+        </View>
+      )
+    } else if (this.state.category !== 'movement') {
       return (
         <View style={styles.viewStyle}>
-          <FlatList
-            style={styles.flatListStyle}
-            data={ this.state.moments }
-            renderItem={({item}) =>
-              <TouchableOpacity style={styles.button}
-                onPress={(event) => {
-                const { navigate } = this.props.navigation
-                navigate('Moment', {
-                  title: item.name,
-                  img: item.img,
-                  desc: item.description,
-                  brand: item.partner,
-                  vid: item.vid,
-                })
-               }}>
+            <FlatList
+              data={this.state.moments}
+              renderItem={({item}) =>
+                <TouchableOpacity style={styles.button}
+                  onPress={(event) => {
+                    const {navigate} = this.props.navigation
+                    navigate('Moment', {
+                      title: item.name,
+                      img: item.img,
+                      desc: item.description,
+                      brand: item.partner,
+                      time: item.duration,
+                      vid: item.vid,
+                      id: item._id,
+                      icon: item.icon,
+                    })
+                  }}>
                 <Moment
-                  id={item.id}
                   title={item.name}
                   time={item.duration}
                   sweat={item.sweatIndex}
                   icon={item.icon}
-                  brand={item.partner}
-                />
-              </TouchableOpacity>
-            }
-          />
-          <TouchableOpacity
-            style = {styles.activities}
-            onPress={() => this.props.mvmtVisibility()}>
-            <Image source={require('./src/button.png')}/>
-          </TouchableOpacity>
-          {
-            this.props.visibleMvmt &&
-              <MvmtModal/>
-          }
-        </View>
-      )
-    }
-      return (
-        <View style={styles.viewStyle}>
-          <FlatList
-            style={styles.flatListStyle}
-            data={ this.state.moments }
-            renderItem={({item}) =>
-              <TouchableOpacity style={styles.button}
-                onPress={(event) => {
-                const { navigate } = this.props.navigation
-                navigate('Moment', {
-                  title: item.name,
-                  brand: item.partner,
-                  img: item.img,
-                  desc: item.description,
-                  vid: item.vid,
-                })
-                }}>
-                <Moment
-                  id={item.id}
-                  title={item.name}
-                  time={item.duration}
-                  icon={item.icon}
-                  brand={item.partner}
-                />
-              </TouchableOpacity>
-            }
-          />
-          <TouchableOpacity
-            style = {styles.activities}
-            onPress={() => this.props.mindVisibility()}>
-            <Image source={require('./src/button.png')}/>
-          </TouchableOpacity>
+                  brand={item.partner}/>
+                </TouchableOpacity>
+              }/>
+            <TouchableOpacity
+              style = {styles.activities}
+              onPress={() => this.props.mindVisibility()}>
+              <Image source={require('./src/button.png')}/>
+            </TouchableOpacity>
           {
             this.props.visibleMind &&
               <MindModal/>
-          }
-        </View>
+          }</View>
       )
+    }
     }
 }
 
