@@ -63,7 +63,7 @@ export default StyleSheet.create({
     marginRight: 6,
   },
  bigview: {
-    marginTop: ,
+    marginTop: '10%',
     justifyContent: 'center',
     alignItems: 'center',
   },
