@@ -9,11 +9,12 @@ import moment from 'moment'
 import PickerModal from '../../components/PickerModal'
 
 import { token } from '../../redux/actions/tokenActions'
-import { pickerDate } from '../../redux/actions/userActions'
+import { pickerDate } from '../../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
   user: state.userReducer,
+  pickerDate: state.pickerReducer.pickerDate,
 })
 
 const mapDispatchToProps = {
@@ -143,6 +144,7 @@ class CalendarScreen extends Component {
             textSectionTitleColor: '#545680',
             selectedDayBackgroundColor: '#545680',
             dotColor: '#545680',
+            todayTextColor: '#545680',
             selectedDotColor: '#ffffff',
             textDayFontFamily: 'Circular Std',
             textMonthFontFamily: 'Circular Std',
@@ -389,7 +391,7 @@ class CalendarScreen extends Component {
       )
     }
     return (
-      <View style={[styles.item, {height: item.height, fontFamily: 'Circular Std'}]}>
+      <View style={[styles.item, {height: item.height}]}>
       <Text style={{fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
       <Text style={{fontFamily: 'Circular Std'}}>{item.name}</Text>
       </View>

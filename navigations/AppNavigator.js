@@ -38,7 +38,7 @@ const AppNavigator = StackNavigator({
       // Disable the transition animation when resetting to the home screen.
       if (
         sceneProps.index === 0 &&
-        sceneProps.scene.route.routeName !== 'Home' &&
+        sceneProps.scene.route.routeName !== 'MainTab' &&
         sceneProps.scenes.length > 2
       ) return null
 

@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  token,
 }
 
 class ScheduleScreen extends React.Component {
@@ -35,18 +36,16 @@ class ScheduleScreen extends React.Component {
       value: new Date (),
       items: {},
       buttons: [],
-      buffer: this.props.user.buffer,
     }
   }
 
   setValue = (value) => {this.setState({value: value})}
 
   saveEvent = (eventstart) => {
-    this.addMomentToUser(eventstart)
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
-      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]',
+      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]' ,
     })
     this.props.navigation.navigate('Calendar')
   }
@@ -68,38 +67,6 @@ class ScheduleScreen extends React.Component {
   timeToString(time) {
     const date = new Date(time)
     return date.toISOString().split('T')[0]
-  }
-
-    async addMomentToUser(eventstart) {
-      let buff = 0
-      if (this.state.check) {
-        buff = this.state.buffer
-      }
-      try {
-        let responseJSON
-        const apiUrl = `${config.apiUrl}/users/moments/`
-        let response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'x-access-token': this.props.token,
-          },
-          body: JSON.stringify({
-            momentId: this.state.id,
-            time: eventstart,
-            duration: this.state.time,
-            buffer: buff,
-          }),
-        })
-        if(!response.ok){
-          return false
-        }
-        else if (response.ok) {
-        }
-      } catch(error) {
-        console.error(error)
-      }
   }
 
   componentDidMount() {

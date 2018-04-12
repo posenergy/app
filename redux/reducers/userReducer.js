@@ -8,7 +8,6 @@ const defaultState = {
     endTime: '',
     email: '',
     onboarding: false,
-    pickerDate: null,
 }
  
 const userReducer = (state = defaultState, action) => {
@@ -27,11 +26,7 @@ const userReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         onboarding: !state.onboarding,
       })
-
-    case PICKER:
-      return Object.assign({}, state, {
-        pickerDate: action.date,
-      })
+      
     default: return state
   }
 }
