@@ -264,7 +264,14 @@ class CalendarScreen extends Component {
             const startDate2 = new Date(event.startDate)
             const endDate2 = new Date(event.endDate)
             const eventLength = (endDate2.getTime() - startDate2.getTime()) / (1000 * 60 * 60)
-            const eventHeight = (event.allDay) ? 60 : (eventLength < 1) ? 50 : eventLength * 60
+            let eventHeight = null
+            if (event.allDay) {
+              eventHeight = 60
+            } else if (eventLength < 1) {
+              eventHeight = 50
+            } else {
+              eventHeight = eventLength * 60
+            }
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.getHours())}:${addZeros(d.getMinutes())}`
             const timeRange = (event.allDay) ? 'All Day' : `${buildTime(startDate2)}-${buildTime(endDate2)}`

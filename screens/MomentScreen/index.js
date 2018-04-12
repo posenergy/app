@@ -53,47 +53,15 @@ class MomentScreen extends React.Component {
               onChangeQuality={e => this.setState({ quality: e.quality })}
               onError={e => this.setState({ error: e.error })}
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
-            />)}
-      else if (state.type == 'movement'){
-        return (<View height={142} width={244}>
-                  <Image
-                    resizeMode='stretch'
-                    style={{flex: 1}}
-                    source={require('../src/mvmtDefault.png')}/>
-                </View>)
-        }
-      else {
-         return (<View height={142} width={244}>
-                  <Image
-                    resizeMode='stretch'
-                    style={{flex: 1}}
-                    source={require('../src/mindDefault.png')}/>
-                </View>)
-      }
-    }
-    else if (this.state.img) {
+            />)
+      } else { this.defaultRender() }
+    } else if (this.state.img) {
       return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
                   source={{uri: this.state.img}}/>
               </View>)
-    }
-    else if (state.type == 'movement'){
-        return (<View height={142} width={244}>
-                  <Image
-                    resizeMode='stretch'
-                    style={{flex: 1}}
-                    source={require('../src/mvmtDefault.png')}/>
-                </View>)
-        }
-      else {
-         return (<View height={142} width={244}>
-                  <Image
-                    resizeMode='stretch'
-                    style={{flex: 1}}
-                    source={require('../src/mindDefault.png')}/>
-                </View>)
-      }
+    } else { this.defaultRender() }
   }
 
   render() {
@@ -137,20 +105,22 @@ class MomentScreen extends React.Component {
                   vid: this.state.vid,
                   icon: this.state.icon,
                   eventStart: this.props.picker.pickerDate,
-                })}
-                else { navigate('Schedule', {
-                  time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
-                  title: this.state.title,
-                  pict: this.state.pict,
-                  desc: this.state.text,
-                  brand: this.state.brand,
-                  vid: this.state.vid,
-                  id: this.state.id,
-                  icon: this.state.icon,
-                  check: this.state.check,
                 })
-              }}}
-              text='Schedule' textColor='white'/>}
+                } else {
+                    navigate('Schedule', {
+                    time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
+                    title: this.state.title,
+                    pict: this.state.pict,
+                    desc: this.state.text,
+                    brand: this.state.brand,
+                    vid: this.state.vid,
+                    id: this.state.id,
+                    icon: this.state.icon,
+                    check: this.state.check,
+                  })
+                }
+              }
+            } text='Schedule' textColor='white'/>}
           />
       </View>
     )
