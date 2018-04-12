@@ -9,11 +9,12 @@ import moment from 'moment'
 import PickerModal from '../../components/PickerModal'
 
 import { token } from '../../redux/actions/tokenActions'
-import { pickerDate } from '../../redux/actions/userActions'
+import { pickerDate } from '../../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
   user: state.userReducer,
+  pickerDate: state.pickerReducer.pickerDate,
 })
 
 const mapDispatchToProps = {
@@ -27,12 +28,26 @@ class CalendarScreen extends Component {
     this.state = {
       items: {},
       pickerModalVisible: false,
+      editModalVisible: false,
       chosenDate: null,
+      eventid: null,
+      eventlength: null,
     }
   }
   
-  openPickerModal = () => {
-    this.setState({pickerModalVisible: true})
+  openPickerModal = (item) => {
+    const startTime = moment(item.start._i + " " + item.timeRange.split('-')[0], 'YYYY-MM-DD HH:mm')
+    if (item){
+    this.setState({
+      pickerModalVisible: true,      
+      chosenDate: new Date(startTime),
+    })
+  } else {
+    this.setState({
+      pickerModalVisible: true,
+      chosenDate: new Date(),      
+    })
+  }
   }
 
   closePickerModal = () => {
@@ -48,6 +63,39 @@ class CalendarScreen extends Component {
 
   setPickerDate = (newDate) => {
     this.setState({chosenDate: newDate})
+  }
+
+  openEditModal = (item) => {
+    this.setState({
+      editModalVisible: true,
+      chosenDate: item.start._i,
+      eventid: item.id,
+      eventlength: item.length,
+    })
+  }
+
+  closeEditModal = () => {
+    this.setState({editModalVisible: false})
+  }
+  
+  editEvent = () => {
+    const eventstart = this.state.chosenDate
+    const eventid = this.state.eventid
+    const length = this.state.eventlength * 60
+    console.log('eventstart: ', eventstart, '\neventid: ', eventid, '\nlenght: ', length)
+    RNCalendarEvents.saveEvent({
+      id: eventid,
+      startDate: eventstart.toISOString(),
+      endDate: (new Date (eventstart.getTime() + length * 60000)).toISOString(),
+    })
+    this.closeEditModal()
+  }
+
+  addEvent() {
+    this.setState({
+      chosenDate: new Date(),
+      pickerModalVisible: true,
+    })
   }
 
   getDateString(date) {
@@ -94,12 +142,19 @@ class CalendarScreen extends Component {
           rowHasChanged={this.rowHasChanged.bind(this)}
           selected={this.timeToString(new Date())}
           theme={{
-            agendaDayTextColor: '#545680',
-            agendaDayNumColor: '#545680',
+            textSectionTitleColor: '#545680',
             selectedDayBackgroundColor: '#545680',
-            selectedColor: 'black',
+            dotColor: '#545680',
+            todayTextColor: '#545680',
+            selectedDotColor: '#ffffff',
+            textDayFontFamily: 'Circular Std',
+            textMonthFontFamily: 'Circular Std',
+            textDayHeaderFontFamily: 'Circular Std',
+            textDayFontSize: 15,
+            textMonthFontSize: 16,
+            textDayHeaderFontSize: 15,
+            agendaDayNumColor: '#545680',
             agendaTodayColor: '#545680',
-            agendaKnobColor: '#545680',
           }}
         />
         <TouchableOpacity
@@ -113,7 +168,18 @@ class CalendarScreen extends Component {
           <PickerModal
             openPickerModal={this.openPickerModal}
             closePickerModal={this.closePickerModal}
-            nextScreen={this.nextScreen}
+            bpress={this.nextScreen}
+            bname={'Next'}
+            chosenDate={this.state.chosenDate}
+            getDateString={this.getDateString(this.state.chosenDate)}
+            setPickerDate={this.setPickerDate.bind(null)}
+          />}
+        {this.state.editModalVisible &&
+          <PickerModal
+            openPickerModal={this.openEditModal}
+            closePickerModal={this.closeEditModal}
+            bpress={this.editEvent}
+            bname={'Update moment start time'}
             chosenDate={this.state.chosenDate}
             getDateString={this.getDateString(this.state.chosenDate)}
             setPickerDate={this.setPickerDate.bind(null)}
@@ -302,51 +368,40 @@ class CalendarScreen extends Component {
       })
     }, 1000)
   }
-  editEvent = (item) => {
-    this.setState({
-      chosenDate: item.start,
-      pickerModalVisible: true,
-    })
-  }
-  addEvent() {
-    this.setState({
-      chosenDate: new Date(),
-      pickerModalVisible: true,
-    })
-  }
+
   renderItem(item) {
     if (item.posE) {
       return (
-        <TouchableOpacity onPress={() => {this.editEvent(item)}}>
+        // <TouchableOpacity onPress={() => {this.openEditModal(item)}}>
         <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
-        <Text style={{color: 'white'}}>{item.timeRange}</Text>
-        <Text style={{color: 'white'}}>{item.name}</Text>
+        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
+        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         {item.height > 60 &&
-        <Text style={{color: 'white'}}>[+energy]</Text>}
+        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>[+energy]</Text>}
         </View>
-        </TouchableOpacity>
+        // </TouchableOpacity>
       )
     } else if (!item.calendar) {
       return (
-        <TouchableOpacity onPress = {this.addEvent.bind(this)}>
+        <TouchableOpacity onPress = {() => {this.openPickerModal(item)}}>
         <View style={styles.emptyDate}>
-          <Text style={{color: 'white'}}>{item.timeRange}</Text>
-          <Text style={{color: 'white'}}>{item.name}</Text>
+          <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
+          <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         </View>
         </TouchableOpacity>
       )
     }
     return (
       <View style={[styles.item, {height: item.height}]}>
-      <Text>{item.timeRange}</Text>
-      <Text>{item.name}</Text>
+      <Text style={{fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
+      <Text style={{fontFamily: 'Circular Std'}}>{item.name}</Text>
       </View>
     )
   }
   renderEmptyDate() {
     return (
       <TouchableOpacity onPress = {this.addEvent.bind(this)}>
-      <View style={styles.emptyDate}><Text style={{color: 'white'}}>Add +energy event!</Text></View>
+      <View style={styles.emptyDate}><Text style={{color: 'white', fontFamily: 'Circular Std'}}>Add +energy event!</Text></View>
       </TouchableOpacity>
     )
   }
