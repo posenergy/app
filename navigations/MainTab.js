@@ -29,13 +29,6 @@ const MainTabNavigator = TabNavigator({
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     }),
-    tabBarOptions: {
-      activeTintColor: '#ffffff',
-      inactiveBackgroundColor: 'red',
-      labelStyle: {
-        color: 'white',
-      },
-    },
   },
   Calendar: {
     screen: CalendarScreen,
@@ -53,13 +46,6 @@ const MainTabNavigator = TabNavigator({
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     }),
-  tabBarOptions: {
-      activeTintColor: '#ffffff',
-      inactiveBackgroundColor: 'red',
-      labelStyle: {
-        color: 'white',
-      },
-    },
   },
   Profile: {
     screen: ProfileScreen,
@@ -77,13 +63,6 @@ const MainTabNavigator = TabNavigator({
       <Image source={require('../images/info.png')}/>
     </TouchableOpacity>,
     }),
-  tabBarOptions: {
-      activeTintColor: '#ffffff',
-      inactiveBackgroundColor: 'red',
-      labelStyle: {
-        color: 'white',
-      },
-    },
   },
 },
 

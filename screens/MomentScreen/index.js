@@ -22,7 +22,7 @@ class MomentScreen extends React.Component {
     }
   }
 
-  typeRender = () => {
+  defaultRender = () => {
     if (this.state.category === 'movement') {
         return (<View height={142} width={244}>
                   <Image
@@ -57,14 +57,14 @@ class MomentScreen extends React.Component {
               onError={e => this.setState({ error: e.error })}
               style={{ alignSelf: 'stretch', height: 142, width: 244 }}
             />)
-      } else { this.typeRender() }
+      } else { this.defaultRender() }
     } else if (this.state.img) {
       return (<View height={142} width={244}>
                 <Image
                   style={{flex: 1}}
                   source={{uri: this.state.img}}/>
               </View>)
-    } else { this.typeRender() }
+    } else { this.defaultRender() }
   }
 
   render() {
