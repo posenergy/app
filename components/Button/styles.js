@@ -29,7 +29,7 @@ export default StyleSheet.create({
   },
   whiteLogOut: {
     fontSize: 20,
-    lineHeight: 19,
+    lineHeight: 23,
     color: '#fff',
     textAlignVertical: 'center',
     fontFamily: 'Circular Std',
