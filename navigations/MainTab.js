@@ -35,7 +35,7 @@ const MainTabNavigator = TabNavigator({
       return ({
         title: 'Browse Activities',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-walk" size={25} color={tintColor} />
+          <Ionicons name="md-walk" size={35} color={tintColor} />
         ),
       })
     },
@@ -45,7 +45,7 @@ const MainTabNavigator = TabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
-      <Ionicons name="md-calendar" size={25} color={tintColor} />
+      <Ionicons name="md-calendar" size={35} color={tintColor} />
     ),
     }),
   },
@@ -54,7 +54,7 @@ const MainTabNavigator = TabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Profile',
       tabBarIcon: ({ tintColor }) => (
-      <Ionicons name="md-person" size={25} color={tintColor} />
+      <Ionicons name="md-person" size={35} color={tintColor} />
       ),
     }),
   },
