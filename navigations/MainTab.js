@@ -30,7 +30,7 @@ const MainTabNavigator = TabNavigator({
       return ({
         title: 'Browse Activities',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-walk" size={30} marginBottom={0} color={tintColor} />
+          <Ionicons name="md-walk" size={30} color={tintColor} />
         ),
       })
     },
