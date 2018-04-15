@@ -50,7 +50,7 @@ const Moment = ({icon, brand, pict, sweat, title, time}) => (
         source={require('../../screens/src/skinCareIcon.png')}/> }
     </View>
     <View style={styles.moment}>
-      <Text style={styles.momentTitle}> {title} </Text>
+      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.momentTitle}> {title} </Text>
       <Text style={styles.momentTime}> {time} minutes</Text>
       <View style = {styles.textAndSweat}>
         <Text style={styles.momentTime}> {brand}</Text>
