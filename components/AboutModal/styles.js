@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   Container: {
-    flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: 'transparent',
@@ -20,8 +19,9 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'center',
     alignSelf: 'center',
-    width: 340,
-    height: 492,
+    width: 365,
+    marginTop: 15,
+    height: '83%',
     backgroundColor: 'white',
     borderRadius: 12,
     flexDirection: 'column',

@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   Container: {
-    flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: 'transparent',
@@ -45,11 +44,16 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     alignSelf: 'center',
-    width: 340,
-    height: 492,
+    marginTop: 15,
+    width: 370,
+    height: '80%',
     backgroundColor: 'white',
     borderRadius: 5,
     flexDirection: 'column',
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
   },
   image: {
     width: 12,
@@ -59,8 +63,7 @@ export default StyleSheet.create({
     marginRight: 6,
   },
   bigview: {
-    marginTop: 20,
-    marginBottom: 40,
+    marginTop: '10%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -78,5 +81,5 @@ export default StyleSheet.create({
     marginTop: 16,
     width: 333,
   },
-  
+
 })

@@ -6,11 +6,7 @@ import {
 import styles from './styles'
 
 
-export default class RadioButtonProject extends Component {
-  state = {
-    value: 0,
-  };
-
+export default class RadioButtonList extends Component {
 render() {
     return (
       <View>
@@ -21,7 +17,7 @@ render() {
           buttonColor={'black'}
           buttonInnerColor = {'black'}
           selectedButtonColor = {'black'}
-          onPress={(value) => {this.setState({value: value})}}
+          onPress={this.props.setValue}
         />
       </View>
     )

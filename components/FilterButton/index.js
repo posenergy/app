@@ -12,15 +12,6 @@ export default class FilterButton extends React.Component {
     }
   }
 
- /* changecolor() {
-   if (this.state.textcolor === 'black') {
-    this.setState({textcolor: 'white'})
-   }
-   else{
-    this.setState({textcolor: 'black'})
-   }
- }*/
-
   render() {
     return(
       <Button

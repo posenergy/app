@@ -12,12 +12,11 @@ export default StyleSheet.create({
   momentTitle: {
     padding: 2,
     textAlign: 'left',
-    fontWeight: 'bold',
     fontSize: 21,
     lineHeight: 25,
     marginLeft: 7,
     marginRight: 10,
-    fontFamily: 'Circular Std',
+    fontFamily: 'CircularStd-Bold',
   },
   momentTime: {
     flex: 1,

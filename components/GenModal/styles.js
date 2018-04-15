@@ -29,13 +29,6 @@ export default StyleSheet.create({
     marginTop: 19,
 		marginBottom: 7,
   },
-  place: {
-    height: 8,
-    width: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
   title: {
     fontStyle: 'italic',
     fontSize: 26,
@@ -48,10 +41,9 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
     width: 276,
-    marginTop: 25,
-    marginBottom: 15,
+    marginTop: 15,
     fontFamily: 'Circular Std',
-    height: 175,
+    height: 150,
   },
   bold: {
     fontSize: 21,
@@ -59,6 +51,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
     marginBottom: 20,
+    height: 30,
+    marginTop: 20,
     fontFamily: 'Circular Std',
   },
   contentWrap: {

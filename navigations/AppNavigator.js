@@ -6,7 +6,7 @@ import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
-import MainTabNavigator from './MainTab'
+import MainTabWrapper from './MainTab'
 
 import { HeaderBackButton } from 'react-navigation'
 
@@ -30,7 +30,7 @@ const AppNavigator = StackNavigator({
     }),
   },
   MainTab: {
-    screen: MainTabNavigator,
+    screen: MainTabWrapper,
   },
 }, {
   transitionConfig: () => ({
@@ -38,7 +38,7 @@ const AppNavigator = StackNavigator({
       // Disable the transition animation when resetting to the home screen.
       if (
         sceneProps.index === 0 &&
-        sceneProps.scene.route.routeName !== 'Home' &&
+        sceneProps.scene.route.routeName !== 'MainTab' &&
         sceneProps.scenes.length > 2
       ) return null
 
