@@ -4,7 +4,7 @@ import styles from './styles'
 import PropTypes from 'prop-types'
 
 const BlackStyleTextInput = ({pholder, sub, changeFunction, cap, passwordSecure, nameProp, sizeProp, imagelink }) => (
-  <View marginBottom={12} >
+  <View marginBottom='2%' width='80%' alignSelf='center' justifyContent='center' >
     <View
     style = {styles.viewStyle}>
     <Image

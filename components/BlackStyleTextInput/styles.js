@@ -14,8 +14,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 2,
     borderBottomColor: 'rgba(79, 79, 79, 0.4)',
-    width: 300,
-    height: 50,
     justifyContent: 'flex-start',
     marginTop: 18,
   },
@@ -29,5 +27,12 @@ export default StyleSheet.create({
     color: '#828282',
     fontFamily: 'Circular Std',
     marginTop: 4,
+  },
+  mainView: {
+    marginBottom: '2%',
+    width: '80%',
+    height: '12%',
+    alignSelf: 'center',
+    justifyContent:'center',
   },
 })
