@@ -9,6 +9,8 @@ const BlackStyleTextInput = ({pholder, sub, changeFunction, cap, passwordSecure,
     style = {styles.viewStyle}>
     <Image
       source={imagelink}
+      alignSelf = 'center'
+      justifyContent= 'flex-start'
       style = {styles.image}
     />
     <Text
