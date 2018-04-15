@@ -4,10 +4,11 @@ export default StyleSheet.create({
   styleTextInput: {
     borderRadius: 10,
     textAlign: 'left',
+    justifyContent: 'center',
     fontSize: 22,
     flex: 3,
     color: '#333333',
-    marginBottom: 11,
+    marginTop: 8,
     fontFamily: 'Circular Std',
   },
   viewStyle: {
@@ -18,11 +19,14 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     marginTop: 18,
-    marginBottom: 21,
   },
   image: {
     flex: 1,
     resizeMode: 'contain',
   },
-
+  sub: {
+    color: '#828282',
+    fontFamily: 'Circular Std',
+    marginTop: 4,
+  },
 })
