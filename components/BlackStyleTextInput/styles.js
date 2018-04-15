@@ -33,6 +33,6 @@ export default StyleSheet.create({
     width: '80%',
     height: '12%',
     alignSelf: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
 })
