@@ -29,7 +29,7 @@ export default StyleSheet.create({
   },
   whiteLogOut: {
     fontSize: 20,
-    lineHeight: 19,
+    lineHeight: 23,
     color: '#fff',
     textAlignVertical: 'center',
     fontFamily: 'Circular Std',
@@ -88,7 +88,7 @@ export default StyleSheet.create({
   mindmodal: {
     backgroundColor: 'transparent',
     height: 40,
-    width: 340,
+    width: '100%',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     borderWidth: 1,
@@ -96,6 +96,8 @@ export default StyleSheet.create({
     borderBottomColor: 'transparent',
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
+    position: 'absolute',
+    bottom: 0,
   },
   wrapview: {
     alignItems: 'center',
