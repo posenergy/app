@@ -61,28 +61,34 @@ class ProfileScreen extends React.Component {
         showsVerticalScrollIndicator = {false} >
       <BlackStyleTextInput
         pholder={this.props.user.name}
+        sub={'NAME'}
         imagelink = {require('../../images/profileblack.png')}
         changeFunction={name => this.setState({name})}
         borderBottomColor= 'black'/>
       <BlackStyleTextInput
         pholder={this.props.user.email}
+        sub={'EMAIL'}
         imagelink = {require('../../images/mailblack.png')}
         changeFunction={email => this.setState({email})}/>
       <BlackStyleTextInput
         pholder={this.getMins(this.props.user.buffer.toString())}
+        sub={'RECOVERY TIME'}
         imagelink = {require('../../images/buffertime.png')}
         changeFunction={buffertime => this.setState({buffertime})}
         passwordSecure={true}/>
       <BlackStyleTextInput
         pholder={this.getHour(this.props.user.startTime.toString())}
+        sub={'START TIME'}
         imagelink = {require('../../images/sun.png')}
         changeFunction={wakeup => this.setState({wakeup})}
         passwordSecure={true}/>
       <BlackStyleTextInput
         pholder={this.getHour(this.props.user.endTime.toString())}
+        sub={'END TIME'}
         imagelink = {require('../../images/night.png')}
         changeFunction={bedtime => this.setState({bedtime})}
-        passwordSecure={true}/>
+        passwordSecure={true}
+        marginBottom={0} />
       <Button
         text = 'Log Out'
         textColor = 'whiteLogOut'
