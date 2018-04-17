@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
   },
   imagecont: {
     flexDirection: 'row',
-    alignSelf: 'flex-start',
-    justifyContent: 'flex-start',
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
   contentText: {
     marginLeft: 20,

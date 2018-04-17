@@ -378,7 +378,7 @@ class CalendarScreen extends Component {
         // <TouchableOpacity onPress={() => {this.openEditModal(item)}}>
         <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
         <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
-        <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
+        <Text numberOfLines={1} ellipsizeMode='tail' style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         {item.height > 60 &&
         <Text style={{color: 'white', fontFamily: 'Circular Std'}}>[+energy]</Text>}
         </View>
@@ -389,7 +389,7 @@ class CalendarScreen extends Component {
         <TouchableOpacity onPress = {() => {this.openPickerModal(item)}}>
         <View style={styles.emptyDate}>
           <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
-          <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
+          <Text numberOfLines={1} ellipsizeMode='tail' style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         </View>
         </TouchableOpacity>
       )
@@ -397,7 +397,7 @@ class CalendarScreen extends Component {
     return (
       <View style={[styles.item, {height: item.height}]}>
       <Text style={{fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
-      <Text style={{fontFamily: 'Circular Std'}}>{item.name}</Text>
+      <Text numberOfLines={1} ellipsizeMode='tail' style={{fontFamily: 'Circular Std'}}>{item.name}</Text>
       </View>
     )
   }

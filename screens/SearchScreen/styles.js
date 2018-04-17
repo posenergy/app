@@ -32,6 +32,10 @@ export default StyleSheet.create({
   },
   activities: {
     alignSelf: 'center',
+    marginBottom: 10,
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 4,
   },
   empty: {
     fontFamily: 'CircularStd-Book',

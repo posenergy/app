@@ -185,7 +185,7 @@ class LoginScreen extends ValidationComponent {
           <View style={{alignSelf: 'center'}}>
           <TouchableHighlight underlayColor='transparent' onPress={() => Alert.alert(
               'Forgot Password?',
-              'Email positiveenergy@gmail.com for help!',
+              'Email positiveenergyapp@gmail.com for help!',
               [
                 {text: 'Ok'},
               ],

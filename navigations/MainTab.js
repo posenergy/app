@@ -1,5 +1,6 @@
 import { Image, TouchableOpacity } from 'react-native'
 import { close, open } from '../redux/actions/aboutModalActions.js'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import AboutModal from '../components/AboutModal'
 import ActivitiesStack from './ActivitiesStack'
@@ -29,9 +30,7 @@ const MainTabNavigator = TabNavigator({
       return ({
         title: 'Browse Activities',
         tabBarIcon: ({ tintColor }) => (
-          <Image
-            source={require('../components/TabIcons/activitiesMan.png')}
-          />
+          <Ionicons name="md-walk" size={30} color={tintColor} />
         ),
       })
     },
@@ -41,9 +40,7 @@ const MainTabNavigator = TabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Calendar',
     tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={require('../components/TabIcons/calendar.png')}
-      />
+      <Ionicons name="md-calendar" size={30} color={tintColor} />
     ),
     }),
   },
@@ -52,9 +49,7 @@ const MainTabNavigator = TabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Profile',
       tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('../components/TabIcons/profile.png')}
-        />
+      <Ionicons name="md-person" size={30} marginBottom={0} color={tintColor} />
       ),
     }),
   },
