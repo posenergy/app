@@ -74,20 +74,17 @@ class ProfileScreen extends React.Component {
         pholder={this.getMins(this.props.user.buffer.toString())}
         sub={'RECOVERY TIME'}
         imagelink = {require('../../images/buffertime.png')}
-        changeFunction={buffertime => this.setState({buffertime})}
-        passwordSecure={true}/>
+        changeFunction={buffertime => this.setState({buffertime})}/>
       <BlackStyleTextInput
         pholder={this.getHour(this.props.user.startTime.toString())}
         sub={'START TIME'}
         imagelink = {require('../../images/sun.png')}
-        changeFunction={wakeup => this.setState({wakeup})}
-        passwordSecure={true}/>
+        changeFunction={wakeup => this.setState({wakeup})}/>
       <BlackStyleTextInput
         pholder={this.getHour(this.props.user.endTime.toString())}
         sub={'END TIME'}
         imagelink = {require('../../images/night.png')}
         changeFunction={bedtime => this.setState({bedtime})}
-        passwordSecure={true}
         marginBottom={0} />
       <Button
         text = 'Log Out'

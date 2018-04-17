@@ -3,7 +3,7 @@ import { View, Image, Text } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
-const BlackStyleTextInput = ({pholder, sub, changeFunction, cap, passwordSecure, nameProp, sizeProp, imagelink }) => (
+const BlackStyleTextInput = ({pholder, sub, changeFunction, cap, nameProp, sizeProp, imagelink }) => (
   <View marginBottom='2%' width='80%' alignSelf='center' justifyContent='center' >
     <View
     style = {styles.viewStyle}>
@@ -29,7 +29,6 @@ BlackStyleTextInput.propTypes = {
   pholder: PropTypes.string,
   cap: PropTypes.string,
   sub: PropTypes.string,
-  passwordSecure: PropTypes.bool,
   changeFunction: PropTypes.func,
   icon: PropTypes.string,
 }
