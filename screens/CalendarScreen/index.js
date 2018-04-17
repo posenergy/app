@@ -34,7 +34,7 @@ class CalendarScreen extends Component {
       eventlength: null,
     }
   }
-  
+
   openPickerModal = (item) => {
     const startTime = moment(item.start._i + ' ' + item.timeRange.split('-')[0], 'YYYY-MM-DD HH:mm')
     if (item) {
@@ -53,7 +53,7 @@ class CalendarScreen extends Component {
   closePickerModal = () => {
     this.setState({pickerModalVisible: false})
   }
-  
+
   nextScreen = () => {
     this.props.pickerDate(this.state.chosenDate)
     this.setState({pickerModalVisible: false})
@@ -77,7 +77,7 @@ class CalendarScreen extends Component {
   closeEditModal = () => {
     this.setState({editModalVisible: false})
   }
-  
+
   editEvent = () => {
     const eventstart = this.state.chosenDate
     const eventid = this.state.eventid
@@ -157,7 +157,7 @@ class CalendarScreen extends Component {
           }}
         />
         <TouchableOpacity
-          style={{flex: 1, position: 'absolute', bottom: 0, zIndex: 4, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
+          style={{flex: 1, position: 'absolute', bottom: 0, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
           onPress={this.addEvent.bind(this)}>
           <Image source={require('../../images/plus.png')}
             alignSelf = 'flex-end'

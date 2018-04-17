@@ -32,7 +32,6 @@ class MomentScreen extends React.Component {
       brand: this.props.navigation.state.params.brand,
       icon: this.props.navigation.state.params.icon,
       id: this.props.navigation.state.params.id,
-      buttonClicked: false,
       check: true,
     }
   }

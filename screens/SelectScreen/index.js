@@ -31,7 +31,6 @@ class SelectScreen extends React.Component {
       date: null,
       day: null,
       timeRange: null,
-      buttonClicked: false,
       icon: this.props.navigation.state.params.icon,
       textwourl: null,
     }
@@ -100,8 +99,8 @@ class SelectScreen extends React.Component {
                 </View>
               </View>}
             button = {<Button type='schedule' justifyContent='flex-end'
-                     onClick={() => this.setState(!this.state.buttonClicked) && this.saveEvent} loading={this.state.buttonClicked}
-                     text='Add to Calendar' textColor='white'/>}
+                    onClick={this.saveEvent}
+                    text='Add to Calendar' textColor='white'/>}
           />
       </View>
     )
