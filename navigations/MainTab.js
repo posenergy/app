@@ -1,9 +1,3 @@
-
-import '../components/TabIcons/packages.png'
-import '../components/TabIcons/feedback.png'
-import '../components/TabIcons/checkin.png'
-import '../components/TabIcons/messages.png'
-
 import { Image, TouchableOpacity } from 'react-native'
 import { close, open } from '../redux/actions/aboutModalActions.js'
 
