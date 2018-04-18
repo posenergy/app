@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, ImageBackground, KeyboardAvoidingView, Text, View } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, Alert, ImageBackground, KeyboardAvoidingView, Text, View } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -184,45 +184,47 @@ class RegisterScreen extends ValidationComponent {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <KeyboardAvoidingView
           behavior="padding">
-        <View
-          style={styles.view}>
-          <View>
-            <StyleTextInput
-              pholder='Name'
-              imagelink = {require('../../images/profile.png')}
-              passwordSecure = {false}
-              changeFunction ={name => this.setState({name})}
-              returnKeyType = {'next'}/>
-            <StyleTextInput
-              pholder='Email'
-              imagelink = {require('../../images/mail.png')}
-              passwordSecure = {false}
-              changeFunction ={email => this.setState({email})}
-              returnKeyType = {'next'}/>
-            <StyleTextInput
-              pholder='Password'
-              imagelink = {require('../../images/lock.png')}
-              passwordSecure = {true}
-              changeFunction = {password => this.setState({password})}
-            />
-            <StyleTextInput
-              pholder='Confirm Password'
-              imagelink = {require('../../images/lock.png')}
-              passwordSecure = {true}
-              changeFunction ={confirmpassword => this.setState({confirmpassword})}
-            />
-            <Text style={styles.link}>
-              Passwords must be at least 7 characters long and contain at least one number.
-            </Text>
-            <Button type='login'
-              onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
-              loading={this.state.buttonClicked}
-              text='Sign Up' textColor='grey'/>
+          <View
+            style={styles.view}>
+            <View>
+              <StyleTextInput
+                pholder='Name'
+                imagelink = {require('../../images/profile.png')}
+                passwordSecure = {false}
+                changeFunction ={name => this.setState({name})}
+                returnKeyType = {'next'}/>
+              <StyleTextInput
+                pholder='Email'
+                imagelink = {require('../../images/mail.png')}
+                passwordSecure = {false}
+                changeFunction ={email => this.setState({email})}
+                returnKeyType = {'next'}/>
+              <StyleTextInput
+                pholder='Password'
+                imagelink = {require('../../images/lock.png')}
+                passwordSecure = {true}
+                changeFunction = {password => this.setState({password})}
+              />
+              <StyleTextInput
+                pholder='Confirm Password'
+                imagelink = {require('../../images/lock.png')}
+                passwordSecure = {true}
+                changeFunction ={confirmpassword => this.setState({confirmpassword})}
+              />
+              <Text style={styles.link}>
+                Passwords must be at least 7 characters long and contain at least one number.
+              </Text>
+              <Button type='login'
+                onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
+                loading={this.state.buttonClicked}
+                text='Sign Up' textColor='grey'/>
+            </View>
           </View>
-        </View>
         </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
       </ImageBackground>
     )
   }

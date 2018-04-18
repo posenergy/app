@@ -61,8 +61,8 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   image: {
-    width: 12,
-    height: 12,
+    width: 18,
+    height: 18,
     alignSelf: 'flex-end',
     marginRight: 6,
     marginTop: 4,

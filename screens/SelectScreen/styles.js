@@ -10,7 +10,7 @@ export default StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: 'black',
-    height: '100%',
+    height: 150,
     width: 240,
     justifyContent: 'center',
     alignSelf: 'center',

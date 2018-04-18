@@ -56,8 +56,8 @@ export default StyleSheet.create({
     shadowRadius: 4,
   },
   image: {
-    width: 12,
-    height: 12,
+    width: 18,
+    height: 18,
     alignSelf: 'flex-end',
     marginTop: 15,
     marginRight: 6,
