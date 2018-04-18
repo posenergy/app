@@ -38,9 +38,8 @@ class SearchScreen extends React.Component {
     }
   }
 
-  sort() {
-    let moments = this.state.moments
-    moments.sort((a, b) => b.duration - a.duration)
+  sort(res) {
+    let moments = [].concat(res).sort((a, b) => b.duration - a.duration)
     this.setState({ filtered: moments })
   }
 
@@ -57,10 +56,7 @@ class SearchScreen extends React.Component {
       })
       .then((res) => res.json())
       .then(res => {
-        this.setState({
-          moments: res,
-        })
-        this.sort()
+        this.sort(res)
       })
       .catch((error) => {
         console.error(error)
@@ -80,8 +76,7 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.setState({ moments: res })
-            this.sort()
+            this.sort(res)
             }
           )
           .catch((error) => {
@@ -102,8 +97,7 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.setState({ moments: res })
-            this.sort()
+            this.sort(res)
           })
           .catch((error) => {
             console.error(error)
@@ -123,8 +117,7 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.setState({ moments: res })
-            this.sort()
+            this.sort(res)
           })
           .catch((error) => {
             console.error(error)
@@ -144,8 +137,7 @@ class SearchScreen extends React.Component {
       })
         .then((res) => res.json())
         .then(res => {
-          this.setState({ moments: res })
-          this.sort()
+          this.sort(res)
         })
         .catch((error) => {
           console.error(error)
@@ -165,8 +157,7 @@ class SearchScreen extends React.Component {
         })
       .then((res) => res.json())
       .then(res => {
-        this.setState({ moments: res })
-        this.sort()
+        this.sort(res)
       })
       .catch((error) => {
         console.error(error)
@@ -191,8 +182,7 @@ class SearchScreen extends React.Component {
         })
         .then((res) => res.json())
         .then(res => {
-          this.setState({ moments: res })
-          this.sort()
+          this.sort(res)
         })
         .catch((error) => {
           console.error(error)
@@ -208,8 +198,7 @@ class SearchScreen extends React.Component {
     })
       .then((res) => res.json())
       .then(res => {
-        this.setState({ moments: res })
-        this.sort()
+        this.sort(res)
       })
       .catch((error) => {
         console.error(error)
