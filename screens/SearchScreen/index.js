@@ -29,30 +29,19 @@ const mapDispatchToProps = {
 
 class SearchScreen extends React.Component {
 
-  buttonMind() {
-    this.props.mindVisibility()
-    this.setState({ flatList: true})
-  }
-
-  buttonMvmt() {
-    this.props.mvmtVisibility()
-    this.setState({ flatList: true})
-  }
-
   constructor(props) {
     super(props)
 
     this.state = {
       moments: null,
       category: this.props.navigation.state.params.category,
-      flatList: null,
     }
   }
 
-  flat() {
-    if (this.state.moments.length === 0) {
-      this.setState({ flatList: false })
-    }
+  sort() {
+    let moments = this.state.moments
+    moments.sort((a, b) => b.duration - a.duration)
+    this.setState({ filtered: moments })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,10 +57,10 @@ class SearchScreen extends React.Component {
       })
       .then((res) => res.json())
       .then(res => {
-        this.flat()
         this.setState({
           moments: res,
         })
+        this.sort()
       })
       .catch((error) => {
         console.error(error)
@@ -91,8 +80,8 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.flat()
             this.setState({ moments: res })
+            this.sort()
             }
           )
           .catch((error) => {
@@ -114,7 +103,7 @@ class SearchScreen extends React.Component {
           .then((res) => res.json())
           .then(res => {
             this.setState({ moments: res })
-            this.flat()
+            this.sort()
           })
           .catch((error) => {
             console.error(error)
@@ -135,7 +124,7 @@ class SearchScreen extends React.Component {
           .then((res) => res.json())
           .then(res => {
             this.setState({ moments: res })
-            this.flat()
+            this.sort()
           })
           .catch((error) => {
             console.error(error)
@@ -156,7 +145,7 @@ class SearchScreen extends React.Component {
         .then((res) => res.json())
         .then(res => {
           this.setState({ moments: res })
-          this.flat()
+          this.sort()
         })
         .catch((error) => {
           console.error(error)
@@ -177,7 +166,7 @@ class SearchScreen extends React.Component {
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
-        this.flat()
+        this.sort()
       })
       .catch((error) => {
         console.error(error)
@@ -200,14 +189,14 @@ class SearchScreen extends React.Component {
             'x-access-token': this.props.token,
           },
         })
-          .then((res) => res.json())
-          .then(res => {
-            this.setState({ moments: res,
-                            flatList: true })
-          })
-          .catch((error) => {
-            console.error(error)
-          })
+        .then((res) => res.json())
+        .then(res => {
+          this.setState({ moments: res })
+          this.sort()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
     return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category, {
       method: 'GET',
@@ -220,7 +209,7 @@ class SearchScreen extends React.Component {
       .then((res) => res.json())
       .then(res => {
         this.setState({ moments: res })
-        this.flat()
+        this.sort()
       })
       .catch((error) => {
         console.error(error)
@@ -233,7 +222,7 @@ class SearchScreen extends React.Component {
       <View style={styles.viewStyle}>
         <FlatList
           style={styles.flatListStyle}
-          data={ this.state.moments }
+          data={ this.state.filtered }
           renderItem={({item}) =>
             <TouchableOpacity style={styles.button}
               onPress={(event) => {
@@ -274,7 +263,7 @@ class SearchScreen extends React.Component {
       return (
         <View style={styles.viewStyle}>
             <FlatList
-              data={this.state.moments}
+              data={this.state.filtered}
               renderItem={({item}) =>
                 <TouchableOpacity style={styles.button}
                   onPress={(event) => {
