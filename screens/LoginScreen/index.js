@@ -157,13 +157,14 @@ class LoginScreen extends ValidationComponent {
             <View
               style={styles.view}
               flexDirection= 'column'
-              justifyContent= 'flex-end'
+              justifyContent= 'flex-start'
               marginBottom= '13%'
               showsVerticalScrollIndicator = {false} >
             <Image
                 style={styles.logoImage}
                 height={130}
                 width={130}
+                marginTop='20%'
                 marginBottom= '40%'
                 alignSelf= 'center'
                 source={require('../../images/logo_image.png')}/>

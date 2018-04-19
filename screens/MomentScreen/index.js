@@ -1,9 +1,8 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Switch } from 'react-native'
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
-import FlipToggle from 'react-native-flip-toggle-button'
 import styles from './styles'
 import { token } from '../../redux/actions/tokenActions'
 import { connect } from 'react-redux'
@@ -93,16 +92,13 @@ class MomentScreen extends React.Component {
             varelement = {this.parseVid()}
             varelement2 = {
               <View style={styles.toggle}>
-                <FlipToggle
+                <Switch
                   value={this.state.check}
-                  buttonWidth={34}
-                  buttonHeight={21}
-                  buttonRadius={50}
+                  height={20}
                   buttonOffColor={'#E5E5E5'}
                   sliderOffColor={'white'}
-                  buttonOnColor={'#545680'}
-                  sliderOnColor={'#E5E5E5'}
-                  onToggle={() => this.setState({check: !this.state.check})}
+                  onTintColor={'#545680'}
+                  onValueChange={() => this.setState({check: !this.state.check})}
                 />
                 <Text style={styles.toggleText}>
                 Include my recovery time in results.

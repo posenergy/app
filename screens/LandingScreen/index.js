@@ -19,6 +19,7 @@ export default class LandingScreen extends React.Component {
           style={styles.logoImage}
           height={130}
           width={130}
+          marginTop='15%'
           marginBottom= '5%'
           alignSelf= 'center'
           source={require('../../images/logo_image.png')}/>
