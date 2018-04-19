@@ -6,11 +6,11 @@ import {
   Image,
   TouchableHighlight,
   View,
-  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -152,8 +152,11 @@ class LoginScreen extends ValidationComponent {
       source={require('../../images/gradient.png')}
       style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <KeyboardAvoidingView
-            behavior="padding">
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={false}
+            contentContainerStyle={styles.innerContainer}>
             <View
               style={styles.view}
               flexDirection= 'column'
@@ -199,7 +202,7 @@ class LoginScreen extends ValidationComponent {
             </TouchableHighlight>
             </View>
             </View>
-          </KeyboardAvoidingView>
+          </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
       </ImageBackground>
     )

@@ -1,8 +1,9 @@
 import React from 'react'
-import { TouchableWithoutFeedback, Keyboard, Alert, ImageBackground, KeyboardAvoidingView, Text, View } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, Alert, ImageBackground, Text, View } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -185,8 +186,10 @@ class RegisterScreen extends ValidationComponent {
       source={require('../../images/gradient.png')}
       style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <KeyboardAvoidingView
-          behavior="padding">
+        <KeyboardAwareScrollView
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={false}
+            contentContainerStyle={styles.innerContainer}>
           <View
             style={styles.view}>
             <View>
@@ -223,7 +226,7 @@ class RegisterScreen extends ValidationComponent {
                 text='Sign Up' textColor='grey'/>
             </View>
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
       </ImageBackground>
     )
