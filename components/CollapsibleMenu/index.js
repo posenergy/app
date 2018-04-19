@@ -20,7 +20,7 @@ const CONTENT = [
   },
   {
     title: 'Why do you add 30 minutes to every workout?',
-    content: 'We automatically add a 30 minute buffer for you to shower and get ready before your next calendar event. You can always change this default setting in ‘Account’ → ‘Preferences.',
+    content: 'Why do you add 30 minutes to every workout”? Fix to say “We automatically add a 30 minute recovery time for you to shower and get ready before your next calendar event. You can turn this on or off before scheduling an activity, or change the default time in your Profile.',
   },
   {
     title: 'How do you choose the activities?',

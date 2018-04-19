@@ -46,7 +46,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     marginTop: 15,
     width: 345,
-    height: '80%',
+    height: '75%',
     backgroundColor: 'white',
     borderRadius: 5,
     flexDirection: 'column',

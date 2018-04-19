@@ -19,9 +19,9 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'center',
     alignSelf: 'center',
-    width: 365,
+    width: 345,
     marginTop: 15,
-    height: '80%',
+    height: '75%',
     backgroundColor: 'white',
     borderRadius: 12,
     flexDirection: 'column',
