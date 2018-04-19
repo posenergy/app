@@ -6,6 +6,8 @@ import AboutModal from '../components/AboutModal'
 import ActivitiesStack from './ActivitiesStack'
 import CalendarStack from './CalendarStack'
 import ProfileScreen from '../screens/ProfileScreen'
+import ChangeFieldScreen from '../screens/ChangeFieldScreen'
+
 import React from 'react'
 import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 import { View } from 'react-native'
@@ -29,6 +31,17 @@ const MainTabNavigator = TabNavigator({
     navigationOptions: () => {
       return ({
         title: 'Browse Activities',
+        tabBarIcon: ({ tintColor }) => (
+          <Ionicons name="md-walk" size={30} color={tintColor} />
+        ),
+      })
+    },
+  },
+  Buffer: {
+    screen: ChangeFieldScreen,
+    navigationOptions: () => {
+      return ({
+        title: 'Change Buffer',
         tabBarIcon: ({ tintColor }) => (
           <Ionicons name="md-walk" size={30} color={tintColor} />
         ),

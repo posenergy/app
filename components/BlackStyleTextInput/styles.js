@@ -13,8 +13,8 @@ export default StyleSheet.create({
   viewStyle: {
     flexDirection: 'row',
     borderBottomWidth: 2,
+    width: '100%',
     borderBottomColor: 'rgba(79, 79, 79, 0.4)',
-    justifyContent: 'flex-start',
     marginTop: 18,
   },
   image: {
