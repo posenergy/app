@@ -161,6 +161,9 @@ class CalendarScreen extends Component {
           onPress={this.addEvent.bind(this)}>
           <Image source={require('../../images/plus.png')}
             alignSelf = 'flex-end'
+            height={50}
+            width={50}
+            resizeMode= 'stretch'
             marginTop = '40%'/>
         </TouchableOpacity>
         {this.state.pickerModalVisible &&

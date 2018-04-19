@@ -247,6 +247,7 @@ class SearchScreen extends React.Component {
                 vid: item.vid,
                 id: item._id,
                 icon: item.icon,
+                category: item.category,
               })
              }}>
               <Moment
@@ -287,6 +288,7 @@ class SearchScreen extends React.Component {
                       time: item.duration,
                       vid: item.vid,
                       id: item._id,
+                      category: item.category,
                       icon: item.icon,
                     })
                   }}>

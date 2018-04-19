@@ -28,10 +28,11 @@ class MomentScreen extends React.Component {
       title: this.props.navigation.state.params.title,
       img: this.props.navigation.state.params.img,
       text: this.props.navigation.state.params.desc,
+      category: this.props.navigation.state.params.category,
       brand: this.props.navigation.state.params.brand,
       icon: this.props.navigation.state.params.icon,
       id: this.props.navigation.state.params.id,
-      check: true,
+      check: (this.props.navigation.state.params.category === 'movement'),
     }
   }
 
@@ -95,8 +96,7 @@ class MomentScreen extends React.Component {
                 <Switch
                   value={this.state.check}
                   height={20}
-                  buttonOffColor={'#E5E5E5'}
-                  sliderOffColor={'white'}
+
                   onTintColor={'#545680'}
                   onValueChange={() => this.setState({check: !this.state.check})}
                 />
