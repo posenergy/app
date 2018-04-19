@@ -1,13 +1,11 @@
 import React from 'react'
-import { View, ImageBackground } from 'react-native'
+import { View, Image } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import config from '../../config/config'
-import styles from './styles'
 
 import { prepopulate } from '../../redux/actions/userActions'
 
-import Logo from '../../components/Logo'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
@@ -58,7 +56,7 @@ class SplashScreen extends React.Component {
       if(props.token === '') {
         this.resetNavigation('Landing')
       } else {
-        // if the user exist, then check the backend and extract proper data
+        // if the user exists, then check the backend and extract proper data
         this.fetchUserInfo(this.props.token)
         this.resetNavigation('MainTab')
       }
@@ -68,11 +66,16 @@ class SplashScreen extends React.Component {
   render() {
     this.checkProps(this.props)
     return(
-      <View>
-        <ImageBackground
-          source={require('../../images/gradient.png')}
-          style={styles.container}/>
-        <Logo/>
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F3E080',
+        flex: 1}}>
+        <View>
+        <Image
+          style={{height: 130, width: 130, alignSelf: 'center'}}
+          source={require('../../images/logo_image.png')}/>
+      </View>>
       </View>
     )
   }

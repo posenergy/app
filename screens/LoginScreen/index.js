@@ -158,12 +158,8 @@ class LoginScreen extends ValidationComponent {
             marginBottom= '13%'
             showsVerticalScrollIndicator = {false} >
           <Image
-              style={styles.logoImage}
-              height={130}
-              width={130}
-              marginBottom= '40%'
-              alignSelf= 'center'
-              source={require('../../images/logo_image.png')}/>
+            style={{height: 130, width: 130, marginBottom: '40%', alignSelf: 'center'}}
+            source={require('../../images/logo_image.png')}/>
           <StyleTextInput
             pholder='Email'
             imagelink = {require('../../images/mail.png')}
