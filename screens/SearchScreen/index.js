@@ -210,7 +210,7 @@ class SearchScreen extends React.Component {
       return(
       <View style={styles.viewStyle}>
         <FlatList
-          style={styles.flatListStyle}
+          style={styles.flatList}
           data={ this.state.filtered }
           renderItem={({item}) =>
             <TouchableOpacity style={styles.button}
@@ -252,6 +252,7 @@ class SearchScreen extends React.Component {
       return (
         <View style={styles.viewStyle}>
             <FlatList
+              style={styles.flatList}
               data={this.state.filtered}
               renderItem={({item}) =>
                 <TouchableOpacity style={styles.button}

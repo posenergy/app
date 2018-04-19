@@ -23,6 +23,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
   },
+  flatList: {
+    marginBottom: 60,
+  },
   pict: {
     height: 45,
     width: 45,
