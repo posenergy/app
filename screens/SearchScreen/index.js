@@ -40,7 +40,12 @@ class SearchScreen extends React.Component {
 
   sort(res) {
     let moments = [].concat(res).sort((a, b) => b.duration - a.duration)
-    this.setState({ filtered: moments })
+    if (moments.length === 0) {
+      this.setState({ empty: true, filtered: [] })
+    }
+    else {
+      this.setState({ empty: false, filtered: moments })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -206,7 +211,7 @@ class SearchScreen extends React.Component {
   }
 
   render() {
-    if (this.state.category === 'movement') {
+    if (!this.state.empty && this.state.category === 'movement') {
       return(
       <View style={styles.viewStyle}>
         <FlatList
@@ -248,7 +253,7 @@ class SearchScreen extends React.Component {
         }
         </View>
       )
-    } else if (this.state.category !== 'movement') {
+    } else if (!this.state.empty && this.state.category !== 'movement') {
       return (
         <View style={styles.viewStyle}>
             <FlatList
@@ -288,7 +293,23 @@ class SearchScreen extends React.Component {
           }</View>
       )
     }
+    else if (this.state.empty && this.state.category === 'movement') {
+      return {
+        <View style={styles.viewStyle}>
+          
+          <TouchableOpacity
+            style = {styles.activities}
+            onPress={() => this.props.mvmtVisibility()}>
+            <Image source={require('./src/button.png')}/>
+          </TouchableOpacity>
+          {
+            this.props.visibleMvmt &&
+              <MvmtModal/>
+          }
+        </View>
+      }
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)
