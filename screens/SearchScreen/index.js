@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, TouchableOpacity, Image } from 'react-native'
+import { FlatList, View, TouchableOpacity, Image, Text } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -50,6 +50,7 @@ class SearchScreen extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
+    let sweatUrl = ''
     if (this.props.filterTags === []) {
       return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category, {
         method: 'GET',
@@ -111,8 +112,11 @@ class SearchScreen extends React.Component {
         this.props.tags.forEach(function(i) {
           tagUrl += i + '&tag[]='
         })
+        this.props.sweat.forEach(function(i) {
+          sweatUrl += i + '&sweat[]='
+        })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + this.props.sweat + '&duration=' + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + sweatUrl + '&duration=' + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -151,8 +155,11 @@ class SearchScreen extends React.Component {
         this.props.filterTags.forEach(function(i) {
           tagUrl += i + '&tag[]='
         })
+        this.props.sweat.forEach(function(i) {
+          sweatUrl += i + '&sweat[]='
+        })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + this.props.sweat + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + sweatUrl + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -294,7 +301,7 @@ class SearchScreen extends React.Component {
       )
     }
     else if (this.state.empty && this.state.category === 'movement') {
-      return {
+      return (
         <View style={styles.viewStyle}>
           <Text style={styles.empty}> 
             We're working on adding more moments to fit your needs! Until then, try broadening your search.
@@ -309,7 +316,25 @@ class SearchScreen extends React.Component {
               <MvmtModal/>
           }
         </View>
-      }
+      )
+    }
+    else if (this.state.empty && this.state.category !== 'movement') {
+      return (
+        <View style={styles.viewStyle}>
+          <Text style={styles.empty}> 
+            We're working on adding more moments to fit your needs! Until then, try broadening your search.
+          </Text>
+          <TouchableOpacity
+            style = {styles.activities}
+            onPress={() => this.props.mindVisibility()}>
+            <Image source={require('./src/button.png')}/>
+          </TouchableOpacity>
+          {
+            this.props.visibleMind &&
+              <MindModal/>
+          }
+        </View>
+      )
     }
   }
 }
