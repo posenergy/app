@@ -16,6 +16,13 @@ export default StyleSheet.create({
       justifyContent: 'flex-start',
       marginBottom: '20%',
     },
+    logoImage: {
+      height: 130,
+      width: 130,
+      marginTop:'15%',
+      marginBottom: '5%',
+      alignSelf: 'center',
+    },
     blurb: {
       height: 134,
       width: '75%',
