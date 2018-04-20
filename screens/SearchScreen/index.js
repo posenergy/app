@@ -135,7 +135,7 @@ class SearchScreen extends React.Component {
         tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-        '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
+      '&sweat[]=' + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
