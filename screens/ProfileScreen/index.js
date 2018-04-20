@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 
 import styles from './styles'
+import config from '../../config/config'
 import Button from '../../components/Button'
 
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
@@ -54,15 +55,28 @@ class ProfileScreen extends React.Component {
     return minutes + ' minutes'
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(this.props.prof) {
-      this.setState({
-        bufferTime: this.props.user.buffer.toString(),
-        startTime: this.props.user.startTime.toString(),
-        endTime: this.props.user.endTime.toString(),
+  async fetchUserInfo() {
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
       })
-      console.log(this.state, "STATE IN PROFILE SCREEN")
-      this.props.profile()
+      if (!response.ok) {
+        return false
+      } else {
+        responseJSON = await response.json()
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email, responseJSON._id)
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
     }
   }
 
@@ -83,7 +97,7 @@ class ProfileScreen extends React.Component {
         linked={false}
         imagelink = {require('../../images/mailblack.png')}/>
       <BlackStyleTextInput
-        pholder={this.getMins(this.state.bufferTime)}
+        pholder={this.getMins(this.props.user.buffer.toString())}
         sub={'RECOVERY TIME'}
         linked={true}
         onPress={(event) => {
@@ -96,7 +110,7 @@ class ProfileScreen extends React.Component {
                   }}
         imagelink = {require('../../images/buffertime.png')}/>
       <BlackStyleTextInput
-        pholder={this.getHour(this.state.startTime)}
+        pholder={this.getHour(this.props.user.startTime.toString())}
         sub={'START TIME'}
         linked={true}
         onPress={(event) => {
@@ -109,7 +123,7 @@ class ProfileScreen extends React.Component {
                   }}
         imagelink = {require('../../images/sun.png')}/>
       <BlackStyleTextInput
-        pholder={this.getHour(this.state.endTime)}
+        pholder={this.getHour(this.props.user.endTime.toString())}
         sub={'END TIME'}
         linked={true}
         onPress={(event) => {
