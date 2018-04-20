@@ -53,7 +53,7 @@ export default class SchedModal extends Component {
         { this.props.image === '../src/skinCareIcon.png' &&
           <Image style={styles.image}
           source={require('../../screens/src/skinCareIcon.png')}/> }
-          
+
         <Text
           adjustsFontSizeToFit = {true}
           allowFontScaling = {true}
@@ -71,7 +71,7 @@ export default class SchedModal extends Component {
         </View>
         <View style={styles.var}>{this.props.varelement}</View>
         <View style={styles.var2}>{this.props.varelement2}</View>
-        <View flex={1} width='100%'>{this.props.button}</View>
+        <View justifyContent='flex-end' flex={1} width='100%'>{this.props.button}</View>
       </View>
     )
   }

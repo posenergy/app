@@ -9,14 +9,17 @@ import Button from '../../components/Button'
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import { persistor } from '../../redux/store'
 import { token } from '../../redux/actions/tokenActions'
+import { profile } from '../../redux/actions/profileActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
   user: state.userReducer,
+  prof: state.profileReducer.clicked,
 })
 
 const mapDispatchToProps = {
   token,
+  profile,
 }
 
 class ProfileScreen extends React.Component {
@@ -28,7 +31,6 @@ class ProfileScreen extends React.Component {
       startTime: this.props.user.startTime.toString(),
       endTime: this.props.user.endTime.toString(),
       token: this.props.token,
-      clicked: false,
     }
   }
 
@@ -52,19 +54,15 @@ class ProfileScreen extends React.Component {
     return minutes + ' minutes'
   }
 
-  updateState = () => {
-    this.setState({
-      clicked: !this.state.clicked,
-    })
-  }
-
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.clicked) {
+    if(this.props.prof) {
       this.setState({
         bufferTime: this.props.user.buffer.toString(),
         startTime: this.props.user.startTime.toString(),
         endTime: this.props.user.endTime.toString(),
       })
+      console.log(this.state, "STATE IN PROFILE SCREEN")
+      this.props.profile()
     }
   }
 
@@ -94,7 +92,6 @@ class ProfileScreen extends React.Component {
                       bufferTime: this.getMins(this.state.bufferTime),
                       startTime: this.state.startTime,
                       endTime: this.state.endTime,
-                      updateState: this.state.updateState,
                     })
                   }}
         imagelink = {require('../../images/buffertime.png')}/>
@@ -108,7 +105,6 @@ class ProfileScreen extends React.Component {
                       bufferTime: this.getMins(this.state.bufferTime),
                       startTime: this.state.startTime,
                       endTime: this.state.endTime,
-                      updateState: this.state.updateState,
                     })
                   }}
         imagelink = {require('../../images/sun.png')}/>
@@ -122,7 +118,6 @@ class ProfileScreen extends React.Component {
                       bufferTime: this.getMins(this.state.bufferTime),
                       startTime: this.state.startTime,
                       endTime: this.state.endTime,
-                      updateState: this.state.updateState,
                     })
                   }}
         imagelink = {require('../../images/night.png')}

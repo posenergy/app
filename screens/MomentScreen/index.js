@@ -95,8 +95,7 @@ class MomentScreen extends React.Component {
               <View style={styles.toggle}>
                 <Switch
                   value={this.state.check}
-                  height={20}
-
+                  style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
                   onTintColor={'#545680'}
                   onValueChange={() => this.setState({check: !this.state.check})}
                 />

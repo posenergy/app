@@ -263,7 +263,7 @@ class SearchScreen extends React.Component {
         <TouchableOpacity
           style = {styles.activities}
           onPress={() => this.props.mvmtVisibility()}>
-          <Image source={require('./src/button.png')}/>
+          <Image style={{height: 35, width: 333}} source={require('./src/button.png')}/>
         </TouchableOpacity>
         {
           this.props.visibleMvmt &&
@@ -303,7 +303,7 @@ class SearchScreen extends React.Component {
             <TouchableOpacity
               style = {styles.activities}
               onPress={() => this.props.mindVisibility()}>
-              <Image source={require('./src/button.png')}/>
+              <Image style={{height: 35, width: 333}} source={require('./src/button.png')}/>
             </TouchableOpacity>
           {
             this.props.visibleMind &&

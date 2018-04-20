@@ -13,7 +13,7 @@ export default StyleSheet.create({
   viewStyle: {
     flexDirection: 'row',
     borderBottomWidth: 2,
-    // width: '100%',
+    width: '100%',
     borderBottomColor: 'rgba(79, 79, 79, 0.4)',
     marginTop: 18,
   },
