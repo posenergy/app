@@ -147,7 +147,7 @@ class MvmtModal extends Component {
   buttonLow = (drip) => {
     this.props.lowAction()
     if (this.props.low) {
-      this.props.del_sweat()
+      this.props.del_sweat(drip)
     } else {
       this.props.sweat(drip)
     }
@@ -156,7 +156,7 @@ class MvmtModal extends Component {
   buttonMed = (drip) => {
     this.props.mediumAction()
     if (this.props.medium) {
-      this.props.del_sweat()
+      this.props.del_sweat(drip)
     } else {
       this.props.sweat(drip)
     }
@@ -165,7 +165,7 @@ class MvmtModal extends Component {
   buttonHigh = (drip) => {
     this.props.highAction()
     if (this.props.high) {
-      this.props.del_sweat()
+      this.props.del_sweat(drip)
     } else {
         this.props.sweat(drip)
     }

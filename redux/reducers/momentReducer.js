@@ -2,7 +2,7 @@ import { ADD_TAG, DEL_TAG, DEL_ALL_TAGS, DEL_DURATION, DEL_SWEAT, SWEAT, DURATIO
 
 const initialState = {
   tags: [],
-  sweat: 0,
+  sweat: [],
   duration: 0,
 }
 
@@ -12,14 +12,14 @@ const filterState = (state = initialState, action) => {
     case DEL_ALL_TAGS: {
       return Object.assign({}, state,
         { tags: [],
-          sweat: null,
+          sweat: [],
           duration: null,
       })
     }
 
     case DEL_SWEAT: {
       return Object.assign({}, state,
-        { sweat: null,
+        { sweat: state.sweat.filter(t => t !== action.sweat),
       })
     }
 
@@ -44,7 +44,8 @@ const filterState = (state = initialState, action) => {
 
     case SWEAT: {
       return Object.assign({}, state,
-        { sweat: action.sweat })
+        { sweat: [...state.sweat, action.sweat],
+      })
     }
 
     case DURATION: {
