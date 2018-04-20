@@ -33,7 +33,7 @@ class EditProfileScreen extends React.Component {
     }
   }
 
-  funcs () {
+  funcs() {
     this.changeFields()
     this.props.profile()
   }

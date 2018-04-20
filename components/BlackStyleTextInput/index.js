@@ -20,7 +20,7 @@ const BlackStyleTextInput = ({pholder, sub, onPress, linked, imagelink }) => (
         {pholder}
       </Text>
     { linked &&
-      <TouchableOpacity style={{alignSelf: 'flex-end', justifyContent: 'flex-end', marginBottom:10}} onPress={onPress}>
+      <TouchableOpacity style={{alignSelf: 'flex-end', justifyContent: 'flex-end', marginBottom: 10}} onPress={onPress}>
         <Image
         style={{width: 25, height: 25, resizeMode: 'contain', justifyContent: 'flex-end'}}
         source={require('../../images/arrow.png')}

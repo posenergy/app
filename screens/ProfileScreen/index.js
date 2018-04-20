@@ -61,7 +61,6 @@ class ProfileScreen extends React.Component {
         startTime: this.props.user.startTime.toString(),
         endTime: this.props.user.endTime.toString(),
       })
-      console.log(this.state, "STATE IN PROFILE SCREEN")
       this.props.profile()
     }
   }
