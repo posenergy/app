@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import RNCalendarEvents from 'react-native-calendar-events'
 import { connect } from 'react-redux'
 
+import config from '../config/config'
 import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
@@ -42,7 +43,47 @@ class ScheduleScreen extends React.Component {
 
   setValue = (value) => {this.setState({value: value})}
 
+  async changeFields (apiStart) {
+    try {
+      let bodyObj = {
+        id: this.props.user.id,
+        momentId: this.state.id,
+        buffer: this.props.user.buffer.toString(),
+        time: apiStart,
+        duration: this.state.time,
+      }
+      console.log(bodyObj)
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users`
+      const response = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+      body: JSON.stringify(bodyObj),
+      })
+      if (!response.ok) {
+        console.log("Schedule not okay")
+        console.log(response)
+        return false
+      } else {
+        Alert.alert(
+          'Information Changed',
+          'We have updated your profile!',
+          { cancelable: true }
+        )
+        console.log("Schedule okay!")
+        console.log(response)
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
   saveEvent = (eventstart) => {
+    this.changeFields(eventstart)
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
