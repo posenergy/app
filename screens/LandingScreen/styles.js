@@ -19,7 +19,7 @@ export default StyleSheet.create({
     logoImage: {
       height: 130,
       width: 130,
-      marginTop:'15%',
+      marginTop: '27%',
       marginBottom: '5%',
       alignSelf: 'center',
     },
