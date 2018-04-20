@@ -35,7 +35,7 @@ class EditProfileScreen extends React.Component {
 
   funcs() {
     this.changeFields()
-    this.props.profile()
+    this.fetchUserInfo()
   }
 
   async fetchUserInfo() {
