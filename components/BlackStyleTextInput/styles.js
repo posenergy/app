@@ -6,7 +6,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     justifyContent: 'center',
     fontSize: 22,
-    width: 220,
+    width: 240,
     color: '#333333',
     marginTop: 8,
     fontFamily: 'Circular Std',
