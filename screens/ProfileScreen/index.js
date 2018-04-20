@@ -70,6 +70,7 @@ class ProfileScreen extends React.Component {
     return (
       <ScrollView
         contentContainerStyle={styles.view}
+        alignItems='center'
         showsVerticalScrollIndicator = {false} >
       <BlackStyleTextInput
         pholder={this.props.user.name}

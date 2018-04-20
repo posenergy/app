@@ -6,6 +6,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     justifyContent: 'center',
     fontSize: 22,
+    width: 220,
     color: '#333333',
     marginTop: 8,
     fontFamily: 'Circular Std',
@@ -22,6 +23,8 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     marginRight: 20,
     marginBottom: 10,
+    height: 40,
+    width: 37,
   },
   sub: {
     color: '#828282',
@@ -29,9 +32,8 @@ export default StyleSheet.create({
     marginTop: 4,
   },
   mainView: {
-    marginBottom: '2%',
     width: '80%',
-    height: '12%',
+    height: '5%',
     alignSelf: 'center',
     justifyContent: 'center',
   },

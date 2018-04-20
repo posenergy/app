@@ -4,7 +4,7 @@ export default StyleSheet.create({
   viewStyle: {
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(51, 51, 51, 0.4)',
-    width: 270,
+    width: 300,
     height: 30,
     justifyContent: 'flex-start',
     alignSelf: 'center',

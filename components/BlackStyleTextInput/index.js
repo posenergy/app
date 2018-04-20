@@ -4,23 +4,25 @@ import styles from './styles'
 import PropTypes from 'prop-types'
 
 const BlackStyleTextInput = ({pholder, sub, onPress, linked, imagelink }) => (
-  <View marginBottom='2%' width='80%' alignSelf='center' justifyContent='center' >
+  <View marginBottom={10} width='80%' height='13%' alignSelf='center' justifyContent='flex-end' >
     <View
+    justifyContent='flex-start'
     style = {styles.viewStyle}>
-    <Image
-      source={imagelink}
-      alignSelf = 'center'
-      style = {styles.image}
-    />
-    <Text
-      style={styles.styleTextInput}
-      autoCapitalize="none">
-      {pholder}
-    </Text>
+      <Image
+        source={imagelink}
+        alignSelf = 'center'
+        style = {styles.image}
+      />
+      <Text
+        justifyContent='flex-start'
+        style={styles.styleTextInput}
+        autoCapitalize="none">
+        {pholder}
+      </Text>
     { linked &&
-      <TouchableOpacity style={{alignSelf: 'center', justifyContent: 'center', marginLeft: 100}} onPress={onPress}>
+      <TouchableOpacity style={{alignSelf: 'flex-end', justifyContent: 'flex-end', marginBottom:10}} onPress={onPress}>
         <Image
-        style={{width: 25, height: 25, resizeMode: 'contain'}}
+        style={{width: 25, height: 25, resizeMode: 'contain', justifyContent: 'flex-end'}}
         source={require('../../images/arrow.png')}
         />
       </TouchableOpacity>
