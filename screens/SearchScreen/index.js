@@ -71,7 +71,7 @@ class SearchScreen extends React.Component {
           tagUrl += i + '&tag[]='
         })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + '&duration=' + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + '&duration=' + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -92,7 +92,7 @@ class SearchScreen extends React.Component {
           tagUrl += i + '&tag[]='
         })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -183,7 +183,7 @@ class SearchScreen extends React.Component {
           tagUrl += i + '&tag[]='
         })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + '&duration=' + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + '&duration=' + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
