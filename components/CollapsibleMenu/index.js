@@ -103,7 +103,7 @@ export default class ExampleView extends Component {
         <Image
           marginRight={8}
           marginLeft={20}
-          style ={{height:25, width: 25}}
+          style ={{height: 25, width: 25}}
           source= {isActive ? require('./src/filledicon.png') : require('./src/icon.png')}
         />
         <Text style={styles.headerTextField}>{section.title}</Text>
