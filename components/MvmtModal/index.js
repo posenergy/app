@@ -12,7 +12,7 @@ import { barAction, danceAction, hiitAction, pilatesAction, runAction, strengthA
 import { del_sweat, del_duration } from '../../redux/actions/momentActions'
 
 import Button from '../../components/Button'
-import ModalStyleText from '../../components/ModalStyleText'
+import StyleText from '../../components/StyleText'
 import FilterButton from '../../components/FilterButton'
 
 const mapStateToProps = state => ({
@@ -225,7 +225,7 @@ class MvmtModal extends Component {
                 </Text>
               </View>
               <View style={styles.bigview}>
-                <ModalStyleText text='ACTIVITIES'/>
+                <StyleText text='ACTIVITIES'/>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Barre'
@@ -280,7 +280,7 @@ class MvmtModal extends Component {
                 </View>
               </View>
               <View style={styles.bigview}>
-                <ModalStyleText text='SWEAT'/>
+                <StyleText text='SWEAT'/>
                 <View style={styles.buttons}>
                        <FilterButton
                          titleProp='Low'
@@ -303,7 +303,7 @@ class MvmtModal extends Component {
                      </View>
               </View>
               <View style={styles.bigview} marginBottom = "32%">
-                <ModalStyleText text='DURATION'/>
+                <StyleText text='DURATION'/>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='< 15 min'

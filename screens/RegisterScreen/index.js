@@ -1,8 +1,9 @@
 import React from 'react'
-import { Alert, ImageBackground, KeyboardAvoidingView, Text, View } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, Alert, ImageBackground, Text, View } from 'react-native'
 import ValidationComponent from 'react-native-form-validator'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -55,7 +56,7 @@ class RegisterScreen extends ValidationComponent {
         responseJSON = await response.json()
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
-                               responseJSON.email, responseJSON._id)
+                               responseJSON.email)
       } return responseJSON
     } catch(error) {
       this.setState({ buttonClicked: false })
@@ -184,45 +185,49 @@ class RegisterScreen extends ValidationComponent {
       <ImageBackground
       source={require('../../images/gradient.png')}
       style={styles.container}>
-        <KeyboardAvoidingView
-          behavior="padding">
-        <View
-          style={styles.view}>
-          <View>
-            <StyleTextInput
-              pholder='Name'
-              imagelink = {require('../../images/profile.png')}
-              passwordSecure = {false}
-              changeFunction ={name => this.setState({name})}
-              returnKeyType = {'next'}/>
-            <StyleTextInput
-              pholder='Email'
-              imagelink = {require('../../images/mail.png')}
-              passwordSecure = {false}
-              changeFunction ={email => this.setState({email})}
-              returnKeyType = {'next'}/>
-            <StyleTextInput
-              pholder='Password'
-              imagelink = {require('../../images/lock.png')}
-              passwordSecure = {true}
-              changeFunction = {password => this.setState({password})}
-            />
-            <StyleTextInput
-              pholder='Confirm Password'
-              imagelink = {require('../../images/lock.png')}
-              passwordSecure = {true}
-              changeFunction ={confirmpassword => this.setState({confirmpassword})}
-            />
-            <Text style={styles.link}>
-              Passwords must be at least 7 characters long and contain at least one number.
-            </Text>
-            <Button type='login'
-              onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
-              loading={this.state.buttonClicked}
-              text='Sign Up' textColor='grey'/>
+      <TouchableWithoutFeedback alignItems='center' onPress={Keyboard.dismiss} accessible={false}>
+        <KeyboardAwareScrollView
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={false}
+            alignItems= 'center'>
+          <View
+            style={styles.view}>
+            <View alignItems= 'center'>
+              <StyleTextInput
+                pholder='Name'
+                imagelink = {require('../../images/profile.png')}
+                passwordSecure = {false}
+                changeFunction ={name => this.setState({name})}
+                returnKeyType = {'next'}/>
+              <StyleTextInput
+                pholder='Email'
+                imagelink = {require('../../images/mail.png')}
+                passwordSecure = {false}
+                changeFunction ={email => this.setState({email})}
+                returnKeyType = {'next'}/>
+              <StyleTextInput
+                pholder='Password'
+                imagelink = {require('../../images/lock.png')}
+                passwordSecure = {true}
+                changeFunction = {password => this.setState({password})}
+              />
+              <StyleTextInput
+                pholder='Confirm Password'
+                imagelink = {require('../../images/lock.png')}
+                passwordSecure = {true}
+                changeFunction ={confirmpassword => this.setState({confirmpassword})}
+              />
+              <Text style={styles.link}>
+                Passwords must be at least 7 characters long and contain at least one number.
+              </Text>
+              <Button type='login'
+                onClick={() => !this.state.buttonClicked && this.writeUser(this.state.name, this.state.email, this.state.password, this.state.confirmpassword)}
+                loading={this.state.buttonClicked}
+                text='Sign Up' textColor='grey'/>
+            </View>
           </View>
-        </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
+      </TouchableWithoutFeedback>
       </ImageBackground>
     )
   }

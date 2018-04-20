@@ -160,6 +160,7 @@ class CalendarScreen extends Component {
           style={{flex: 1, position: 'absolute', bottom: 0, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
           onPress={this.addEvent.bind(this)}>
           <Image source={require('../../images/plus.png')}
+            style={{height: 50, width: 50}}
             alignSelf = 'flex-end'
             marginTop = '40%'/>
         </TouchableOpacity>

@@ -3,6 +3,7 @@ import { Alert, ImageBackground, KeyboardAvoidingView, Text, View } from 'react-
 import ValidationComponent from 'react-native-form-validator'
 import { Dropdown } from 'react-native-material-dropdown';
 import { connect } from 'react-redux'
+import { prepopulate } from '../../redux/actions/userActions'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -15,6 +16,10 @@ const mapStateToProps = (state) => ({
   id: state.userReducer.id,
 })
 
+const mapDispatchToProps = {
+  prepopulate,
+}
+
 class EditProfileScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -22,24 +27,66 @@ class EditProfileScreen extends React.Component {
       bufferTime: "",
       startTime: "",
       endTime: "",
-      initstartTime: this.props.navigation.state.params.startTime,
-      initendTime: this.props.navigation.state.params.endTime,
+      initstartTime: this.props.navigation.state.params.startTime.toString(),
+      initendTime: this.props.navigation.state.params.endTime.toString(),
       initBuffer: this.props.navigation.state.params.bufferTime.toString(),
     }
   }
 
+  handleClick = () => {
+    this.props.navigation.state.params.updateState()
+  }
+
+   async fetchUserInfo() {
+    console.log("CALL THIS FUNC")
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+      })
+      if (!response.ok) {
+        return false
+      } else {
+        responseJSON = await response.json()
+        console.log(responseJSON)
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email, responseJSON._id)
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
+
   async changeFields () {
     try {
       let bodyObj = {id : this.props.id}
-        if (bufferTime !== ""){
-          JSONobj.recoverTime = this.state.bufferTime
+        if (this.state.bufferTime !== ""){
+          bodyObj.recoverTime = this.state.bufferTime
         }
-        else if (startTime !== ""){
-          JSONobj.dayStart = this.state.startTime
+        if (this.state.startTime !== ""){
+          bodyObj.dayStart = this.state.startTime
         }
-        else if (endTime !== ""){
-          JSONobj.dayEnd = this.state.endTime
+        if (this.state.endTime !== ""){
+          bodyObj.dayEnd = this.state.endTime
         }
+        if (parseInt(this.state.endTime) < parseInt(this.state.startTime)){
+          Alert.alert(
+            'Hmm...',
+            'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
+            { cancelable: true }
+          )
+        }
+      console.log("STUFF IS HERE")
+      console.log(this.props.token)
+      console.log(bodyObj)
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
       const response = await fetch(apiUrl, {
@@ -49,12 +96,20 @@ class EditProfileScreen extends React.Component {
           'Content-Type': 'application/json',
           'x-access-token': this.props.token,
         },
-      body: bodyObj ,
+      body: JSON.stringify(bodyObj)
       })
       if (!response.ok) {
+        console.log("Not Okay!")
+        console.log(response)
         return false
       } else {
-        responseJSON = await response.json()
+        Alert.alert(
+          'Information Changed',
+          'We have updated your profile!',
+          { cancelable: true }
+        )
+        console.log("Okay!")
+        console.log(response)
       } return responseJSON
     } catch(error) {
       console.error(error)
@@ -165,7 +220,7 @@ class EditProfileScreen extends React.Component {
                 itemTextStyle={{fontFamily: 'Circular Std', color: 'black'}}
                 label='Wakeup'
                 data={hourdata}
-                onChangeText = {(value) => this.setState({startTime: value})}
+                onChangeText = {(value) => this.setState({startTime: value.replace(":", "")})}
               />
             <Dropdown
                 containerStyle={{width: 300, height: 100 }}
@@ -177,17 +232,17 @@ class EditProfileScreen extends React.Component {
                 itemTextStyle={{fontFamily: 'Circular Std', color: 'black'}}
                 label='Sleep'
                 data={hourdata}
-                onChangeText = {(value) => this.setState({endTime: value})}
+                onChangeText = {(value) => this.setState({endTime: value.replace(":", "")})}
               />
             <Button
               text = 'Confirm'
               textColor = 'whiteLogOut'
               type = 'purple'
-              onClick = {() => {this.changeFields()}}/>
+              onClick = {() => {this.changeFields() && this.fetchUserInfo() && this.handleClick()}}/>
           </View>
     )
   }
 
 }
 
-export default connect (mapStateToProps, null)(EditProfileScreen)
+export default connect (mapStateToProps, mapDispatchToProps)(EditProfileScreen)

@@ -28,6 +28,7 @@ class ProfileScreen extends React.Component {
       startTime: this.props.user.startTime.toString(),
       endTime: this.props.user.endTime.toString(),
       token: this.props.token,
+      clicked: false,
     }
   }
 
@@ -49,6 +50,22 @@ class ProfileScreen extends React.Component {
 
   getMins(minutes) {
     return minutes + ' minutes'
+  }
+
+  updateState = () => {
+    this.setState({
+      clicked: !this.state.clicked,
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.clicked) {
+      this.setState({
+        bufferTime: this.props.user.buffer.toString(),
+        startTime: this.props.user.startTime.toString(),
+        endTime: this.props.user.endTime.toString(),
+      })
+    }
   }
 
   render() {
@@ -77,6 +94,7 @@ class ProfileScreen extends React.Component {
                       bufferTime: this.getMins(this.state.bufferTime),
                       startTime: this.state.startTime,
                       endTime: this.state.endTime,
+                      updateState: this.state.updateState,
                     })
                   }}
         imagelink = {require('../../images/buffertime.png')}/>
@@ -90,6 +108,7 @@ class ProfileScreen extends React.Component {
                       bufferTime: this.getMins(this.state.bufferTime),
                       startTime: this.state.startTime,
                       endTime: this.state.endTime,
+                      updateState: this.state.updateState,
                     })
                   }}
         imagelink = {require('../../images/sun.png')}/>
@@ -103,6 +122,7 @@ class ProfileScreen extends React.Component {
                       bufferTime: this.getMins(this.state.bufferTime),
                       startTime: this.state.startTime,
                       endTime: this.state.endTime,
+                      updateState: this.state.updateState,
                     })
                   }}
         imagelink = {require('../../images/night.png')}
