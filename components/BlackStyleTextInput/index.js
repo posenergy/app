@@ -5,14 +5,13 @@ import PropTypes from 'prop-types'
 import { NavigationActions } from 'react-navigation'
 
 
-const BlackStyleTextInput = ({pholder, sub, imagelink }) => (
+const BlackStyleTextInput = ({pholder, sub, onPress, linked, imagelink }) => (
   <View marginBottom='2%' width='80%' alignSelf='center' justifyContent='center' >
     <View
-    style = {styles.viewStyle} width='100%'>
+    style = {styles.viewStyle}>
     <Image
       source={imagelink}
       alignSelf = 'center'
-      justifyContent= 'flex-start'
       style = {styles.image}
     />
     <Text
@@ -20,13 +19,14 @@ const BlackStyleTextInput = ({pholder, sub, imagelink }) => (
       autoCapitalize="none">
       {pholder}
     </Text>
-      <TouchableOpacity alignSelf = 'flex-end'>
+    { linked &&
+      <TouchableOpacity onPress={onPress}>
         <Image
-        source={imagelink}
-        alignSelf = 'flex-end'
-        justifyContent= 'flex-end'
+        style={{alignSelf:'flex-start', justifyContent: 'flex-end', width: 25, height: 25, resizeMode: 'contain',}}
+        source={require('../../images/arrow.png')}
         />
       </TouchableOpacity>
+    }
     </View>
     <Text style={styles.sub}>
       {sub}
@@ -36,9 +36,10 @@ const BlackStyleTextInput = ({pholder, sub, imagelink }) => (
 
 BlackStyleTextInput.propTypes = {
   pholder: PropTypes.string,
+  linked: PropTypes.bool,
   cap: PropTypes.string,
   sub: PropTypes.string,
-  changeFunction: PropTypes.func,
+  onPress: PropTypes.func,
   icon: PropTypes.string,
 }
 

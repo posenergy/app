@@ -5,8 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import AboutModal from '../components/AboutModal'
 import ActivitiesStack from './ActivitiesStack'
 import CalendarStack from './CalendarStack'
-import ProfileScreen from '../screens/ProfileScreen'
-import ChangeFieldScreen from '../screens/ChangeFieldScreen'
+import ProfileStack from './ProfileStack'
 
 import React from 'react'
 import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
@@ -37,17 +36,6 @@ const MainTabNavigator = TabNavigator({
       })
     },
   },
-  Buffer: {
-    screen: ChangeFieldScreen,
-    navigationOptions: () => {
-      return ({
-        title: 'Change Buffer',
-        tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-walk" size={30} color={tintColor} />
-        ),
-      })
-    },
-  },
   Calendar: {
     screen: CalendarStack,
     navigationOptions: ({ navigation }) => ({
@@ -58,7 +46,7 @@ const MainTabNavigator = TabNavigator({
     }),
   },
   Profile: {
-    screen: ProfileScreen,
+    screen: ProfileStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Profile',
       tabBarIcon: ({ tintColor }) => (

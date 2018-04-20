@@ -7,9 +7,10 @@ const defaultState = {
     startTime: '',
     endTime: '',
     email: '',
+    id: '',
     onboarding: false,
 }
- 
+
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
     case PREPOPULATE:
@@ -20,13 +21,14 @@ const userReducer = (state = defaultState, action) => {
         startTime: action.startTime,
         endTime: action.endTime,
         email: action.email,
+        id: action.id,
       })
 
     case ONBOARDING:
       return Object.assign({}, state, {
         onboarding: !state.onboarding,
       })
-      
+
     default: return state
   }
 }
