@@ -71,24 +71,18 @@ const toggleMvmtButtons = (state = initialState, action) => {
     case LOW: {
       return Object.assign({}, state, {
         low: !state.low,
-        medium: false,
-        high: false,
       })
     }
 
     case MEDIUM: {
       return Object.assign({}, state, {
         medium: !state.medium,
-        high: false,
-        low: false,
       })
     }
 
     case HIGH: {
       return Object.assign({}, state, {
         high: !state.high,
-        low: false,
-        medium: false,
       })
     }
 

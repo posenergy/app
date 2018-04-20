@@ -31,5 +31,5 @@ export function del_duration() {
 }
 
 export function del_sweat() {
-	return { type: DEL_SWEAT }
+	return { type: DEL_SWEAT, sweat }
 }

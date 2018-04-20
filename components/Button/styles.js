@@ -49,8 +49,7 @@ export default StyleSheet.create({
     fontFamily: 'Circular Std',
   },
   greysmall: {
-    fontSize: 16,
-    lineHeight: 19,
+    fontSize: 12,
     marginTop: 2,
     color: '#4F4F4F',
     justifyContent: 'center',

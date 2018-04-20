@@ -7,6 +7,7 @@ export default StyleSheet.create({
   },
   viewStyle: {
     flex: 1,
+    justifyContent: 'center',
     backgroundColor: '#F2F2F2',
   },
   viewStyles: {
@@ -23,6 +24,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
   },
+  flatList: {
+    marginBottom: 60,
+  },
   pict: {
     height: 45,
     width: 45,
@@ -38,7 +42,21 @@ export default StyleSheet.create({
     zIndex: 4,
   },
   empty: {
-    fontFamily: 'CircularStd-Book',
+    width: 300,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 30,
+    marginRight: 30,
     alignSelf: 'center',
+  },
+  emptyText: {
+    fontSize: 20,
+    lineHeight: 23,
+    textAlign: 'center',
+    fontFamily: 'CircularStd-Book',
+  },
+  sad: {
+    marginBottom: 25,
   },
 })

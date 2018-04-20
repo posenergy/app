@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, TouchableOpacity, Image } from 'react-native'
+import { FlatList, View, TouchableOpacity, Image, Text } from 'react-native'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -29,34 +29,27 @@ const mapDispatchToProps = {
 
 class SearchScreen extends React.Component {
 
-  buttonMind() {
-    this.props.mindVisibility()
-    this.setState({ flatList: true})
-  }
-
-  buttonMvmt() {
-    this.props.mvmtVisibility()
-    this.setState({ flatList: true})
-  }
-
   constructor(props) {
     super(props)
 
     this.state = {
       moments: null,
       category: this.props.navigation.state.params.category,
-      flatList: null,
     }
   }
 
-  flat() {
-    if (this.state.moments.length === 0) {
-      this.setState({ flatList: false })
+  sort(res) {
+    let moments = [].concat(res).sort((a, b) => b.duration - a.duration)
+    if (moments.length === 0) {
+      this.setState({ empty: true, filtered: [] })
+    } else {
+      this.setState({ empty: false, filtered: moments })
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     let tagUrl = ''
+    let sweatUrl = ''
     if (this.props.filterTags === []) {
       return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category, {
         method: 'GET',
@@ -68,10 +61,7 @@ class SearchScreen extends React.Component {
       })
       .then((res) => res.json())
       .then(res => {
-        this.flat()
-        this.setState({
-          moments: res,
-        })
+        this.sort(res)
       })
       .catch((error) => {
         console.error(error)
@@ -81,7 +71,7 @@ class SearchScreen extends React.Component {
           tagUrl += i + '&tag[]='
         })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + '&duration=' + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + '&duration=' + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -91,8 +81,7 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.flat()
-            this.setState({ moments: res })
+            this.sort(res)
             }
           )
           .catch((error) => {
@@ -103,7 +92,7 @@ class SearchScreen extends React.Component {
           tagUrl += i + '&tag[]='
         })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -113,8 +102,7 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.setState({ moments: res })
-            this.flat()
+            this.sort(res)
           })
           .catch((error) => {
             console.error(error)
@@ -123,8 +111,11 @@ class SearchScreen extends React.Component {
         this.props.tags.forEach(function(i) {
           tagUrl += i + '&tag[]='
         })
+        this.props.sweat.forEach(function(i) {
+          sweatUrl += i + '&sweat[]='
+        })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + this.props.sweat + '&duration=' + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + sweatUrl + '&duration=' + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -134,8 +125,7 @@ class SearchScreen extends React.Component {
         })
           .then((res) => res.json())
           .then(res => {
-            this.setState({ moments: res })
-            this.flat()
+            this.sort(res)
           })
           .catch((error) => {
             console.error(error)
@@ -145,7 +135,7 @@ class SearchScreen extends React.Component {
         tagUrl += i + '&tag[]='
       })
       return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-        '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
+      '&sweat[]=' + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -155,8 +145,7 @@ class SearchScreen extends React.Component {
       })
         .then((res) => res.json())
         .then(res => {
-          this.setState({ moments: res })
-          this.flat()
+          this.sort(res)
         })
         .catch((error) => {
           console.error(error)
@@ -165,8 +154,11 @@ class SearchScreen extends React.Component {
         this.props.filterTags.forEach(function(i) {
           tagUrl += i + '&tag[]='
         })
+        this.props.sweat.forEach(function(i) {
+          sweatUrl += i + '&sweat[]='
+        })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + this.props.sweat + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + sweatUrl + '&duration=' + this.props.durat + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -176,8 +168,7 @@ class SearchScreen extends React.Component {
         })
       .then((res) => res.json())
       .then(res => {
-        this.setState({ moments: res })
-        this.flat()
+        this.sort(res)
       })
       .catch((error) => {
         console.error(error)
@@ -192,7 +183,7 @@ class SearchScreen extends React.Component {
           tagUrl += i + '&tag[]='
         })
         return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat=' + '&duration=' + '&tag[]=' + tagUrl, {
+          '&sweat[]=' + '&duration=' + '&tag[]=' + tagUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -200,14 +191,13 @@ class SearchScreen extends React.Component {
             'x-access-token': this.props.token,
           },
         })
-          .then((res) => res.json())
-          .then(res => {
-            this.setState({ moments: res,
-                            flatList: true })
-          })
-          .catch((error) => {
-            console.error(error)
-          })
+        .then((res) => res.json())
+        .then(res => {
+          this.sort(res)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
     return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category, {
       method: 'GET',
@@ -219,8 +209,7 @@ class SearchScreen extends React.Component {
     })
       .then((res) => res.json())
       .then(res => {
-        this.setState({ moments: res })
-        this.flat()
+        this.sort(res)
       })
       .catch((error) => {
         console.error(error)
@@ -228,12 +217,12 @@ class SearchScreen extends React.Component {
   }
 
   render() {
-    if (this.state.category === 'movement') {
+    if (!this.state.empty && this.state.category === 'movement') {
       return(
       <View style={styles.viewStyle}>
         <FlatList
-          style={styles.flatListStyle}
-          data={ this.state.moments }
+          style={styles.flatList}
+          data={ this.state.filtered }
           renderItem={({item}) =>
             <TouchableOpacity style={styles.button}
               onPress={(event) => {
@@ -271,11 +260,12 @@ class SearchScreen extends React.Component {
         }
         </View>
       )
-    } else if (this.state.category !== 'movement') {
+    } else if (!this.state.empty && this.state.category !== 'movement') {
       return (
         <View style={styles.viewStyle}>
             <FlatList
-              data={this.state.moments}
+              style={styles.flatList}
+              data={this.state.filtered}
               renderItem={({item}) =>
                 <TouchableOpacity style={styles.button}
                   onPress={(event) => {
@@ -310,8 +300,51 @@ class SearchScreen extends React.Component {
               <MindModal/>
           }</View>
       )
+    } else if (this.state.empty && this.state.category === 'movement') {
+        return (
+          <View style={styles.viewStyle}>
+            <Image source={require('./src/sad.png')}/>
+            <View style={styles.empty}>
+              <Image source={require('./src/sad.png')} style={styles.sad}/>
+              <Text style={styles.emptyText}>
+                Sorry, we don't have any activities that meet your search! {'\n'}
+                We're working on growing our database, but in the meantime, try some different filters.
+              </Text>
+            </View>
+            <TouchableOpacity
+              style = {styles.activities}
+              onPress={() => this.props.mvmtVisibility()}>
+              <Image source={require('./src/button.png')}/>
+            </TouchableOpacity>
+            {
+              this.props.visibleMvmt &&
+                <MvmtModal/>
+            }
+          </View>
+        )
+    } else if (this.state.empty && this.state.category !== 'movement') {
+        return (
+          <View style={styles.viewStyle}>
+            <View style={styles.empty}>
+              <Image source={require('./src/sad.png')} style={styles.sad}/>
+              <Text style={styles.emptyText}>
+                Sorry, we don't have any activities that meet your search! {'\n'}
+                We're working on growing our database, but in the meantime, try some different filters.
+              </Text>
+            </View>
+            <TouchableOpacity
+              style = {styles.activities}
+              onPress={() => this.props.mindVisibility()}>
+              <Image source={require('./src/button.png')}/>
+            </TouchableOpacity>
+            {
+              this.props.visibleMind &&
+                <MindModal/>
+            }
+          </View>
+        )
     }
-    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)

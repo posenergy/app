@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     view: {
-      flex: 1,
+      width: '100%',
       alignItems: 'center',
+      alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: '5%',
     },
 })

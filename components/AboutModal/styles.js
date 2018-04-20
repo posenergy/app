@@ -19,9 +19,9 @@ export default StyleSheet.create({
   innerContainer: {
     justifyContent: 'center',
     alignSelf: 'center',
-    width: 365,
+    width: 345,
     marginTop: 15,
-    height: '83%',
+    height: '80%',
     backgroundColor: 'white',
     borderRadius: 12,
     flexDirection: 'column',
@@ -42,8 +42,8 @@ export default StyleSheet.create({
     marginBottom: 14,
   },
   image: {
-    width: 12,
-    height: 12,
+    width: 18,
+    height: 18,
     alignSelf: 'flex-end',
     marginTop: 10,
     marginRight: 10,
@@ -61,5 +61,3 @@ export default StyleSheet.create({
   },
 
 })
-
-
