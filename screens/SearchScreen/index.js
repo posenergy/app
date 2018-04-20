@@ -305,9 +305,10 @@ class SearchScreen extends React.Component {
         <View style={styles.viewStyle}>
           <Image source={require('./src/sad.png')}/>
           <View style={styles.empty}>
-            <Image source={require('./src/sad.png')}/>
+            <Image source={require('./src/sad.png')} style={styles.sad}/>
             <Text style={styles.emptyText}> 
-              We're working on adding more moments to fit your needs! Until then, try broadening your search.
+              Sorry, we don't have any activities that meet your search! {"\n"}
+              We're working on growing our database, but in the meantime, try some different filters.
             </Text>
           </View>
           <TouchableOpacity
@@ -326,9 +327,10 @@ class SearchScreen extends React.Component {
       return (
         <View style={styles.viewStyle}>
           <View style={styles.empty}>
-            <Image source={require('./src/sad.png')}/>
+            <Image source={require('./src/sad.png')} style={styles.sad}/>
             <Text style={styles.emptyText}> 
-              We're working on adding more moments to fit your needs! Until then, try broadening your search.
+              Sorry, we don't have any activities that meet your search! {"\n"}
+              We're working on growing our database, but in the meantime, try some different filters.
             </Text>
           </View>
           <TouchableOpacity

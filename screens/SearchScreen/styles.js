@@ -7,6 +7,7 @@ export default StyleSheet.create({
   },
   viewStyle: {
     flex: 1,
+    justifyContent: 'center',
     backgroundColor: '#F2F2F2',
   },
   viewStyles: {
@@ -41,16 +42,21 @@ export default StyleSheet.create({
     zIndex: 4,
   },
   empty: {
+    width: 300,
     flexDirection: 'column',
     alignItems: 'center',
-    margin: 30,
-    justifyContent: 'space-between',
-    textAlignVertical: 'center',
-    fontFamily: 'CircularStd-Book',
+    justifyContent: 'center',
+    marginLeft: 30,
+    marginRight: 30,
     alignSelf: 'center',
   },
   emptyText: {
     fontSize: 20,
     lineHeight: 23,
+    textAlign: 'center',
+    fontFamily: 'CircularStd-Book',
+  },
+  sad: {
+    marginBottom: 25,
   },
 })
