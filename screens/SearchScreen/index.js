@@ -303,9 +303,13 @@ class SearchScreen extends React.Component {
     else if (this.state.empty && this.state.category === 'movement') {
       return (
         <View style={styles.viewStyle}>
-          <Text style={styles.empty}> 
-            We're working on adding more moments to fit your needs! Until then, try broadening your search.
-          </Text>
+          <Image source={require('./src/sad.png')}/>
+          <View style={styles.empty}>
+            <Image source={require('./src/sad.png')}/>
+            <Text style={styles.emptyText}> 
+              We're working on adding more moments to fit your needs! Until then, try broadening your search.
+            </Text>
+          </View>
           <TouchableOpacity
             style = {styles.activities}
             onPress={() => this.props.mvmtVisibility()}>
@@ -321,9 +325,12 @@ class SearchScreen extends React.Component {
     else if (this.state.empty && this.state.category !== 'movement') {
       return (
         <View style={styles.viewStyle}>
-          <Text style={styles.empty}> 
-            We're working on adding more moments to fit your needs! Until then, try broadening your search.
-          </Text>
+          <View style={styles.empty}>
+            <Image source={require('./src/sad.png')}/>
+            <Text style={styles.emptyText}> 
+              We're working on adding more moments to fit your needs! Until then, try broadening your search.
+            </Text>
+          </View>
           <TouchableOpacity
             style = {styles.activities}
             onPress={() => this.props.mindVisibility()}>

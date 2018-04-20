@@ -41,7 +41,16 @@ export default StyleSheet.create({
     zIndex: 4,
   },
   empty: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 30,
+    justifyContent: 'space-between',
+    textAlignVertical: 'center',
     fontFamily: 'CircularStd-Book',
     alignSelf: 'center',
+  },
+  emptyText: {
+    fontSize: 20,
+    lineHeight: 23,
   },
 })
