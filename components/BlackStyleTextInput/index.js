@@ -1,23 +1,32 @@
 import React from 'react'
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
-const BlackStyleTextInput = ({pholder, sub, imagelink }) => (
-  <View marginBottom='2%' width='80%' alignSelf='center' justifyContent='center' >
+const BlackStyleTextInput = ({pholder, sub, onPress, linked, imagelink }) => (
+  <View marginBottom={10} width='80%' height='13%' alignSelf='center' justifyContent='flex-end' >
     <View
+    justifyContent='flex-start'
     style = {styles.viewStyle}>
-    <Image
-      source={imagelink}
-      alignSelf = 'center'
-      justifyContent= 'flex-start'
-      style = {styles.image}
-    />
-    <Text
-      style={styles.styleTextInput}
-      autoCapitalize="none">
-      {pholder}
-    </Text>
+      <Image
+        source={imagelink}
+        alignSelf = 'center'
+        style = {styles.image}
+      />
+      <Text
+        justifyContent='flex-start'
+        style={styles.styleTextInput}
+        autoCapitalize="none">
+        {pholder}
+      </Text>
+    { linked &&
+      <TouchableOpacity style={{alignSelf: 'flex-end', justifyContent: 'flex-end', marginBottom: 10}} onPress={onPress}>
+        <Image
+        style={{width: 25, height: 25, resizeMode: 'contain', justifyContent: 'flex-end'}}
+        source={require('../../images/arrow.png')}
+        />
+      </TouchableOpacity>
+    }
     </View>
     <Text style={styles.sub}>
       {sub}
@@ -27,9 +36,10 @@ const BlackStyleTextInput = ({pholder, sub, imagelink }) => (
 
 BlackStyleTextInput.propTypes = {
   pholder: PropTypes.string,
+  linked: PropTypes.bool,
   cap: PropTypes.string,
   sub: PropTypes.string,
-  changeFunction: PropTypes.func,
+  onPress: PropTypes.func,
   icon: PropTypes.string,
 }
 

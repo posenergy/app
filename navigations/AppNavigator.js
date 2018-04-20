@@ -6,6 +6,7 @@ import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
+
 import MainTabWrapper from './MainTab'
 
 import { HeaderBackButton } from 'react-navigation'

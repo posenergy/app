@@ -52,9 +52,10 @@ export default StyleSheet.create({
     },
     view: {
         flex: 1,
-        marginTop: '35%',
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
     },
 })
+
+

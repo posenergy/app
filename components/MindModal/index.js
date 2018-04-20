@@ -12,7 +12,7 @@ import { del_duration } from '../../redux/actions/momentActions'
 
 import Button from '../../components/Button'
 import FilterButton from '../../components/FilterButton'
-import ModalStyleText from '../../components/ModalStyleText'
+import StyleText from '../../components/StyleText'
 
 const mapStateToProps = state => ({
   craft: state.toggleMindButtons.craft,
@@ -159,7 +159,7 @@ class MindModal extends Component {
                 </Text>
               </View>
               <View style={styles.bigview}>
-                <ModalStyleText text='ACTIVITIES'/>
+                <StyleText text='ACTIVITIES'/>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='Craft'
@@ -204,7 +204,7 @@ class MindModal extends Component {
                 </View>
               </View>
               <View style={styles.bigview} marginBottom='55%'>
-                <ModalStyleText text='DURATION'/>
+                <StyleText text='DURATION'/>
                 <View style={styles.buttons}>
                   <FilterButton
                     titleProp='< 15 min'

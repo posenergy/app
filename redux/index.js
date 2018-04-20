@@ -9,6 +9,7 @@ import toggleMindButtons from './reducers/mindButtonsReducer'
 import toggleMvmtButtons from './reducers/mvmtButtonsReducer'
 import tokenReducer from './reducers/tokenReducer'
 import pickerReducer from './reducers/pickerReducer'
+import profileReducer from './reducers/profileReducer'
 
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   tokenReducer,
   aboutModal,
   pickerReducer,
+  profileReducer,
 })
 
 export default (state, action) => {

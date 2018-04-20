@@ -236,6 +236,7 @@ class SearchScreen extends React.Component {
                 vid: item.vid,
                 id: item._id,
                 icon: item.icon,
+                category: item.category,
               })
              }}>
               <Moment
@@ -251,7 +252,7 @@ class SearchScreen extends React.Component {
         <TouchableOpacity
           style = {styles.activities}
           onPress={() => this.props.mvmtVisibility()}>
-          <Image source={require('./src/button.png')}/>
+          <Image style={{height: 35, width: 333}} source={require('./src/button.png')}/>
         </TouchableOpacity>
         {
           this.props.visibleMvmt &&
@@ -277,6 +278,7 @@ class SearchScreen extends React.Component {
                       time: item.duration,
                       vid: item.vid,
                       id: item._id,
+                      category: item.category,
                       icon: item.icon,
                     })
                   }}>
@@ -291,7 +293,7 @@ class SearchScreen extends React.Component {
             <TouchableOpacity
               style = {styles.activities}
               onPress={() => this.props.mindVisibility()}>
-              <Image source={require('./src/button.png')}/>
+              <Image style={{height: 35, width: 333}} source={require('./src/button.png')}/>
             </TouchableOpacity>
           {
             this.props.visibleMind &&

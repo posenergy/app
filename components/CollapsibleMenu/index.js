@@ -20,7 +20,7 @@ const CONTENT = [
   },
   {
     title: 'Why do you add 30 minutes to every workout?',
-    content: 'We automatically add a 30 minute buffer for you to shower and get ready before your next calendar event. You can always change this default setting in ‘Account’ → ‘Preferences.',
+    content: 'We automatically add a 30 minute recovery time for you to shower and get ready before your next calendar event. You can turn this on or off before scheduling an activity, or change the default time in your Profile.',
   },
   {
     title: 'How do you choose the activities?',
@@ -103,6 +103,7 @@ export default class ExampleView extends Component {
         <Image
           marginRight={8}
           marginLeft={20}
+          style ={{height: 25, width: 25}}
           source= {isActive ? require('./src/filledicon.png') : require('./src/icon.png')}
         />
         <Text style={styles.headerTextField}>{section.title}</Text>
