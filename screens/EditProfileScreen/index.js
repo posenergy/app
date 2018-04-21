@@ -47,7 +47,6 @@ class EditProfileScreen extends React.Component {
   }
 
   async fetchUserInfoSecond() {
-    console.log("third prof")
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/users/id`
@@ -66,10 +65,9 @@ class EditProfileScreen extends React.Component {
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
                                responseJSON.email, responseJSON._id)
-        console.log("fourth prof")
         this.resetNavigation('Profile')
-      } 
-      return responseJSON      
+      }
+      return responseJSON
     } catch(error) {
       console.error(error)
       this.setState({buttonClicked: false})
@@ -77,7 +75,6 @@ class EditProfileScreen extends React.Component {
   }
 
   async fetchUserInfo() {
-    console.log("third prof")
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/users/id`
@@ -96,9 +93,8 @@ class EditProfileScreen extends React.Component {
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
                                responseJSON.email, responseJSON._id)
-        console.log("fourth prof")
-      } 
-      return responseJSON      
+      }
+      return responseJSON
     } catch(error) {
       console.error(error)
       this.setState({buttonClicked: false})
@@ -107,7 +103,6 @@ class EditProfileScreen extends React.Component {
 
 
   async changeFields() {
-    console.log("first prof")
     try {
       const bodyObj = {id: this.props.id}
         if (this.state.bufferTime !== '') {
@@ -126,7 +121,6 @@ class EditProfileScreen extends React.Component {
             { cancelable: true }
           )
         }
-      console.log(bodyObj)
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
       const response = await fetch(apiUrl, {
@@ -139,16 +133,9 @@ class EditProfileScreen extends React.Component {
       body: JSON.stringify(bodyObj),
       })
       if (!response.ok) {
-        console.log("NOT OK")
         return false
       } else {
-        console.log("OK")
         this.fetchUserInfoSecond()
-        // Alert.alert(
-        //   'Information Changed',
-        //   'We have updated your profile!',
-        //   { cancelable: true }
-        // )
       } return responseJSON
     } catch(error) {
       console.error(error)
