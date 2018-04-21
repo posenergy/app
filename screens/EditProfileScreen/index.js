@@ -1,9 +1,9 @@
 import React from 'react'
 import { Alert, View } from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { prepopulate } from '../../redux/actions/userActions'
-import { profile } from '../../redux/actions/profileActions'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -17,7 +17,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   prepopulate,
-  profile,
 }
 
 class EditProfileScreen extends React.Component {
@@ -30,15 +29,25 @@ class EditProfileScreen extends React.Component {
       initstartTime: this.props.navigation.state.params.startTime.toString(),
       initendTime: this.props.navigation.state.params.endTime.toString(),
       initBuffer: this.props.navigation.state.params.bufferTime.toString(),
+      buttonClicked: false,
     }
   }
 
   funcs() {
+    this.setState({buttonClicked: true})
     this.changeFields()
-    this.fetchUserInfo()
   }
 
-  async fetchUserInfo() {
+  resetNavigation(targetRoute) {
+    this.props.navigation.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+      }))
+  }
+
+  async fetchUserInfoSecond() {
+    console.log("third prof")
     try {
       let responseJSON
       const apiUrl = `${config.apiUrl}/users/id`
@@ -57,14 +66,48 @@ class EditProfileScreen extends React.Component {
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
                                responseJSON.email, responseJSON._id)
-      } return responseJSON
+        console.log("fourth prof")
+        this.resetNavigation('Profile')
+      } 
+      return responseJSON      
     } catch(error) {
       console.error(error)
+      this.setState({buttonClicked: false})
+    }
+  }
+
+  async fetchUserInfo() {
+    console.log("third prof")
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+      })
+      if (!response.ok) {
+        return false
+      } else {
+        responseJSON = await response.json()
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email, responseJSON._id)
+        console.log("fourth prof")
+      } 
+      return responseJSON      
+    } catch(error) {
+      console.error(error)
+      this.setState({buttonClicked: false})
     }
   }
 
 
   async changeFields() {
+    console.log("first prof")
     try {
       const bodyObj = {id: this.props.id}
         if (this.state.bufferTime !== '') {
@@ -83,6 +126,7 @@ class EditProfileScreen extends React.Component {
             { cancelable: true }
           )
         }
+      console.log(bodyObj)
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
       const response = await fetch(apiUrl, {
@@ -95,16 +139,20 @@ class EditProfileScreen extends React.Component {
       body: JSON.stringify(bodyObj),
       })
       if (!response.ok) {
+        console.log("NOT OK")
         return false
       } else {
-        Alert.alert(
-          'Information Changed',
-          'We have updated your profile!',
-          { cancelable: true }
-        )
+        console.log("OK")
+        this.fetchUserInfoSecond()
+        // Alert.alert(
+        //   'Information Changed',
+        //   'We have updated your profile!',
+        //   { cancelable: true }
+        // )
       } return responseJSON
     } catch(error) {
       console.error(error)
+      this.setState({buttonClicked: false})
     }
   }
 
@@ -233,8 +281,9 @@ class EditProfileScreen extends React.Component {
             <Button
               text = 'Confirm'
               textColor = 'whiteLogOut'
-              type = 'purple'
-              onClick = {() => this.funcs()}/>
+              type = 'loginPurple'
+              onClick={() => !this.state.buttonClicked && this.funcs()}
+              loading = {this.state.buttonClicked}/>
           </View>
     )
   }
