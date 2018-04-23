@@ -21,6 +21,7 @@ export default class Button extends Component {
       'filterButton',
       'mindmodal',
       'filterClick',
+      'loginPurple',
     ]).isRequired,
     img: PropTypes.element,
     icon: PropTypes.element,
