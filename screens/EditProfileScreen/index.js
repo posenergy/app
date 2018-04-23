@@ -76,12 +76,20 @@ class EditProfileScreen extends React.Component {
         if (this.state.endTime !== '') {
           bodyObj.dayEnd = this.state.endTime
         }
-        if (parseInt(this.state.endTime) < parseInt(this.state.startTime)) {
+        let initstartTime = parseInt(this.props.navigation.state.params.startTime)
+        let initendTime = parseInt(this.props.navigation.state.params.endTime)
+        let changedendTime = parseInt(this.state.endTime)
+        let changedstartTime = parseInt(this.state.startTime)
+        if (changedendTime <= changedstartTime
+            || initendTime <= changedstartTime
+            || changedendTime <= initstartTime
+            ) {
           Alert.alert(
             'Hmm...',
             'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
             { cancelable: true }
           )
+          return true
         }
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
