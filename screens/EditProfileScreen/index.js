@@ -4,6 +4,7 @@ import { Dropdown } from 'react-native-material-dropdown'
 import { connect } from 'react-redux'
 import { prepopulate } from '../../redux/actions/userActions'
 import { profile } from '../../redux/actions/profileActions'
+import { NavigationActions } from 'react-navigation'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -30,7 +31,16 @@ class EditProfileScreen extends React.Component {
       initstartTime: this.props.navigation.state.params.startTime.toString(),
       initendTime: this.props.navigation.state.params.endTime.toString(),
       initBuffer: this.props.navigation.state.params.bufferTime.toString(),
+      buttonClicked: false,
     }
+  }
+
+  resetNavigation(targetRoute) {
+    const navigateAction = NavigationActions.reset({
+      index: 0,
+      actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+    })
+    this.props.navigation.dispatch(navigateAction)
   }
 
   funcs() {
@@ -66,6 +76,7 @@ class EditProfileScreen extends React.Component {
 
   async changeFields() {
     try {
+      this.setState({buttonClicked: true})
       const bodyObj = {id: this.props.id}
         if (this.state.bufferTime !== '') {
           bodyObj.recoverTime = this.state.bufferTime
@@ -89,7 +100,8 @@ class EditProfileScreen extends React.Component {
             'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
             { cancelable: true }
           )
-          return true
+          this.setState({buttonClicked: false})
+          return false
         }
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
@@ -110,8 +122,10 @@ class EditProfileScreen extends React.Component {
           'We have updated your profile!',
           { cancelable: true }
         )
+        this.resetNavigation('Profile')    
       } return responseJSON
     } catch(error) {
+      this.setState({buttonClicked: false})
       console.error(error)
     }
   }
@@ -242,7 +256,8 @@ class EditProfileScreen extends React.Component {
               text = 'Confirm'
               textColor = 'whiteLogOut'
               type = 'purple'
-              onClick = {() => this.funcs()}/>
+              onClick = {() => !this.state.buttonClicked && this.funcs()}
+              loading={this.state.buttonClicked}/>
           </View>
     )
   }
