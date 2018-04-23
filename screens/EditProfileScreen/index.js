@@ -122,7 +122,7 @@ class EditProfileScreen extends React.Component {
           'We have updated your profile!',
           { cancelable: true }
         )
-        this.resetNavigation('Profile')    
+        this.resetNavigation('Profile')
       } return responseJSON
     } catch(error) {
       this.setState({buttonClicked: false})
