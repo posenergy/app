@@ -105,22 +105,30 @@ class EditProfileScreen extends React.Component {
   async changeFields() {
     try {
       const bodyObj = {id: this.props.id}
-        if (this.state.bufferTime !== '') {
-          bodyObj.recoverTime = this.state.bufferTime
-        }
-        if (this.state.startTime !== '') {
-          bodyObj.dayStart = this.state.startTime
-        }
-        if (this.state.endTime !== '') {
-          bodyObj.dayEnd = this.state.endTime
-        }
-        if (parseInt(this.state.endTime) < parseInt(this.state.startTime)) {
-          Alert.alert(
-            'Hmm...',
-            'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
-            { cancelable: true }
-          )
-        }
+      if (this.state.bufferTime !== '') {
+        bodyObj.recoverTime = this.state.bufferTime
+      }
+      if (this.state.startTime !== '') {
+        bodyObj.dayStart = this.state.startTime
+      }
+      if (this.state.endTime !== '') {
+        bodyObj.dayEnd = this.state.endTime
+      }
+      let initstartTime = parseInt(this.props.navigation.state.params.startTime)
+      let initendTime = parseInt(this.props.navigation.state.params.endTime)
+      let changedendTime = parseInt(this.state.endTime)
+      let changedstartTime = parseInt(this.state.startTime)
+      if (changedendTime <= changedstartTime ||
+          initendTime <= changedstartTime ||
+          changedendTime <= initstartTime) {
+        Alert.alert(
+          'Hmm...',
+          'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
+          { cancelable: true }
+        )
+        this.setState({buttonClicked: false})
+        return false
+      }
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
       const response = await fetch(apiUrl, {
