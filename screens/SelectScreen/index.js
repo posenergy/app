@@ -76,12 +76,7 @@ class SelectScreen extends React.Component {
         console.log(response)
         return false
       } else {
-        Alert.alert(
-          'Information Changed',
-          'We have updated your profile!',
-          { cancelable: true }
-        )
-        console.log("Schedule Okay!")
+        console.log("Select Okay!")
         console.log(response)
       } return responseJSON
     } catch(error) {
