@@ -80,9 +80,9 @@ class EditProfileScreen extends React.Component {
         let initendTime = parseInt(this.props.navigation.state.params.endTime)
         let changedendTime = parseInt(this.state.endTime)
         let changedstartTime = parseInt(this.state.startTime)
-        if (changedendTime <= changedstartTime
-            || initendTime <= changedstartTime
-            || changedendTime <= initstartTime
+        if (changedendTime <= changedstartTime ||
+            initendTime <= changedstartTime ||
+            changedendTime <= initstartTime
             ) {
           Alert.alert(
             'Hmm...',
