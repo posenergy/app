@@ -303,18 +303,17 @@ class SearchScreen extends React.Component {
     } else if (this.state.empty && this.state.category === 'movement') {
         return (
           <View style={styles.viewStyle}>
-            <Image source={require('./src/sad.png')}/>
             <View style={styles.empty}>
               <Image source={require('./src/sad.png')} style={styles.sad}/>
               <Text style={styles.emptyText}>
                 Sorry, we don't have any activities that meet your search! {'\n'}
-                We're working on growing our database, but in the meantime, try some different filters.
+                We're working on adding more activities, but in the meantime, try a broader search.
               </Text>
             </View>
             <TouchableOpacity
               style = {styles.activities}
               onPress={() => this.props.mvmtVisibility()}>
-              <Image source={require('./src/button.png')}/>
+              <Image style={{height: 35, width: 333}} source={require('./src/button.png')}/>
             </TouchableOpacity>
             {
               this.props.visibleMvmt &&
@@ -335,7 +334,7 @@ class SearchScreen extends React.Component {
             <TouchableOpacity
               style = {styles.activities}
               onPress={() => this.props.mindVisibility()}>
-              <Image source={require('./src/button.png')}/>
+              <Image style={{height: 35, width: 333}} source={require('./src/button.png')}/>
             </TouchableOpacity>
             {
               this.props.visibleMind &&
