@@ -84,8 +84,10 @@ class ScheduleScreen extends React.Component {
 
   renderTimes() {
     const EVENT_TIME = this.state.time
-    var START_TIME = this.props.user.startTime
-    var END_TIME = this.props.user.endTime
+    var st_time = this.props.user.startTime
+    var end_time = this.props.user.endTime
+    var START_TIME = parseInt(st_time.substring(0, 2)) * 60 + parseInt(st_time.substring(2, 4))
+    var END_TIME = parseInt(end_time.substring(0, 2)) * 60 + parseInt(end_time.substring(2, 4))
 
     const startDate = new Date()
     startDate.setSeconds(0)

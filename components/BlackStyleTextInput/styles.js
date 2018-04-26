@@ -4,11 +4,11 @@ export default StyleSheet.create({
   styleTextInput: {
     borderRadius: 10,
     textAlign: 'left',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     fontSize: 22,
     width: 240,
     color: '#333333',
-    marginTop: 8,
+    marginTop: 16,
     fontFamily: 'Circular Std',
   },
   viewStyle: {
@@ -29,12 +29,18 @@ export default StyleSheet.create({
     color: '#828282',
     fontFamily: 'Circular Std',
     marginTop: 4,
+<<<<<<< HEAD
     marginLeft: 55,
+=======
+    marginLeft: 56,
+    fontSize: 16,
+>>>>>>> master
   },
   mainView: {
     width: '80%',
     height: '5%',
     alignSelf: 'center',
     justifyContent: 'center',
+    marginTop: 18,
   },
 })

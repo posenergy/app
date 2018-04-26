@@ -10,17 +10,14 @@ import Button from '../../components/Button'
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import { persistor } from '../../redux/store'
 import { token } from '../../redux/actions/tokenActions'
-import { profile } from '../../redux/actions/profileActions'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
   user: state.userReducer,
-  prof: state.profileReducer.clicked,
 })
 
 const mapDispatchToProps = {
   token,
-  profile,
 }
 
 class ProfileScreen extends React.Component {

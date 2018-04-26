@@ -23,10 +23,6 @@ import { token } from '../../redux/actions/tokenActions'
 import StyleTextInput from '../../components/StyleTextInput'
 import Button from '../../components/Button'
 
-const mapStateToProps = state => ({
-  token: state.token,
-})
-
 const mapDispatchToProps = {
   token,
   prepopulate,
@@ -77,7 +73,7 @@ class LoginScreen extends ValidationComponent {
         responseJSON = await response.json()
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
-                               responseJSON.email)
+                               responseJSON.email, responseJSON._id)
       } return responseJSON
     } catch(error) {
       console.error(error)
@@ -209,4 +205,4 @@ class LoginScreen extends ValidationComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+export default connect(null, mapDispatchToProps)(LoginScreen)

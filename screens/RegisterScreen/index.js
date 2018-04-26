@@ -56,7 +56,7 @@ class RegisterScreen extends ValidationComponent {
         responseJSON = await response.json()
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
-                               responseJSON.email)
+                               responseJSON.email, responseJSON._id)
       } return responseJSON
     } catch(error) {
       this.setState({ buttonClicked: false })

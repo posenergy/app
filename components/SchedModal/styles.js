@@ -37,7 +37,7 @@ export default StyleSheet.create({
   },
   textview: {
     height: '14%',
-    width: '90%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },

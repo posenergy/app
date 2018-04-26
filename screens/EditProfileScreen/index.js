@@ -1,9 +1,9 @@
 import React from 'react'
 import { Alert, View } from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { prepopulate } from '../../redux/actions/userActions'
-import { profile } from '../../redux/actions/profileActions'
 
 import config from '../../config/config'
 import styles from './styles'
@@ -17,7 +17,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   prepopulate,
-  profile,
 }
 
 class EditProfileScreen extends React.Component {
@@ -30,12 +29,49 @@ class EditProfileScreen extends React.Component {
       initstartTime: this.props.navigation.state.params.startTime.toString(),
       initendTime: this.props.navigation.state.params.endTime.toString(),
       initBuffer: this.props.navigation.state.params.bufferTime.toString(),
+      buttonClicked: false,
     }
   }
 
   funcs() {
+    this.setState({buttonClicked: true})
     this.changeFields()
-    this.fetchUserInfo()
+  }
+
+  resetNavigation(targetRoute) {
+    this.props.navigation.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+      }))
+  }
+
+  async fetchUserInfoSecond() {
+    try {
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/id`
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+      })
+      if (!response.ok) {
+        return false
+      } else {
+        responseJSON = await response.json()
+        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
+                               responseJSON.dayStart, responseJSON.dayEnd,
+                               responseJSON.email, responseJSON._id)
+        this.resetNavigation('Profile')
+      }
+      return responseJSON
+    } catch(error) {
+      console.error(error)
+      this.setState({buttonClicked: false})
+    }
   }
 
   async fetchUserInfo() {
@@ -57,9 +93,11 @@ class EditProfileScreen extends React.Component {
         this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
                                responseJSON.dayStart, responseJSON.dayEnd,
                                responseJSON.email, responseJSON._id)
-      } return responseJSON
+      }
+      return responseJSON
     } catch(error) {
       console.error(error)
+      this.setState({buttonClicked: false})
     }
   }
 
@@ -67,22 +105,30 @@ class EditProfileScreen extends React.Component {
   async changeFields() {
     try {
       const bodyObj = {id: this.props.id}
-        if (this.state.bufferTime !== '') {
-          bodyObj.recoverTime = this.state.bufferTime
-        }
-        if (this.state.startTime !== '') {
-          bodyObj.dayStart = this.state.startTime
-        }
-        if (this.state.endTime !== '') {
-          bodyObj.dayEnd = this.state.endTime
-        }
-        if (parseInt(this.state.endTime) < parseInt(this.state.startTime)) {
-          Alert.alert(
-            'Hmm...',
-            'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
-            { cancelable: true }
-          )
-        }
+      if (this.state.bufferTime !== '') {
+        bodyObj.recoverTime = this.state.bufferTime
+      }
+      if (this.state.startTime !== '') {
+        bodyObj.dayStart = this.state.startTime
+      }
+      if (this.state.endTime !== '') {
+        bodyObj.dayEnd = this.state.endTime
+      }
+      let initstartTime = parseInt(this.props.navigation.state.params.startTime)
+      let initendTime = parseInt(this.props.navigation.state.params.endTime)
+      let changedendTime = parseInt(this.state.endTime)
+      let changedstartTime = parseInt(this.state.startTime)
+      if (changedendTime <= changedstartTime ||
+          initendTime <= changedstartTime ||
+          changedendTime <= initstartTime) {
+        Alert.alert(
+          'Hmm...',
+          'Your bedtime is earlier than your wakeup time - please fix this before proceeding!',
+          { cancelable: true }
+        )
+        this.setState({buttonClicked: false})
+        return false
+      }
       let responseJSON
       const apiUrl = `${config.apiUrl}/users`
       const response = await fetch(apiUrl, {
@@ -97,14 +143,11 @@ class EditProfileScreen extends React.Component {
       if (!response.ok) {
         return false
       } else {
-        Alert.alert(
-          'Information Changed',
-          'We have updated your profile!',
-          { cancelable: true }
-        )
+        this.fetchUserInfoSecond()
       } return responseJSON
     } catch(error) {
       console.error(error)
+      this.setState({buttonClicked: false})
     }
   }
 
@@ -233,8 +276,9 @@ class EditProfileScreen extends React.Component {
             <Button
               text = 'Confirm'
               textColor = 'whiteLogOut'
-              type = 'purple'
-              onClick = {() => this.funcs()}/>
+              type = 'loginPurple'
+              onClick={() => !this.state.buttonClicked && this.funcs()}
+              loading = {this.state.buttonClicked}/>
           </View>
     )
   }
