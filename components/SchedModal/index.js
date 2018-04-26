@@ -65,6 +65,7 @@ export default class SchedModal extends Component {
                 textAlign='center'
                 textAlignVertical='center'
                 allowFontScaling = {true}
+                minimumFontScale = {0.85}
                 numberOfLines={5}
                 ellipsizeMode= 'tail'
                 style={styles.text}>{this.props.text}</Text>

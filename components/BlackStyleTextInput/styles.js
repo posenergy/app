@@ -16,7 +16,6 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     width: '100%',
     borderBottomColor: 'rgba(79, 79, 79, 0.4)',
-    marginTop: 18,
   },
   image: {
     resizeMode: 'contain',
@@ -30,6 +29,7 @@ export default StyleSheet.create({
     color: '#828282',
     fontFamily: 'Circular Std',
     marginTop: 4,
+    marginLeft: 55,
   },
   mainView: {
     width: '80%',
