@@ -52,31 +52,6 @@ class ProfileScreen extends React.Component {
     return minutes + ' minutes'
   }
 
-  async fetchUserInfo() {
-    try {
-      let responseJSON
-      const apiUrl = `${config.apiUrl}/users/id`
-      const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'x-access-token': this.props.token,
-        },
-      })
-      if (!response.ok) {
-        return false
-      } else {
-        responseJSON = await response.json()
-        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
-                               responseJSON.dayStart, responseJSON.dayEnd,
-                               responseJSON.email, responseJSON._id)
-      } return responseJSON
-    } catch(error) {
-      console.error(error)
-    }
-  }
-
   render() {
     return (
       <ScrollView

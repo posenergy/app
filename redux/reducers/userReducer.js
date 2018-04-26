@@ -3,7 +3,7 @@ import { PREPOPULATE, ONBOARDING } from '../actions/userActions'
 const defaultState = {
     isLoggedIn: false,
     name: '',
-    buffer: '',
+    buffer: 0,
     startTime: '',
     endTime: '',
     email: '',

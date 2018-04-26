@@ -30,6 +30,6 @@ export function del_duration() {
 	return { type: DEL_DURATION }
 }
 
-export function del_sweat() {
+export function del_sweat(sweat) {
 	return { type: DEL_SWEAT, sweat }
 }

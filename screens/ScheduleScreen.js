@@ -46,23 +46,22 @@ class ScheduleScreen extends React.Component {
   async changeFields (apiStart) {
     try {
       let bodyObj = {
-        id: this.props.user.id,
         momentId: this.state.id,
-        buffer: this.props.user.buffer.toString(),
+        buffer: this.props.user.buffer,
         time: apiStart,
         duration: this.state.time,
       }
       console.log(bodyObj)
       let responseJSON
-      const apiUrl = `${config.apiUrl}/users`
+      const apiUrl = `${config.apiUrl}/users/moments/`
       const response = await fetch(apiUrl, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'x-access-token': this.props.token,
         },
-      body: JSON.stringify(bodyObj),
+        body: JSON.stringify(bodyObj),
       })
       if (!response.ok) {
         console.log("Schedule not okay")
