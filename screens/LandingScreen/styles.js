@@ -10,11 +10,18 @@ export default StyleSheet.create({
     viewStyle: {
       backgroundColor: '#203359',
       flex: 1,
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
     },
     view: {
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
       marginBottom: '20%',
+    },
+    logoImage: {
+      height: 130,
+      width: 130,
+      marginTop: '27%',
+      marginBottom: '5%',
+      alignSelf: 'center',
     },
     blurb: {
       height: 134,

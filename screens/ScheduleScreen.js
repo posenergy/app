@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 import RNCalendarEvents from 'react-native-calendar-events'
 import { connect } from 'react-redux'
 
@@ -84,6 +84,13 @@ class ScheduleScreen extends React.Component {
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
       notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]',
     })
+    Alert.alert(
+      'Activity scheduled!',
+      '\"' + this.state.title + '\" has been added to your calendar',
+     [
+       {text: 'OK'},
+     ],
+     { cancelable: false })
     this.props.navigation.navigate('Calendar')
   }
 
@@ -113,8 +120,10 @@ class ScheduleScreen extends React.Component {
 
   renderTimes() {
     const EVENT_TIME = this.state.time
-    var START_TIME = this.props.user.startTime
-    var END_TIME = this.props.user.endTime
+    var st_time = this.props.user.startTime
+    var end_time = this.props.user.endTime
+    var START_TIME = parseInt(st_time.substring(0, 2)) * 60 + parseInt(st_time.substring(2, 4))
+    var END_TIME = parseInt(end_time.substring(0, 2)) * 60 + parseInt(end_time.substring(2, 4))
 
     const startDate = new Date()
     startDate.setSeconds(0)

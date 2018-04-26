@@ -1,7 +1,7 @@
 export const PREPOPULATE = 'PREPOPULATE'
 export const ONBOARDING = 'ONBOARDING'
 
-export const prepopulate = (name, buffer, start, end, email) => {
+export const prepopulate = (name, buffer, start, end, email, id) => {
   return {
     type: 'PREPOPULATE',
     name: name,
@@ -9,6 +9,7 @@ export const prepopulate = (name, buffer, start, end, email) => {
     startTime: start,
     endTime: end,
     email: email,
+    id: id,
   }
 }
 

@@ -52,7 +52,6 @@ class ChooseScreen extends React.Component {
         title: 'Welcome!',
         text: 'Click "Activities" to browse on demand content and then add it to your calendar. Start by choosing "Mindfulness" or "Movement."',
         bname: 'Next',
-        bold: 'Ready to get planning?',
         image: <Image
                 source= {require('../../images/slide2.png')}
                 style={styles.modalIndex} />,
@@ -62,6 +61,7 @@ class ChooseScreen extends React.Component {
       content = {
         title: 'Welcome!',
         text: 'Click "Calendar" to find availability and then browse activities. Click on open time slots to start scheduling!',
+        bold: 'Ready to get planning?',
         bname: 'Let`s go!',
         image: <Image
                 source= {require('../../images/slide3.png')}

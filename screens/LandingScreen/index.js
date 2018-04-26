@@ -17,10 +17,6 @@ export default class LandingScreen extends React.Component {
         <View style={styles.view}>
         <Image
           style={styles.logoImage}
-          height={130}
-          width={130}
-          marginBottom= '5%'
-          alignSelf= 'center'
           source={require('../../images/logo_image.png')}/>
         <Text style={styles.blurb}>
         Discover and schedule wellness activities

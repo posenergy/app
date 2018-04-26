@@ -160,6 +160,7 @@ class CalendarScreen extends Component {
           style={{flex: 1, position: 'absolute', bottom: 0, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
           onPress={this.addEvent.bind(this)}>
           <Image source={require('../../images/plus.png')}
+            style={{height: 50, width: 50}}
             alignSelf = 'flex-end'
             marginTop = '40%'/>
         </TouchableOpacity>
@@ -289,8 +290,10 @@ class CalendarScreen extends Component {
           }
         })
 
-        var START_TIME = this.props.user.startTime
-        var END_TIME = this.props.user.endTime
+        var st_time = this.props.user.startTime
+        var end_time = this.props.user.endTime
+        var START_TIME = parseInt(st_time.substring(0, 2)) * 60 + parseInt(st_time.substring(2, 4))
+        var END_TIME = parseInt(end_time.substring(0, 2)) * 60 + parseInt(end_time.substring(2, 4))
         const yesterday = moment().subtract(1, 'day')
         for (const time in this.state.items) {
           if (this.state.items[time].length === 0) {

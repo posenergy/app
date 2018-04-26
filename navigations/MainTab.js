@@ -5,7 +5,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import AboutModal from '../components/AboutModal'
 import ActivitiesStack from './ActivitiesStack'
 import CalendarStack from './CalendarStack'
-import ProfileScreen from '../screens/ProfileScreen'
+import ProfileStack from './ProfileStack'
+
 import React from 'react'
 import { TabNavigator } from 'react-navigation' // 1.0.0-beta.14
 import { View } from 'react-native'
@@ -17,7 +18,7 @@ class InfoButton extends React.Component {
     return <TouchableOpacity activeOpacity={0.5} padding={200} onPress={() => {
       this.props.open()
     }}>
-      <Image source={require('../images/info.png')} marginRight={10} marginBottom={5}/>
+      <Image source={require('../images/info.png')} style={{height: 30, width: 30}} marginRight={10} marginBottom={5}/>
     </TouchableOpacity>
   }
 }
@@ -45,7 +46,7 @@ const MainTabNavigator = TabNavigator({
     }),
   },
   Profile: {
-    screen: ProfileScreen,
+    screen: ProfileStack,
     navigationOptions: ({ navigation }) => ({
       title: 'Profile',
       tabBarIcon: ({ tintColor }) => (
