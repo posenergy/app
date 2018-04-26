@@ -105,7 +105,7 @@ class ChooseScreen extends React.Component {
           <Image style={styles.mvmt} source={require('../src/mvmt.png')}/>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}
+        <TouchableOpacity
           onPress={(event) => {
           this.reduxProps()
           const { navigate } = this.props.navigation
