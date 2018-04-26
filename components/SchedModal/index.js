@@ -62,10 +62,10 @@ export default class SchedModal extends Component {
         <Text style={styles.italics}>{this.props.brand}</Text>
         <View style={styles.textview} >
           <Text adjustsFontSizeToFit = {true}
+                minimumFontScale = {0.9}
                 textAlign='center'
                 textAlignVertical='center'
-                allowFontScaling = {true}
-                numberOfLines={5}
+                numberOfLines={6}
                 ellipsizeMode= 'tail'
                 style={styles.text}>{this.props.text}</Text>
         </View>
