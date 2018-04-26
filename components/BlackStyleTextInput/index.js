@@ -4,11 +4,7 @@ import styles from './styles'
 import PropTypes from 'prop-types'
 
 const BlackStyleTextInput = ({pholder, sub, onPress, linked, imagelink }) => (
-<<<<<<< HEAD
-  <View marginTop= '3%' marginBottom={10} width='80%' height='13%' alignSelf='center' justifyContent='flex-end' >
-=======
-  <View marginTop= '4%' marginBottom={10} width={310} height='13%' alignSelf='center' justifyContent='center' >
->>>>>>> master
+  <View marginTop= '3%' marginBottom={10} width={310} height='13%' alignSelf='center' justifyContent='center' >
     <Text style={styles.sub}>
       {sub}
     </Text>

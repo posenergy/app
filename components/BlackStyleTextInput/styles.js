@@ -29,12 +29,8 @@ export default StyleSheet.create({
     color: '#828282',
     fontFamily: 'Circular Std',
     marginTop: 4,
-<<<<<<< HEAD
-    marginLeft: 55,
-=======
     marginLeft: 56,
     fontSize: 16,
->>>>>>> master
   },
   mainView: {
     width: '80%',
