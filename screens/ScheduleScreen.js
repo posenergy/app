@@ -7,7 +7,6 @@ import config from '../config/config'
 import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
-import { token } from './../redux/actions/tokenActions'
 import { pickerDateNull } from './../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
@@ -42,15 +41,14 @@ class ScheduleScreen extends React.Component {
 
   setValue = (value) => {this.setState({value: value})}
 
-  async changeFields (apiStart) {
+  async changeFields(apiStart) {
     try {
-      let bodyObj = {
+      const bodyObj = {
         momentId: this.state.id,
         buffer: this.props.user.buffer,
         time: apiStart.toISOString(),
         duration: this.state.time,
       }
-      console.log(bodyObj)
       let responseJSON
       const apiUrl = `${config.apiUrl}/users/moments`
       const response = await fetch(apiUrl, {
@@ -63,12 +61,8 @@ class ScheduleScreen extends React.Component {
         body: JSON.stringify(bodyObj),
       })
       if (!response.ok) {
-        console.log("Schedule not okay")
-        console.log(response)
         return false
       } else {
-        console.log("Schedule okay!")
-        console.log(response)
       } return responseJSON
     } catch(error) {
       console.error(error)
