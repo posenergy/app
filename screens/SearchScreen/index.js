@@ -282,7 +282,6 @@ class SearchScreen extends React.Component {
         return (
           <View style={styles.viewStyle}>
             <View style={styles.empty}>
-              <Image source={require('./src/sad.png')} style={styles.sad}/>
               <Text style={styles.emptyText}>
                 Sorry, we don't have any activities that meet your search! {'\n'}
                 We're working on adding more activities, but in the meantime, try a broader search.
@@ -303,10 +302,9 @@ class SearchScreen extends React.Component {
         return (
           <View style={styles.viewStyle}>
             <View style={styles.empty}>
-              <Image source={require('./src/sad.png')} style={styles.sad}/>
               <Text style={styles.emptyText}>
                 Sorry, we don't have any activities that meet your search! {'\n'}
-                We're working on growing our database, but in the meantime, try some different filters.
+                We're working on adding more activities, but in the meantime, try a broader search.
               </Text>
             </View>
             <TouchableOpacity
