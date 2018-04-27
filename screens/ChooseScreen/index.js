@@ -1,6 +1,8 @@
 import React from 'react'
-import { Image, TouchableOpacity, View } from 'react-native'
+import { Image, TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import { Platform } from 'react-native'
+import { Dimensions } from 'react-native';
 
 import { mindVisibility } from '../../redux/actions/mindModalActions'
 import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
@@ -102,7 +104,8 @@ class ChooseScreen extends React.Component {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'movement'})
           }}>
-          <Image style={styles.mvmt} source={require('../src/mvmt.png')}/>
+          { Platform.isPad && <Image style={styles.mvmtPad} source={require('../src/mvmt.png')}/> }
+          { !Platform.isPad && <Image style={styles.mvmt} source={require('../src/mvmt.png')}/> }
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button}
@@ -111,7 +114,8 @@ class ChooseScreen extends React.Component {
           const { navigate } = this.props.navigation
           navigate('Search', {category: 'mindfulness'})
           }}>
-          <Image style={styles.mind} source={require('../src/mind.png')}/>
+          { Platform.isPad && <Image style={styles.mindPad} source={require('../src/mind.png')}/> }
+          { !Platform.isPad && <Image style={styles.mind} source={require('../src/mind.png')}/> }
         </TouchableOpacity>
         {this.state.genModalVisible &&
           <GenModal
