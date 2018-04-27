@@ -17,7 +17,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   pickerDateNull,
-  token,
 }
 
 class ScheduleScreen extends React.Component {
