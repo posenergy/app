@@ -117,6 +117,7 @@ class MomentScreen extends React.Component {
                   brand: this.state.brand,
                   vid: this.state.vid,
                   icon: this.state.icon,
+                  id: this.state.id,
                   eventStart: this.props.picker.pickerDate,
                 })
                 } else if (this.props.picker.pickerDate === null) {

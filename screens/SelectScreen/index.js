@@ -6,10 +6,16 @@ import RNCalendarEvents from 'react-native-calendar-events'
 
 import { pickerDate, pickerDateNull } from '../../redux/actions/pickerActions'
 
+import config from '../../config/config'
 import moment from 'moment'
 import CalendarConfirm from '../../components/CalendarConfirm'
 import Button from '../../components/Button'
 import styles from './styles'
+
+const mapStateToProps = (state) => ({
+  token: state.tokenReducer.token,
+  user: state.userReducer,
+})
 
 const mapDispatchToProps = {
   pickerDate,
@@ -32,6 +38,7 @@ class SelectScreen extends React.Component {
       day: null,
       timeRange: null,
       icon: this.props.navigation.state.params.icon,
+      id: this.props.navigation.state.params.id,
       textwourl: null,
     }
   }
@@ -44,11 +51,40 @@ class SelectScreen extends React.Component {
     this.props.navigation.dispatch(navigateAction)
   }
 
+  async changeFields(apiStart) {
+    try {
+      let bodyObj = {
+        momentId: this.state.id,
+        buffer: this.props.user.buffer,
+        time: apiStart.toISOString(),
+        duration: this.state.time,
+      }
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/moments`
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+        body: JSON.stringify(bodyObj),
+      })
+      if (!response.ok) {
+        return false
+      } else {
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
   saveEvent = () => {
     this.props.pickerDateNull()
     const eventstart = new Date(this.state.eventStart)
     const enddate = (new Date(moment(eventstart).add(this.state.time, 'm'))).toISOString()
     const desc = (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
+    this.changeFields(eventstart)
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(),
       endDate: enddate,
@@ -108,4 +144,4 @@ class SelectScreen extends React.Component {
 
 }
 
-export default connect (null, mapDispatchToProps)(SelectScreen)
+export default connect (mapStateToProps, mapDispatchToProps)(SelectScreen)

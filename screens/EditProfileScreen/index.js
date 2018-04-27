@@ -247,7 +247,7 @@ class EditProfileScreen extends React.Component {
                 itemTextStyle={{fontFamily: 'Circular Std', color: 'black'}}
                 label= 'Buffer Time'
                 data={bufferdata}
-                onChangeText = {(value) => this.setState({bufferTime: parseInt(value) })}
+                onChangeText = {(value) => this.setState({bufferTime: parseInt(value, 10) })}
               />
             <Dropdown
                 containerStyle={{width: 300, height: 100 }}

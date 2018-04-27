@@ -3,10 +3,10 @@ import { View, Alert } from 'react-native'
 import RNCalendarEvents from 'react-native-calendar-events'
 import { connect } from 'react-redux'
 
+import config from '../config/config'
 import SelectTime from '../components/SelectTime'
 import RadioButtonList from './../components/RadioButtonList'
 import Button from './../components/Button'
-import { token } from './../redux/actions/tokenActions'
 import { pickerDateNull } from './../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
@@ -16,7 +16,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   pickerDateNull,
-  token,
 }
 
 class ScheduleScreen extends React.Component {
@@ -42,7 +41,36 @@ class ScheduleScreen extends React.Component {
 
   setValue = (value) => {this.setState({value: value})}
 
+  async changeFields(apiStart) {
+    try {
+      const bodyObj = {
+        momentId: this.state.id,
+        buffer: this.props.user.buffer,
+        time: apiStart.toISOString(),
+        duration: this.state.time,
+      }
+      let responseJSON
+      const apiUrl = `${config.apiUrl}/users/moments`
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': this.props.token,
+        },
+        body: JSON.stringify(bodyObj),
+      })
+      if (!response.ok) {
+        return false
+      } else {
+      } return responseJSON
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
   saveEvent = (eventstart) => {
+    this.changeFields(eventstart)
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time

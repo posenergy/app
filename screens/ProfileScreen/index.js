@@ -4,21 +4,14 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 
 import styles from './styles'
-import config from '../../config/config'
 import Button from '../../components/Button'
 
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import { persistor } from '../../redux/store'
-import { token } from '../../redux/actions/tokenActions'
 
 const mapStateToProps = state => ({
-  token: state.tokenReducer.token,
   user: state.userReducer,
 })
-
-const mapDispatchToProps = {
-  token,
-}
 
 class ProfileScreen extends React.Component {
   constructor(props) {
@@ -28,7 +21,6 @@ class ProfileScreen extends React.Component {
       bufferTime: this.props.user.buffer.toString(),
       startTime: this.props.user.startTime.toString(),
       endTime: this.props.user.endTime.toString(),
-      token: this.props.token,
     }
   }
 
@@ -50,31 +42,6 @@ class ProfileScreen extends React.Component {
 
   getMins(minutes) {
     return minutes + ' minutes'
-  }
-
-  async fetchUserInfo() {
-    try {
-      let responseJSON
-      const apiUrl = `${config.apiUrl}/users/id`
-      const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'x-access-token': this.props.token,
-        },
-      })
-      if (!response.ok) {
-        return false
-      } else {
-        responseJSON = await response.json()
-        this.props.prepopulate(responseJSON.name, responseJSON.recoverTime,
-                               responseJSON.dayStart, responseJSON.dayEnd,
-                               responseJSON.email, responseJSON._id)
-      } return responseJSON
-    } catch(error) {
-      console.error(error)
-    }
   }
 
   render() {
@@ -145,4 +112,4 @@ class ProfileScreen extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
+export default connect(mapStateToProps, null)(ProfileScreen)
