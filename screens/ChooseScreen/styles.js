@@ -1,5 +1,13 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { ifIphoneX } from 'react-native-iphone-x-helper'
+
+const { width, height } = Dimensions.get('window')
+
+const guidelineBaseWidth = 350
+const guidelineBaseHeight = 680
+
+const scale = size => width / guidelineBaseWidth * size
+const verticalScale = size => height / guidelineBaseHeight * size
+const moderateScale = (size, factor = 0.5) => size + ( scale(size) - size ) * factor
 
 export default StyleSheet.create({
   viewStyle: {
@@ -20,17 +28,21 @@ export default StyleSheet.create({
     borderBottomWidth: 5,
   },
   mvmt: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height * 0.42,
-    ...ifIphoneX({
-      height: Dimensions.get('window').height * 0.43,
-    }),
+    width: width,
+    height: height * 0.42,
   },
   mind: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height * 0.42,
-    ...ifIphoneX({
-      height: Dimensions.get('window').height * 0.43,
-    }),
+    width: width,
+    height: height * 0.42,
+  },
+  mvmtPad: {
+    resizeMode: 'cover',
+    // alignSelf: 'stretch',
+    width: moderateScale(500),
+    height: verticalScale(680) * 0.445,
+  },
+  mindPad: {
+    width: moderateScale(500),
+    height: verticalScale(680) * 0.445,
   },
 })
