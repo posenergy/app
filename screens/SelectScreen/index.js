@@ -56,11 +56,11 @@ class SelectScreen extends React.Component {
       let bodyObj = {
         momentId: this.state.id,
         buffer: this.props.user.buffer,
-        time: apiStart.toString(),
+        time: apiStart.toISOString(),
         duration: this.state.time,
       }
       let responseJSON
-      const apiUrl = `${config.apiUrl}/users/moments/`
+      const apiUrl = `${config.apiUrl}/users/moments`
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
