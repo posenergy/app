@@ -1,8 +1,6 @@
 import React from 'react'
-import { Image, TouchableOpacity, View, Text } from 'react-native'
+import { Image, TouchableOpacity, Platform, View } from 'react-native'
 import { connect } from 'react-redux'
-import { Platform } from 'react-native'
-import { Dimensions } from 'react-native';
 
 import { mindVisibility } from '../../redux/actions/mindModalActions'
 import { mvmtVisibility } from '../../redux/actions/mvmtModalActions'
