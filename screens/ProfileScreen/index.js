@@ -4,21 +4,14 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 
 import styles from './styles'
-import config from '../../config/config'
 import Button from '../../components/Button'
 
 import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import { persistor } from '../../redux/store'
-import { token } from '../../redux/actions/tokenActions'
 
 const mapStateToProps = state => ({
-  token: state.tokenReducer.token,
   user: state.userReducer,
 })
-
-const mapDispatchToProps = {
-  token,
-}
 
 class ProfileScreen extends React.Component {
   constructor(props) {
@@ -28,7 +21,6 @@ class ProfileScreen extends React.Component {
       bufferTime: this.props.user.buffer.toString(),
       startTime: this.props.user.startTime.toString(),
       endTime: this.props.user.endTime.toString(),
-      token: this.props.token,
     }
   }
 
@@ -120,4 +112,4 @@ class ProfileScreen extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
+export default connect(mapStateToProps, null)(ProfileScreen)

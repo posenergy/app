@@ -51,7 +51,7 @@ class SelectScreen extends React.Component {
     this.props.navigation.dispatch(navigateAction)
   }
 
-  async changeFields (apiStart) {
+  async changeFields(apiStart) {
     try {
       let bodyObj = {
         momentId: this.state.id,
@@ -71,12 +71,8 @@ class SelectScreen extends React.Component {
         body: JSON.stringify(bodyObj),
       })
       if (!response.ok) {
-        console.log("Select Not okay")
-        console.log(response)
         return false
       } else {
-        console.log("Select Okay!")
-        console.log(response)
       } return responseJSON
     } catch(error) {
       console.error(error)
