@@ -8,7 +8,7 @@ export default StyleSheet.create({
     fontSize: 22,
     width: 240,
     color: '#333333',
-    marginTop: 16,
+    marginBottom: 10,
     fontFamily: 'Circular Std',
   },
   viewStyle: {
@@ -28,8 +28,6 @@ export default StyleSheet.create({
   sub: {
     color: '#828282',
     fontFamily: 'Circular Std',
-    marginTop: 4,
-    marginLeft: 56,
     fontSize: 16,
   },
   mainView: {

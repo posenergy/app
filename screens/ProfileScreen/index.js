@@ -83,7 +83,7 @@ class ProfileScreen extends React.Component {
         contentContainerStyle={styles.view}
         alignItems='center'
         showsVerticalScrollIndicator = {false}>
-        <View marginTop= '7%'>
+        <View marginTop= '10%'>
           <BlackStyleTextInput
             pholder={this.props.user.name}
             linked={false}

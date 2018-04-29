@@ -36,7 +36,7 @@ export default StyleSheet.create({
     fontFamily: 'Circular Std',
   },
   textview: {
-    height: '14%',
+    height: 85,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,12 +62,12 @@ export default StyleSheet.create({
   var: {
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: '2%',
+    marginTop: 20,
   },
   var2: {
+    marginTop: '3%',
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: '7.5%',
     marginBottom: '7.5%',
   },
   contentWrap: {
