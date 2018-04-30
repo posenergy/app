@@ -177,28 +177,6 @@ class SearchScreen extends React.Component {
   }
 
   componentDidMount() {
-    let tagUrl = ''
-    if (this.props.durat === null && this.props.sweat === null) {
-        this.props.tags.forEach(function(i) {
-          tagUrl += i + '&tag[]='
-        })
-        return fetch(config.apiUrl + '/moments/search/filters/?cat=' + this.state.category +
-          '&sweat[]=' + '&duration=' + '&tag[]=' + tagUrl, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'x-access-token': this.props.token,
-          },
-        })
-        .then((res) => res.json())
-        .then(res => {
-          this.sort(res)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
     return fetch(config.apiUrl + '/moments/search/cat/?cat=' + this.state.category, {
       method: 'GET',
       headers: {
