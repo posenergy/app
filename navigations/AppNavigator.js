@@ -6,6 +6,10 @@ import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
+import ChooseScreen from '../screens/ChooseScreen'
+import SearchScreen from '../screens/SearchScreen'
+import MomentScreen from '../screens/MomentScreen'
+import ScheduleScreen from '../screens/ScheduleScreen'
 
 import MainTabWrapper from './MainTab'
 
@@ -39,6 +43,18 @@ const AppNavigator = StackNavigator({
   MainTab: {
     screen: MainTabWrapper,
   },
+  Choose: {
+    screen: ChooseScreen,
+  }, 
+  Search: {
+    screen: SearchScreen,
+  },
+  Moment: {
+    screen: MomentScreen,
+  },
+  Schedule: {
+    screen: ScheduleScreen,
+  }
 }, {
   headerMode: 'screen',
   transitionConfig: () => ({
