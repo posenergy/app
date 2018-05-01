@@ -4,11 +4,11 @@ export default StyleSheet.create({
   styleTextInput: {
     borderRadius: 10,
     textAlign: 'left',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     fontSize: 22,
     width: 240,
     color: '#333333',
-    marginTop: 8,
+    marginBottom: 10,
     fontFamily: 'Circular Std',
   },
   viewStyle: {
@@ -16,7 +16,6 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     width: '100%',
     borderBottomColor: 'rgba(79, 79, 79, 0.4)',
-    marginTop: 18,
   },
   image: {
     resizeMode: 'contain',
@@ -29,12 +28,13 @@ export default StyleSheet.create({
   sub: {
     color: '#828282',
     fontFamily: 'Circular Std',
-    marginTop: 4,
+    fontSize: 16,
   },
   mainView: {
     width: '80%',
     height: '5%',
     alignSelf: 'center',
     justifyContent: 'center',
+    marginTop: 18,
   },
 })

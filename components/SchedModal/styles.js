@@ -36,9 +36,8 @@ export default StyleSheet.create({
     fontFamily: 'Circular Std',
   },
   textview: {
-    marginBottom: '2%',
-    height: '14%',
-    width: '90%',
+    height: 80,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -59,17 +58,17 @@ export default StyleSheet.create({
     lineHeight: 22,
     color: '#4F4F4F',
     fontFamily: 'Circular Std',
-    marginBottom: 2,
   },
   var: {
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: '5%',
+    marginTop: 10,
+    marginBottom: 5,
   },
   var2: {
+    marginTop: '3%',
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: '7.5%',
     marginBottom: '7.5%',
   },
   contentWrap: {
