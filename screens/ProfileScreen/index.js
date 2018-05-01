@@ -45,8 +45,8 @@ class ProfileScreen extends React.Component {
     return minutes + ' minutes'
   }
 
-  componentWillMount(){
-    if(this.props.token === '' || typeof this.props.token !== String){
+  componentWillMount() {
+    if(this.props.token === '' || typeof this.props.token !== 'string') {
       this.props.navigation.dispatch(
         NavigationActions.reset({
           index: 0,
