@@ -45,7 +45,7 @@ const AppNavigator = StackNavigator({
   },
   Choose: {
     screen: ChooseScreen,
-  }, 
+  },
   Search: {
     screen: SearchScreen,
   },
@@ -54,7 +54,7 @@ const AppNavigator = StackNavigator({
   },
   Schedule: {
     screen: ScheduleScreen,
-  }
+  },
 }, {
   headerMode: 'screen',
   transitionConfig: () => ({

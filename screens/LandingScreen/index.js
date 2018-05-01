@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, Image, ImageBackground } from 'react-native'
-import { persistor } from '../../redux/store'
 import styles from './styles'
 
 import Button from '../../components/Button'
@@ -8,11 +7,6 @@ import Button from '../../components/Button'
 export default class LandingScreen extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  browse(){
-    persistor.purge()
-    this.props.navigation.navigate('Choose')
   }
 
   render() {
@@ -33,7 +27,7 @@ export default class LandingScreen extends React.Component {
           <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Login')}
             text="Log In" textColor="grey"
           />
-          <Button style = {styles.button} type="login" onClick={() => this.browse()}
+          <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Choose')}
           text="Browse Activities" textColor="grey"
           />
         </View>
