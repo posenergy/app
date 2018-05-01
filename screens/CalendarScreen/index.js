@@ -121,18 +121,7 @@ class CalendarScreen extends Component {
     return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + time + ' ' + suffix
    }
 
-  componentWillMount(){
-    if(this.props.token === ''){
-      const { navigate } = this.props.navigation
-      navigate('Register')
-    }
-  }
-
   componentDidMount() {
-    if(this.props.token === ''){
-      const { navigate } = this.props.navigation
-      navigate('Register')
-    }
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
         // console.log('@@@@@@@@@@', status)
