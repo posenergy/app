@@ -132,7 +132,7 @@ class CalendarScreen extends Component {
   }
 
   render() {
-    if(this.props.token === '' || typeof this.props.token !== String) {
+    if(this.props.token === '' || typeof this.props.token !== 'string') {
       this.props.navigation.dispatch(
         NavigationActions.reset({
           index: 0,
