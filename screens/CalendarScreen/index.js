@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { Agenda } from 'react-native-calendars'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import RNCalendarEvents from 'react-native-calendar-events'
 
 import styles from './styles'
@@ -120,7 +121,18 @@ class CalendarScreen extends Component {
     return monthNames[stripzeroes - 1] + ' ' + date.getDate() + ' ' + date.getFullYear() + '       ' + hours + ':' + time + ' ' + suffix
    }
 
+  componentWillMount(){
+    if(this.props.token === ''){
+      const { navigate } = this.props.navigation
+      navigate('Register')
+    }
+  }
+
   componentDidMount() {
+    if(this.props.token === ''){
+      const { navigate } = this.props.navigation
+      navigate('Register')
+    }
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
         // console.log('@@@@@@@@@@', status)
@@ -131,7 +143,15 @@ class CalendarScreen extends Component {
   }
 
   render() {
-    return (
+    if(this.props.token === '' || typeof this.props.token !== String){
+      this.props.navigation.dispatch(
+        NavigationActions.reset({
+          index: 0,
+          key: null,
+          actions: [ NavigationActions.navigate({ routeName: 'Landing' }) ],
+        }))
+    return (<View> <Text> not logged in! </Text></View>) 
+    } else { return(
       <View style={{flex: 1}}>
         <Agenda
           items={this.state.items}
@@ -185,7 +205,7 @@ class CalendarScreen extends Component {
             setPickerDate={this.setPickerDate.bind(null)}
           />}
       </View>
-    )
+    )}
   }
   _isOpen(day, minute) {
     return this.state.items[day].reduce((acc, { start, end, timeRange }) => {

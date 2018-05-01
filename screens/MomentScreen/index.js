@@ -4,7 +4,6 @@ import { View, Text, Image, Switch } from 'react-native'
 import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import styles from './styles'
-import { token } from '../../redux/actions/tokenActions'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({
@@ -12,10 +11,6 @@ const mapStateToProps = state => ({
   user: state.userReducer,
   picker: state.pickerReducer,
 })
-
-const mapDispatchToProps = {
-  token,
-}
 
 class MomentScreen extends React.Component {
 
@@ -104,8 +99,16 @@ class MomentScreen extends React.Component {
                 </Text>
               </View>
             }
-
-            button = {<Button type='schedule'
+            button = {this.props.token === '' || typeof this.props.token !== String ?
+            <Button type='schedule'
+              justifyContent= 'flex-end'
+              onClick={() => {
+                const { navigate } = this.props.navigation
+                navigate('Register')
+                }
+              } text='Sign Up' textColor='white'/>
+            :
+            <Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation
@@ -142,4 +145,4 @@ class MomentScreen extends React.Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MomentScreen)
+export default connect(mapStateToProps, null)(MomentScreen)
