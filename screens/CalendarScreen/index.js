@@ -19,7 +19,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  token,
   pickerDate,
 }
 
@@ -122,6 +121,7 @@ class CalendarScreen extends Component {
    }
 
   componentDidMount() {
+    this.props.pickerDate(null)
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
         // console.log('@@@@@@@@@@', status)
@@ -138,7 +138,8 @@ class CalendarScreen extends Component {
           index: 0,
           key: null,
           actions: [ NavigationActions.navigate({ routeName: 'Landing' }) ],
-        }))
+        })
+      )
     return (<View> <Text> not logged in! </Text></View>)
     } else {
       return(
