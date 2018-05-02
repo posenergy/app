@@ -1,5 +1,5 @@
 import React from 'react'
-import {ScrollView} from 'react-native'
+import {ScrollView, View} from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 
@@ -61,64 +61,66 @@ class ProfileScreen extends React.Component {
       <ScrollView
         contentContainerStyle={styles.view}
         alignItems='center'
-        showsVerticalScrollIndicator = {false} >
-      <BlackStyleTextInput
-        pholder={this.props.user.name}
-        linked={false}
-        sub={'NAME'}
-        imagelink = {require('../../images/profileblack.png')}
-        borderBottomColor= 'black'/>
-      <BlackStyleTextInput
-        pholder={this.props.user.email}
-        sub={'EMAIL'}
-        linked={false}
-        imagelink = {require('../../images/mailblack.png')}/>
-      <BlackStyleTextInput
-        pholder={this.getMins(this.props.user.buffer.toString())}
-        sub={'RECOVERY TIME'}
-        linked={true}
-        onPress={(event) => {
-                    const {navigate} = this.props.navigation
-                    navigate('EditProfile', {
-                      bufferTime: this.getMins(this.state.bufferTime),
-                      startTime: this.state.startTime,
-                      endTime: this.state.endTime,
-                    })
-                  }}
-        imagelink = {require('../../images/buffertime.png')}/>
-      <BlackStyleTextInput
-        pholder={this.getHour(this.props.user.startTime.toString())}
-        sub={'START TIME'}
-        linked={true}
-        onPress={(event) => {
-                    const {navigate} = this.props.navigation
-                    navigate('EditProfile', {
-                      bufferTime: this.getMins(this.state.bufferTime),
-                      startTime: this.state.startTime,
-                      endTime: this.state.endTime,
-                    })
-                  }}
-        imagelink = {require('../../images/sun.png')}/>
-      <BlackStyleTextInput
-        pholder={this.getHour(this.props.user.endTime.toString())}
-        sub={'END TIME'}
-        linked={true}
-        onPress={(event) => {
-                    const {navigate} = this.props.navigation
-                    navigate('EditProfile', {
-                      bufferTime: this.getMins(this.state.bufferTime),
-                      startTime: this.state.startTime,
-                      endTime: this.state.endTime,
-                    })
-                  }}
-        imagelink = {require('../../images/night.png')}
-        marginBottom={0} />
-      <Button
-        text = 'Log Out'
-        textColor = 'whiteLogOut'
-        type = 'purple'
-        onClick = {() => {this.logout()}}>
-      </Button>
+        showsVerticalScrollIndicator = {false}>
+        <View marginTop= '10%'>
+          <BlackStyleTextInput
+            pholder={this.props.user.name}
+            linked={false}
+            sub={'NAME'}
+            imagelink = {require('../../images/profileblack.png')}
+            borderBottomColor= 'black'/>
+          <BlackStyleTextInput
+            pholder={this.props.user.email}
+            sub={'EMAIL'}
+            linked={false}
+            imagelink = {require('../../images/mailblack.png')}/>
+          <BlackStyleTextInput
+            pholder={this.getMins(this.props.user.buffer.toString())}
+            sub={'RECOVERY TIME'}
+            linked={true}
+            onPress={(event) => {
+                        const {navigate} = this.props.navigation
+                        navigate('EditProfile', {
+                          bufferTime: this.getMins(this.state.bufferTime),
+                          startTime: this.state.startTime,
+                          endTime: this.state.endTime,
+                        })
+                      }}
+            imagelink = {require('../../images/buffertime.png')}/>
+          <BlackStyleTextInput
+            pholder={this.getHour(this.props.user.startTime.toString())}
+            sub={'START TIME'}
+            linked={true}
+            onPress={(event) => {
+                        const {navigate} = this.props.navigation
+                        navigate('EditProfile', {
+                          bufferTime: this.getMins(this.state.bufferTime),
+                          startTime: this.state.startTime,
+                          endTime: this.state.endTime,
+                        })
+                      }}
+            imagelink = {require('../../images/sun.png')}/>
+          <BlackStyleTextInput
+            pholder={this.getHour(this.props.user.endTime.toString())}
+            sub={'END TIME'}
+            linked={true}
+            onPress={(event) => {
+                        const {navigate} = this.props.navigation
+                        navigate('EditProfile', {
+                          bufferTime: this.getMins(this.state.bufferTime),
+                          startTime: this.state.startTime,
+                          endTime: this.state.endTime,
+                        })
+                      }}
+            imagelink = {require('../../images/night.png')}
+            marginBottom={0} />
+          <Button
+            text = 'Log Out'
+            textColor = 'whiteLogOut'
+            type = 'purple'
+            onClick = {() => {this.logout()}}>
+          </Button>
+        </View>
       </ScrollView>
     )
   }

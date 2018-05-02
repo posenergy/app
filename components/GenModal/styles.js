@@ -27,7 +27,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.5,
     shadowOffset: {width: 1, height: 3},
 	},
-	image: {
+    image: {
     height: 74,
     width: 74,
     marginTop: 19,
