@@ -8,8 +8,6 @@ import RNCalendarEvents from 'react-native-calendar-events'
 import styles from './styles'
 import moment from 'moment'
 import PickerModal from '../../components/PickerModal'
-
-import { token } from '../../redux/actions/tokenActions'
 import { pickerDate } from '../../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
