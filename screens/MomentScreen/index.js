@@ -5,7 +5,6 @@ import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import styles from './styles'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
@@ -80,7 +79,6 @@ class MomentScreen extends React.Component {
   }
 
   render() {
-    console.log("tokennn", this.props.token)
     return(
       <View style={styles.view}>
         <SchedModal
@@ -108,8 +106,8 @@ class MomentScreen extends React.Component {
               onClick={() => {
                 this.props.navigation.navigate('Landing')
                 }
-              } text='Sign Up' textColor='white'/> 
-              : <Button type='schedule'
+              } text='Sign Up' textColor='white'/> : 
+            <Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation

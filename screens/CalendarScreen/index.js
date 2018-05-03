@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { Agenda } from 'react-native-calendars'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
 import RNCalendarEvents from 'react-native-calendar-events'
 
 import styles from './styles'
