@@ -29,6 +29,7 @@ class MomentScreen extends React.Component {
       icon: this.props.navigation.state.params.icon,
       id: this.props.navigation.state.params.id,
       check: (this.props.navigation.state.params.category === 'movement'),
+      cal: this.props.navigation.state.params.cal,
     }
   }
 
@@ -79,6 +80,7 @@ class MomentScreen extends React.Component {
   }
 
   render() {
+    console.log("tokennn", this.props.token)
     return(
       <View style={styles.view}>
         <SchedModal
@@ -100,7 +102,7 @@ class MomentScreen extends React.Component {
                 </Text>
               </View>
             }
-            button = {this.props.token === '' || typeof this.props.token !== 'string' ?
+            button = {this.props.navigation.state.params.notLoggedIn ?
             <Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
@@ -111,7 +113,7 @@ class MomentScreen extends React.Component {
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation
-                if (this.props.picker.pickerDate !== null) {
+                if(this.state.cal) {
                 navigate('Select', {
                   time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                   title: this.state.title,
@@ -122,7 +124,7 @@ class MomentScreen extends React.Component {
                   id: this.state.id,
                   eventStart: this.props.picker.pickerDate,
                 })
-                } else if (this.props.picker.pickerDate === null) {
+                } else {
                     navigate('Schedule', {
                     time: (!this.state.check) ? this.state.time : this.state.time + this.props.user.buffer,
                     title: this.state.title,

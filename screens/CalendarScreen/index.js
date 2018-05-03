@@ -55,7 +55,7 @@ class CalendarScreen extends Component {
     this.props.pickerDate(this.state.chosenDate)
     this.setState({pickerModalVisible: false})
     const { navigate } = this.props.navigation
-    navigate('Choose')
+    navigate('Choose', { cal: true })
   }
 
   setPickerDate = (newDate) => {

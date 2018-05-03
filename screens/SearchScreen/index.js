@@ -35,6 +35,8 @@ class SearchScreen extends React.Component {
     this.state = {
       moments: null,
       category: this.props.navigation.state.params.category,
+      cal: this.props.navigation.state.params.cal,
+      notLoggedIn: this.props.navigation.state.params.notLoggedIn,
     }
   }
 
@@ -215,6 +217,8 @@ class SearchScreen extends React.Component {
                 id: item._id,
                 icon: item.icon,
                 category: item.category,
+                cal: this.state.cal,
+                notLoggedIn: this.state.notLoggedIn,
               })
              }}>
               <Moment
@@ -258,6 +262,8 @@ class SearchScreen extends React.Component {
                       id: item._id,
                       category: item.category,
                       icon: item.icon,
+                      cal: this.state.cal,
+                      notLoggedIn: this.state.notLoggedIn,
                     })
                   }}>
                 <Moment
