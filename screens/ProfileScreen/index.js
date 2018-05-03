@@ -10,7 +10,6 @@ import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import { persistor } from '../../redux/store'
 
 const mapStateToProps = state => ({
-  token: state.tokenReducer.token,
   user: state.userReducer,
 })
 
@@ -43,17 +42,6 @@ class ProfileScreen extends React.Component {
 
   getMins(minutes) {
     return minutes + ' minutes'
-  }
-
-  componentWillMount() {
-    if(this.props.token === '' || typeof this.props.token !== 'string') {
-      this.props.navigation.dispatch(
-        NavigationActions.reset({
-          index: 0,
-          key: null,
-          actions: [ NavigationActions.navigate({ routeName: 'Landing' }) ],
-        }))
-    }
   }
 
   render() {

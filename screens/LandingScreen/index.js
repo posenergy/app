@@ -27,7 +27,7 @@ export default class LandingScreen extends React.Component {
           <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Login')}
             text="Log In" textColor="grey"
           />
-          <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('MainTab')}
+          <Button style = {styles.button} type="login" onClick={() => this.props.navigation.navigate('Choose', { notLoggedIn: true })}
           text="Browse Activities" textColor="grey"
           />
         </View>

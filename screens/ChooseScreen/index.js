@@ -42,6 +42,8 @@ class ChooseScreen extends React.Component {
                 style={styles.modalIndex} />,
         modalCommand: this.nextModal,
       },
+      cal: this.props.navigation.state.params && this.props.navigation.state.params.cal === true,
+      notLoggedIn: this.props.navigation.state.params && this.props.navigation.state.params.notLoggedIn === true,
     }
   }
 
@@ -100,7 +102,7 @@ class ChooseScreen extends React.Component {
           onPress={(event) => {
           this.reduxProps()
           const { navigate } = this.props.navigation
-          navigate('Search', {category: 'movement'})
+          navigate('Search', {category: 'movement', cal: this.state.cal, notLoggedIn: this.state.notLoggedIn})
           }}>
           { Platform.isPad && <Image style={styles.mvmtPad} source={require('../src/mvmt.png')}/> }
           { !Platform.isPad && <Image style={styles.mvmt} source={require('../src/mvmt.png')}/> }
@@ -110,7 +112,7 @@ class ChooseScreen extends React.Component {
           onPress={(event) => {
           this.reduxProps()
           const { navigate } = this.props.navigation
-          navigate('Search', {category: 'mindfulness'})
+          navigate('Search', {category: 'mindfulness', cal: this.state.cal, notLoggedIn: this.state.notLoggedIn})
           }}>
           { Platform.isPad && <Image style={styles.mindPad} source={require('../src/mind.png')}/> }
           { !Platform.isPad && <Image style={styles.mind} source={require('../src/mind.png')}/> }
