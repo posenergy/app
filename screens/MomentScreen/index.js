@@ -5,6 +5,7 @@ import SchedModal from '../../components/SchedModal'
 import Button from '../../components/Button'
 import styles from './styles'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
 const mapStateToProps = state => ({
   token: state.tokenReducer.token,
@@ -99,14 +100,14 @@ class MomentScreen extends React.Component {
                 </Text>
               </View>
             }
-            button = {this.props.token === '' || typeof this.props.token !== String ?
+            button = {this.props.token === '' || typeof this.props.token !== 'string' ?
             <Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
-                const { navigate } = this.props.navigation
-                navigate('Register')
+                this.props.navigation.navigate('Landing')
                 }
-              } text='Sign Up' textColor='white'/> : <Button type='schedule'
+              } text='Sign Up' textColor='white'/> 
+              : <Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
                 const { navigate } = this.props.navigation
