@@ -10,7 +10,6 @@ import BlackStyleTextInput from '../../components/BlackStyleTextInput'
 import { persistor } from '../../redux/store'
 
 const mapStateToProps = state => ({
-  token: state.tokenReducer.token,
   user: state.userReducer,
 })
 

@@ -11,7 +11,6 @@ import PickerModal from '../../components/PickerModal'
 import { pickerDate } from '../../redux/actions/pickerActions'
 
 const mapStateToProps = state => ({
-  token: state.tokenReducer.token,
   user: state.userReducer,
   pickerDate: state.pickerReducer.pickerDate,
 })
