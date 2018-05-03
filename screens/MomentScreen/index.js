@@ -106,7 +106,7 @@ class MomentScreen extends React.Component {
               onClick={() => {
                 this.props.navigation.navigate('Landing')
                 }
-              } text='Sign Up' textColor='white'/> : 
+              } text='Sign Up' textColor='white'/> :
             <Button type='schedule'
               justifyContent= 'flex-end'
               onClick={() => {
