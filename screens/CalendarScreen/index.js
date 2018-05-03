@@ -130,72 +130,61 @@ class CalendarScreen extends Component {
   }
 
   render() {
-    if(this.props.token === '' || typeof this.props.token !== 'string') {
-      this.props.navigation.dispatch(
-        NavigationActions.reset({
-          index: 0,
-          key: null,
-          actions: [ NavigationActions.navigate({ routeName: 'Landing' }) ],
-        })
-      )
-    return (<View> <Text> not logged in! </Text></View>)
-    } else {
-      return(
-        <View style={{flex: 1}}>
-          <Agenda
-            items={this.state.items}
-            loadItemsForMonth={this.loadItems.bind(this)}
-            renderItem={this.renderItem.bind(this)}
-            renderEmptyDate={this.renderEmptyDate.bind(this)}
-            rowHasChanged={this.rowHasChanged.bind(this)}
-            selected={this.timeToString(new Date())}
-            theme={{
-              textSectionTitleColor: '#545680',
-              selectedDayBackgroundColor: '#545680',
-              dotColor: '#545680',
-              todayTextColor: '#545680',
-              selectedDotColor: '#ffffff',
-              textDayFontFamily: 'Circular Std',
-              textMonthFontFamily: 'Circular Std',
-              textDayHeaderFontFamily: 'Circular Std',
-              textDayFontSize: 15,
-              textMonthFontSize: 16,
-              textDayHeaderFontSize: 15,
-              agendaDayNumColor: '#545680',
-              agendaTodayColor: '#545680',
-            }}
-          />
-          <TouchableOpacity
-            style={{flex: 1, position: 'absolute', bottom: 0, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
-            onPress={this.addEvent.bind(this)}>
-            <Image source={require('../../images/plus.png')}
-              style={{height: 50, width: 50}}
-              alignSelf = 'flex-end'
-              marginTop = '40%'/>
-          </TouchableOpacity>
-          {this.state.pickerModalVisible &&
-            <PickerModal
-              openPickerModal={this.openPickerModal}
-              closePickerModal={this.closePickerModal}
-              bpress={this.nextScreen}
-              bname={'Next'}
-              chosenDate={this.state.chosenDate}
-              getDateString={this.getDateString(this.state.chosenDate)}
-              setPickerDate={this.setPickerDate.bind(null)}
-            />}
-          {this.state.editModalVisible &&
-            <PickerModal
-              openPickerModal={this.openEditModal}
-              closePickerModal={this.closeEditModal}
-              bpress={this.editEvent}
-              bname={'Update moment start time'}
-              chosenDate={this.state.chosenDate}
-              getDateString={this.getDateString(this.state.chosenDate)}
-              setPickerDate={this.setPickerDate.bind(null)}
-            />}
-        </View>
-      )
-    }
+    return(
+      <View style={{flex: 1}}>
+        <Agenda
+          items={this.state.items}
+          loadItemsForMonth={this.loadItems.bind(this)}
+          renderItem={this.renderItem.bind(this)}
+          renderEmptyDate={this.renderEmptyDate.bind(this)}
+          rowHasChanged={this.rowHasChanged.bind(this)}
+          selected={this.timeToString(new Date())}
+          theme={{
+            textSectionTitleColor: '#545680',
+            selectedDayBackgroundColor: '#545680',
+            dotColor: '#545680',
+            todayTextColor: '#545680',
+            selectedDotColor: '#ffffff',
+            textDayFontFamily: 'Circular Std',
+            textMonthFontFamily: 'Circular Std',
+            textDayHeaderFontFamily: 'Circular Std',
+            textDayFontSize: 15,
+            textMonthFontSize: 16,
+            textDayHeaderFontSize: 15,
+            agendaDayNumColor: '#545680',
+            agendaTodayColor: '#545680',
+          }}
+        />
+        <TouchableOpacity
+          style={{flex: 1, position: 'absolute', bottom: 0, marginBottom: '4%', marginRight: '5%', marginLeft: '85%'}}
+          onPress={this.addEvent.bind(this)}>
+          <Image source={require('../../images/plus.png')}
+            style={{height: 50, width: 50}}
+            alignSelf = 'flex-end'
+            marginTop = '40%'/>
+        </TouchableOpacity>
+        {this.state.pickerModalVisible &&
+          <PickerModal
+            openPickerModal={this.openPickerModal}
+            closePickerModal={this.closePickerModal}
+            bpress={this.nextScreen}
+            bname={'Next'}
+            chosenDate={this.state.chosenDate}
+            getDateString={this.getDateString(this.state.chosenDate)}
+            setPickerDate={this.setPickerDate.bind(null)}
+          />}
+        {this.state.editModalVisible &&
+          <PickerModal
+            openPickerModal={this.openEditModal}
+            closePickerModal={this.closeEditModal}
+            bpress={this.editEvent}
+            bname={'Update moment start time'}
+            chosenDate={this.state.chosenDate}
+            getDateString={this.getDateString(this.state.chosenDate)}
+            setPickerDate={this.setPickerDate.bind(null)}
+          />}
+      </View>
+    )
   }
   _isOpen(day, minute) {
     return this.state.items[day].reduce((acc, { start, end, timeRange }) => {
