@@ -119,12 +119,6 @@ class CalendarScreen extends Component {
   componentDidMount() {
     this.props.pickerDate(null)
     RNCalendarEvents.authorizeEventStore()
-      .then(status => {
-        // console.log('@@@@@@@@@@', status)
-      })
-      .catch(error => {
-        // console.log('denied')
-      })
   }
 
   render() {

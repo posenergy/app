@@ -40,6 +40,7 @@ class SelectScreen extends React.Component {
       icon: this.props.navigation.state.params.icon,
       id: this.props.navigation.state.params.id,
       textwourl: null,
+      buttonClicked: false,      
     }
   }
 
@@ -76,21 +77,31 @@ class SelectScreen extends React.Component {
       } return responseJSON
     } catch(error) {
       console.error(error)
+      this.setState({ buttonClicked: false })      
     }
   }
 
   saveEvent = () => {
+    this.changeFields(eventstart)
+    this.setState({ buttonClicked: true })   
     this.props.pickerDateNull()
     const eventstart = new Date(this.state.eventStart)
     const enddate = (new Date(moment(eventstart).add(this.state.time, 'm'))).toISOString()
-    const desc = (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
-    this.changeFields(eventstart)
+    const desc = (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]' 
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(),
       endDate: enddate,
       notes: desc,
     })
+    Alert.alert(
+      'Activity scheduled!',
+      '\"' + this.state.title + '\" has been added to your calendar',
+     [
+       {text: 'OK'},
+     ],
+     { cancelable: false })
     this.resetNavigation('Calendar')
+    this.setState({ buttonClicked: false })       
 }
 
   componentDidMount() {
@@ -135,7 +146,8 @@ class SelectScreen extends React.Component {
                 </View>
               </View>}
             button = {<Button type='schedule' justifyContent='flex-end'
-                    onClick={this.saveEvent}
+                    onClick={() => !this.state.buttonClicked && this.saveEvent}
+                    loading={this.state.buttonClicked}                    
                     text='Add to Calendar' textColor='white'/>}
           />
       </View>

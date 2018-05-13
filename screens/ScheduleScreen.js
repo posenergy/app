@@ -36,6 +36,7 @@ class ScheduleScreen extends React.Component {
       value: new Date (),
       items: {},
       buttons: [],
+      buttonClicked: false,      
     }
   }
 
@@ -65,12 +66,14 @@ class ScheduleScreen extends React.Component {
       } else {
       } return responseJSON
     } catch(error) {
+      this.setState({ buttonClicked: false })      
       console.error(error)
     }
   }
 
   saveEvent = (eventstart) => {
     this.changeFields(eventstart)
+    this.setState({ buttonClicked: true })    
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
@@ -84,6 +87,7 @@ class ScheduleScreen extends React.Component {
      ],
      { cancelable: false })
     this.props.navigation.navigate('Calendar')
+    this.setState({ buttonClicked: false })       
   }
 
 
@@ -108,6 +112,7 @@ class ScheduleScreen extends React.Component {
   componentDidMount() {
     this.props.pickerDateNull()
     this.renderTimes()
+    RNCalendarEvents.authorizeEventStore()
   }
 
   renderTimes() {
@@ -216,7 +221,8 @@ render() {
             setValue = {this.setValue}
           />}
           button = {<Button type='schedule'
-                    onClick={() => this.saveEvent(this.state.value)}
+                    onClick={() => !this.state.buttonClicked && this.saveEvent(this.state.value)}
+                    loading={this.state.buttonClicked}
                     text='Add to Calendar' textColor='white'/>}
       />
     </View>
