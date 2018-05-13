@@ -36,7 +36,7 @@ class ScheduleScreen extends React.Component {
       value: new Date (),
       items: {},
       buttons: [],
-      buttonClicked: false,      
+      buttonClicked: false,
     }
   }
 
@@ -66,14 +66,14 @@ class ScheduleScreen extends React.Component {
       } else {
       } return responseJSON
     } catch(error) {
-      this.setState({ buttonClicked: false })      
+      this.setState({ buttonClicked: false })
       console.error(error)
     }
   }
 
   saveEvent = (eventstart) => {
     this.changeFields(eventstart)
-    this.setState({ buttonClicked: true })    
+    this.setState({ buttonClicked: true })
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
@@ -87,7 +87,7 @@ class ScheduleScreen extends React.Component {
      ],
      { cancelable: false })
     this.props.navigation.navigate('Calendar')
-    this.setState({ buttonClicked: false })       
+    this.setState({ buttonClicked: false })
   }
 
 

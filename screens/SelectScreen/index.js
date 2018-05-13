@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import RNCalendarEvents from 'react-native-calendar-events'
@@ -40,7 +40,7 @@ class SelectScreen extends React.Component {
       icon: this.props.navigation.state.params.icon,
       id: this.props.navigation.state.params.id,
       textwourl: null,
-      buttonClicked: false,      
+      buttonClicked: false,
     }
   }
 
@@ -54,7 +54,7 @@ class SelectScreen extends React.Component {
 
   async changeFields(apiStart) {
     try {
-      let bodyObj = {
+      const bodyObj = {
         momentId: this.state.id,
         buffer: this.props.user.buffer,
         time: apiStart.toISOString(),
@@ -77,17 +77,17 @@ class SelectScreen extends React.Component {
       } return responseJSON
     } catch(error) {
       console.error(error)
-      this.setState({ buttonClicked: false })      
+      this.setState({ buttonClicked: false })
     }
   }
 
   saveEvent = () => {
-    this.changeFields(eventstart)
-    this.setState({ buttonClicked: true })   
     this.props.pickerDateNull()
     const eventstart = new Date(this.state.eventStart)
     const enddate = (new Date(moment(eventstart).add(this.state.time, 'm'))).toISOString()
-    const desc = (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]' 
+    const desc = this.state.text.includes('`') ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
+    this.changeFields(eventstart)
+    this.setState({ buttonClicked: true })
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(),
       endDate: enddate,
@@ -101,7 +101,7 @@ class SelectScreen extends React.Component {
      ],
      { cancelable: false })
     this.resetNavigation('Calendar')
-    this.setState({ buttonClicked: false })       
+    this.setState({ buttonClicked: false })
 }
 
   componentDidMount() {
@@ -147,7 +147,7 @@ class SelectScreen extends React.Component {
               </View>}
             button = {<Button type='schedule' justifyContent='flex-end'
                     onClick={() => !this.state.buttonClicked && this.saveEvent}
-                    loading={this.state.buttonClicked}                    
+                    loading={this.state.buttonClicked}
                     text='Add to Calendar' textColor='white'/>}
           />
       </View>
