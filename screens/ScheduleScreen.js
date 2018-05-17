@@ -74,10 +74,15 @@ class ScheduleScreen extends React.Component {
   saveEvent = (eventstart) => {
     this.changeFields(eventstart)
     this.setState({ buttonClicked: true })
+    const imgNotes = (this.state.text.split('`')[1] ?
+      this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' :
+      this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]')
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
-      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]',
+      notes: (this.state.vid === undefined) ?
+        imgNotes :
+        this.state.vid + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]',
     })
     Alert.alert(
       'Activity scheduled!',
@@ -186,7 +191,7 @@ class ScheduleScreen extends React.Component {
               return
             }
             minutes += 1
-            if (minutes >= EVENT_TIME && num_scheduled < 1) {
+            if (minutes >= EVENT_TIME && num_scheduled < 3) {
               const addZeros = i => i > 9 ? `${i}` : `0${i}`
               const buildTime = d => `${d.getHours()}:${addZeros(d.getMinutes())}`
               const startDate2 = new Date(currTime.getTime() - EVENT_TIME * 60000)
