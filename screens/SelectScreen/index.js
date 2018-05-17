@@ -88,6 +88,7 @@ class SelectScreen extends React.Component {
     const desc = this.state.text.includes('`') ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
     this.changeFields(eventstart)
     this.setState({ buttonClicked: true })
+    console.log("saving event")
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(),
       endDate: enddate,
@@ -146,7 +147,7 @@ class SelectScreen extends React.Component {
                 </View>
               </View>}
             button = {<Button type='schedule' justifyContent='flex-end'
-                    onClick={() => !this.state.buttonClicked && this.saveEvent}
+                    onClick={() => !this.state.buttonClicked && this.saveEvent()}
                     loading={this.state.buttonClicked}
                     text='Add to Calendar' textColor='white'/>}
           />
