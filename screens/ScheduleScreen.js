@@ -74,10 +74,17 @@ class ScheduleScreen extends React.Component {
   saveEvent = (eventstart) => {
     this.changeFields(eventstart)
     this.setState({ buttonClicked: true })
+    console.log(this.state)
+    console.log(this.state.vid !== undefined)
+    console.log(this.state.text.split('`')[1])
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
-      notes: (this.state.text.includes('`')) ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]',
+      notes: (this.state.vid === undefined) ? 
+        (this.state.text.split('`')[1] ? 
+          this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : 
+          this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]') : 
+        this.state.vid + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]',
     })
     Alert.alert(
       'Activity scheduled!',
