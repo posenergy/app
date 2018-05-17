@@ -83,7 +83,6 @@ class ScheduleScreen extends React.Component {
   saveEvent = (eventstart) => {
     this.changeFields(eventstart)
     this.setState({ buttonClicked: true })
-    console.log("saving event")
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(), // selected button
       endDate: (new Date (eventstart.getTime() + this.state.time * 60000)).toISOString(), // selected button + time
