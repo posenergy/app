@@ -20,7 +20,6 @@ export default StyleSheet.create({
     width: '100%',
     height: 40,
     color: '#545680',
-
   },
   textview: {
     justifyContent: 'center',
@@ -65,6 +64,6 @@ export default StyleSheet.create({
     height: 18,
     alignSelf: 'flex-end',
     marginRight: 6,
-    marginTop: 4,
+    marginTop: 12,
   },
 })
