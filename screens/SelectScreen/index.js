@@ -146,7 +146,7 @@ class SelectScreen extends React.Component {
                 </View>
               </View>}
             button = {<Button type='schedule' justifyContent='flex-end'
-                    onClick={() => !this.state.buttonClicked && this.saveEvent}
+                    onClick={() => !this.state.buttonClicked && this.saveEvent()}
                     loading={this.state.buttonClicked}
                     text='Add to Calendar' textColor='white'/>}
           />

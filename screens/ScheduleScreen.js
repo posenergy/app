@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Alert } from 'react-native'
 import RNCalendarEvents from 'react-native-calendar-events'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
 import config from '../config/config'
 import SelectTime from '../components/SelectTime'
@@ -71,6 +72,14 @@ class ScheduleScreen extends React.Component {
     }
   }
 
+  resetNavigation(targetRoute) {
+    const navigateAction = NavigationActions.reset({
+      index: 0,
+      actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+    })
+    this.props.navigation.dispatch(navigateAction)
+  }
+
   saveEvent = (eventstart) => {
     this.changeFields(eventstart)
     this.setState({ buttonClicked: true })
@@ -91,7 +100,7 @@ class ScheduleScreen extends React.Component {
        {text: 'OK'},
      ],
      { cancelable: false })
-    this.props.navigation.navigate('Calendar')
+    this.resetNavigation('Choose')
     this.setState({ buttonClicked: false })
   }
 
