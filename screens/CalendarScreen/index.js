@@ -239,8 +239,6 @@ class CalendarScreen extends Component {
           let alreadyExists = false
           let is_posE = false
           const eventID = event.id
-          console.log('hi')
-          console.log(event.title)
           // if event already exists, dont add it to new items when day reloads
           for (let i = 0; i < this.state.items[strTime].length; i++) {
             if (eventID === this.state.items[strTime][i].id) {
