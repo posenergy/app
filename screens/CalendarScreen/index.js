@@ -28,6 +28,7 @@ class CalendarScreen extends Component {
       chosenDate: null,
       eventid: null,
       eventlength: null,
+      maxDate: moment().format().split('T')[0],
     }
   }
 
@@ -129,6 +130,7 @@ class CalendarScreen extends Component {
           loadItemsForMonth={this.loadItems.bind(this)}
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={() => {}}
+          maxDate={this.state.maxDate}
           rowHasChanged={this.rowHasChanged.bind(this)}
           selected={this.timeToString(new Date())}
           theme={{
@@ -339,7 +341,7 @@ class CalendarScreen extends Component {
         }
 
         
-        for (let i = -15; i < 23; i++) {
+        for (let i = -15; i < 22; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
           if (!this.state.items[strTime]) {
@@ -350,8 +352,8 @@ class CalendarScreen extends Component {
         for (let k = 0; k < 22; k++) {
           const day = moment().add(k, 'days').startOf('day').format().split('T')[0]
           if (!this.state.items[day][0]) {
-            const date = moment(day)
-            const end = date.clone().add(1439, 'minute')
+            const date = moment(day).add(8,'hour')
+            const end = date.clone().add(59, 'minute')
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
             const timeRange = `${buildTime(date)}-${buildTime(end)}`
@@ -359,9 +361,9 @@ class CalendarScreen extends Component {
               name: 'Add a +energy event',
                 end: end,
                 start: date,
-                length: 24,
+                length: 1,
                 calendar: '',
-                eventHeight: 1440,
+                eventHeight: 60,
                 timeRange,
                 isAnAllDay: true,
               }
