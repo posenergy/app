@@ -28,7 +28,7 @@ class CalendarScreen extends Component {
       chosenDate: null,
       eventid: null,
       eventlength: null,
-      maxDate: moment().add(21, 'days').format().split('T')[0],
+      maxDate: moment().format().split('T')[0],
     }
   }
 
@@ -339,9 +339,9 @@ class CalendarScreen extends Component {
             return 0
           })
         }
+
         
-        const scrollmax = 22 - (day.timestamp - new Date() / (86400))
-        for (let i = -15; i < scrollmax; i++) {
+        for (let i = -15; i < 22; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
           if (!this.state.items[strTime]) {
@@ -352,8 +352,8 @@ class CalendarScreen extends Component {
         for (let k = 0; k < 22; k++) {
           const day = moment().add(k, 'days').startOf('day').format().split('T')[0]
           if (!this.state.items[day][0]) {
-            const date = moment(day).add(8, 'hour')
-            const end = date.clone().add(899, 'minute')
+            const date = moment(day).add(8,'hour')
+            const end = date.clone().add(59, 'minute')
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
             const timeRange = `${buildTime(date)}-${buildTime(end)}`
@@ -361,9 +361,9 @@ class CalendarScreen extends Component {
               name: 'Add a +energy event',
                 end: end,
                 start: date,
-                length: 15,
+                length: 1,
                 calendar: '',
-                eventHeight: 900,
+                eventHeight: 60,
                 timeRange,
                 isAnAllDay: true,
               }
@@ -392,7 +392,7 @@ class CalendarScreen extends Component {
           items: newItems,
         })
       })
-    }, 200)
+    }, 10)
   }
 
   renderItem(item) {
