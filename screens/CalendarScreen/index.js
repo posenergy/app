@@ -392,7 +392,7 @@ class CalendarScreen extends Component {
           items: newItems,
         })
       })
-    }, 200)
+    }, 1000)
   }
 
   renderItem(item) {
