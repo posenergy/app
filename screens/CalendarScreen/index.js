@@ -88,7 +88,7 @@ class CalendarScreen extends Component {
 
   addEvent() {
     this.setState({
-      chosenDate: new Date(1528466400000),
+      chosenDate: new Date(),
       pickerModalVisible: true,
     })
   }
@@ -192,7 +192,7 @@ class CalendarScreen extends Component {
   loadItems(day) {
     setTimeout(() => {
     const startDate = moment().subtract(14, 'days').toDate()
-    const endDate = moment().add(14, 'days').toDate()
+    const endDate = moment().add(21, 'days').toDate()
 
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
@@ -339,7 +339,7 @@ class CalendarScreen extends Component {
         }
 
         
-        for (let i = -15; i < 16; i++) {
+        for (let i = -15; i < 23; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
           if (!this.state.items[strTime]) {
@@ -347,7 +347,7 @@ class CalendarScreen extends Component {
           }
         }
 
-        for (let k = 0; k < 15; k++) {
+        for (let k = 0; k < 22; k++) {
           const day = moment().add(k, 'days').startOf('day').format().split('T')[0]
           if (!this.state.items[day][0]) {
             const date = moment(day)
@@ -377,7 +377,7 @@ class CalendarScreen extends Component {
       })
       .catch (error => {
         // Alert, couldn't fetch events from calendar sorry!
-        for (let i = -15; i < 15; i++) {
+        for (let i = -15; i < 23; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
           if (!this.state.items[strTime]) {
