@@ -5,6 +5,7 @@ import CalendarScreen from '../screens/CalendarScreen'
 import ChooseScreen from '../screens/ChooseScreen'
 import SearchScreen from '../screens/SearchScreen'
 import MomentScreen from '../screens/MomentScreen'
+import MomentInfoScreen from '../screens/MomentInfoScreen'
 import SelectScreen from '../screens/SelectScreen'
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
@@ -42,6 +43,13 @@ const CalendarStack = StackNavigator({
     screen: SelectScreen,
     navigationOptions: ({ navigation }) => ({
       title: 'Schedule',
+      headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
+    }),
+  },
+  MomentInfo: {
+    screen: MomentInfoScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'MomentInfo',
       headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
