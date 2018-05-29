@@ -245,7 +245,7 @@ class EditProfileScreen extends React.Component {
                 baseColor= 'black'
                 selectedItemColor= '#545680'
                 itemTextStyle={{fontFamily: 'Circular Std', color: 'black'}}
-                label= 'Recovery Time'
+                label= 'Buffer Time'
                 data={bufferdata}
                 onChangeText = {(value) => this.setState({bufferTime: parseInt(value, 10) })}
               />
@@ -257,7 +257,7 @@ class EditProfileScreen extends React.Component {
                 baseColor= 'black'
                 selectedItemColor= '#545680'
                 itemTextStyle={{fontFamily: 'Circular Std', color: 'black'}}
-                label='Start Time'
+                label='Wakeup'
                 data={hourdata}
                 onChangeText = {(value) => this.setState({startTime: value.replace(':', '')})}
               />
@@ -269,7 +269,7 @@ class EditProfileScreen extends React.Component {
                 baseColor= 'black'
                 selectedItemColor= '#545680'
                 itemTextStyle={{fontFamily: 'Circular Std', color: 'black'}}
-                label='End Time'
+                label='Sleep'
                 data={hourdata}
                 onChangeText = {(value) => this.setState({endTime: value.replace(':', '')})}
               />
