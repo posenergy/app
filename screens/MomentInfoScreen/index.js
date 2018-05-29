@@ -1,6 +1,6 @@
 import React from 'react'
 import YouTube from 'react-native-youtube'
-import { View, Text, Image, Switch } from 'react-native'
+import { View, Image } from 'react-native'
 import SchedModalInfo from '../../components/SchedModalInfo'
 import styles from './styles'
 import { connect } from 'react-redux'
