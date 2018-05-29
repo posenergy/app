@@ -85,13 +85,19 @@ class SelectScreen extends React.Component {
     this.props.pickerDateNull()
     const eventstart = new Date(this.state.eventStart)
     const enddate = (new Date(moment(eventstart).add(this.state.time, 'm'))).toISOString()
-    const desc = this.state.text.includes('`') ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
+    // const desc = this.state.text.includes('`') ? this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' : this.state.vid + '\n' + this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]'
     this.changeFields(eventstart)
     this.setState({ buttonClicked: true })
+    const imgNotes = (this.state.text.split('`')[1] ?
+      this.state.text.split('`')[1] + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]' :
+      this.state.brand + ': ' + this.state.text + '\nCurated by [+energy]')
     RNCalendarEvents.saveEvent(this.state.title, {
       startDate: eventstart.toISOString(),
       endDate: enddate,
-      notes: desc,
+      // notes: desc,
+      notes: (this.state.vid === undefined) ?
+        imgNotes :
+        this.state.vid + '\n' + this.state.brand + ': ' + this.state.text.split('`')[0] + '\nCurated by [+energy]',
     })
     Alert.alert(
       'Activity scheduled!',
