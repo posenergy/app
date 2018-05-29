@@ -101,6 +101,7 @@ class ScheduleScreen extends React.Component {
      ],
      { cancelable: false })
     this.resetNavigation('Choose')
+    // this.props.navigation.navigate('Calendar')
     this.setState({ buttonClicked: false })
   }
 
@@ -200,7 +201,7 @@ class ScheduleScreen extends React.Component {
               return
             }
             minutes += 1
-            if (minutes >= EVENT_TIME && num_scheduled < 3) {
+            if (minutes >= EVENT_TIME && num_scheduled < 1000) {
               const addZeros = i => i > 9 ? `${i}` : `0${i}`
               const buildTime = d => `${d.getHours()}:${addZeros(d.getMinutes())}`
               const startDate2 = new Date(currTime.getTime() - EVENT_TIME * 60000)

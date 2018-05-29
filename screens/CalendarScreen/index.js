@@ -88,7 +88,7 @@ class CalendarScreen extends Component {
 
   addEvent() {
     this.setState({
-      chosenDate: new Date(),
+      chosenDate: new Date(1528466400000),
       pickerModalVisible: true,
     })
   }
@@ -128,7 +128,7 @@ class CalendarScreen extends Component {
           items={this.state.items}
           loadItemsForMonth={this.loadItems.bind(this)}
           renderItem={this.renderItem.bind(this)}
-          renderEmptyDate={this.renderEmptyDate.bind(this)}
+          renderEmptyDate={() => {}}
           rowHasChanged={this.rowHasChanged.bind(this)}
           selected={this.timeToString(new Date())}
           theme={{
@@ -192,7 +192,7 @@ class CalendarScreen extends Component {
   loadItems(day) {
     setTimeout(() => {
     const startDate = moment().subtract(14, 'days').toDate()
-    const endDate = moment().add(21, 'days').toDate()
+    const endDate = moment().add(14, 'days').toDate()
 
     RNCalendarEvents.fetchAllEvents(startDate, endDate)
       .then(allEvents => {
@@ -290,6 +290,9 @@ class CalendarScreen extends Component {
           if (this.state.items[time].length === 0) {
             continue
           }
+          if (this.state.items[time][0].isAnAllDay) {
+            continue
+          }
           this.state.items[time] = this.state.items[time].filter(x => Boolean(x.calendar))
           const now = moment(time)
           if (now < yesterday) {
@@ -335,13 +338,37 @@ class CalendarScreen extends Component {
           })
         }
 
-        for (let i = -15; i < 85; i++) {
+        
+        for (let i = -15; i < 16; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
           if (!this.state.items[strTime]) {
             this.state.items[strTime] = []
           }
         }
+
+        for (let k = 0; k < 15; k++) {
+          const day = moment().add(k, 'days').startOf('day').format().split('T')[0]
+          if (!this.state.items[day][0]) {
+            const date = moment(day)
+            const end = date.clone().add(1439, 'minute')
+            const addZeros = i => i > 9 ? `${i}` : `0${i}`
+            const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
+            const timeRange = `${buildTime(date)}-${buildTime(end)}`
+            const newEvent = {
+              name: 'Add a +energy event',
+                end: end,
+                start: date,
+                length: 24,
+                calendar: '',
+                eventHeight: 1440,
+                timeRange,
+                isAnAllDay: true,
+              }
+            this.state.items[day].push(newEvent)
+          }
+        }
+
         const newItems = {}
         Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key]})
         this.setState({
@@ -350,7 +377,7 @@ class CalendarScreen extends Component {
       })
       .catch (error => {
         // Alert, couldn't fetch events from calendar sorry!
-        for (let i = -15; i < 85; i++) {
+        for (let i = -15; i < 15; i++) {
           const time = day.timestamp + i * 24 * 60 * 60 * 1000
           const strTime = this.timeToString(time)
           if (!this.state.items[strTime]) {
