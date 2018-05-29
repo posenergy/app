@@ -49,7 +49,7 @@ const CalendarStack = StackNavigator({
   MomentInfo: {
     screen: MomentInfoScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Moment',
+      title: 'MomentInfo',
       headerLeft: <HeaderBackButton tintColor='white' onPress={() => navigation.goBack(null)} />,
     }),
   },
