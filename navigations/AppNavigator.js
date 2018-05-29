@@ -51,7 +51,7 @@ const AppNavigator = StackNavigator({
   },
   Moment: {
     screen: MomentScreen,
-  },
+  }, 
   Schedule: {
     screen: ScheduleScreen,
   },

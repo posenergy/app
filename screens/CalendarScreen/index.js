@@ -4,6 +4,7 @@ import { Agenda } from 'react-native-calendars'
 import { connect } from 'react-redux'
 import RNCalendarEvents from 'react-native-calendar-events'
 
+import config from '../../config/config'
 import styles from './styles'
 import moment from 'moment'
 import PickerModal from '../../components/PickerModal'
@@ -67,6 +68,37 @@ class CalendarScreen extends Component {
       chosenDate: item.start._i,
       eventid: item.id,
       eventlength: item.length,
+    })
+  }
+
+  infoMoment = (item) => {
+    fetch(config.apiUrl + '/moments/search/name?name=' + item.nameURL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'x-access-token': this.props.token,
+      },
+    })
+    .then((res) => res.json())
+    .then(itemInfo => {
+      const { navigate } = this.props.navigation
+      navigate('MomentInfo', {
+        title: itemInfo.name,
+        img: itemInfo.img,
+        desc: itemInfo.description,
+        brand: itemInfo.partner,
+        time: itemInfo.duration,
+        vid: itemInfo.vid,
+        id: itemInfo._id,
+        category: itemInfo.category,
+        icon: itemInfo.icon,
+        cal: this.state.cal,
+        notLoggedIn: this.state.notLoggedIn,
+      })
+    })
+    .catch((error) => {
+      console.error(error)
     })
   }
 
@@ -207,6 +239,8 @@ class CalendarScreen extends Component {
           let alreadyExists = false
           let is_posE = false
           const eventID = event.id
+          console.log('hi')
+          console.log(event.title)
           // if event already exists, dont add it to new items when day reloads
           for (let i = 0; i < this.state.items[strTime].length; i++) {
             if (eventID === this.state.items[strTime][i].id) {
@@ -239,6 +273,7 @@ class CalendarScreen extends Component {
                   strTime: strTime2,
                   id: event.id,
                   name: (first ? '' : '[Continued] ') + event.title,
+                  nameURL: event.title.replace(/ /g, '%20'),
                   start: startDate2,
                   end: endDate2,
                   length: eventLength,
@@ -270,6 +305,7 @@ class CalendarScreen extends Component {
             this.state.items[strTime].push({
               id: eventID,
               name: event.title,
+              nameURL: (event.title).replace(/ /g, '%20'),
               start: moment(startDate2),
               end: moment(endDate2),
               length: eventLength,
@@ -369,14 +405,14 @@ class CalendarScreen extends Component {
   renderItem(item) {
     if (item.posE) {
       return (
-        // <TouchableOpacity onPress={() => {this.openEditModal(item)}}>
+        <TouchableOpacity onPress={() => {this.infoMoment(item)}}>
         <View style={[styles.item, {backgroundColor: '#545680'}, {height: item.height}]}>
         <Text style={{color: 'white', fontFamily: 'Circular Std'}}>{item.timeRange}</Text>
         <Text numberOfLines={1} ellipsizeMode='tail' style={{color: 'white', fontFamily: 'Circular Std'}}>{item.name}</Text>
         {item.height > 60 &&
         <Text style={{color: 'white', fontFamily: 'Circular Std'}}>[+energy]</Text>}
         </View>
-        // </TouchableOpacity>
+        </TouchableOpacity>
       )
     } else if (!item.calendar) {
       return (
