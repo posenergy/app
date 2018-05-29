@@ -352,7 +352,7 @@ class CalendarScreen extends Component {
         for (let k = 0; k < 22; k++) {
           const day = moment().add(k, 'days').startOf('day').format().split('T')[0]
           if (!this.state.items[day][0]) {
-            const date = moment(day).add(8,'hour')
+            const date = moment(day).add(8, 'hour')
             const end = date.clone().add(59, 'minute')
             const addZeros = i => i > 9 ? `${i}` : `0${i}`
             const buildTime = d => `${addZeros(d.hour())}:${addZeros(d.minute())}`
