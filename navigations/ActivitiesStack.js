@@ -41,7 +41,6 @@ const ActivitiesStack = StackNavigator({
 {
   initialRouteName: 'Choose',
   headerMode: 'none',
-  headerMode: 'none',
   transitionConfig: () => ({
     screenInterpolator: (sceneProps) => {
       // Disable the transition animation when resetting to the home screen.
