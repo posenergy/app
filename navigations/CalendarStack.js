@@ -48,6 +48,7 @@ const CalendarStack = StackNavigator({
 },
 { initialRouteName: 'Calendar',
 headerMode: 'none',
+initialRouteKey: 'Calendar',
 transitionConfig: () => ({
   screenInterpolator: (sceneProps) => {
     // Disable the transition animation when resetting to the home screen.

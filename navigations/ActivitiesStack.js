@@ -5,6 +5,7 @@ import ChooseScreen from '../screens/ChooseScreen'
 import SearchScreen from '../screens/SearchScreen'
 import MomentScreen from '../screens/MomentScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 
 import { HeaderBackButton } from 'react-navigation'
 
@@ -40,6 +41,20 @@ const ActivitiesStack = StackNavigator({
 {
   initialRouteName: 'Choose',
   headerMode: 'none',
+  headerMode: 'none',
+  transitionConfig: () => ({
+    screenInterpolator: (sceneProps) => {
+      // Disable the transition animation when resetting to the home screen.
+      if (
+        sceneProps.index === 0 &&
+        sceneProps.scene.route.routeName !== 'Choose' &&
+        sceneProps.scenes.length > 2
+      ) return null
+
+      // Otherwise, use the usual horizontal animation.
+      return CardStackStyleInterpolator.forHorizontal(sceneProps)
+    },
+  }),
 }
 )
 
