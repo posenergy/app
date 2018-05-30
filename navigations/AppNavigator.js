@@ -39,7 +39,7 @@ const AppNavigator = StackNavigator({
     screen: PasswordResetScreen,
       navigationOptions: ({ navigation }) => ({
       headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
-      })
+      }),
   },
   Register: {
     screen: RegisterScreen,
