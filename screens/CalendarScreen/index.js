@@ -273,7 +273,7 @@ class CalendarScreen extends Component {
                   strTime: strTime2,
                   id: event.id,
                   name: (first ? '' : '[Continued] ') + event.title,
-                  nameURL: event.title.replace(/ /g, '%20'),
+                  nameURL: encodeURI(event.title),
                   start: startDate2,
                   end: endDate2,
                   length: eventLength,
@@ -305,7 +305,7 @@ class CalendarScreen extends Component {
             this.state.items[strTime].push({
               id: eventID,
               name: event.title,
-              nameURL: (event.title).replace(/ /g, '%20'),
+              nameURL: encodeURI(event.title),
               start: moment(startDate2),
               end: moment(endDate2),
               length: eventLength,
