@@ -76,6 +76,7 @@ class ScheduleScreen extends React.Component {
     const navigateAction = NavigationActions.reset({
       index: 0,
       actions: [ NavigationActions.navigate({ routeName: targetRoute }) ],
+      // key: 'Calendar',
     })
     this.props.navigation.dispatch(navigateAction)
   }
@@ -101,7 +102,7 @@ class ScheduleScreen extends React.Component {
      ],
      { cancelable: false })
     this.resetNavigation('Choose')
-    // this.props.navigation.navigate('Calendar')
+    this.props.navigation.navigate('Calendar')
     this.setState({ buttonClicked: false })
   }
 
