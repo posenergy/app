@@ -5,6 +5,7 @@ import React from 'react'
 import SplashScreen from '../screens/SplashScreen'
 import LandingScreen from '../screens/LandingScreen'
 import LoginScreen from '../screens/LoginScreen'
+import PasswordResetScreen from '../screens/PasswordResetScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import ChooseScreen from '../screens/ChooseScreen'
 import SearchScreen from '../screens/SearchScreen'
@@ -33,6 +34,12 @@ const AppNavigator = StackNavigator({
       navigationOptions: ({ navigation }) => ({
       headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
     }),
+  },
+  PasswordReset: {
+    screen: PasswordResetScreen,
+      navigationOptions: ({ navigation }) => ({
+      headerLeft: <HeaderBackButton tintColor='#545680' onPress={() => navigation.goBack(null)} />,
+      })
   },
   Register: {
     screen: RegisterScreen,

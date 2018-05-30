@@ -47,6 +47,11 @@ class LoginScreen extends ValidationComponent {
     })
   }
 
+  pwResetNav() {
+    const { navigate } = this.props.navigation
+    navigate('PasswordReset', {})
+  }
+
   resetNavigation(targetRoute) {
     this.props.navigation.dispatch(
       NavigationActions.reset({
@@ -185,7 +190,7 @@ class LoginScreen extends ValidationComponent {
               text='Log In' textColor='grey'
               loading={this.state.buttonClicked}
               />
-            <View style={{alignSelf: 'center'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <TouchableHighlight underlayColor='transparent' onPress={() => Alert.alert(
                 'Forgot Password?',
                 'Email positiveenergyapp@gmail.com for help!',
@@ -195,6 +200,9 @@ class LoginScreen extends ValidationComponent {
                 { cancelable: true }
               )}>
             <Text style={{fontFamily: 'Circular Std', color: 'white'}}>Forgot Password?</Text>
+            </TouchableHighlight>
+            <TouchableHighlight underlayColor='transparent' onPress={() => {this.pwResetNav()}}>
+            <Text style={{fontFamily: 'Circular Std', color: 'white'}}>Reset from Code</Text>
             </TouchableHighlight>
             </View>
             </View>
